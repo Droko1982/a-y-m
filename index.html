@@ -42,7 +42,8 @@
 
     <meta name="theme-color" content="#FBF8F2" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#12241B" media="(prefers-color-scheme: dark)">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐘</text></svg>">
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -63,7 +64,7 @@
       "name": "A&M Universe",
       "description": "Camisetas estampadas con propósito que cuentan historias y ayudan a los animales de la calle y al planeta.",
       "url": "https://droko1982.github.io/a-y-m/",
-      "image": "https://droko1982.github.io/a-y-m/assets/og-image.svg",
+      "image": "https://droko1982.github.io/a-y-m/assets/og-image.png",
       "slogan": "Diseño con propósito",
       "address": {
         "@type": "PostalAddress",
@@ -91,26 +92,8 @@
 <header class="site-header" id="top">
     <div class="container header-inner">
         <a href="#top" class="brand" aria-label="A&M Universe">
-            <span class="brand-mark" aria-hidden="true">
-                <svg viewBox="0 0 120 120" role="img" aria-label="A&M Universe">
-                    <circle cx="60" cy="60" r="53" fill="none" stroke="currentColor" stroke-width="2.2" opacity=".5"/>
-                    <g fill="currentColor">
-                        <circle cx="44" cy="55" r="21"/>
-                        <ellipse cx="73" cy="59" rx="27" ry="21"/>
-                        <ellipse cx="52" cy="49" rx="11" ry="13"/>
-                        <rect x="56" y="73" width="9" height="18" rx="4.5"/>
-                        <rect x="72" y="73" width="9" height="18" rx="4.5"/>
-                        <rect x="86" y="71" width="8" height="16" rx="4"/>
-                        <path d="M32,61 C24,71 22,83 29,87 C35,90 41,86 39,79" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
-                        <path d="M99,53 c7,3 6,11 2,15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                    </g>
-                    <circle cx="39" cy="51" r="2.6" fill="var(--bg)"/>
-                </svg>
-            </span>
-            <span class="brand-word">
-                <span class="brand-name">A&amp;M</span>
-                <span class="brand-sub">UNIVERSE</span>
-            </span>
+            <img class="brand-logo brand-logo-light" src="assets/logo-light.png" alt="A&M Universe" width="256" height="72">
+            <img class="brand-logo brand-logo-dark" src="assets/logo-dark.png" alt="A&M Universe" width="248" height="83">
         </a>
 
         <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
@@ -367,6 +350,24 @@
         </div>
     </section>
 
+    <!-- Nuestra causa: animalitos -->
+    <section class="section rescue" id="rescue">
+        <div class="container">
+            <div class="section-head center">
+                <p class="eyebrow" data-i18n="rescue.eyebrow">Nuestra causa</p>
+                <h2 class="section-title" data-i18n="rescue.title">Ellos son la razón</h2>
+                <p class="section-lead" data-i18n="rescue.lead">Cada camiseta ayuda a animales de la calle como estos a encontrar comida, cuidado y, ojalá, un hogar para siempre.</p>
+            </div>
+            <div class="gallery">
+                <figure class="gallery-item"><img src="assets/dogs/dog1.jpg" alt="Perrito rescatado" loading="lazy" width="640" height="640"></figure>
+                <figure class="gallery-item"><img src="assets/dogs/dog2.jpg" alt="Perrito rescatado" loading="lazy" width="640" height="640"></figure>
+                <figure class="gallery-item"><img src="assets/dogs/dog3.jpg" alt="Perrito rescatado" loading="lazy" width="640" height="640"></figure>
+                <figure class="gallery-item"><img src="assets/dogs/dog4.jpg" alt="Perrito rescatado" loading="lazy" width="640" height="640"></figure>
+            </div>
+            <p class="gallery-note" data-i18n="rescue.note">📸 Fotos de referencia temporales — pronto pondremos las historias reales de los animalitos que ayudamos.</p>
+        </div>
+    </section>
+
     <!-- Envíos / Cómo comprar -->
     <section class="section shipping" id="shipping">
         <div class="container">
@@ -414,10 +415,8 @@
 <footer class="site-footer">
     <div class="container footer-inner">
         <div class="footer-brand">
-            <span class="brand-word">
-                <span class="brand-name">A&amp;M</span>
-                <span class="brand-sub">UNIVERSE</span>
-            </span>
+            <img class="brand-logo brand-logo-light footer-logo" src="assets/logo-light.png" alt="A&M Universe" width="256" height="72">
+            <img class="brand-logo brand-logo-dark footer-logo" src="assets/logo-dark.png" alt="A&M Universe" width="248" height="83">
             <p data-i18n="footer.tag">Diseño con propósito. Camisetas que cuentan historias y ayudan a los animales.</p>
         </div>
         <nav class="footer-nav" aria-label="Pie de página">
