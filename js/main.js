@@ -50,6 +50,10 @@
       "impact.lead": "Un porcentaje de las ganancias de cada venta se destina a fundaciones y a los animales de la calle. Al vestir A&M Universe te unes a una causa que da de comer, protege y busca hogar para quienes no tienen voz.",
       "impact.cta": "Suma tu granito de arena",
       "impact.quote": "“Queremos que la gente adopte, se concientice sobre el medio ambiente y los animales, y que cada compra se convierta en ayuda real.”",
+      "rescue.eyebrow": "Nuestra causa",
+      "rescue.title": "Ellos son la razón",
+      "rescue.lead": "Cada camiseta ayuda a animales de la calle como estos a encontrar comida, cuidado y, ojalá, un hogar para siempre.",
+      "rescue.note": "📸 Fotos de referencia temporales — pronto pondremos las historias reales de los animalitos que ayudamos.",
       "shipping.eyebrow": "Cómo comprar",
       "shipping.title": "Fácil, y con envíos a toda Colombia",
       "shipping.lead": "Estamos en Calarcá, Quindío, y enviamos a todo el país. Comprar es tan simple como escribirnos.",
@@ -104,6 +108,10 @@
       "impact.lead": "A share of the profit from every sale goes to shelters and street animals. By wearing A&M Universe you join a cause that feeds, protects and finds homes for those without a voice.",
       "impact.cta": "Add your grain of sand",
       "impact.quote": "“We want people to adopt, to become aware of the environment and animals, and for every purchase to turn into real help.”",
+      "rescue.eyebrow": "Our cause",
+      "rescue.title": "They are the reason",
+      "rescue.lead": "Every t-shirt helps street animals like these find food, care and, hopefully, a forever home.",
+      "rescue.note": "📸 Temporary reference photos — soon we'll share the real stories of the animals we help.",
       "shipping.eyebrow": "How to buy",
       "shipping.title": "Easy, with shipping across Colombia",
       "shipping.lead": "We're in Calarcá, Quindío, and we ship nationwide. Buying is as simple as sending us a message.",
@@ -220,7 +228,7 @@
 
     // reveal al hacer scroll
     var targets = document.querySelectorAll(
-      ".section-head, .card-purpose, .collection-card, .product-card, .value, .step, .impact-quote, .contact-inner"
+      ".section-head, .card-purpose, .collection-card, .product-card, .value, .step, .impact-quote, .gallery-item, .contact-inner"
     );
     if ("IntersectionObserver" in window) {
       targets.forEach(function (el, i) {
