@@ -25,8 +25,10 @@ a-y-m/
 ├─ css/styles.css      Estilos y temas (claro/oscuro)
 ├─ js/main.js          Tema, idioma (ES/EN), WhatsApp, menú, animaciones
 ├─ assets/
-│  ├─ logo.svg         Emblema (ícono de la app)
-│  └─ og-image.svg     Imagen para compartir en redes
+│  ├─ logo.svg                        Emblema vectorial (fuente)
+│  ├─ icon-192.png · icon-512.png     Íconos PWA
+│  ├─ apple-touch-icon.png            Ícono para iOS
+│  └─ og-image.png · og-image.svg     Imagen para compartir en redes (1200×630)
 ├─ manifest.json       Configuración PWA
 ├─ robots.txt · sitemap.xml
 └─ 404.html
