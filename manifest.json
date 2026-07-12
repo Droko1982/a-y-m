@@ -1,0 +1,18 @@
+{
+  "name": "A&M Universe",
+  "short_name": "A&M Universe",
+  "description": "Camisetas estampadas con propósito. Diseño que cuenta historias y ayuda a los animales. Calarcá, Quindío · Envíos a toda Colombia.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#12241B",
+  "theme_color": "#12241B",
+  "lang": "es-CO",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
