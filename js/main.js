@@ -10,6 +10,19 @@
   /* ---------- Traducciones ---------- */
   var I18N = {
     es: {
+      "shop.size": "Talla", "nav.faq": "FAQ",
+      "tst.eyebrow": "Comunidad A&M", "tst.title": "Vestir con propósito se siente diferente",
+      "tst.1.q": "“Me encanta que mi camiseta ayude a los animalitos. La calidad es increíble y el diseño del océano es hermoso.”", "tst.1.n": "Valentina R.", "tst.1.c": "Armenia, Quindío",
+      "tst.2.q": "“Pedí la de Reino Animal y llegó rapidísimo a Bogotá. Saber que apoyo una causa la hace aún más especial.”", "tst.2.n": "Andrés M.", "tst.2.c": "Bogotá",
+      "tst.3.q": "“Además de bonitas, un porcentaje va a fundaciones. Compro con el corazón. ¡Gracias A&M!”", "tst.3.n": "Laura G.", "tst.3.c": "Medellín",
+      "tst.note": "💬 Testimonios de ejemplo — se reemplazan con reseñas reales de tus clientes.",
+      "faq.eyebrow": "Preguntas frecuentes", "faq.title": "Resolvemos tus dudas",
+      "faq.q1": "¿Hacen envíos a toda Colombia?", "faq.a1": "Sí. Estamos en Calarcá, Quindío y enviamos a todas las ciudades del país. Coordinamos el envío contigo por WhatsApp.",
+      "faq.q2": "¿Qué tallas manejan?", "faq.a2": "Nuestras camisetas están disponibles en tallas S, M, L y XL. Si tienes dudas con tu talla, escríbenos y te asesoramos.",
+      "faq.q3": "¿Cómo pago mi pedido?", "faq.a3": "Coordinamos el pago por WhatsApp: Nequi, transferencia o contra entrega según tu ciudad. Es fácil y seguro.",
+      "faq.q4": "¿Cómo ayuda mi compra a los animales?", "faq.a4": "Un porcentaje de cada venta se destina a fundaciones y a los animales de la calle: comida, cuidado y apoyo para su adopción.",
+      "faq.q5": "¿De qué material son las camisetas?", "faq.a5": "Son de algodón suave y cómodo, con estampados originales de cada colección, pensados para durar.",
+      "faq.q6": "¿Puedo cambiar la talla?", "faq.a6": "Claro. Escríbenos por WhatsApp y te ayudamos con el cambio de talla de la forma más sencilla.",
       "nav.shop": "Tienda", "nav.stories": "Historias",
       "hero.badge": "Colección Océano",
       "shop.eyebrow": "Tienda · Colecciones",
@@ -85,6 +98,19 @@
       "footer.made": "Hecho con 💚 en el Quindío, Colombia"
     },
     en: {
+      "shop.size": "Size", "nav.faq": "FAQ",
+      "tst.eyebrow": "A&M Community", "tst.title": "Wearing with purpose feels different",
+      "tst.1.q": "“I love that my t-shirt helps the animals. The quality is amazing and the ocean design is beautiful.”", "tst.1.n": "Valentina R.", "tst.1.c": "Armenia, Quindío",
+      "tst.2.q": "“I ordered the Animal Kingdom tee and it arrived super fast in Bogotá. Knowing I support a cause makes it even more special.”", "tst.2.n": "Andrés M.", "tst.2.c": "Bogotá",
+      "tst.3.q": "“Beautiful, and a share goes to shelters. I shop with my heart. Thank you A&M!”", "tst.3.n": "Laura G.", "tst.3.c": "Medellín",
+      "tst.note": "💬 Sample testimonials — replace them with real reviews from your customers.",
+      "faq.eyebrow": "Frequently asked", "faq.title": "Your questions, answered",
+      "faq.q1": "Do you ship across Colombia?", "faq.a1": "Yes. We're in Calarcá, Quindío and ship to every city in the country. We arrange delivery with you on WhatsApp.",
+      "faq.q2": "What sizes do you offer?", "faq.a2": "Our t-shirts come in sizes S, M, L and XL. If you're unsure about your size, message us and we'll help.",
+      "faq.q3": "How do I pay?", "faq.a3": "We arrange payment on WhatsApp: Nequi, bank transfer or cash on delivery depending on your city. Easy and secure.",
+      "faq.q4": "How does my purchase help the animals?", "faq.a4": "A share of every sale goes to shelters and street animals: food, care and support for their adoption.",
+      "faq.q5": "What are the t-shirts made of?", "faq.a5": "Soft, comfortable cotton with original prints from each collection, made to last.",
+      "faq.q6": "Can I change the size?", "faq.a6": "Of course. Message us on WhatsApp and we'll help you exchange the size easily.",
       "nav.shop": "Shop", "nav.stories": "Stories",
       "hero.badge": "Ocean Collection",
       "shop.eyebrow": "Shop · Collections",
@@ -227,13 +253,16 @@
       applyLang(root.getAttribute("lang") === "en" ? "es" : "en");
     });
 
-    // header con sombra al scroll
+    // header con sombra + botón "volver arriba"
     var header = document.querySelector(".site-header");
+    var toTop = document.getElementById("to-top");
     var onScroll = function () {
       if (header) header.classList.toggle("scrolled", window.scrollY > 8);
+      if (toTop) toTop.classList.toggle("show", window.scrollY > 640);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+    if (toTop) toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
 
     // menú móvil
     var menuBtn = document.getElementById("menu-btn");
@@ -263,7 +292,7 @@
 
     // reveal al hacer scroll
     var targets = document.querySelectorAll(
-      ".section-head, .card-purpose, .product, .story-card, .product-card, .value, .step, .impact-quote, .gallery-item, .contact-inner"
+      ".section-head, .card-purpose, .product, .story-card, .product-card, .value, .step, .impact-quote, .gallery-item, .tst-card, .faq-item, .contact-inner"
     );
     if ("IntersectionObserver" in window) {
       targets.forEach(function (el, i) {

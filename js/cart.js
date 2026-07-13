@@ -1,5 +1,5 @@
 /* =========================================================
-   A&M Universe · carrito de compras
+   A&M Universe · carrito de compras (con tallas)
    Estado en localStorage · checkout por WhatsApp · ES/EN
    ========================================================= */
 (function () {
@@ -13,10 +13,12 @@
     origen: { price: 59000, img: "assets/tee-origen.svg" }
   };
   var FALLBACK = { ocean: "Camiseta Océano", animal: "Camiseta Reino Animal", stars: "Camiseta Cielo Nocturno", origen: "Camiseta Esencia A&M" };
+  var SIZES = ["S", "M", "L", "XL"];
 
   var cart = [];
   try { cart = JSON.parse(localStorage.getItem("aym-cart")) || []; } catch (e) { cart = []; }
-  cart = cart.filter(function (i) { return i && PRODUCTS[i.id] && i.qty > 0; });
+  cart = cart.filter(function (i) { return i && PRODUCTS[i.id] && i.qty > 0; })
+             .map(function (i) { return { id: i.id, size: SIZES.indexOf(i.size) >= 0 ? i.size : "M", qty: i.qty }; });
 
   function save() { try { localStorage.setItem("aym-cart", JSON.stringify(cart)); } catch (e) {} }
   function lang() { return document.documentElement.getAttribute("lang") === "en" ? "en" : "es"; }
@@ -28,16 +30,21 @@
   }
   function count() { return cart.reduce(function (s, i) { return s + i.qty; }, 0); }
   function total() { return cart.reduce(function (s, i) { return s + i.qty * PRODUCTS[i.id].price; }, 0); }
-  function find(id) { for (var i = 0; i < cart.length; i++) if (cart[i].id === id) return cart[i]; return null; }
+  function find(id, size) { for (var i = 0; i < cart.length; i++) if (cart[i].id === id && cart[i].size === size) return cart[i]; return null; }
 
-  function add(id) { if (!PRODUCTS[id]) return; var it = find(id); if (it) it.qty++; else cart.push({ id: id, qty: 1 }); save(); render(); open(); }
-  function setQty(id, q) { var it = find(id); if (!it) return; it.qty = q; if (it.qty <= 0) cart = cart.filter(function (x) { return x.id !== id; }); save(); render(); }
-  function remove(id) { cart = cart.filter(function (x) { return x.id !== id; }); save(); render(); }
+  function add(id, size) {
+    if (!PRODUCTS[id]) return;
+    if (SIZES.indexOf(size) < 0) size = "M";
+    var it = find(id, size); if (it) it.qty++; else cart.push({ id: id, size: size, qty: 1 });
+    save(); render(); open();
+  }
+  function setQty(id, size, q) { var it = find(id, size); if (!it) return; it.qty = q; if (it.qty <= 0) cart = cart.filter(function (x) { return !(x.id === id && x.size === size); }); save(); render(); }
+  function remove(id, size) { cart = cart.filter(function (x) { return !(x.id === id && x.size === size); }); save(); render(); }
 
   function checkoutHref() {
     if (!cart.length) return "https://wa.me/" + WA_NUMBER;
-    var en = lang() === "en";
-    var lines = cart.map(function (i) { return "• " + i.qty + "× " + getName(i.id) + " — " + fmt(i.qty * PRODUCTS[i.id].price); });
+    var en = lang() === "en", tl = en ? "Size" : "Talla";
+    var lines = cart.map(function (i) { return "• " + i.qty + "× " + getName(i.id) + " (" + tl + " " + i.size + ") — " + fmt(i.qty * PRODUCTS[i.id].price); });
     var msg = en
       ? "Hi A&M Universe! 🐘 I'd like to order:\n" + lines.join("\n") + "\n\nTotal: " + fmt(total()) + "\n\nName: \nCity (shipping): "
       : "¡Hola A&M Universe! 🐘 Quiero hacer este pedido:\n" + lines.join("\n") + "\n\nTotal: " + fmt(total()) + "\n\nNombre: \nCiudad de envío: ";
@@ -49,9 +56,8 @@
     if (badge) { var c = count(); badge.textContent = c; badge.hidden = c === 0; }
     var itemsEl = document.getElementById("cart-items");
     if (!itemsEl) return;
-    var emptyEl = document.getElementById("cart-empty");
-    var footEl = document.getElementById("cart-foot");
-    var rm = lang() === "en" ? "Remove" : "Quitar";
+    var emptyEl = document.getElementById("cart-empty"), footEl = document.getElementById("cart-foot");
+    var en = lang() === "en", rm = en ? "Remove" : "Quitar", tl = en ? "Size" : "Talla";
     if (!cart.length) {
       itemsEl.innerHTML = "";
       if (emptyEl) emptyEl.hidden = false;
@@ -64,12 +70,12 @@
         return '<div class="cart-item">' +
           '<img src="' + p.img + '" alt="" width="62" height="68">' +
           '<div class="ci-info"><span class="ci-name">' + getName(i.id) + '</span>' +
-          '<span class="ci-price">' + fmt(p.price) + '</span>' +
+          '<span class="ci-price">' + tl + ' ' + i.size + ' · ' + fmt(p.price) + '</span>' +
           '<div class="ci-qty">' +
-            '<button type="button" data-act="dec" data-id="' + i.id + '" aria-label="menos">−</button>' +
+            '<button type="button" data-act="dec" data-id="' + i.id + '" data-size="' + i.size + '" aria-label="menos">−</button>' +
             '<span class="ci-num">' + i.qty + '</span>' +
-            '<button type="button" data-act="inc" data-id="' + i.id + '" aria-label="mas">+</button>' +
-            '<button type="button" class="ci-remove" data-act="rm" data-id="' + i.id + '">' + rm + '</button>' +
+            '<button type="button" data-act="inc" data-id="' + i.id + '" data-size="' + i.size + '" aria-label="mas">+</button>' +
+            '<button type="button" class="ci-remove" data-act="rm" data-id="' + i.id + '" data-size="' + i.size + '">' + rm + '</button>' +
           '</div></div>' +
           '<span class="ci-line">' + fmt(i.qty * p.price) + '</span>' +
         '</div>';
@@ -95,8 +101,21 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    // selector de talla
+    document.querySelectorAll(".product-sizes").forEach(function (grp) {
+      grp.addEventListener("click", function (e) {
+        var pill = e.target.closest(".size-pill"); if (!pill) return;
+        grp.querySelectorAll(".size-pill").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
+        pill.classList.add("is-active"); pill.setAttribute("aria-pressed", "true");
+      });
+    });
+    // agregar
     document.querySelectorAll(".btn-add").forEach(function (b) {
-      b.addEventListener("click", function () { add(b.getAttribute("data-product")); });
+      b.addEventListener("click", function () {
+        var art = b.closest(".product");
+        var active = art ? art.querySelector(".size-pill.is-active") : null;
+        add(b.getAttribute("data-product"), active ? active.getAttribute("data-size") : "M");
+      });
     });
     var cb = document.getElementById("cart-btn"); if (cb) cb.addEventListener("click", open);
     var cc = document.getElementById("cart-close"); if (cc) cc.addEventListener("click", close);
@@ -105,15 +124,14 @@
     var items = document.getElementById("cart-items");
     if (items) items.addEventListener("click", function (e) {
       var btn = e.target.closest("button[data-act]"); if (!btn) return;
-      var id = btn.getAttribute("data-id"), act = btn.getAttribute("data-act"), it = find(id);
-      if (act === "inc") setQty(id, (it ? it.qty : 0) + 1);
-      else if (act === "dec") setQty(id, (it ? it.qty : 0) - 1);
-      else if (act === "rm") remove(id);
+      var id = btn.getAttribute("data-id"), size = btn.getAttribute("data-size"), act = btn.getAttribute("data-act"), it = find(id, size);
+      if (act === "inc") setQty(id, size, (it ? it.qty : 0) + 1);
+      else if (act === "dec") setQty(id, size, (it ? it.qty : 0) - 1);
+      else if (act === "rm") remove(id, size);
     });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
     render();
   });
 
-  // re-render al cambiar de idioma (main.js dispara este evento)
   document.addEventListener("aym:langchange", render);
 })();
