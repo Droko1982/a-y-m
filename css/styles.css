@@ -808,3 +808,75 @@ body.cart-open { overflow: hidden; }
     .cards-2 { grid-template-columns: 1fr; }
     .cart-drawer { width: 100vw; }
 }
+
+/* =========================================================
+   v3 — Tallas, Testimonios, FAQ, Volver arriba
+   ========================================================= */
+
+/* ---------- Selector de talla ---------- */
+.product-sizes { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.size-label { font-size: .74rem; color: var(--text-soft); margin-right: 2px; }
+.size-pill {
+    min-width: 30px; height: 30px; padding: 0 8px;
+    border-radius: 8px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--text-soft);
+    font-size: .82rem; font-weight: 600; cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.size-pill:hover { border-color: var(--accent); color: var(--accent); }
+.size-pill.is-active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+/* ---------- Testimonios ---------- */
+.testimonials { background: var(--bg-alt); }
+.tst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.tst-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+    padding: 30px 28px; display: flex; flex-direction: column; gap: 14px;
+    box-shadow: var(--shadow-sm);
+}
+.tst-stars { color: #E0A93B; letter-spacing: 2px; font-size: .95rem; }
+.tst-card blockquote { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.12rem; line-height: 1.5; color: var(--text); flex: 1; }
+.tst-card figcaption { display: flex; flex-direction: column; gap: 1px; }
+.tst-card figcaption strong { font-size: .95rem; }
+.tst-card figcaption span { font-size: .82rem; color: var(--text-soft); }
+
+/* ---------- FAQ ---------- */
+.faq { background: var(--bg-alt); }
+.faq-inner { max-width: 800px; margin: 0 auto; }
+.faq-list { display: flex; flex-direction: column; gap: 12px; }
+.faq-item { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.faq-item summary {
+    list-style: none; cursor: pointer; padding: 20px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500; color: var(--text);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--accent); }
+.faq-ico { position: relative; width: 16px; height: 16px; flex-shrink: 0; }
+.faq-ico::before, .faq-ico::after {
+    content: ""; position: absolute; background: var(--accent); border-radius: 2px;
+    transition: transform .25s ease, opacity .25s ease;
+}
+.faq-ico::before { top: 7px; left: 0; width: 16px; height: 2px; }
+.faq-ico::after { top: 0; left: 7px; width: 2px; height: 16px; }
+.faq-item[open] .faq-ico::after { transform: rotate(90deg); opacity: 0; }
+.faq-a { padding: 0 24px 22px; }
+.faq-a p { color: var(--text-soft); font-size: .96rem; }
+
+/* ---------- Volver arriba ---------- */
+.to-top {
+    position: fixed; left: 22px; bottom: 22px; z-index: 90;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--line); color: var(--text);
+    box-shadow: var(--shadow); cursor: pointer;
+    display: grid; place-items: center;
+    opacity: 0; transform: translateY(12px) scale(.9); pointer-events: none;
+    transition: opacity .3s ease, transform .3s ease, border-color .2s ease, color .2s ease;
+}
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 680px) { .to-top { left: 16px; bottom: 16px; width: 42px; height: 42px; } }
+
+/* ---------- Responsive v3 ---------- */
+@media (max-width: 900px) { .tst-grid { grid-template-columns: 1fr; } }
