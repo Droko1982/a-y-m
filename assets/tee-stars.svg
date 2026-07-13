@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 288" role="img" aria-label="Camiseta A&amp;M">
+  <path d="M105,54 Q130,83 155,54 L177,52 L233,73 L251,117 L210,133 L204,125 L212,268 L48,268 L56,125 L50,133 L9,117 L27,73 Z" fill="#1c3527"/>
+  <path d="M105,54 Q130,83 155,54 L177,52 L233,73 L251,117 L210,133 L204,125 L212,268 L48,268 L56,125 L50,133 L9,117 L27,73 Z" fill="none" stroke="#0f2016" stroke-width="1" opacity=".5"/>
+  <path d="M46,266 L214,266" stroke="#0f2016" stroke-width="2" opacity=".35"/>
+  <path d="M108,56 Q130,82 152,56" fill="none" stroke="#152a1e" stroke-width="5" stroke-linecap="round"/>
+  <clipPath id="pc"><circle cx="130" cy="152" r="53"/></clipPath>
+  <g clip-path="url(#pc)"><svg x="77" y="99" width="106" height="106" viewBox="0 0 104 104">
+    <defs><mask id="cr"><rect width="104" height="104" fill="#000"/><circle cx="58" cy="44" r="22" fill="#fff"/><circle cx="68" cy="38" r="19" fill="#000"/></mask></defs>
+    <rect width="104" height="104" fill="#cba968" mask="url(#cr)"/>
+    <g fill="#cba968"><circle cx="28" cy="34" r="2"/><circle cx="40" cy="66" r="1.6"/><circle cx="72" cy="72" r="1.8"/><circle cx="24" cy="58" r="1.5"/>
+    <path d="M50,50 l1.6,4 4,1.6 -4,1.6 -1.6,4 -1.6,-4 -4,-1.6 4,-1.6 z"/></g></svg></g>
+  <circle cx="130" cy="152" r="53" fill="none" stroke="#cba968" stroke-width="1.2" opacity=".28"/>
+</svg>
