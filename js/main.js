@@ -10,6 +10,23 @@
   /* ---------- Traducciones ---------- */
   var I18N = {
     es: {
+      "nav.shop": "Tienda", "nav.stories": "Historias",
+      "hero.badge": "Colección Océano",
+      "shop.eyebrow": "Tienda · Colecciones",
+      "shop.lead": "Cada camiseta nace de una historia real sobre la naturaleza y los animales. Agrégala al carrito y coordinamos tu pedido por WhatsApp.",
+      "shop.add": "Agregar",
+      "shop.note": "👕 Imágenes de referencia (mockups) y precios de ejemplo — se ajustan fácilmente cuando tengas fotos y precios finales.",
+      "shop.ocean.name": "Camiseta Océano", "shop.ocean.desc": "Estampado del mar y la vida que lo habita. Algodón suave, tallas S–XL.",
+      "shop.animal.name": "Camiseta Reino Animal", "shop.animal.desc": "Homenaje a los animales de la tierra. Verde tierra, tallas S–XL.",
+      "shop.stars.name": "Camiseta Cielo Nocturno", "shop.stars.desc": "Luna y estrellas en dorado sobre verde profundo. Tallas S–XL.",
+      "shop.origen.name": "Camiseta Esencia A&M", "shop.origen.desc": "El emblema de la marca. La base de tu colección con propósito.",
+      "stories.eyebrow": "Historias que inspiran", "stories.title": "Detrás de cada estampado, una razón",
+      "stories.1.k": "Colección Océano", "stories.1.t": "El mar que nos inspira", "stories.1.d": "Cada ola nos recuerda por qué proteger el planeta. Nuestra primera colección es una oda al océano y a la vida que lo habita.",
+      "stories.2.k": "Nuestra causa", "stories.2.t": "Adopta, no compres", "stories.2.d": "Un porcentaje de cada venta ayuda a los animales de la calle. Vestir A&M es darle una segunda oportunidad a quienes no tienen voz.",
+      "stories.3.k": "Hecho con alma", "stories.3.t": "Nacido en el Quindío", "stories.3.d": "Un proyecto orgánico y diferente, creado con cariño desde Calarcá para todo Colombia. Cada prenda lleva un pedacito de nuestra tierra.",
+      "cart.title": "Tu carrito", "cart.empty": "Tu carrito está vacío.", "cart.total": "Total",
+      "cart.checkout": "Finalizar pedido por WhatsApp", "cart.continue": "Seguir comprando",
+      "cart.note": "Coordinamos el pago y el envío contigo por WhatsApp.",
       "topbar": "🐾 Un porcentaje de cada venta ayuda a los animales de la calle · Envíos a toda Colombia",
       "nav.purpose": "Propósito", "nav.collections": "Colecciones", "nav.products": "Productos",
       "nav.impact": "Impacto", "nav.shipping": "Envíos", "nav.contact": "Contacto",
@@ -17,7 +34,7 @@
       "hero.eyebrow": "Moda con propósito · Calarcá, Quindío",
       "hero.title": "Diseño con propósito.",
       "hero.sub": "Camisetas estampadas que cuentan historias. Un proyecto orgánico y diferente que viste tu piel mientras cuida la de los animales y la del planeta.",
-      "hero.cta1": "Ver colecciones",
+      "hero.cta1": "Ver la tienda",
       "hero.cta2": "Escríbenos por WhatsApp",
       "value.1.t": "Ayuda animal", "value.1.d": "Un porcentaje de cada venta va a fundaciones y animales de la calle.",
       "value.2.t": "Conciencia", "value.2.d": "Cada colección invita a cuidar el medio ambiente y a los animales.",
@@ -39,9 +56,9 @@
       "col.soon.t": "Nuevas historias", "col.soon.d": "Estamos preparando los próximos capítulos. Síguenos por WhatsApp y sé la primera persona en conocerlos.",
       "col.cta": "Pregunta por esta colección →",
       "col.soon.cta": "Quiero enterarme →",
-      "products.eyebrow": "Productos",
-      "products.title": "Lo que estamos creando",
-      "products.lead": "Empezamos con nuestras camisetas y, poco a poco, sumamos más productos hechos con la misma dedicación y propósito.",
+      "products.eyebrow": "Muy pronto",
+      "products.title": "Más productos en camino",
+      "products.lead": "Seguimos creando, con la misma dedicación y propósito.",
       "prod.tee.t": "Camisetas estampadas", "prod.tee.d": "Prendas cómodas con arte original que cuenta una historia. El corazón de A&M Universe.",
       "prod.candle.t": "Velas para masaje", "prod.candle.d": "Velas para masajes corporales, en desarrollo con una fórmula pensada para consentir tu piel.",
       "prod.butter.t": "Mantequilla corporal", "prod.butter.d": "Mantequilla corporal artesanal para nutrir e hidratar, hecha con ingredientes elegidos con cariño.",
@@ -68,6 +85,23 @@
       "footer.made": "Hecho con 💚 en el Quindío, Colombia"
     },
     en: {
+      "nav.shop": "Shop", "nav.stories": "Stories",
+      "hero.badge": "Ocean Collection",
+      "shop.eyebrow": "Shop · Collections",
+      "shop.lead": "Every t-shirt is born from a real story about nature and animals. Add it to your cart and we'll arrange your order on WhatsApp.",
+      "shop.add": "Add",
+      "shop.note": "👕 Reference images (mockups) and sample prices — easy to swap once you have real photos and final prices.",
+      "shop.ocean.name": "Ocean Tee", "shop.ocean.desc": "A print of the sea and the life within it. Soft cotton, sizes S–XL.",
+      "shop.animal.name": "Animal Kingdom Tee", "shop.animal.desc": "A tribute to the animals of the earth. Earth green, sizes S–XL.",
+      "shop.stars.name": "Night Sky Tee", "shop.stars.desc": "Moon and stars in gold on deep green. Sizes S–XL.",
+      "shop.origen.name": "A&M Essence Tee", "shop.origen.desc": "The brand emblem. The foundation of your purpose-driven collection.",
+      "stories.eyebrow": "Stories that inspire", "stories.title": "Behind every print, a reason",
+      "stories.1.k": "Ocean Collection", "stories.1.t": "The sea that inspires us", "stories.1.d": "Every wave reminds us why to protect the planet. Our first collection is an ode to the ocean and the life within it.",
+      "stories.2.k": "Our cause", "stories.2.t": "Adopt, don't shop", "stories.2.d": "A share of every sale helps street animals. Wearing A&M gives a second chance to those without a voice.",
+      "stories.3.k": "Made with soul", "stories.3.t": "Born in Quindío", "stories.3.d": "An organic, different project, crafted with love from Calarcá for all of Colombia. Every garment carries a piece of our land.",
+      "cart.title": "Your cart", "cart.empty": "Your cart is empty.", "cart.total": "Total",
+      "cart.checkout": "Checkout on WhatsApp", "cart.continue": "Keep shopping",
+      "cart.note": "We'll arrange payment and shipping with you on WhatsApp.",
       "topbar": "🐾 A share of every sale helps street animals · Shipping across Colombia",
       "nav.purpose": "Purpose", "nav.collections": "Collections", "nav.products": "Products",
       "nav.impact": "Impact", "nav.shipping": "Shipping", "nav.contact": "Contact",
@@ -75,7 +109,7 @@
       "hero.eyebrow": "Fashion with purpose · Calarcá, Quindío",
       "hero.title": "Design with purpose.",
       "hero.sub": "Printed t-shirts that tell stories. An organic, different project that dresses your skin while caring for animals and the planet.",
-      "hero.cta1": "See collections",
+      "hero.cta1": "Shop now",
       "hero.cta2": "Message us on WhatsApp",
       "value.1.t": "Animal aid", "value.1.d": "A share of every sale goes to shelters and street animals.",
       "value.2.t": "Awareness", "value.2.d": "Every collection is an invitation to care for the planet and its animals.",
@@ -97,9 +131,9 @@
       "col.soon.t": "New stories", "col.soon.d": "We're preparing the next chapters. Follow us on WhatsApp and be the first to know.",
       "col.cta": "Ask about this collection →",
       "col.soon.cta": "Keep me posted →",
-      "products.eyebrow": "Products",
-      "products.title": "What we're creating",
-      "products.lead": "We start with our t-shirts and, step by step, add more products made with the same care and purpose.",
+      "products.eyebrow": "Coming soon",
+      "products.title": "More products on the way",
+      "products.lead": "We keep creating, with the same care and purpose.",
       "prod.tee.t": "Printed t-shirts", "prod.tee.d": "Comfortable garments with original art that tells a story. The heart of A&M Universe.",
       "prod.candle.t": "Massage candles", "prod.candle.d": "Candles for body massage, in development with a formula designed to pamper your skin.",
       "prod.butter.t": "Body butter", "prod.butter.d": "Handmade body butter to nourish and hydrate, made with lovingly chosen ingredients.",
@@ -146,6 +180,7 @@
     var label = document.querySelector(".lang-label");
     if (label) label.textContent = lang.toUpperCase();
     updateWaLinks(lang);
+    document.dispatchEvent(new Event("aym:langchange"));
     try { localStorage.setItem("aym-lang", lang); } catch (e) {}
   }
 
@@ -228,7 +263,7 @@
 
     // reveal al hacer scroll
     var targets = document.querySelectorAll(
-      ".section-head, .card-purpose, .collection-card, .product-card, .value, .step, .impact-quote, .gallery-item, .contact-inner"
+      ".section-head, .card-purpose, .product, .story-card, .product-card, .value, .step, .impact-quote, .gallery-item, .contact-inner"
     );
     if ("IntersectionObserver" in window) {
       targets.forEach(function (el, i) {

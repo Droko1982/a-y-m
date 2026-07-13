@@ -97,9 +97,9 @@
         </a>
 
         <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+            <a href="#shop" data-i18n="nav.shop">Tienda</a>
             <a href="#purpose" data-i18n="nav.purpose">Propósito</a>
-            <a href="#collections" data-i18n="nav.collections">Colecciones</a>
-            <a href="#products" data-i18n="nav.products">Productos</a>
+            <a href="#stories" data-i18n="nav.stories">Historias</a>
             <a href="#impact" data-i18n="nav.impact">Impacto</a>
             <a href="#shipping" data-i18n="nav.shipping">Envíos</a>
             <a href="#contact" data-i18n="nav.contact">Contacto</a>
@@ -112,6 +112,10 @@
             <button class="icon-btn" id="theme-toggle" type="button" aria-label="Cambiar tema" title="Modo claro / oscuro">
                 <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
                 <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            </button>
+            <button class="icon-btn cart-btn" id="cart-btn" type="button" aria-label="Ver carrito">
+                <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span class="cart-count" id="cart-count" hidden>0</span>
             </button>
             <a href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%98%20Me%20encant%C3%B3%20su%20propuesta%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20camisetas." class="btn btn-whatsapp header-wa js-wa" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3a8.2 8.2 0 1 1 6.8 3.6zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4c0-.1-.6-1.4-.8-1.9s-.4-.4-.6-.5h-.5a1 1 0 0 0-.7.3A2.9 2.9 0 0 0 5 9.3a5 5 0 0 0 1 2.7 11.5 11.5 0 0 0 4.5 4 15 15 0 0 0 1.5.5 3.6 3.6 0 0 0 1.7.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.4-.3z"/></svg>
@@ -129,15 +133,21 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container hero-inner">
-            <p class="eyebrow" data-i18n="hero.eyebrow">Moda con propósito · Calarcá, Quindío</p>
-            <h1 class="hero-title" data-i18n="hero.title">Diseño con propósito.</h1>
-            <p class="hero-sub" data-i18n="hero.sub">Camisetas estampadas que cuentan historias. Un proyecto orgánico y diferente que viste tu piel mientras cuida la de los animales y la del planeta.</p>
-            <div class="hero-cta">
-                <a href="#collections" class="btn btn-primary" data-i18n="hero.cta1">Ver colecciones</a>
-                <a href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%98%20Me%20encant%C3%B3%20su%20propuesta%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20camisetas." class="btn btn-ghost js-wa" target="_blank" rel="noopener" data-i18n="hero.cta2">Escríbenos por WhatsApp</a>
+            <div class="hero-copy">
+                <p class="eyebrow" data-i18n="hero.eyebrow">Moda con propósito · Calarcá, Quindío</p>
+                <h1 class="hero-title" data-i18n="hero.title">Diseño con propósito.</h1>
+                <p class="hero-sub" data-i18n="hero.sub">Camisetas estampadas que cuentan historias. Un proyecto orgánico y diferente que viste tu piel mientras cuida la de los animales y la del planeta.</p>
+                <div class="hero-cta">
+                    <a href="#shop" class="btn btn-primary" data-i18n="hero.cta1">Ver la tienda</a>
+                    <a href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%98%20Me%20encant%C3%B3%20su%20propuesta%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20camisetas." class="btn btn-ghost js-wa" target="_blank" rel="noopener" data-i18n="hero.cta2">Escríbenos por WhatsApp</a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <div class="hero-blob" aria-hidden="true"></div>
+                <img src="assets/tee-ocean.svg" alt="Camiseta A&M Universe — Colección Océano" class="hero-tee" width="260" height="288">
+                <span class="hero-badge" data-i18n="hero.badge">Colección Océano</span>
             </div>
         </div>
-        <div class="hero-scroll" aria-hidden="true"></div>
     </section>
 
     <!-- Franja de valores -->
@@ -199,125 +209,69 @@
         </div>
     </section>
 
-    <!-- Colecciones -->
-    <section class="section collections" id="collections">
+    <!-- Tienda -->
+    <section class="section shop" id="shop">
         <div class="container">
             <div class="section-head">
-                <p class="eyebrow" data-i18n="collections.eyebrow">Colecciones</p>
+                <p class="eyebrow" data-i18n="shop.eyebrow">Tienda · Colecciones</p>
                 <h2 class="section-title" data-i18n="collections.title">Cada capítulo tiene una historia por descubrir</h2>
-                <p class="section-lead" data-i18n="collections.lead">Lanzamos por colecciones temáticas. Cada una nace de una historia real sobre la naturaleza y los animales, para que lleves contigo algo más que un diseño.</p>
+                <p class="section-lead" data-i18n="shop.lead">Cada camiseta nace de una historia real sobre la naturaleza y los animales. Agrégala al carrito y coordinamos tu pedido por WhatsApp.</p>
             </div>
-            <div class="cards-3">
-                <article class="collection-card art-ocean">
-                    <div class="collection-art" aria-hidden="true">
-                        <svg class="art-svg" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" role="presentation">
-                            <defs><linearGradient id="ocSky" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0" stop-color="#6cbccb"/><stop offset=".55" stop-color="#2c7c93"/><stop offset="1" stop-color="#0d3446"/>
-                            </linearGradient></defs>
-                            <rect width="400" height="220" fill="url(#ocSky)"/>
-                            <circle cx="312" cy="56" r="27" fill="#f4e8cd" opacity=".9"/>
-                            <circle cx="300" cy="50" r="27" fill="#6cbccb" opacity=".55"/>
-                            <path d="M150,168 c-3,-24 -7,-38 -16,-49 c16,2 26,15 28,33 c2,-18 12,-31 28,-33 c-9,11 -13,25 -16,49 z" fill="#0a2735"/>
-                            <path d="M0,150 q50,-16 100,0 t100,0 t100,0 t100,0 V220 H0 Z" fill="#1b566a" opacity=".6"/>
-                            <path d="M0,172 q50,-16 100,0 t100,0 t100,0 t100,0 V220 H0 Z" fill="#123f52" opacity=".85"/>
-                            <path d="M0,194 q50,-15 100,0 t100,0 t100,0 t100,0 V220 H0 Z" fill="#0b2b3b"/>
-                        </svg>
-                    </div>
-                    <div class="collection-body">
-                        <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
-                        <h3 data-i18n="col.ocean.t">Océano</h3>
-                        <p data-i18n="col.ocean.d">Una oda al mar y a la vida que lo habita. Azules profundos y criaturas que nos recuerdan por qué cuidarlo.</p>
-                        <a href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%98%20Me%20encant%C3%B3%20su%20propuesta%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20camisetas." class="link-arrow js-wa" target="_blank" rel="noopener" data-i18n="col.cta">Pregunta por esta colección →</a>
+            <div class="shop-grid">
+                <article class="product">
+                    <div class="product-media"><img src="assets/tee-ocean.svg" alt="Camiseta Océano" loading="lazy" width="260" height="288"></div>
+                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
+                    <h3 class="product-name" data-i18n="shop.ocean.name">Camiseta Océano</h3>
+                    <p class="product-desc" data-i18n="shop.ocean.desc">Estampado del mar y la vida que lo habita. Algodón suave, tallas S–XL.</p>
+                    <div class="product-buy">
+                        <span class="product-price" data-price="ocean">$65.000</span>
+                        <button class="btn btn-add" data-product="ocean" type="button"><span data-i18n="shop.add">Agregar</span></button>
                     </div>
                 </article>
-                <article class="collection-card art-animals">
-                    <div class="collection-art" aria-hidden="true">
-                        <svg class="art-svg" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" role="presentation">
-                            <defs><linearGradient id="svSky" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0" stop-color="#e3ad61"/><stop offset=".5" stop-color="#b06f39"/><stop offset="1" stop-color="#3c2b19"/>
-                            </linearGradient></defs>
-                            <rect width="400" height="220" fill="url(#svSky)"/>
-                            <circle cx="110" cy="92" r="32" fill="#f8e4b0" opacity=".92"/>
-                            <path d="M0,150 q120,-30 240,-6 q90,16 160,-6 V220 H0 Z" fill="#6b4a28" opacity=".5"/>
-                            <path d="M0,180 q150,-26 400,-6 V220 H0 Z" fill="#3a2817"/>
-                            <g fill="#241809">
-                                <path d="M332,183 l3,-35 h4 l3,35 z"/>
-                                <path d="M302,146 q33,-22 66,0 q-33,-10 -66,0 z"/>
-                            </g>
-                            <g transform="translate(150,90) scale(1.05)" fill="#170f05">
-                                <circle cx="44" cy="55" r="21"/>
-                                <ellipse cx="73" cy="59" rx="27" ry="21"/>
-                                <ellipse cx="52" cy="49" rx="11" ry="13"/>
-                                <rect x="56" y="73" width="9" height="18" rx="4.5"/>
-                                <rect x="72" y="73" width="9" height="18" rx="4.5"/>
-                                <rect x="86" y="71" width="8" height="16" rx="4"/>
-                                <path d="M32,61 C24,71 22,83 29,87 C35,90 41,86 39,79" fill="none" stroke="#170f05" stroke-width="10" stroke-linecap="round"/>
-                                <path d="M99,53 c7,3 6,11 2,15" fill="none" stroke="#170f05" stroke-width="3" stroke-linecap="round"/>
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="collection-body">
-                        <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
-                        <h3 data-i18n="col.animals.t">Reino animal</h3>
-                        <p data-i18n="col.animals.d">Homenaje a los animales de la tierra: fuerza, ternura y libertad estampadas para llevarlas siempre contigo.</p>
-                        <a href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%98%20Me%20encant%C3%B3%20su%20propuesta%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20camisetas." class="link-arrow js-wa" target="_blank" rel="noopener" data-i18n="col.cta">Pregunta por esta colección →</a>
+                <article class="product">
+                    <div class="product-media"><img src="assets/tee-animal.svg" alt="Camiseta Reino Animal" loading="lazy" width="260" height="288"></div>
+                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
+                    <h3 class="product-name" data-i18n="shop.animal.name">Camiseta Reino Animal</h3>
+                    <p class="product-desc" data-i18n="shop.animal.desc">Homenaje a los animales de la tierra. Verde tierra, tallas S–XL.</p>
+                    <div class="product-buy">
+                        <span class="product-price" data-price="animal">$65.000</span>
+                        <button class="btn btn-add" data-product="animal" type="button"><span data-i18n="shop.add">Agregar</span></button>
                     </div>
                 </article>
-                <article class="collection-card art-soon">
-                    <div class="collection-art" aria-hidden="true">
-                        <svg class="art-svg" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" role="presentation">
-                            <defs>
-                                <linearGradient id="soonSky" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0" stop-color="#204331"/><stop offset="1" stop-color="#0b1911"/>
-                                </linearGradient>
-                                <mask id="crescent">
-                                    <rect width="400" height="220" fill="#000"/>
-                                    <circle cx="300" cy="62" r="27" fill="#fff"/>
-                                    <circle cx="312" cy="54" r="24" fill="#000"/>
-                                </mask>
-                            </defs>
-                            <rect width="400" height="220" fill="url(#soonSky)"/>
-                            <rect width="400" height="220" fill="#cba968" mask="url(#crescent)"/>
-                            <g fill="#e8dcc4">
-                                <circle cx="70" cy="55" r="2.2"/><circle cx="120" cy="90" r="1.5"/>
-                                <circle cx="180" cy="45" r="1.8"/><circle cx="240" cy="80" r="1.4"/>
-                                <circle cx="45" cy="110" r="1.5"/><circle cx="150" cy="130" r="1.6"/>
-                                <circle cx="340" cy="120" r="1.6"/><circle cx="95" cy="150" r="1.3"/>
-                            </g>
-                            <g fill="#cba968">
-                                <path d="M110,58 L112,64 L118,66 L112,68 L110,74 L108,68 L102,66 L108,64 Z"/>
-                                <path d="M215,110 L216.5,114.5 L221,116 L216.5,117.5 L215,122 L213.5,117.5 L209,116 L213.5,114.5 Z"/>
-                                <path d="M60,150 L61,153 L64,154 L61,155 L60,158 L59,155 L56,154 L59,153 Z"/>
-                            </g>
-                            <path d="M0,190 q120,-20 240,-4 q90,12 160,-4 V220 H0 Z" fill="#0a160f"/>
-                        </svg>
+                <article class="product">
+                    <div class="product-media"><img src="assets/tee-stars.svg" alt="Camiseta Cielo Nocturno" loading="lazy" width="260" height="288"></div>
+                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
+                    <h3 class="product-name" data-i18n="shop.stars.name">Camiseta Cielo Nocturno</h3>
+                    <p class="product-desc" data-i18n="shop.stars.desc">Luna y estrellas en dorado sobre verde profundo. Tallas S–XL.</p>
+                    <div class="product-buy">
+                        <span class="product-price" data-price="stars">$69.000</span>
+                        <button class="btn btn-add" data-product="stars" type="button"><span data-i18n="shop.add">Agregar</span></button>
                     </div>
-                    <div class="collection-body">
-                        <span class="tag" data-i18n="tag.soon">Próximamente</span>
-                        <h3 data-i18n="col.soon.t">Nuevas historias</h3>
-                        <p data-i18n="col.soon.d">Estamos preparando los próximos capítulos. Síguenos por WhatsApp y sé la primera persona en conocerlos.</p>
-                        <a href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%98%20Me%20encant%C3%B3%20su%20propuesta%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20camisetas." class="link-arrow js-wa" target="_blank" rel="noopener" data-i18n="col.soon.cta">Quiero enterarme →</a>
+                </article>
+                <article class="product">
+                    <div class="product-media"><img src="assets/tee-origen.svg" alt="Camiseta Esencia A&M" loading="lazy" width="260" height="288"></div>
+                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
+                    <h3 class="product-name" data-i18n="shop.origen.name">Camiseta Esencia A&M</h3>
+                    <p class="product-desc" data-i18n="shop.origen.desc">El emblema de la marca. La base de tu colección con propósito.</p>
+                    <div class="product-buy">
+                        <span class="product-price" data-price="origen">$59.000</span>
+                        <button class="btn btn-add" data-product="origen" type="button"><span data-i18n="shop.add">Agregar</span></button>
                     </div>
                 </article>
             </div>
+            <p class="shop-note" data-i18n="shop.note">👕 Imágenes de referencia (mockups) y precios de ejemplo — se ajustan fácilmente cuando tengas fotos y precios finales.</p>
         </div>
     </section>
 
-    <!-- Productos -->
+    <!-- Próximamente: otros productos -->
     <section class="section products" id="products">
         <div class="container">
-            <div class="section-head">
-                <p class="eyebrow" data-i18n="products.eyebrow">Productos</p>
-                <h2 class="section-title" data-i18n="products.title">Lo que estamos creando</h2>
-                <p class="section-lead" data-i18n="products.lead">Empezamos con nuestras camisetas y, poco a poco, sumamos más productos hechos con la misma dedicación y propósito.</p>
+            <div class="section-head center">
+                <p class="eyebrow" data-i18n="products.eyebrow">Muy pronto</p>
+                <h2 class="section-title" data-i18n="products.title">Más productos en camino</h2>
+                <p class="section-lead" data-i18n="products.lead">Seguimos creando, con la misma dedicación y propósito.</p>
             </div>
-            <div class="cards-3">
-                <article class="product-card">
-                    <div class="product-ico" aria-hidden="true">👕</div>
-                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
-                    <h3 data-i18n="prod.tee.t">Camisetas estampadas</h3>
-                    <p data-i18n="prod.tee.d">Prendas cómodas con arte original que cuenta una historia. El corazón de A&M Universe.</p>
-                </article>
+            <div class="cards-2">
                 <article class="product-card">
                     <div class="product-ico" aria-hidden="true">🕯️</div>
                     <span class="tag" data-i18n="tag.soon">Próximamente</span>
@@ -365,6 +319,42 @@
                 <figure class="gallery-item"><img src="assets/dogs/dog4.jpg" alt="Perrito rescatado" loading="lazy" width="640" height="640"></figure>
             </div>
             <p class="gallery-note" data-i18n="rescue.note">📸 Fotos de referencia temporales — pronto pondremos las historias reales de los animalitos que ayudamos.</p>
+        </div>
+    </section>
+
+    <!-- Historias que inspiran -->
+    <section class="section stories" id="stories">
+        <div class="container">
+            <div class="section-head">
+                <p class="eyebrow" data-i18n="stories.eyebrow">Historias que inspiran</p>
+                <h2 class="section-title" data-i18n="stories.title">Detrás de cada estampado, una razón</h2>
+            </div>
+            <div class="stories-grid">
+                <article class="story-card">
+                    <div class="story-media" aria-hidden="true"><svg class="art-svg" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" role="presentation"><defs><linearGradient id="ocSky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6cbccb"/><stop offset=".55" stop-color="#2c7c93"/><stop offset="1" stop-color="#0d3446"/></linearGradient></defs><rect width="400" height="220" fill="url(#ocSky2)"/><circle cx="312" cy="56" r="27" fill="#f4e8cd" opacity=".9"/><circle cx="300" cy="50" r="27" fill="#6cbccb" opacity=".55"/><path d="M150,168 c-3,-24 -7,-38 -16,-49 c16,2 26,15 28,33 c2,-18 12,-31 28,-33 c-9,11 -13,25 -16,49 z" fill="#0a2735"/><path d="M0,150 q50,-16 100,0 t100,0 t100,0 t100,0 V220 H0 Z" fill="#1b566a" opacity=".6"/><path d="M0,172 q50,-16 100,0 t100,0 t100,0 t100,0 V220 H0 Z" fill="#123f52" opacity=".85"/><path d="M0,194 q50,-15 100,0 t100,0 t100,0 t100,0 V220 H0 Z" fill="#0b2b3b"/></svg></div>
+                    <div class="story-body">
+                        <span class="story-kicker" data-i18n="stories.1.k">Colección Océano</span>
+                        <h3 data-i18n="stories.1.t">El mar que nos inspira</h3>
+                        <p data-i18n="stories.1.d">Cada ola nos recuerda por qué proteger el planeta. Nuestra primera colección es una oda al océano y a la vida que lo habita.</p>
+                    </div>
+                </article>
+                <article class="story-card">
+                    <div class="story-media"><img src="assets/dogs/dog3.jpg" alt="Animalito rescatado" loading="lazy" width="640" height="640"></div>
+                    <div class="story-body">
+                        <span class="story-kicker" data-i18n="stories.2.k">Nuestra causa</span>
+                        <h3 data-i18n="stories.2.t">Adopta, no compres</h3>
+                        <p data-i18n="stories.2.d">Un porcentaje de cada venta ayuda a los animales de la calle. Vestir A&amp;M es darle una segunda oportunidad a quienes no tienen voz.</p>
+                    </div>
+                </article>
+                <article class="story-card">
+                    <div class="story-media" aria-hidden="true"><svg class="art-svg" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" role="presentation"><defs><linearGradient id="svSky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3ad61"/><stop offset=".5" stop-color="#b06f39"/><stop offset="1" stop-color="#3c2b19"/></linearGradient></defs><rect width="400" height="220" fill="url(#svSky2)"/><circle cx="110" cy="92" r="32" fill="#f8e4b0" opacity=".92"/><path d="M0,150 q120,-30 240,-6 q90,16 160,-6 V220 H0 Z" fill="#6b4a28" opacity=".5"/><path d="M0,180 q150,-26 400,-6 V220 H0 Z" fill="#3a2817"/><g fill="#241809"><path d="M332,183 l3,-35 h4 l3,35 z"/><path d="M302,146 q33,-22 66,0 q-33,-10 -66,0 z"/></g><g transform="translate(150,90) scale(1.05)" fill="#170f05"><circle cx="44" cy="55" r="21"/><ellipse cx="73" cy="59" rx="27" ry="21"/><ellipse cx="52" cy="49" rx="11" ry="13"/><rect x="56" y="73" width="9" height="18" rx="4.5"/><rect x="72" y="73" width="9" height="18" rx="4.5"/><rect x="86" y="71" width="8" height="16" rx="4"/><path d="M32,61 C24,71 22,83 29,87 C35,90 41,86 39,79" fill="none" stroke="#170f05" stroke-width="10" stroke-linecap="round"/><path d="M99,53 c7,3 6,11 2,15" fill="none" stroke="#170f05" stroke-width="3" stroke-linecap="round"/></g></svg></div>
+                    <div class="story-body">
+                        <span class="story-kicker" data-i18n="stories.3.k">Hecho con alma</span>
+                        <h3 data-i18n="stories.3.t">Nacido en el Quindío</h3>
+                        <p data-i18n="stories.3.d">Un proyecto orgánico y diferente, creado con cariño desde Calarcá para todo Colombia. Cada prenda lleva un pedacito de nuestra tierra.</p>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -420,9 +410,9 @@
             <p data-i18n="footer.tag">Diseño con propósito. Camisetas que cuentan historias y ayudan a los animales.</p>
         </div>
         <nav class="footer-nav" aria-label="Pie de página">
+            <a href="#shop" data-i18n="nav.shop">Tienda</a>
             <a href="#purpose" data-i18n="nav.purpose">Propósito</a>
-            <a href="#collections" data-i18n="nav.collections">Colecciones</a>
-            <a href="#products" data-i18n="nav.products">Productos</a>
+            <a href="#stories" data-i18n="nav.stories">Historias</a>
             <a href="#shipping" data-i18n="nav.shipping">Envíos</a>
             <a href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%98%20Me%20encant%C3%B3%20su%20propuesta%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20camisetas." class="js-wa" target="_blank" rel="noopener">WhatsApp</a>
         </nav>
@@ -435,11 +425,31 @@
     </div>
 </footer>
 
+<!-- Carrito -->
+<div class="cart-scrim" id="cart-scrim" hidden></div>
+<aside class="cart-drawer" id="cart-drawer" aria-label="Carrito de compras" aria-hidden="true">
+    <div class="cart-head">
+        <h3 data-i18n="cart.title">Tu carrito</h3>
+        <button class="cart-close" id="cart-close" type="button" aria-label="Cerrar carrito">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <p class="cart-empty" id="cart-empty" data-i18n="cart.empty">Tu carrito está vacío.</p>
+    <div class="cart-foot" id="cart-foot" hidden>
+        <div class="cart-total"><span data-i18n="cart.total">Total</span><strong id="cart-total">$0</strong></div>
+        <a class="btn btn-whatsapp btn-lg cart-checkout" id="cart-checkout" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3a8.2 8.2 0 1 1 6.8 3.6zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4c0-.1-.6-1.4-.8-1.9s-.4-.4-.6-.5h-.5a1 1 0 0 0-.7.3A2.9 2.9 0 0 0 5 9.3a5 5 0 0 0 1 2.7 11.5 11.5 0 0 0 4.5 4 15 15 0 0 0 1.5.5 3.6 3.6 0 0 0 1.7.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.4-.3z"/></svg><span data-i18n="cart.checkout">Finalizar pedido por WhatsApp</span></a>
+        <button class="cart-continue" id="cart-continue" type="button" data-i18n="cart.continue">Seguir comprando</button>
+        <p class="cart-note" data-i18n="cart.note">Coordinamos el pago y el envío contigo por WhatsApp.</p>
+    </div>
+</aside>
+
 <!-- Botón flotante WhatsApp -->
 <a href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%98%20Me%20encant%C3%B3%20su%20propuesta%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20camisetas." class="wa-float js-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3a8.2 8.2 0 1 1 6.8 3.6zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4c0-.1-.6-1.4-.8-1.9s-.4-.4-.6-.5h-.5a1 1 0 0 0-.7.3A2.9 2.9 0 0 0 5 9.3a5 5 0 0 0 1 2.7 11.5 11.5 0 0 0 4.5 4 15 15 0 0 0 1.5.5 3.6 3.6 0 0 0 1.7.1c.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.4-.3z"/></svg>
 </a>
 
 <script src="js/main.js"></script>
+<script src="js/cart.js"></script>
 </body>
 </html>
