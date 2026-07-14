@@ -95,6 +95,7 @@
       "contact.cta": "Escríbenos: 321 579 9683",
       "contact.loc": "📍 Calarcá, Quindío · Colombia — envíos a todo el país",
       "footer.tag": "Diseño con propósito. Camisetas que cuentan historias y ayudan a los animales.",
+      "footer.legal": "Políticas y términos",
       "footer.made": "Hecho con 💚 en el Quindío, Colombia"
     },
     en: {
@@ -183,6 +184,7 @@
       "contact.cta": "Message us: 321 579 9683",
       "contact.loc": "📍 Calarcá, Quindío · Colombia — shipping across the country",
       "footer.tag": "Design with purpose. T-shirts that tell stories and help animals.",
+      "footer.legal": "Policies & terms",
       "footer.made": "Made with 💚 in Quindío, Colombia"
     }
   };
