@@ -880,3 +880,6 @@ body.cart-open { overflow: hidden; }
 
 /* ---------- Responsive v3 ---------- */
 @media (max-width: 900px) { .tst-grid { grid-template-columns: 1fr; } }
+
+.footer-bottom a { color: var(--text-soft); text-decoration: underline; text-underline-offset: 2px; }
+.footer-bottom a:hover { color: var(--accent); }
