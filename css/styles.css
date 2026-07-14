@@ -481,7 +481,10 @@ section[id] { scroll-margin-top: 84px; }
 .contact-inner { max-width: 680px; margin: 0 auto; }
 .contact-title { font-size: clamp(2.1rem, 5vw, 3.4rem); margin-bottom: 16px; }
 .contact-lead { font-size: 1.14rem; color: var(--text-soft); margin-bottom: 34px; }
-.contact-loc { margin-top: 24px; font-size: .92rem; color: var(--text-soft); }
+.contact-email { margin-top: 22px; font-size: .95rem; color: var(--text-soft); }
+.contact-email a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.contact-email a:hover { text-decoration: underline; }
+.contact-loc { margin-top: 10px; font-size: .92rem; color: var(--text-soft); }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--bg-alt); border-top: 1px solid var(--line); }
@@ -645,6 +648,38 @@ section[id] { scroll-margin-top: 84px; }
 }
 
 /* ---------- Tienda ---------- */
+.fit-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 34px;
+    max-width: 460px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px;
+}
+.fit-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    color: var(--text-soft);
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease;
+}
+.fit-btn .fit-name { font-weight: 700; font-size: .95rem; }
+.fit-btn .fit-price { font-size: .8rem; opacity: .8; }
+.fit-btn:hover { color: var(--accent); }
+.fit-btn.is-active { background: var(--accent); color: var(--accent-ink); }
+.fit-btn.is-active .fit-price { opacity: .9; }
+
 .shop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .product {
     background: var(--surface);
@@ -791,6 +826,29 @@ section[id] { scroll-margin-top: 84px; }
 }
 .cart-continue:hover { border-color: var(--accent); color: var(--accent); }
 .cart-note { text-align: center; font-size: .78rem; color: var(--text-soft); margin-top: 12px; }
+
+/* ---------- Método de pago (carrito) ---------- */
+.cart-pay { margin-bottom: 14px; }
+.cart-pay-label {
+    display: block; font-size: .74rem; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--text-soft); font-weight: 700; margin-bottom: 8px;
+}
+.cart-pay-pills { display: flex; gap: 8px; }
+.pay-pill {
+    flex: 1; padding: 10px 12px;
+    border-radius: 10px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--text-soft);
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: .88rem; cursor: pointer;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.pay-pill:hover { border-color: var(--accent); color: var(--accent); }
+.pay-pill.is-active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.cart-pay-info {
+    font-size: .8rem; color: var(--text-soft); margin: -4px 0 14px;
+    line-height: 1.5;
+}
+.cart-pay-info strong { color: var(--text); }
+
 body.cart-open { overflow: hidden; }
 
 /* ---------- Responsive v2 ---------- */
