@@ -833,12 +833,12 @@ section[id] { scroll-margin-top: 84px; }
     display: block; font-size: .74rem; text-transform: uppercase; letter-spacing: .08em;
     color: var(--text-soft); font-weight: 700; margin-bottom: 8px;
 }
-.cart-pay-pills { display: flex; gap: 8px; }
+.cart-pay-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .pay-pill {
-    flex: 1; padding: 10px 12px;
+    flex: 1 1 auto; min-width: 88px; padding: 10px 12px;
     border-radius: 10px; border: 1px solid var(--line);
     background: var(--bg); color: var(--text-soft);
-    font-family: 'Inter', sans-serif; font-weight: 600; font-size: .88rem; cursor: pointer;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: .85rem; cursor: pointer;
     transition: background .15s ease, color .15s ease, border-color .15s ease;
 }
 .pay-pill:hover { border-color: var(--accent); color: var(--accent); }

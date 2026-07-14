@@ -21,7 +21,10 @@
   };
   var FALLBACK = { ocean: "Camiseta Océano", animal: "Camiseta Reino Animal", stars: "Camiseta Cielo Nocturno", origen: "Camiseta Esencia A&M" };
   var SIZES = ["S", "M", "L", "XL"];
-  var PAYMENTS = ["nequi", "cod"];
+  // Métodos activos (tarjeta de crédito y PSE: por ahora no)
+  var PAYMENTS = ["nequi", "daviplata", "breb", "transfer", "cod"];
+  // Métodos basados en número/llave (usan el mismo número de WhatsApp por ahora)
+  var PHONE_PAY = { nequi: "Nequi", daviplata: "Daviplata", breb: "Bre-B" };
 
   function price(fit) { return FIT_PRICES[fit] || FIT_PRICES.regular; }
 
@@ -84,11 +87,6 @@
   }
 
   /* ---------- Pago ---------- */
-  function payLabel(pay) {
-    var en = lang() === "en";
-    if (pay === "cod") return en ? "Cash on delivery" : "Contra entrega";
-    return "Nequi";
-  }
   function applyPay() {
     document.querySelectorAll("#cart-pay .pay-pill").forEach(function (b) {
       var on = b.getAttribute("data-pay") === currentPay;
@@ -98,10 +96,16 @@
     var info = document.getElementById("cart-pay-info");
     if (info) {
       var en = lang() === "en";
-      if (currentPay === "nequi") {
+      if (PHONE_PAY[currentPay]) {
+        var brand = PHONE_PAY[currentPay];
+        var to = currentPay === "breb" ? (en ? "to the key" : "a la llave") : (en ? "to" : "al");
         info.innerHTML = en
-          ? "Pay by Nequi to <strong>" + NEQUI_DISPLAY + "</strong> and send us the receipt on WhatsApp."
-          : "Paga con Nequi al <strong>" + NEQUI_DISPLAY + "</strong> y envíanos el comprobante por WhatsApp.";
+          ? "Pay with " + brand + " " + to + " <strong>" + NEQUI_DISPLAY + "</strong> and send us the receipt on WhatsApp."
+          : "Paga con " + brand + " " + to + " <strong>" + NEQUI_DISPLAY + "</strong> y envíanos el comprobante por WhatsApp.";
+      } else if (currentPay === "transfer") {
+        info.textContent = en
+          ? "We'll share the bank account details on WhatsApp when we confirm your order."
+          : "Te compartimos los datos de la cuenta para la transferencia por WhatsApp al confirmar tu pedido.";
       } else {
         info.textContent = en
           ? "Pay in cash when your order arrives (availability by city)."
@@ -117,9 +121,12 @@
     var lines = cart.map(function (i) {
       return "• " + i.qty + "× " + getName(i.id) + " (" + FIT_LABEL[i.fit] + " · " + tl + " " + i.size + ") — " + fmt(i.qty * price(i.fit));
     });
-    var payLine = currentPay === "nequi"
-      ? (en ? "Payment: Nequi (" + NEQUI_DISPLAY + ")" : "Pago: Nequi (" + NEQUI_DISPLAY + ")")
-      : (en ? "Payment: Cash on delivery" : "Pago: Contra entrega");
+    var payHead = en ? "Payment: " : "Pago: ";
+    var payVal;
+    if (PHONE_PAY[currentPay]) payVal = PHONE_PAY[currentPay] + " (" + NEQUI_DISPLAY + ")";
+    else if (currentPay === "transfer") payVal = en ? "Bank transfer" : "Transferencia bancaria";
+    else payVal = en ? "Cash on delivery" : "Contra entrega";
+    var payLine = payHead + payVal;
     var msg = en
       ? "Hi A&M Universe! 🐘 I'd like to order:\n" + lines.join("\n") + "\n\nTotal: " + fmt(total()) + "\n" + payLine + "\n\nName: \nCity (shipping): "
       : "¡Hola A&M Universe! 🐘 Quiero hacer este pedido:\n" + lines.join("\n") + "\n\nTotal: " + fmt(total()) + "\n" + payLine + "\n\nNombre: \nCiudad de envío: ";
