@@ -835,12 +835,15 @@ section[id] { scroll-margin-top: 84px; }
 }
 .cart-pay-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .pay-pill {
-    flex: 1 1 auto; min-width: 88px; padding: 10px 12px;
+    flex: 1 1 auto; min-width: 92px; padding: 10px 12px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
     border-radius: 10px; border: 1px solid var(--line);
     background: var(--bg); color: var(--text-soft);
     font-family: 'Inter', sans-serif; font-weight: 600; font-size: .85rem; cursor: pointer;
     transition: background .15s ease, color .15s ease, border-color .15s ease;
 }
+.pay-ico { flex-shrink: 0; opacity: .85; }
+.pay-pill.is-active .pay-ico { opacity: 1; }
 .pay-pill:hover { border-color: var(--accent); color: var(--accent); }
 .pay-pill.is-active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .cart-pay-info {
