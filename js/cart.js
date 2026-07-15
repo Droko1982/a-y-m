@@ -121,15 +121,28 @@
     var lines = cart.map(function (i) {
       return "• " + i.qty + "× " + getName(i.id) + " (" + FIT_LABEL[i.fit] + " · " + tl + " " + i.size + ") — " + fmt(i.qty * price(i.fit));
     });
-    var payHead = en ? "Payment: " : "Pago: ";
     var payVal;
     if (PHONE_PAY[currentPay]) payVal = PHONE_PAY[currentPay] + " (" + NEQUI_DISPLAY + ")";
     else if (currentPay === "transfer") payVal = en ? "Bank transfer" : "Transferencia bancaria";
     else payVal = en ? "Cash on delivery" : "Contra entrega";
-    var payLine = payHead + payVal;
-    var msg = en
-      ? "Hi A&M Universe! 🐘 I'd like to order:\n" + lines.join("\n") + "\n\nTotal: " + fmt(total()) + "\n" + payLine + "\n\nName: \nCity (shipping): "
-      : "¡Hola A&M Universe! 🐘 Quiero hacer este pedido:\n" + lines.join("\n") + "\n\nTotal: " + fmt(total()) + "\n" + payLine + "\n\nNombre: \nCiudad de envío: ";
+    var n = count(), msg;
+    if (en) {
+      msg = "Hi A&M Universe! 🐘 I'd like to place this order:\n\n" +
+        lines.join("\n") + "\n\n" +
+        n + (n === 1 ? " item" : " items") + " · Products total: " + fmt(total()) + "\n" +
+        "Shipping: to be arranged by city\n" +
+        "Payment: " + payVal + "\n\n" +
+        "📦 Shipping details\n" +
+        "Full name: \nPhone: \nCity & state: \nAddress: ";
+    } else {
+      msg = "¡Hola A&M Universe! 🐘 Quiero hacer este pedido:\n\n" +
+        lines.join("\n") + "\n\n" +
+        n + (n === 1 ? " prenda" : " prendas") + " · Total productos: " + fmt(total()) + "\n" +
+        "Envío: a coordinar según tu ciudad\n" +
+        "Pago: " + payVal + "\n\n" +
+        "📦 Datos de envío\n" +
+        "Nombre y apellido: \nTeléfono: \nCiudad y departamento: \nDirección: ";
+    }
     return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg);
   }
 

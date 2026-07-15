@@ -711,11 +711,26 @@
         <div class="cart-pay" id="cart-pay" role="group" aria-label="Método de pago / Payment method">
             <span class="cart-pay-label" data-i18n="pay.label">Método de pago</span>
             <div class="cart-pay-pills">
-                <button type="button" class="pay-pill is-active" data-pay="nequi" aria-pressed="true" data-i18n="pay.nequi">Nequi</button>
-                <button type="button" class="pay-pill" data-pay="daviplata" aria-pressed="false" data-i18n="pay.daviplata">Daviplata</button>
-                <button type="button" class="pay-pill" data-pay="breb" aria-pressed="false" data-i18n="pay.breb">Bre-B</button>
-                <button type="button" class="pay-pill" data-pay="transfer" aria-pressed="false" data-i18n="pay.transfer">Transferencia</button>
-                <button type="button" class="pay-pill" data-pay="cod" aria-pressed="false" data-i18n="pay.cod">Contra entrega</button>
+                <button type="button" class="pay-pill is-active" data-pay="nequi" aria-pressed="true">
+                    <svg class="pay-ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+                    <span data-i18n="pay.nequi">Nequi</span>
+                </button>
+                <button type="button" class="pay-pill" data-pay="daviplata" aria-pressed="false">
+                    <svg class="pay-ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+                    <span data-i18n="pay.daviplata">Daviplata</span>
+                </button>
+                <button type="button" class="pay-pill" data-pay="breb" aria-pressed="false">
+                    <svg class="pay-ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5L20 3M17 6l2 2M14 9l2 2"/></svg>
+                    <span data-i18n="pay.breb">Bre-B</span>
+                </button>
+                <button type="button" class="pay-pill" data-pay="transfer" aria-pressed="false">
+                    <svg class="pay-ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 10v8M10 10v8M14 10v8M19 10v8M4 10h16M12 3L4 7h16z"/></svg>
+                    <span data-i18n="pay.transfer">Transferencia</span>
+                </button>
+                <button type="button" class="pay-pill" data-pay="cod" aria-pressed="false">
+                    <svg class="pay-ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg>
+                    <span data-i18n="pay.cod">Contra entrega</span>
+                </button>
             </div>
         </div>
         <p class="cart-pay-info" id="cart-pay-info"></p>
