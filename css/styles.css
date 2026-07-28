@@ -415,34 +415,98 @@ section[id] { scroll-margin-top: 84px; }
 }
 .impact-copy .btn { margin-top: 26px; }
 
-/* ---------- Contador de impacto en vivo ---------- */
-.impact-counter {
+/* ---------- Contador de impacto en vivo (perrito comiendo) ---------- */
+.impact-tracker {
     margin-top: 28px;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 20px 22px;
+    border-radius: 20px;
+    padding: 18px 22px 22px;
     box-shadow: var(--shadow-sm);
+    display: grid;
+    grid-template-columns: 168px 1fr;
+    gap: 10px 20px;
+    align-items: center;
 }
+.it-scene { align-self: center; }
+.it-svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+/* colores del perrito y el tazón */
+.it-shadow { fill: rgba(0,0,0,.10); }
+.dog-fur   { fill: #C69B63; }
+.dog-ear   { fill: #A97F4B; }
+.dog-muzzle{ fill: #E7D3AE; }
+.dog-eye   { fill: #3B2A18; }
+.dog-eye-hl{ fill: #fff; }
+.dog-nose  { fill: #3B2A18; }
+.dog-mouth { fill: #7A4A2B; }
+.dog-tongue{ fill: #E98B7E; }
+.bowl      { fill: #E0614C; }
+.bowl-rim  { fill: #C6493A; }
+.bowl-inside { fill: #7C2A22; }
+.food      { fill: #6E4A2A; }
+.food-bit  { fill: #8C5E38; }
+.kibble    { fill: #6E4A2A; opacity: 0; }
+[data-theme="dark"] .it-shadow { fill: rgba(0,0,0,.28); }
+
+/* mandíbula (mastica) y cabeza (bob) */
+.food-level { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0); transition: transform .9s cubic-bezier(.22,1,.36,1); }
+#dog-head, #dog-jaw, #dog-tail, #dog-eyes { transform-box: fill-box; }
+#dog-tail { transform-origin: 100% 100%; animation: tailWag 1.1s ease-in-out infinite; }
+#dog-eyes { transform-origin: 50% 50%; animation: dogBlink 5s ease-in-out infinite; }
+
+/* al comer: cabeza baja y mastica */
+.impact-tracker.is-eating #dog-head { transform-origin: 50% 100%; animation: dogChew 0.7s ease-in-out infinite; }
+.impact-tracker.is-eating #dog-jaw  { transform-origin: 50% 0%;   animation: dogJaw  0.7s ease-in-out infinite; }
+.impact-tracker.is-eating #dog-tail { animation: tailWag 0.5s ease-in-out infinite; }
+.impact-tracker.is-eating .kibble   { animation: kibbleDrop 0.7s ease-in infinite; }
+.impact-tracker.is-eating .kibble.k2 { animation-delay: .35s; }
+
+@keyframes dogChew { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(4px) rotate(1.5deg); } }
+@keyframes dogJaw  { 0%,100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+@keyframes tailWag { 0%,100% { transform: rotate(-20deg); } 50% { transform: rotate(16deg); } }
+@keyframes dogBlink { 0%,92%,100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+@keyframes kibbleDrop { 0% { transform: translateY(-16px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(14px); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+    #dog-tail, #dog-eyes,
+    .impact-tracker.is-eating #dog-head,
+    .impact-tracker.is-eating #dog-jaw,
+    .impact-tracker.is-eating .kibble { animation: none; }
+}
+
+/* datos */
+.it-data { min-width: 0; }
 .ic-live {
-    display: inline-block;
-    font-size: .72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    color: var(--text-soft);
-    margin-bottom: 14px;
+    display: inline-block; font-size: .7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .1em; color: var(--text-soft); margin-bottom: 12px;
 }
-.ic-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.it-stats { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 14px; }
 .ic-stat { display: flex; flex-direction: column; }
 .ic-num {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.9rem, 5vw, 2.6rem);
-    font-weight: 600;
-    line-height: 1.05;
-    color: var(--accent);
+    font-family: 'Fraunces', serif; font-size: clamp(1.7rem, 4.4vw, 2.4rem);
+    font-weight: 600; line-height: 1.05; color: var(--accent);
 }
-.ic-label { font-size: .86rem; color: var(--text-soft); margin-top: 4px; max-width: 15ch; }
+.ic-label { font-size: .84rem; color: var(--text-soft); margin-top: 4px; max-width: 16ch; }
+.it-bar {
+    height: 12px; border-radius: 999px; background: var(--green-soft);
+    overflow: hidden; border: 1px solid var(--line);
+}
+.it-bar span {
+    display: block; height: 100%; width: 0%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 60%, #E98B7E));
+    transition: width .9s cubic-bezier(.22,1,.36,1);
+}
+.it-goal { font-size: .84rem; color: var(--text-soft); margin-top: 9px; }
+.it-goal strong { color: var(--text); }
+
+@media (max-width: 560px) {
+    .impact-tracker { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .it-scene { max-width: 190px; }
+    .it-stats { justify-content: center; }
+    .ic-label { max-width: none; }
+    .it-progress { width: 100%; }
+}
 .impact-quote {
     background: var(--surface);
     border: 1px solid var(--line);
