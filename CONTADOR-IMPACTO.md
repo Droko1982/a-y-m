@@ -10,6 +10,23 @@ secreto** desde tu celular. La página pública se actualiza sola.
 > de una sola vez (~15 min). Si el panel de Cloudflare se ve distinto a estos
 > pasos, escríbeme y te guío con lo que aparezca en tu pantalla.
 
+## 🐕 ¿Cómo se ve?
+
+A medida que sube el dinero, un **perrito come de su tazón**: cada "bolsa de comida"
+(cada **$50.000**) llena el tazón, y arriba se ven las camisetas vendidas y el
+dinero reunido. Puedes cambiar el tamaño de la bolsa en `js/impacto.js` → `BOLSA`.
+
+## Dos formas de usarlo
+
+- **Opción rápida (ya funciona, sin cuentas):** el número vive en el archivo
+  [`data/impacto.json`](data/impacto.json). Para actualizar, abres ese archivo en
+  GitHub (✏️ *Edit*), cambias `"camisetas": 0` por el número real y guardas. Simple,
+  pero cada cambio es manual desde GitHub.
+- **Opción recomendada (enlace secreto):** sigue la guía de abajo para el Worker de
+  Cloudflare. Así actualizas con **un toque** desde el celular y la web se actualiza
+  sola. En cuanto pegues la URL del Worker (Parte B), la web usará esa fuente en vez
+  del archivo.
+
 ---
 
 ## Parte A — Crear el contador en Cloudflare (una sola vez)

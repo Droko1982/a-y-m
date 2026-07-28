@@ -500,16 +500,64 @@
                 <p class="eyebrow" data-i18n="impact.eyebrow">Tu compra deja huella</p>
                 <h2 class="section-title" data-i18n="impact.title">Cada camiseta ayuda a un animalito</h2>
                 <p class="section-lead" data-i18n="impact.lead">Un porcentaje de las ganancias de cada venta se destina a fundaciones y a los animales de la calle. Al vestir A&M Universe te unes a una causa que da de comer, protege y busca hogar para quienes no tienen voz.</p>
-                <div class="impact-counter" id="impact-counter" hidden aria-live="polite">
-                    <span class="ic-live" data-i18n="impact.count.live">🟢 En vivo</span>
-                    <div class="ic-stats">
-                        <div class="ic-stat">
-                            <span class="ic-num" id="ic-shirts">—</span>
-                            <span class="ic-label" data-i18n="impact.count.shirts">camisetas vendidas</span>
+                <div class="impact-tracker" id="impact-tracker" hidden aria-live="polite">
+                    <div class="it-scene" aria-hidden="true">
+                        <svg class="it-svg" viewBox="0 0 260 210" role="img">
+                            <ellipse class="it-shadow" cx="132" cy="196" rx="96" ry="11"/>
+                            <path id="dog-tail" class="dog-fur" d="M60,152 q-28,-4 -36,-28 q18,12 34,8 z"/>
+                            <ellipse class="dog-fur" cx="94" cy="150" rx="46" ry="42"/>
+                            <rect class="dog-fur" x="74" y="176" width="17" height="22" rx="8"/>
+                            <rect class="dog-fur" x="102" y="176" width="17" height="22" rx="8"/>
+                            <g id="dog-head" class="dog-head-g">
+                                <path class="dog-fur dog-ear" d="M96,72 q-32,-8 -38,26 q20,8 38,-6 z"/>
+                                <path class="dog-fur dog-ear" d="M152,72 q32,-8 38,26 q-20,8 -38,-6 z"/>
+                                <ellipse class="dog-fur" cx="124" cy="104" rx="46" ry="40"/>
+                                <ellipse class="dog-muzzle" cx="124" cy="122" rx="24" ry="18"/>
+                                <g id="dog-eyes">
+                                    <circle class="dog-eye" cx="107" cy="98" r="6.5"/>
+                                    <circle class="dog-eye" cx="141" cy="98" r="6.5"/>
+                                    <circle class="dog-eye-hl" cx="109" cy="95.5" r="2.1"/>
+                                    <circle class="dog-eye-hl" cx="143" cy="95.5" r="2.1"/>
+                                </g>
+                                <g id="dog-jaw">
+                                    <path class="dog-mouth" d="M108,124 q16,16 32,0 q-4,13 -16,13 q-12,0 -16,-13 z"/>
+                                    <path class="dog-tongue" d="M116,131 q8,10 16,0 q-2,9 -8,9 q-6,0 -8,-9 z"/>
+                                </g>
+                                <ellipse class="dog-nose" cx="124" cy="115" rx="8" ry="6"/>
+                            </g>
+                            <clipPath id="bowlClip"><ellipse cx="206" cy="170" rx="39" ry="27"/></clipPath>
+                            <g clip-path="url(#bowlClip)">
+                                <rect class="bowl-inside" x="166" y="142" width="80" height="56"/>
+                                <g id="food-level" class="food-level">
+                                    <ellipse class="food" cx="206" cy="176" rx="40" ry="30"/>
+                                    <circle class="food-bit" cx="190" cy="158" r="4"/>
+                                    <circle class="food-bit" cx="206" cy="152" r="4.4"/>
+                                    <circle class="food-bit" cx="222" cy="159" r="4"/>
+                                    <circle class="food-bit" cx="198" cy="164" r="3.6"/>
+                                    <circle class="food-bit" cx="215" cy="164" r="3.6"/>
+                                </g>
+                            </g>
+                            <circle class="kibble k1" cx="200" cy="150" r="4"/>
+                            <circle class="kibble k2" cx="212" cy="150" r="3.3"/>
+                            <path class="bowl" d="M167,168 a39,11 0 0 0 78,0 l-9,26 a30,7 0 0 1 -60,0 z"/>
+                            <ellipse class="bowl-rim" cx="206" cy="168" rx="39" ry="11"/>
+                        </svg>
+                    </div>
+                    <div class="it-data">
+                        <span class="ic-live" data-i18n="impact.count.live">🟢 En vivo</span>
+                        <div class="it-stats">
+                            <div class="ic-stat">
+                                <span class="ic-num" id="ic-shirts">0</span>
+                                <span class="ic-label" data-i18n="impact.count.shirts">camisetas vendidas</span>
+                            </div>
+                            <div class="ic-stat">
+                                <span class="ic-num it-money" id="ic-money">$0</span>
+                                <span class="ic-label" data-i18n="impact.count.money">para los animalitos</span>
+                            </div>
                         </div>
-                        <div class="ic-stat">
-                            <span class="ic-num" id="ic-money">—</span>
-                            <span class="ic-label" data-i18n="impact.count.money">apartado para los animalitos</span>
+                        <div class="it-progress">
+                            <div class="it-bar"><span id="it-fill"></span></div>
+                            <p class="it-goal" id="it-goal"></p>
                         </div>
                     </div>
                 </div>
