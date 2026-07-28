@@ -11,7 +11,8 @@ Esta guía resume cómo terminar de dejar la tienda lista para vender y cómo ap
 | Quiero cambiar… | Dónde |
 |---|---|
 | **Precios por horma** | `js/cart.js` → objeto `FIT_PRICES` (`regular: 69000`, `oversized: 79000`). Actualiza también el `$69.000`/`$79.000` visible en el selector de horma y los precios de datos estructurados (JSON-LD) en `index.html` |
-| **Métodos de pago** | `js/cart.js` → `NEQUI_DISPLAY` (número Nequi). Las opciones son Nequi y Contra entrega; se eligen en el carrito |
+| **Métodos de pago** | `js/cart.js` → `NEQUI_DISPLAY` (número Nequi). Las opciones son Nequi, Daviplata, Bre-B, transferencia y contra entrega; se eligen en el carrito |
+| **Contador de impacto** (camisetas vendidas + dinero para animalitos) | Guía completa en [`CONTADOR-IMPACTO.md`](CONTADOR-IMPACTO.md). Aporte por camiseta: `js/impacto.js` → `APORTE_POR_CAMISETA` |
 | **Nombres/descripciones de camisetas** | `js/main.js` → claves `shop.ocean.name`, `shop.ocean.desc`, etc. (ES y EN) |
 | **Número de WhatsApp** | `js/main.js` y `js/cart.js` → variable `WA_NUMBER` (formato `57` + número) |
 | **Logo** | Reemplazar `assets/logo-light.png` y `assets/logo-dark.png` (mismo nombre) |
