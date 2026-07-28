@@ -414,6 +414,35 @@ section[id] { scroll-margin-top: 84px; }
     align-items: center;
 }
 .impact-copy .btn { margin-top: 26px; }
+
+/* ---------- Contador de impacto en vivo ---------- */
+.impact-counter {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow-sm);
+}
+.ic-live {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+}
+.ic-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.ic-stat { display: flex; flex-direction: column; }
+.ic-num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--accent);
+}
+.ic-label { font-size: .86rem; color: var(--text-soft); margin-top: 4px; max-width: 15ch; }
 .impact-quote {
     background: var(--surface);
     border: 1px solid var(--line);
