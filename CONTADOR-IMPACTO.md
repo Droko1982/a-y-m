@@ -29,7 +29,41 @@ dinero reunido. Puedes cambiar el tamaño de la bolsa en `js/impacto.js` → `BO
 
 ---
 
-## Parte A — Crear el contador en Cloudflare (una sola vez)
+## ⚡ Instalación rápida (recomendada) — 3 pasos
+
+Este botón crea todo el contador en tu cuenta de Cloudflare automáticamente
+(el Worker y el almacén). Solo necesitas una cuenta gratuita de Cloudflare.
+
+### Paso 1 — Clic en el botón y desplegar
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/Droko1982/a-y-m)
+
+- Inicia sesión (o crea la cuenta gratis) y sigue el asistente.
+- Cuando te pida la variable **`ADMIN_KEY`**, escribe una **frase secreta tuya**
+  (ej. `amy-2026-gatitos-felices`). Esa es tu clave para sumar ventas.
+- Termina el despliegue. Al final verás la URL de tu Worker, algo como
+  **`https://aym-contador.TU-USUARIO.workers.dev`** — cópiala.
+
+### Paso 2 — Conectar la página (una línea)
+Abre [`js/impacto.js`](js/impacto.js) en GitHub (✏️ *Edit*), pega tu URL así y
+guarda (*Commit*):
+```js
+var IMPACT_API = "https://aym-contador.TU-USUARIO.workers.dev";
+```
+
+### Paso 3 — Guardar tu enlace para sumar
+Guarda en la pantalla de inicio del celular:
+```
+https://aym-contador.TU-USUARIO.workers.dev/sumar?key=TU-CLAVE
+```
+¡Y listo! Cada venta pagada = un toque. (Los enlaces de restar/ajustar están en
+la **Parte C** más abajo.)
+
+> ¿El botón te pidió algo raro o no ves dónde poner `ADMIN_KEY`? Usa la guía
+> manual (**Parte A**) o escríbeme y lo hacemos juntos.
+
+---
+
+## Parte A — Crear el contador en Cloudflare (manual, si prefieres)
 
 ### 1. Crea una cuenta
 Entra a **https://dash.cloudflare.com/sign-up** y regístrate (gratis). Confirma tu correo.

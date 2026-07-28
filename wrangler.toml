@@ -1,0 +1,11 @@
+# Configuración del Worker del contador de impacto de A&M Universe.
+# Sirve para el botón "Deploy to Cloudflare": al desplegar, Cloudflare crea
+# automáticamente el almacén KV (IMPACTO) y actualiza los IDs por ti.
+name = "aym-contador"
+main = "cloudflare/worker.js"
+compatibility_date = "2025-01-01"
+
+# Almacén donde se guarda el número de camisetas. Sin "id" a propósito:
+# el despliegue lo crea automáticamente.
+[[kv_namespaces]]
+binding = "IMPACTO"

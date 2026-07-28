@@ -1,0 +1,5 @@
+# Clave secreta para actualizar el contador (como una contraseña).
+# Cámbiala por una frase privada tuya, p. ej.: amy-2026-gatitos-felices
+# Durante el "Deploy to Cloudflare" te pedirán este valor; si no, lo agregas
+# luego en el Worker → Settings → Variables and Secrets.
+ADMIN_KEY=cambia-esto-por-tu-clave-secreta
