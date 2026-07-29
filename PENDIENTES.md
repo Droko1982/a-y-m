@@ -1,33 +1,63 @@
-# ✅ A&M Universe — Lo que falta (para el grupo)
+# ✅ A&M Universe — Estado y lo que falta
 
-La página web ya está **lista y funcionando**: https://droko1982.github.io/a-y-m/
-Tiene tienda, carrito, tallas, versión en inglés, modo claro/oscuro y botón de WhatsApp. 🎉
+**Tienda en vivo:** https://droko1982.github.io/a-y-m/
+_Última revisión: julio 2026._
 
-Para pasarla de "lista" a "vendiendo en serio", necesitamos que las propietarias definan/envíen esto:
-
-## 1) Contenido real (lo más importante) 📸
-- [ ] **Logo oficial** en buena calidad (archivo original).
-- [ ] **Fotos reales de las camisetas** (hoy hay dibujos de referencia).
-- [ ] **Precios reales** de cada camiseta (hoy son de ejemplo).
-- [ ] **Porcentaje exacto** que se dona por cada venta.
-- [ ] **Fotos reales de los animalitos** que ayudamos.
-- [ ] **Testimonios reales** de clientes (con nombre y ciudad, si autorizan).
-- [ ] **Nombre de la fundación** o a quién ayudamos (da mucha confianza).
-- [ ] Confirmar **tallas y materiales** reales de las camisetas.
-
-## 2) Para la tienda 🏪
-- [ ] **Redes sociales** (Instagram / Facebook / TikTok) para enlazarlas.
-- [ ] Datos legales del negocio para las **políticas** (nombre/razón social, NIT o cédula, correo).
-- [ ] Definir **formas de pago** (Nequi, transferencia, contra entrega…).
-- [ ] ¿Quieren **dominio propio** (ej. aymuniverse.co) en vez del link largo?
-- [ ] ¿Quieren **pagos en línea** más adelante (Wompi / Mercado Pago)? (Por ahora se cierra por WhatsApp.)
-
-## 3) Ya lo dejamos listo por nuestra parte ✔️
-- Tienda con carrito, tallas y pedido automático por WhatsApp.
-- Página en **español e inglés**, modo claro/oscuro.
-- Secciones: propósito, colecciones, historias, testimonios, envíos, **preguntas frecuentes**.
-- **SEO** (para salir en Google), imagen para compartir con el logo, íconos y favicon.
-- **Páginas legales** base (datos, términos, envíos/cambios) — faltan solo los datos del negocio.
+La página ya está **funcionando**: tienda con carrito, hormas (Regular/Oversized),
+tallas, 5 métodos de pago, contador de impacto con perrito animado, versión en
+inglés, modo claro/oscuro, SEO y páginas legales base.
 
 ---
-📲 Cualquier duda, respondan aquí. Cuando tengamos el **logo, fotos, precios y el %**, la tienda queda 100% lista para lanzar. 💚
+
+## 🔴 Falta para lanzar 100% (requiere a las dueñas)
+
+### 1) Activar el contador de impacto 🐕
+- [ ] Instalar el contador en Cloudflare y **enviar la dirección del Worker**
+      (ver [`CONTADOR-MENSAJE-CLIENTAS.md`](CONTADOR-MENSAJE-CLIENTAS.md)).
+      Luego se pega en `js/impacto.js` → `IMPACT_API`.
+- [ ] (Opcional) Número inicial de camisetas si ya vendieron antes del lanzamiento.
+- Hoy el contador muestra **0** (tazón vacío) hasta que se conecte y haya ventas.
+
+### 2) Confirmar datos de pago 💳
+- [ ] **Daviplata:** ¿es el mismo número `321 579 9683` o uno distinto?
+- [ ] **Bre-B:** ¿cuál es la **llave** exacta (celular, @usuario, correo o cédula)?
+- [ ] **Transferencia bancaria:** banco, tipo de cuenta, número y titular
+      (hoy dice "coordinamos por WhatsApp"). Se pueden mostrar en el carrito.
+- Nequi ya está confirmado (`321 579 9683`). Tarjeta y PSE quedan fuera por ahora.
+
+### 3) Contenido real 📸
+- [ ] **Fotos reales de las camisetas** (hoy hay dibujos SVG de referencia).
+- [ ] **Fotos reales de los animalitos** que ayudan (hoy `assets/dogs/dog1–4.jpg` de referencia).
+- [ ] **Testimonios reales** (con nombre y ciudad, si autorizan).
+- [ ] **Logo oficial** en alta calidad (archivo original).
+- [ ] **Nombre de la fundación** o a quién ayudan (da confianza).
+- [ ] Confirmar **materiales** de las camisetas (algodón, etc.).
+> Al llegar este contenido se quitan las notas de "mockup / referencia / ejemplo".
+
+### 4) Datos del negocio 🏪
+- [ ] **Redes sociales** (Instagram / Facebook / TikTok) para el pie de página
+      y los datos estructurados (`sameAs`, hoy vacío).
+- [ ] **Datos legales** en [`politicas.html`](politicas.html): razón social/nombre,
+      NIT o cédula, tiempo estimado de envío `[X a Y días]` y de cambios `[X días]`.
+
+---
+
+## 🟢 Ya está listo por nuestra parte ✔️
+- Hormas **Regular ($69.000) / Oversized ($79.000)** con selector y precio en vivo.
+- **5 métodos de pago** en el carrito (Nequi, Daviplata, Bre-B, transferencia, contra entrega) con iconos.
+- Pedido por WhatsApp con **resumen detallado** (ítems, total, envío, pago, datos de envío).
+- **Contador de impacto** con perrito animado que come según lo recaudado ($1.000/camiseta, ajustable).
+- Correo de marca `aymuniversebrand@gmail.com` en contacto, datos estructurados y políticas.
+- Página en **español e inglés**, modo claro/oscuro, SEO, favicon e imagen para compartir.
+- Secciones: propósito, colecciones, historias, testimonios, envíos, **FAQ**, políticas.
+
+---
+
+## 💡 Opcional / a futuro
+- [ ] **Dominio propio** (ej. `aymuniverse.co`) en vez del link largo.
+- [ ] **Pagos en línea** (tarjeta / PSE con Wompi o Mercado Pago) — por ahora se cierra por WhatsApp.
+- [ ] Mencionar las dos hormas en las descripciones de cada camiseta.
+
+---
+📲 Cuando lleguen **fotos, datos de pago, datos legales y la conexión del contador**,
+la tienda queda 100% lista. 💚
