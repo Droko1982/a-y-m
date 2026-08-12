@@ -7,7 +7,7 @@
 :root,
 [data-theme="light"] {
     --bg:        #F6F2EA;   /* marfil suave (más claro) */
-    --bg-alt:    #66723D;   /* olivo (bandas: topbar, impacto, testimonios, faq, footer) */
+    --bg-alt:    #EDE6D5;   /* beige suave (bandas de sección) */
     --surface:   #FCFAF4;   /* crema clara (tarjetas) */
     --text:      #2E251C;
     --text-soft: #75664F;
@@ -29,7 +29,7 @@
 
 [data-theme="dark"] {
     --bg:        #0D0D0D;   /* negro (fondo) */
-    --bg-alt:    #4E5A2B;   /* olivo oscuro (bandas) */
+    --bg-alt:    #151515;   /* banda oscura sutil */
     --surface:   #191919;   /* negro elevado (tarjetas) */
     --text:      #ECE3D1;   /* crema */
     --text-soft: #A99C86;
@@ -124,37 +124,15 @@ img { max-width: 100%; display: block; }
 
 .btn-lg { padding: 18px 34px; font-size: 1.06rem; }
 
-/* ---------- Topbar ---------- */
+/* ---------- Topbar (tira olivo · acento) ---------- */
 .topbar {
-    background: var(--bg-alt);
+    background: var(--olive);
     color: var(--on-alt);
     text-align: center;
     font-size: .82rem;
     padding: 8px 16px;
     letter-spacing: .01em;
-    border-bottom: 1px solid var(--line);
 }
-
-/* ---------- Bandas olivo: texto claro legible ---------- */
-.impact-copy .eyebrow,
-.testimonials .section-head .eyebrow,
-.faq .section-head .eyebrow { color: var(--on-alt); opacity: .9; }
-.impact-copy .section-title,
-.testimonials .section-head .section-title,
-.faq .section-head .section-title { color: var(--on-alt); }
-.impact-copy .section-lead,
-.faq .section-head .section-lead,
-.testimonials .shop-note { color: var(--on-alt-soft); }
-
-.site-footer { color: var(--on-alt); }
-.site-footer .brand-name,
-.site-footer .brand-mark { color: var(--on-alt); }
-.footer-brand p { color: var(--on-alt-soft); }
-.footer-nav a { color: var(--on-alt-soft); }
-.footer-nav a:hover { color: var(--on-alt); }
-.footer-bottom span,
-.footer-bottom a { color: var(--on-alt-soft); }
-.footer-bottom a:hover { color: var(--on-alt); }
 
 /* ---------- Header ---------- */
 .site-header {
@@ -208,6 +186,21 @@ img { max-width: 100%; display: block; }
 .brand-logo-dark { display: none; }
 [data-theme="dark"] .brand-logo-light { display: none; }
 [data-theme="dark"] .brand-logo-dark { display: block; }
+
+/* Bloque logo + palabra "UNIVERSE" (el PNG claro no la trae; el oscuro sí) */
+.brand-lockup { display: inline-flex; flex-direction: column; align-items: stretch; line-height: 1; }
+[data-theme="dark"] .brand-lockup { display: none; }
+.brand-universe {
+    font-family: 'Inter', sans-serif;
+    font-size: .55rem;
+    letter-spacing: .46em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    text-align: right;
+    padding-right: 2px;
+    margin-top: 2px;
+}
 .footer-logo { height: 48px; margin-bottom: 14px; }
 @media (max-width: 680px) { .brand-logo { height: 34px; } }
 
@@ -642,15 +635,17 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
 .main-nav a.is-current { color: var(--text); }
 .main-nav a.is-current::after { width: 100%; }
 
-/* ---------- Footer compacto ---------- */
-.footer-inner { padding-top: 30px; padding-bottom: 24px; gap: 26px; align-items: flex-start; }
-.footer-logo { height: 38px; margin-bottom: 10px; }
-.footer-brand p { font-size: .9rem; }
-.footer-contact { display: flex; flex-direction: column; gap: 8px; font-size: .92rem; }
-.footer-contact a { display: inline-flex; align-items: center; gap: 8px; color: var(--on-alt-soft); }
-.footer-contact a:hover { color: var(--on-alt); }
-.footer-contact span { color: var(--on-alt-soft); font-size: .88rem; }
-.footer-bottom { padding: 14px 0; }
+/* ---------- Footer compacto (banda clara · borde olivo) ---------- */
+.site-footer { border-top: 3px solid var(--olive); }
+.footer-inner { padding-top: 22px; padding-bottom: 18px; gap: 24px; align-items: flex-start; }
+.footer-logo { height: 32px; margin-bottom: 8px; }
+.footer-brand { max-width: 320px; }
+.footer-brand p { font-size: .86rem; color: var(--text-soft); }
+.footer-contact { display: flex; flex-direction: column; gap: 7px; font-size: .9rem; }
+.footer-contact a { display: inline-flex; align-items: center; gap: 8px; color: var(--text-soft); }
+.footer-contact a:hover { color: var(--accent); }
+.footer-contact span { color: var(--text-soft); font-size: .86rem; }
+.footer-bottom { padding: 12px 0; }
 
 /* ---------- WhatsApp flotante ---------- */
 .wa-float {
