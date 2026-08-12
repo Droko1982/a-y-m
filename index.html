@@ -333,10 +333,16 @@
         <div class="hero-video" aria-hidden="true">
             <iframe id="oceano-video" src="https://www.youtube-nocookie.com/embed/RZD9HX_PMys?autoplay=1&mute=1&controls=0&loop=1&playlist=RZD9HX_PMys&playsinline=1&modestbranding=1&rel=0&disablekb=1&fs=0&enablejsapi=1" title="" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
         </div>
-        <button class="video-toggle" id="video-toggle" type="button" aria-label="Pausar o reproducir el video">
-            <span class="vt-icon" aria-hidden="true">❚❚</span>
-            <span class="vt-label">Pausar</span>
-        </button>
+        <div class="video-controls">
+            <button class="video-toggle" id="sound-toggle" type="button" aria-label="Activar o silenciar el sonido del mar">
+                <span class="vt-icon" aria-hidden="true">🔊</span>
+                <span class="vt-label">Activar sonido</span>
+            </button>
+            <button class="video-toggle" id="video-toggle" type="button" aria-label="Pausar o reproducir el video">
+                <span class="vt-icon" aria-hidden="true">❚❚</span>
+                <span class="vt-label">Pausar</span>
+            </button>
+        </div>
         <div class="container hero-inner">
             <div class="hero-copy">
                 <p class="eyebrow" data-i18n="oceano.eyebrow">Colección · Disponible</p>
@@ -349,96 +355,59 @@
         </div>
     </section>
 
-    <!-- Océano · El primer mundo -->
-    <section class="section" data-view="oceano">
-        <div class="container">
-            <div class="section-head center">
-                <p class="eyebrow">Colección Océano · El primer mundo</p>
-                <h2 class="section-title">Un mundo que conocemos menos de lo que creemos</h2>
-            </div>
-            <div class="ocean-prose">
-                <p>Cada colección es un nuevo mundo. Y este —el primero— es uno que conocemos menos de lo que creemos.</p>
-                <p>El océano cubre la mayor parte del planeta y alberga una diversidad de vida inmensa. Regula el clima, absorbe calor y captura buena parte del dióxido de carbono que producimos. Pero este mundo está cambiando.</p>
-                <p>La temperatura del mar sigue aumentando y las olas de calor marinas son cada vez más frecuentes e intensas. Entre 2023 y 2025 se registró el <strong>cuarto evento mundial de blanqueamiento de corales</strong>: cerca del <strong>84 %</strong> de los arrecifes del planeta estuvo expuesto a un estrés térmico suficiente para blanquearlos.</p>
-                <p>El aumento del CO₂ también transforma la química del agua. La <strong>acidificación</strong> amenaza de forma especial a los corales, moluscos y demás organismos que construyen sus estructuras con carbonato de calcio.</p>
-            </div>
-            <blockquote class="ocean-quote">
-                Y aun así, el océano también nos habla de resiliencia. Muchos ecosistemas tienen una capacidad extraordinaria de recuperarse cuando las condiciones lo permiten. Por eso protegerlos no es solo evitar su destrucción: es darles la oportunidad de volver a florecer.
-            </blockquote>
-            <div class="ocean-stats">
-                <div class="ocean-stat"><span class="os-num">71%</span><span class="os-label">del planeta es océano</span></div>
-                <div class="ocean-stat"><span class="os-num">84%</span><span class="os-label">de los arrecifes expuestos a blanqueamiento (2023–2025)</span></div>
-                <div class="ocean-stat"><span class="os-num">4.º</span><span class="os-label">evento mundial de blanqueamiento registrado</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Océano · Pequeñas acciones -->
-    <section class="section" data-view="oceano">
-        <div class="container">
-            <div class="section-head center">
-                <p class="eyebrow">Cómo ayudar</p>
-                <h2 class="section-title">Pequeñas acciones, grandes mareas</h2>
-                <p class="section-lead">No hace falta vivir frente al mar para protegerlo.</p>
-            </div>
-            <div class="actions-grid">
-                <article class="action-card">
-                    <span class="action-num">01</span>
-                    <h3>Reduce los plásticos de un solo uso</h3>
-                    <p>Lleva siempre una botella reutilizable y una bolsa de tela, y evita los desechables cuando tengas alternativa.</p>
-                </article>
-                <article class="action-card">
-                    <span class="action-num">02</span>
-                    <h3>La basura que ves, no la ignores</h3>
-                    <p>Si encuentras residuos en una caminata, recógelos con cuidado y deposítalos donde corresponde. Lo que termina en una calle puede llegar a un río, y lo que llega a un río puede terminar en el océano.</p>
-                </article>
-                <article class="action-card">
-                    <span class="action-num">03</span>
-                    <h3>Consume de forma responsable</h3>
-                    <p>Infórmate sobre el origen de los productos marinos que consumes y apoya la pesca responsable.</p>
-                </article>
-                <article class="action-card">
-                    <span class="action-num">04</span>
-                    <h3>Aprende y comparte</h3>
-                    <p>Hablar del océano también es protegerlo: lo que conocemos, lo valoramos; y lo que valoramos, queremos conservarlo.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Océano · CTA a las camisetas -->
-    <section class="section" data-view="oceano">
-        <div class="container oceano-cta">
-            <h2 class="section-title">Lleva el mar contigo</h2>
-            <p class="section-lead">Cada camiseta de la colección Océano ayuda a proteger el mar y a los animalitos de la calle.</p>
-            <div class="hero-cta oceano-cta-btns">
-                <a href="#tienda" class="btn btn-primary">Ver las camisetas</a>
-            </div>
-        </div>
-    </section>
-
     <!-- Franja de valores -->
     <section class="values" data-view="tienda" aria-label="Nuestros valores">
         <div class="container values-grid">
             <div class="value">
-                <span class="value-ico">🐾</span>
+                <span class="value-ico"><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor" aria-hidden="true"><ellipse cx="6.5" cy="12" rx="1.6" ry="2.3"/><ellipse cx="10.5" cy="9" rx="1.7" ry="2.5"/><ellipse cx="14.5" cy="9" rx="1.7" ry="2.5"/><ellipse cx="18" cy="12.5" rx="1.6" ry="2.3"/><path d="M12.3 13.2c-2.4 0-4.7 1.9-4.7 4 0 1.5 1.2 2.3 2.7 2.1.9-.1 1.2-.5 2-.5s1.1.4 2 .5c1.5.2 2.7-.6 2.7-2.1 0-2.1-2.3-4-4.7-4z"/></svg></span>
                 <h3 data-i18n="value.1.t">Ayuda animal</h3>
                 <p data-i18n="value.1.d">Un porcentaje de cada venta va a fundaciones y animales de la calle.</p>
             </div>
             <div class="value">
-                <span class="value-ico">🌎</span>
+                <span class="value-ico"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20C3 12 8 5 20 5c0 12-7 16-16 15z"/><path d="M4.5 19.5C7 14 11 10.5 16 8.5"/></svg></span>
                 <h3 data-i18n="value.2.t">Conciencia</h3>
                 <p data-i18n="value.2.d">Cada colección invita a cuidar el medio ambiente y a los animales.</p>
             </div>
             <div class="value">
-                <span class="value-ico">✋</span>
+                <span class="value-ico"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.3C6.6 15.5 3.5 12.9 3.5 9.2 3.5 6.6 5.5 4.6 8 4.6c1.6 0 3 .8 3.9 2 .9-1.2 2.3-2 3.9-2 2.5 0 4.5 2 4.5 4.6 0 3.7-3.1 6.3-8.3 11.1z"/></svg></span>
                 <h3 data-i18n="value.3.t">Hecho con alma</h3>
                 <p data-i18n="value.3.d">Un proyecto orgánico y diferente, creado con cariño desde el Quindío.</p>
             </div>
             <div class="value">
-                <span class="value-ico">🚚</span>
+                <span class="value-ico"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h10v9H3z"/><path d="M13 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/></svg></span>
                 <h3 data-i18n="value.4.t">Envíos nacionales</h3>
                 <p data-i18n="value.4.d">Desde Calarcá enviamos a todas las ciudades de Colombia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Colecciones (Tienda) -->
+    <section class="section" data-view="tienda" id="collections">
+        <div class="container">
+            <div class="section-head center">
+                <p class="eyebrow">Colecciones</p>
+                <h2 class="section-title">Cada capítulo, una historia por descubrir</h2>
+                <p class="section-lead">Lanzamos por colecciones temáticas. Cada una nace de una historia real sobre la naturaleza y los animales. Entra a una y descubre sus camisetas.</p>
+            </div>
+            <div class="collections-grid">
+                <a class="collection-card" href="#oceano">
+                    <div class="cc-media" style="background-image:url('assets/tienda-oceano.jpeg')"></div>
+                    <div class="cc-body">
+                        <span class="tag tag-live">Disponible</span>
+                        <h3>Océano</h3>
+                        <p>Una oda al mar y a la vida que lo habita. Su historia, sus datos y sus camisetas.</p>
+                        <span class="link-arrow">Ver colección →</span>
+                    </div>
+                </a>
+                <a class="collection-card is-soon" href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%86%20Quiero%20enterarme%20cuando%20salga%20la%20colecci%C3%B3n%20Felina." target="_blank" rel="noopener">
+                    <div class="cc-media cc-soon"><span class="cc-soon-ico" aria-hidden="true">🐆</span></div>
+                    <div class="cc-body">
+                        <span class="tag">Próximamente · en desarrollo</span>
+                        <h3>Felina</h3>
+                        <p>Nuestra próxima historia, en construcción. Escríbenos y te avisamos cuando salga.</p>
+                        <span class="link-arrow">Quiero enterarme →</span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -476,13 +445,13 @@
         </div>
     </section>
 
-    <!-- Tienda -->
-    <section class="section shop" id="shop" data-view="tienda">
+    <!-- Camisetas de la colección Océano (se muestran dentro de #oceano) -->
+    <section class="section shop" id="shop" data-view="oceano">
         <div class="container">
-            <div class="section-head">
-                <p class="eyebrow" data-i18n="shop.eyebrow">Tienda · Colecciones</p>
-                <h2 class="section-title" data-i18n="collections.title">Cada capítulo tiene una historia por descubrir</h2>
-                <p class="section-lead" data-i18n="shop.lead">Cada camiseta nace de una historia real sobre la naturaleza y los animales. Agrégala al carrito y coordinamos tu pedido por WhatsApp.</p>
+            <div class="section-head center">
+                <p class="eyebrow" data-i18n="shop.eyebrow">Colección Océano · Camisetas</p>
+                <h2 class="section-title" data-i18n="collections.title">Las camisetas de esta historia</h2>
+                <p class="section-lead" data-i18n="shop.lead">Elige tu horma y talla. Cada camiseta de la colección Océano ayuda a proteger el mar y a los animalitos de la calle.</p>
             </div>
             <div class="fit-toggle" id="fit-toggle" role="group" aria-label="Horma / Fit">
                 <button type="button" class="fit-btn is-active" data-fit="regular" aria-pressed="true">
@@ -891,22 +860,35 @@
 <script src="js/cart.js"></script>
 <script src="js/impacto.js"></script>
 <script>
-  /* Pausar / reproducir el video de la colección Océano */
+  /* Controles del video de la colección Océano (sonido + pausa) */
   (function () {
-    var btn = document.getElementById("video-toggle");
     var frame = document.getElementById("oceano-video");
-    if (!btn || !frame) return;
-    var playing = true;
+    if (!frame) return;
+    function en() { return document.documentElement.getAttribute("lang") === "en"; }
     function cmd(fn) {
       try { frame.contentWindow.postMessage(JSON.stringify({ event: "command", func: fn, args: [] }), "*"); } catch (e) {}
     }
-    btn.addEventListener("click", function () {
-      playing = !playing;
-      cmd(playing ? "playVideo" : "pauseVideo");
-      var en = document.documentElement.getAttribute("lang") === "en";
-      btn.querySelector(".vt-icon").textContent = playing ? "❚❚" : "▶";
-      btn.querySelector(".vt-label").textContent = playing ? (en ? "Pause" : "Pausar") : (en ? "Play" : "Reproducir");
-    });
+    var sBtn = document.getElementById("sound-toggle");
+    if (sBtn) {
+      var muted = true;
+      sBtn.addEventListener("click", function () {
+        muted = !muted;
+        cmd(muted ? "mute" : "unMute");
+        if (!muted) cmd("playVideo");
+        sBtn.querySelector(".vt-icon").textContent = muted ? "🔊" : "🔇";
+        sBtn.querySelector(".vt-label").textContent = muted ? (en() ? "Sound on" : "Activar sonido") : (en() ? "Mute" : "Silenciar");
+      });
+    }
+    var vBtn = document.getElementById("video-toggle");
+    if (vBtn) {
+      var playing = true;
+      vBtn.addEventListener("click", function () {
+        playing = !playing;
+        cmd(playing ? "playVideo" : "pauseVideo");
+        vBtn.querySelector(".vt-icon").textContent = playing ? "❚❚" : "▶";
+        vBtn.querySelector(".vt-label").textContent = playing ? (en() ? "Pause" : "Pausar") : (en() ? "Play" : "Reproducir");
+      });
+    }
   })();
 </script>
 </body>

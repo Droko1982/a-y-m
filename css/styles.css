@@ -315,7 +315,8 @@ img { max-width: 100%; display: block; }
     height: 70%; width: 1px;
     background: var(--line);
 }
-.value-ico { font-size: 1.7rem; display: block; margin-bottom: 10px; }
+.value-ico { display: block; margin-bottom: 12px; color: var(--accent); line-height: 0; }
+.value-ico svg { display: inline-block; vertical-align: middle; }
 .value h3 { font-size: 1.06rem; margin-bottom: 4px; }
 .value p { font-size: .88rem; color: var(--text-soft); line-height: 1.5; }
 
@@ -807,9 +808,12 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
 .hero--video .btn-ghost { color: #fff; border-color: rgba(255,255,255,.6); }
 .hero--video .btn-ghost:hover { color: #fff; border-color: #fff; background: rgba(255,255,255,.14); }
 
-/* Botón claro para pausar / reproducir el video */
-.video-toggle {
+/* Controles claros del video (sonido + pausa) */
+.video-controls {
     position: absolute; z-index: 3; right: 22px; bottom: 96px;
+    display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
+}
+.video-toggle {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(247,242,231,.92); color: #1B1B1B;
     border: none; border-radius: var(--radius-sm);
@@ -819,7 +823,7 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
     transition: background .2s ease, transform .2s ease;
 }
 .video-toggle:hover { background: #fff; transform: translateY(-1px); }
-.video-toggle .vt-icon { font-size: .72rem; letter-spacing: -1px; }
+.video-toggle .vt-icon { font-size: .82rem; }
 @media (max-width: 820px) { .hero--video { min-height: 78vh; } }
 
 /* ---------- Hero con foto de fondo (Tienda) ---------- */
@@ -940,6 +944,24 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
 .os-label { display: block; font-size: .85rem; color: var(--text-soft); margin-top: 6px; }
 .oceano-cta { max-width: 640px; margin: 0 auto; text-align: center; }
 .oceano-cta-btns { justify-content: center; margin-top: 22px; }
+
+/* ---------- Tarjetas de colección (Tienda) ---------- */
+.collections-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; max-width: 900px; margin: 0 auto; }
+.collection-card {
+    display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line);
+    overflow: hidden; text-decoration: none; color: inherit;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.collection-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.cc-media { aspect-ratio: 16 / 10; background: var(--green-soft) center / cover no-repeat; }
+.cc-soon { display: grid; place-items: center; background: var(--bg-alt); }
+.cc-soon-ico { font-size: 3rem; filter: grayscale(.35); opacity: .75; }
+.cc-body { padding: 20px 22px 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
+.cc-body h3 { font-size: 1.34rem; }
+.cc-body p { color: var(--text-soft); font-size: .92rem; }
+.collection-card .link-arrow { margin-top: 6px; }
+.collection-card.is-soon { opacity: .96; }
+@media (max-width: 700px) { .collections-grid { grid-template-columns: 1fr; } }
 .ocean-prose { max-width: 680px; margin: 0 auto; }
 .ocean-prose p { margin-bottom: 1.05em; font-size: 1.06rem; line-height: 1.75; color: var(--text); }
 .ocean-prose p:last-child { margin-bottom: 0; }
