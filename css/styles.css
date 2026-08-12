@@ -940,6 +940,21 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
 .os-label { display: block; font-size: .85rem; color: var(--text-soft); margin-top: 6px; }
 .oceano-cta { max-width: 640px; margin: 0 auto; text-align: center; }
 .oceano-cta-btns { justify-content: center; margin-top: 22px; }
+.ocean-prose { max-width: 680px; margin: 0 auto; }
+.ocean-prose p { margin-bottom: 1.05em; font-size: 1.06rem; line-height: 1.75; color: var(--text); }
+.ocean-prose p:last-child { margin-bottom: 0; }
+.ocean-quote {
+    max-width: 720px; margin: 34px auto 0; padding: 6px 0 6px 24px;
+    border-left: 4px solid var(--accent);
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 1.28rem; line-height: 1.5; color: var(--text);
+}
+.ocean-stats { margin-top: 40px; }
+.actions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; max-width: 900px; margin: 0 auto; }
+.action-card { background: var(--surface); border: 1px solid var(--line); padding: 28px 26px; }
+.action-num { display: block; font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 600; color: var(--accent); margin-bottom: 10px; }
+.action-card h3 { font-size: 1.14rem; margin-bottom: 8px; }
+.action-card p { color: var(--text-soft); font-size: .95rem; line-height: 1.6; }
+@media (max-width: 700px) { .actions-grid { grid-template-columns: 1fr; } }
 
 /* ---------- Historias que inspiran ---------- */
 .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
