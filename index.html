@@ -331,9 +331,12 @@
     <!-- Colección Océano (video de fondo) -->
     <section class="hero hero--video" data-view="oceano" aria-label="Colección Océano">
         <div class="hero-video" aria-hidden="true">
-            <iframe src="https://www.youtube-nocookie.com/embed/RZD9HX_PMys?autoplay=1&mute=1&controls=0&loop=1&playlist=RZD9HX_PMys&playsinline=1&modestbranding=1&rel=0&disablekb=1&fs=0" title="" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
+            <iframe id="oceano-video" src="https://www.youtube-nocookie.com/embed/RZD9HX_PMys?autoplay=1&mute=1&controls=0&loop=1&playlist=RZD9HX_PMys&playsinline=1&modestbranding=1&rel=0&disablekb=1&fs=0&enablejsapi=1" title="" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
         </div>
-        <div class="hero-scrim" aria-hidden="true"></div>
+        <button class="video-toggle" id="video-toggle" type="button" aria-label="Pausar o reproducir el video">
+            <span class="vt-icon" aria-hidden="true">❚❚</span>
+            <span class="vt-label">Pausar</span>
+        </button>
         <div class="container hero-inner">
             <div class="hero-copy">
                 <p class="eyebrow" data-i18n="oceano.eyebrow">Colección · Disponible</p>
@@ -819,5 +822,24 @@
 <script src="js/main.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/impacto.js"></script>
+<script>
+  /* Pausar / reproducir el video de la colección Océano */
+  (function () {
+    var btn = document.getElementById("video-toggle");
+    var frame = document.getElementById("oceano-video");
+    if (!btn || !frame) return;
+    var playing = true;
+    function cmd(fn) {
+      try { frame.contentWindow.postMessage(JSON.stringify({ event: "command", func: fn, args: [] }), "*"); } catch (e) {}
+    }
+    btn.addEventListener("click", function () {
+      playing = !playing;
+      cmd(playing ? "playVideo" : "pauseVideo");
+      var en = document.documentElement.getAttribute("lang") === "en";
+      btn.querySelector(".vt-icon").textContent = playing ? "❚❚" : "▶";
+      btn.querySelector(".vt-label").textContent = playing ? (en ? "Pause" : "Pausar") : (en ? "Play" : "Reproducir");
+    });
+  })();
+</script>
 </body>
 </html>
