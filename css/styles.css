@@ -962,6 +962,17 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
 .collection-card .link-arrow { margin-top: 6px; }
 .collection-card.is-soon { opacity: .96; }
 @media (max-width: 700px) { .collections-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Guía de tallas ---------- */
+.size-guide { max-width: 640px; margin: 44px auto 0; }
+.size-guide-title { font-size: 1.3rem; text-align: center; margin-bottom: 6px; }
+.size-guide-note { text-align: center; font-size: .88rem; color: var(--text-soft); margin-bottom: 18px; }
+.size-table-wrap { overflow-x: auto; }
+.size-table { width: 100%; border-collapse: collapse; font-size: .92rem; font-variant-numeric: tabular-nums; }
+.size-table th, .size-table td { border: 1px solid var(--line); padding: 10px 14px; text-align: center; }
+.size-table th { background: var(--bg-alt); font-weight: 600; }
+.size-table th:first-child, .size-table td:first-child { font-weight: 600; }
+.size-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 7%, transparent); }
 .ocean-prose { max-width: 680px; margin: 0 auto; }
 .ocean-prose p { margin-bottom: 1.05em; font-size: 1.06rem; line-height: 1.75; color: var(--text); }
 .ocean-prose p:last-child { margin-bottom: 0; }

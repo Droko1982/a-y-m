@@ -19,7 +19,7 @@
     stars:  { img: "assets/tee-stars.svg" },
     origen: { img: "assets/tee-origen.svg" }
   };
-  var FALLBACK = { ocean: "Camiseta Océano", animal: "Camiseta Reino Animal", stars: "Camiseta Cielo Nocturno", origen: "Camiseta Esencia A&M" };
+  var FALLBACK = { ocean: "Camiseta Océano", animal: "Camiseta Coral", stars: "Camiseta Ballena", origen: "Camiseta Tortuga" };
   var SIZES = ["S", "M", "L", "XL"];
   // Métodos activos (tarjeta de crédito y PSE: por ahora no)
   var PAYMENTS = ["nequi", "daviplata", "breb", "transfer", "cod"];
