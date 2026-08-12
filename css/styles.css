@@ -630,6 +630,28 @@ section[id] { scroll-margin-top: 84px; }
 .footer-bottom .container { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .footer-bottom span { font-size: .84rem; color: var(--text-soft); }
 
+/* ---------- Vistas (una sola página) ---------- */
+html[data-page="tienda"]    main section[data-view]:not([data-view="tienda"]),
+html[data-page="proposito"] main section[data-view]:not([data-view="proposito"]),
+html[data-page="historias"] main section[data-view]:not([data-view="historias"]),
+html[data-page="impacto"]   main section[data-view]:not([data-view="impacto"]),
+html[data-page="faq"]       main section[data-view]:not([data-view="faq"]),
+html[data-page="envios"]    main section[data-view]:not([data-view="envios"]),
+html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) { display: none !important; }
+
+.main-nav a.is-current { color: var(--text); }
+.main-nav a.is-current::after { width: 100%; }
+
+/* ---------- Footer compacto ---------- */
+.footer-inner { padding-top: 30px; padding-bottom: 24px; gap: 26px; align-items: flex-start; }
+.footer-logo { height: 38px; margin-bottom: 10px; }
+.footer-brand p { font-size: .9rem; }
+.footer-contact { display: flex; flex-direction: column; gap: 8px; font-size: .92rem; }
+.footer-contact a { display: inline-flex; align-items: center; gap: 8px; color: var(--on-alt-soft); }
+.footer-contact a:hover { color: var(--on-alt); }
+.footer-contact span { color: var(--on-alt-soft); font-size: .88rem; }
+.footer-bottom { padding: 14px 0; }
+
 /* ---------- WhatsApp flotante ---------- */
 .wa-float {
     position: fixed;
