@@ -249,7 +249,7 @@
     <script>
       /* Fija la vista inicial antes de pintar (evita parpadeo) */
       (function () {
-        var ok = ["tienda", "proposito", "historias", "impacto", "faq", "envios", "contacto"];
+        var ok = ["tienda", "oceano", "proposito", "historias", "impacto", "faq", "envios", "contacto"];
         var v = (location.hash || "").replace(/^#\/?/, "").toLowerCase();
         document.documentElement.setAttribute("data-page", ok.indexOf(v) >= 0 ? v : "tienda");
       })();
@@ -309,11 +309,7 @@
 <main>
 
     <!-- Hero -->
-    <section class="hero hero--video" data-view="tienda">
-        <div class="hero-video" aria-hidden="true">
-            <iframe src="https://www.youtube-nocookie.com/embed/RZD9HX_PMys?autoplay=1&mute=1&controls=0&loop=1&playlist=RZD9HX_PMys&playsinline=1&modestbranding=1&rel=0&disablekb=1&fs=0" title="" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
-        </div>
-        <div class="hero-scrim" aria-hidden="true"></div>
+    <section class="hero" data-view="tienda">
         <div class="container hero-inner">
             <div class="hero-copy">
                 <p class="eyebrow" data-i18n="hero.eyebrow">Moda con propósito · Calarcá, Quindío</p>
@@ -327,7 +323,25 @@
             <div class="hero-media">
                 <div class="hero-blob" aria-hidden="true"></div>
                 <img src="assets/tee-ocean.svg" alt="Camiseta A&M Universe — Colección Océano" class="hero-tee" width="260" height="288">
-                <span class="hero-badge" data-i18n="hero.badge">Colección Océano</span>
+                <a class="hero-badge" href="#oceano" data-i18n="hero.badge">Colección Océano</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Colección Océano (video de fondo) -->
+    <section class="hero hero--video" data-view="oceano" aria-label="Colección Océano">
+        <div class="hero-video" aria-hidden="true">
+            <iframe src="https://www.youtube-nocookie.com/embed/RZD9HX_PMys?autoplay=1&mute=1&controls=0&loop=1&playlist=RZD9HX_PMys&playsinline=1&modestbranding=1&rel=0&disablekb=1&fs=0" title="" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
+        </div>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="container hero-inner">
+            <div class="hero-copy">
+                <p class="eyebrow" data-i18n="oceano.eyebrow">Colección · Disponible</p>
+                <h1 class="hero-title" data-i18n="oceano.title">Océano</h1>
+                <p class="hero-sub" data-i18n="oceano.lead">El mar que nos inspira. Muy pronto contaremos aquí la historia del mar en Colombia y lo que está sucediendo en él.</p>
+                <div class="hero-cta">
+                    <a href="#tienda" class="btn btn-ghost" data-i18n="oceano.back">← Volver a la tienda</a>
+                </div>
             </div>
         </div>
     </section>

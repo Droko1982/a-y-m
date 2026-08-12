@@ -429,7 +429,7 @@ section[id] { scroll-margin-top: 84px; }
 .product-card p { font-size: .95rem; color: var(--text-soft); }
 
 /* ---------- Impacto ---------- */
-.impact { background: var(--bg-alt); }
+.impact { background: var(--bg); }
 .impact-inner {
     display: grid;
     grid-template-columns: 1.1fr .9fr;
@@ -625,6 +625,7 @@ section[id] { scroll-margin-top: 84px; }
 
 /* ---------- Vistas (una sola página) ---------- */
 html[data-page="tienda"]    main section[data-view]:not([data-view="tienda"]),
+html[data-page="oceano"]    main section[data-view]:not([data-view="oceano"]),
 html[data-page="proposito"] main section[data-view]:not([data-view="proposito"]),
 html[data-page="historias"] main section[data-view]:not([data-view="historias"]),
 html[data-page="impacto"]   main section[data-view]:not([data-view="impacto"]),
@@ -1053,7 +1054,7 @@ body.cart-open { overflow: hidden; }
 .size-pill.is-active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
 /* ---------- Testimonios ---------- */
-.testimonials { background: var(--bg-alt); }
+.testimonials { background: var(--bg); }
 .tst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
 .tst-card {
     background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
@@ -1067,7 +1068,7 @@ body.cart-open { overflow: hidden; }
 .tst-card figcaption span { font-size: .82rem; color: var(--text-soft); }
 
 /* ---------- FAQ ---------- */
-.faq { background: var(--bg-alt); }
+.faq { background: var(--bg); }
 .faq-inner { max-width: 800px; margin: 0 auto; }
 .faq-list { display: flex; flex-direction: column; gap: 12px; }
 .faq-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
