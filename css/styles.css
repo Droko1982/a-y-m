@@ -6,15 +6,15 @@
 /* ---------- Tokens de tema ---------- */
 :root,
 [data-theme="light"] {
-    --bg:        #F3EEE2;   /* marfil cálido */
+    --bg:        #F6F2EA;   /* marfil suave (más claro) */
     --bg-alt:    #66723D;   /* olivo (bandas: topbar, impacto, testimonios, faq, footer) */
-    --surface:   #FBF7EE;   /* crema (tarjetas) */
+    --surface:   #FCFAF4;   /* crema clara (tarjetas) */
     --text:      #2E251C;
     --text-soft: #75664F;
     --accent:    #8A6432;   /* bronce/tierra (AA sobre crema) */
     --accent-ink:#FFFFFF;
     --green:     #5E6A3C;   /* olivo (acento tierra) */
-    --green-soft:#E6DAC2;   /* beige suave (medios) */
+    --green-soft:#EBE1CE;   /* beige suave (medios) */
     --olive:      #6B7742;  /* olivo (botón WhatsApp) */
     --olive-ink:  #F5F0E4;
     --olive-strong:#5A6537;
@@ -28,15 +28,15 @@
 }
 
 [data-theme="dark"] {
-    --bg:        #0F0E0C;   /* negro cálido (fondo) */
+    --bg:        #0D0D0D;   /* negro (fondo) */
     --bg-alt:    #4E5A2B;   /* olivo oscuro (bandas) */
-    --surface:   #1A1814;   /* casi negro (tarjetas) */
+    --surface:   #191919;   /* negro elevado (tarjetas) */
     --text:      #ECE3D1;   /* crema */
     --text-soft: #A99C86;
     --accent:    #CBA968;   /* oro */
-    --accent-ink:#0F0E0C;
+    --accent-ink:#0D0D0D;
     --green:     #B9C08A;   /* olivo claro */
-    --green-soft:#1C1B16;
+    --green-soft:#161616;
     --olive:      #8A975A;
     --olive-ink:  #14120B;
     --olive-strong:#7A8A4C;
