@@ -822,6 +822,31 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
 .video-toggle .vt-icon { font-size: .72rem; letter-spacing: -1px; }
 @media (max-width: 820px) { .hero--video { min-height: 78vh; } }
 
+/* ---------- Hero con foto de fondo (Tienda) ---------- */
+.hero--photo {
+    position: relative; min-height: 84vh; display: flex; align-items: center;
+    background: #1a1a1a url("../assets/tienda-oceano.jpeg") center / cover no-repeat;
+}
+.hero--photo::before {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(90deg, rgba(16,14,10,.62) 0%, rgba(16,14,10,.34) 40%, rgba(16,14,10,.05) 66%, transparent 82%);
+}
+.hero--photo .hero-inner { position: relative; z-index: 2; grid-template-columns: 1fr; }
+.hero--photo .hero-copy { max-width: 620px; }
+.hero--photo .hero-media { display: none; }
+.hero--photo .eyebrow { color: #F3E7CC; }
+.hero--photo .hero-title { color: #FFFFFF; }
+.hero--photo .hero-sub { color: rgba(255,255,255,.92); }
+.hero--photo .eyebrow,
+.hero--photo .hero-title,
+.hero--photo .hero-sub { text-shadow: 0 2px 16px rgba(0,0,0,.6), 0 1px 3px rgba(0,0,0,.5); }
+.hero--photo .btn-ghost { color: #fff; border-color: rgba(255,255,255,.6); }
+.hero--photo .btn-ghost:hover { color: #fff; border-color: #fff; background: rgba(255,255,255,.14); }
+@media (max-width: 820px) {
+    .hero--photo { min-height: 74vh; background-position: 70% center; }
+    .hero--photo::before { background: linear-gradient(180deg, rgba(16,14,10,.4) 0%, rgba(16,14,10,.35) 45%, rgba(16,14,10,.72) 100%); }
+}
+
 /* ---------- Tienda ---------- */
 .fit-toggle {
     display: flex;
