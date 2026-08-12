@@ -192,14 +192,14 @@ img { max-width: 100%; display: block; }
 [data-theme="dark"] .brand-lockup { display: none; }
 .brand-universe {
     font-family: 'Inter', sans-serif;
-    font-size: .55rem;
-    letter-spacing: .46em;
+    font-size: .5rem;
+    letter-spacing: .34em;
     text-transform: uppercase;
     font-weight: 600;
     color: var(--accent);
-    text-align: right;
-    padding-right: 2px;
-    margin-top: 2px;
+    text-align: center;
+    padding-left: 34%;   /* deja libre el elefante; queda bajo "A&M" */
+    margin-top: 1px;
 }
 .footer-logo { height: 48px; margin-bottom: 14px; }
 @media (max-width: 680px) { .brand-logo { height: 34px; } }
@@ -207,7 +207,7 @@ img { max-width: 100%; display: block; }
 .main-nav {
     display: flex;
     gap: 26px;
-    margin-left: auto;
+    margin: 0 auto;
 }
 .main-nav a {
     font-size: .93rem;
@@ -785,6 +785,30 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
     font-size: .8rem;
     font-weight: 600;
     color: var(--accent);
+}
+
+/* ---------- Hero con video de fondo ---------- */
+.hero--video { position: relative; min-height: 82vh; display: flex; align-items: center; background: #0B0B0B; }
+.hero--video .hero-inner { position: relative; z-index: 2; grid-template-columns: 1fr; }
+.hero--video .hero-copy { max-width: 640px; }
+.hero-video { position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
+.hero-video iframe {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: max(100vw, 177.78vh); height: max(56.25vw, 100vh); border: 0;
+}
+.hero-scrim {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(90deg, rgba(10,10,10,.72) 0%, rgba(10,10,10,.44) 48%, rgba(10,10,10,.26) 100%);
+}
+.hero--video .hero-media { display: none; }
+.hero--video .eyebrow { color: #E7C892; }
+.hero--video .hero-title { color: #F7F2E7; }
+.hero--video .hero-sub { color: rgba(247,242,231,.88); }
+.hero--video .btn-ghost { color: #F7F2E7; border-color: rgba(247,242,231,.55); }
+.hero--video .btn-ghost:hover { color: #fff; border-color: #F7F2E7; }
+@media (max-width: 820px) {
+    .hero--video { min-height: 78vh; }
+    .hero-scrim { background: linear-gradient(180deg, rgba(10,10,10,.5), rgba(10,10,10,.78)); }
 }
 
 /* ---------- Tienda ---------- */
