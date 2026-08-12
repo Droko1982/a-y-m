@@ -5,45 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página no encontrada · A&M Universe</title>
     <meta name="robots" content="noindex">
+    <meta name="description" content="A&M Universe · Camisetas estampadas con propósito, hechas en Calarcá, Quindío. Un porcentaje de cada venta ayuda a los animales de la calle y al océano. Escríbenos por WhatsApp al 321 579 9683.">
+    <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐘</text></svg>">
     <style>
-        :root { color-scheme: light dark; }
-        * { margin: 0; box-sizing: border-box; }
-        body {
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            padding: 32px;
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            background: #FBF8F2;
-            color: #2C241D;
+        :root {
+            --bg: #F6F2EA; --surface: #FCFAF4; --ink: #2E251C; --soft: #75664F;
+            --accent: #8A6432; --accent-ink: #FFFFFF; --line: rgba(46,37,28,.14); --olive: #6B7742;
         }
         @media (prefers-color-scheme: dark) {
-            body { background: #12241B; color: #ECE4D3; }
+            :root { --bg: #0D0D0D; --surface: #191919; --ink: #ECE3D1; --soft: #A99C86;
+                    --accent: #CBA968; --accent-ink: #0D0D0D; --line: rgba(236,227,209,.16); --olive: #8A975A; }
         }
-        .emoji { font-size: 4rem; }
-        h1 { font-family: Georgia, serif; font-size: 2.4rem; margin: 14px 0 8px; }
-        p { color: #8a7d6e; max-width: 440px; margin: 0 auto 26px; line-height: 1.6; }
-        @media (prefers-color-scheme: dark) { p { color: #A7B7AB; } }
-        a {
-            display: inline-block;
-            background: #A87C43;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 14px 28px;
-            border-radius: 999px;
+        * { margin: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh; display: grid; place-items: center; text-align: center;
+            padding: 32px 22px;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg); color: var(--ink); line-height: 1.6;
         }
-        @media (prefers-color-scheme: dark) { a { background: #CBA968; color: #12241B; } }
+        .wrap { max-width: 560px; }
+        .serif { font-family: Georgia, "Times New Roman", serif; }
+        .brand { font-size: 1.5rem; letter-spacing: .02em; color: var(--accent); margin-bottom: 4px; }
+        .brand small { display: block; font-family: system-ui, sans-serif; font-size: .62rem;
+            letter-spacing: .42em; color: var(--soft); font-weight: 600; margin-top: 4px; }
+        .code { font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--soft); margin: 26px 0 6px; }
+        h1 { font-size: clamp(1.9rem, 6vw, 2.7rem); line-height: 1.15; margin-bottom: 14px; }
+        .lead { color: var(--soft); max-width: 460px; margin: 0 auto 8px; }
+        .blurb { color: var(--soft); font-size: .95rem; max-width: 480px; margin: 18px auto 0;
+            padding-top: 18px; border-top: 1px solid var(--line); }
+        .home {
+            display: inline-block; margin: 28px 0 22px; background: var(--accent); color: var(--accent-ink);
+            text-decoration: none; font-weight: 600; padding: 14px 30px;
+        }
+        .home:hover { filter: brightness(1.06); }
+        .contact { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: center;
+            font-size: .92rem; color: var(--soft); }
+        .contact a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        .contact a:hover { text-decoration: underline; }
+        .wa { display: inline-flex; align-items: center; gap: 8px; background: var(--olive); color: #F5F0E4;
+            text-decoration: none; font-weight: 600; padding: 11px 20px; }
+        .wa:hover { filter: brightness(1.05); }
+        .loc { display: block; margin-top: 16px; font-size: .86rem; color: var(--soft); }
     </style>
 </head>
 <body>
-    <div>
-        <div class="emoji">🐘</div>
-        <h1>Página no encontrada</h1>
-        <p>Esta historia todavía no existe. Volvamos al inicio para descubrir las colecciones de A&M Universe.</p>
-        <a href="./">Volver al inicio</a>
+    <div class="wrap">
+        <div class="brand serif">🐘 A&amp;M<small>UNIVERSE</small></div>
+
+        <p class="code">Error 404</p>
+        <h1 class="serif">Esta historia se perdió en el mar</h1>
+        <p class="lead">La página que buscas no existe o cambió de lugar. Pero nuestra tienda sigue aquí, contando historias con propósito.</p>
+
+        <a class="home" href="./">Volver al inicio</a>
+
+        <div class="contact">
+            <a class="wa" href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%98" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3a8.2 8.2 0 1 1 6.8 3.6z"/></svg>
+                WhatsApp: 321 579 9683
+            </a>
+            <a href="mailto:aymuniversebrand@gmail.com">✉️ aymuniversebrand@gmail.com</a>
+        </div>
+        <span class="loc">📍 Calarcá, Quindío · Colombia — envíos a todo el país</span>
+
+        <p class="blurb"><strong>A&amp;M Universe</strong> · Camisetas estampadas con propósito, hechas en el Quindío. Un porcentaje de cada venta ayuda a los animales de la calle y a proteger el océano.</p>
     </div>
 </body>
 </html>
