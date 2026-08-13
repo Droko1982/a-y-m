@@ -250,6 +250,7 @@ img { max-width: 100%; display: block; }
     align-items: center;
     justify-content: center;
     width: 40px; height: 40px;
+    flex-shrink: 0;                 /* nunca se deforma en óvalo cuando el espacio aprieta */
     border-radius: 50%;
     border: 1.5px solid var(--line);
     background: transparent;
@@ -652,7 +653,7 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
 .footer-contact { display: flex; flex-direction: column; gap: 7px; font-size: .9rem; }
 .footer-contact a { display: inline-flex; align-items: center; gap: 8px; color: var(--text-soft); }
 .footer-contact a:hover { color: var(--accent); }
-.footer-contact span { color: var(--text-soft); font-size: .86rem; }
+.footer-contact span { display: inline-flex; align-items: center; gap: 8px; color: var(--text-soft); font-size: .86rem; }
 .footer-bottom { padding: 12px 0; }
 
 /* ---------- WhatsApp flotante ---------- */
@@ -1154,6 +1155,9 @@ body.cart-open { overflow: hidden; }
     .shop-grid { grid-template-columns: 1fr; }
     .cards-2 { grid-template-columns: 1fr; }
     .cart-drawer { width: 100vw; }
+    /* El botón flotante de WhatsApp ya está siempre visible; ocultamos el del
+       header en teléfonos pequeños para que las acciones no se aprieten. */
+    .header-wa { display: none; }
 }
 
 /* =========================================================
