@@ -11,6 +11,9 @@
   var I18N = {
     es: {
       "shop.size": "Talla", "nav.faq": "FAQ",
+      "aria.lang": "Cambiar idioma", "aria.theme": "Cambiar tema", "aria.cart": "Ver carrito",
+      "aria.menu": "Menú", "aria.cartclose": "Cerrar carrito", "aria.totop": "Volver arriba",
+      "aria.sound": "Activar o silenciar el sonido del mar", "aria.video": "Pausar o reproducir el video",
       "fit.regular": "Regular fit", "fit.oversized": "Oversized",
       "pay.label": "Método de pago", "pay.nequi": "Nequi", "pay.daviplata": "Daviplata",
       "pay.breb": "Bre-B", "pay.transfer": "Transferencia", "pay.cod": "Contra entrega",
@@ -26,7 +29,7 @@
       "shop.lead": "Prendas inspiradas en las criaturas que existen bajo la superficie. Elige tu horma y talla.",
       "shop.add": "Agregar",
       "oceano.eyebrow": "Colección · Disponible", "oceano.title": "Océano",
-      "oceano.lead": "El mar que nos inspira. Muy pronto contaremos aquí la historia del mar en Colombia y lo que está sucediendo en él.",
+      "oceano.lead": "El mar que nos inspira. Conoce su historia, la vida que lo habita y por qué todavía estamos a tiempo de cuidarlo.",
       "oceano.back": "← Volver a la tienda",
       "size.title": "Guía de tallas", "size.note": "Medidas de referencia de la prenda (Regular fit). El Oversized queda más holgado. ¿Dudas con tu talla? Escríbenos.",
       "shop.note": "👕 Imágenes de referencia (mockups) — se reemplazan fácilmente cuando lleguen las fotos reales de las camisetas.",
@@ -129,6 +132,9 @@
     },
     en: {
       "shop.size": "Size", "nav.faq": "FAQ",
+      "aria.lang": "Change language", "aria.theme": "Change theme", "aria.cart": "View cart",
+      "aria.menu": "Menu", "aria.cartclose": "Close cart", "aria.totop": "Back to top",
+      "aria.sound": "Turn the sea sound on or off", "aria.video": "Pause or play the video",
       "fit.regular": "Regular fit", "fit.oversized": "Oversized",
       "pay.label": "Payment method", "pay.nequi": "Nequi", "pay.daviplata": "Daviplata",
       "pay.breb": "Bre-B", "pay.transfer": "Bank transfer", "pay.cod": "Cash on delivery",
@@ -144,7 +150,7 @@
       "shop.lead": "Garments inspired by the creatures that live beneath the surface. Choose your fit and size.",
       "shop.add": "Add",
       "oceano.eyebrow": "Collection · Available", "oceano.title": "Ocean",
-      "oceano.lead": "The sea that inspires us. Soon we'll share the story of the sea in Colombia and what's happening to it.",
+      "oceano.lead": "The sea that inspires us. Discover its story, the life within it and why we're still in time to protect it.",
       "oceano.back": "← Back to shop",
       "size.title": "Size guide", "size.note": "Reference garment measurements (Regular fit). Oversized is roomier. Not sure about your size? Message us.",
       "shop.note": "👕 Reference images (mockups) — easy to swap once you have the real product photos.",
@@ -264,6 +270,10 @@
         var v = dict[key];
         if (v.indexOf("<") !== -1) el.innerHTML = v; else el.textContent = v;
       }
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var ak = el.getAttribute("data-i18n-aria");
+      if (dict[ak] != null) el.setAttribute("aria-label", dict[ak]);
     });
     root.setAttribute("lang", lang);
     var label = document.querySelector(".lang-label");
