@@ -182,13 +182,13 @@ img { max-width: 100%; display: block; }
 }
 
 /* Logo real (imagen), conmutado por tema */
-.brand-logo { height: 40px; width: auto; display: block; }
+.brand-logo { height: 54px; width: auto; display: block; }
 .brand-logo-dark { display: none; }
 [data-theme="dark"] .brand-logo-light { display: none; }
 [data-theme="dark"] .brand-logo-dark { display: block; }
 
 .footer-logo { height: 48px; margin-bottom: 14px; }
-@media (max-width: 680px) { .brand-logo { height: 34px; } }
+@media (max-width: 680px) { .brand-logo { height: 44px; } }
 
 .main-nav {
     display: flex;
@@ -959,6 +959,8 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
 .size-table th { background: var(--bg-alt); font-weight: 600; }
 .size-table th:first-child, .size-table td:first-child { font-weight: 600; }
 .size-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+html[lang="en"] .size-cm { display: none; }
+html:not([lang="en"]) .size-in { display: none; }
 .ocean-prose { max-width: 680px; margin: 0 auto; }
 .ocean-prose p { margin-bottom: 1.05em; font-size: 1.06rem; line-height: 1.75; color: var(--text); }
 .ocean-prose p:last-child { margin-bottom: 0; }
