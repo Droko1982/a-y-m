@@ -249,7 +249,7 @@
     <script>
       /* Fija la vista inicial antes de pintar (evita parpadeo) */
       (function () {
-        var ok = ["tienda", "oceano", "proposito", "historias", "impacto", "faq", "envios", "contacto"];
+        var ok = ["tienda", "oceano", "proposito", "historias", "impacto", "faq", "contacto"];
         var v = (location.hash || "").replace(/^#\/?/, "").toLowerCase();
         document.documentElement.setAttribute("data-page", ok.indexOf(v) >= 0 ? v : "tienda");
       })();
@@ -276,7 +276,6 @@
             <a href="#historias" data-nav="historias" data-i18n="nav.stories">Historias</a>
             <a href="#impacto" data-nav="impacto" data-i18n="nav.impact">Impacto</a>
             <a href="#faq" data-nav="faq" data-i18n="nav.faq">FAQ</a>
-            <a href="#envios" data-nav="envios" data-i18n="nav.shipping">Envíos</a>
             <a href="#contacto" data-nav="contacto" data-i18n="nav.contact">Contacto</a>
         </nav>
 
@@ -818,7 +817,7 @@
     </section>
 
     <!-- Envíos / Cómo comprar -->
-    <section class="section shipping" id="shipping" data-view="envios">
+    <section class="section shipping" id="shipping" data-view="contacto">
         <div class="container">
             <div class="section-head">
                 <p class="eyebrow" data-i18n="shipping.eyebrow">Cómo comprar</p>

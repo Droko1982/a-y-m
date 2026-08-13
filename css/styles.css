@@ -154,6 +154,9 @@ img { max-width: 100%; display: block; }
     gap: 20px;
     padding-top: 14px;
     padding-bottom: 14px;
+    max-width: none;                             /* header a lo ancho de la página */
+    padding-left: clamp(20px, 4vw, 60px);        /* logo hacia la izquierda */
+    padding-right: clamp(20px, 4vw, 60px);       /* "Escríbenos" hacia la derecha */
 }
 
 .brand {
@@ -617,7 +620,6 @@ html[data-page="proposito"] main section[data-view]:not([data-view="proposito"])
 html[data-page="historias"] main section[data-view]:not([data-view="historias"]),
 html[data-page="impacto"]   main section[data-view]:not([data-view="impacto"]),
 html[data-page="faq"]       main section[data-view]:not([data-view="faq"]),
-html[data-page="envios"]    main section[data-view]:not([data-view="envios"]),
 html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) { display: none !important; }
 
 .main-nav a.is-current { color: var(--text); }
