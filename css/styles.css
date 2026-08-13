@@ -54,6 +54,14 @@
     clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
 
+/* Íconos de línea en café (contacto/footer) */
+.ci {
+    width: 15px; height: 15px;
+    color: var(--accent);
+    flex-shrink: 0;
+    vertical-align: -2px;
+}
+
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
@@ -1005,6 +1013,17 @@ html:not([lang="en"]) .size-in { display: none; }
     font-family: 'Fraunces', serif; font-style: italic; font-size: 1.28rem; line-height: 1.5; color: var(--text);
 }
 .ocean-stats { margin-top: 40px; }
+
+/* Sección "Dato curioso" (ballenas) — bloque más ligero y diferenciado */
+.ocean-curio { background: var(--bg-alt); }
+
+/* Línea de cierre del portal de colecciones */
+.portal-outro {
+    margin-top: 12px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--accent);
+}
 .actions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; max-width: 900px; margin: 0 auto; }
 .action-card { background: var(--surface); border: 1px solid var(--line); padding: 28px 26px; }
 .action-num { display: block; font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 600; color: var(--accent); margin-bottom: 10px; }
