@@ -906,35 +906,67 @@
 <script src="js/cart.js"></script>
 <script src="js/impacto.js"></script>
 <script>
-  /* Controles del video de la colección Océano (sonido + pausa) */
+  /* Controles del video de la colección Océano (sonido + pausa).
+     Usa la API oficial de YouTube (más fiable para activar el sonido),
+     con respaldo por postMessage si la API no llega a cargar. */
   (function () {
     var frame = document.getElementById("oceano-video");
     if (!frame) return;
+    var player = null, ready = false, soundOn = false, playing = true;
+    var sBtn = document.getElementById("sound-toggle");
+    var vBtn = document.getElementById("video-toggle");
     function en() { return document.documentElement.getAttribute("lang") === "en"; }
-    function cmd(fn) {
+    function setSoundUI() {
+      if (!sBtn) return;
+      sBtn.querySelector(".vt-icon").textContent = soundOn ? "🔇" : "🔊";
+      sBtn.querySelector(".vt-label").textContent = soundOn ? (en() ? "Mute" : "Silenciar") : (en() ? "Sound on" : "Activar sonido");
+      sBtn.setAttribute("aria-pressed", soundOn ? "true" : "false");
+    }
+    function setPlayUI() {
+      if (!vBtn) return;
+      vBtn.querySelector(".vt-icon").textContent = playing ? "❚❚" : "▶";
+      vBtn.querySelector(".vt-label").textContent = playing ? (en() ? "Pause" : "Pausar") : (en() ? "Play" : "Reproducir");
+      vBtn.setAttribute("aria-pressed", playing ? "false" : "true");
+    }
+    /* Cargar la API IFrame de YouTube */
+    if (!window.YT || !window.YT.Player) {
+      var tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
+    }
+    var prevReady = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function () {
+      if (typeof prevReady === "function") { try { prevReady(); } catch (e) {} }
+      try {
+        player = new YT.Player("oceano-video", {
+          host: "https://www.youtube-nocookie.com",
+          events: { onReady: function () { ready = true; try { player.mute(); player.playVideo(); } catch (e) {} } }
+        });
+      } catch (e) { player = null; }
+    };
+    /* Respaldo por postMessage (si la API no está disponible) */
+    function pm(fn) {
       try { frame.contentWindow.postMessage(JSON.stringify({ event: "command", func: fn, args: [] }), "*"); } catch (e) {}
     }
-    var sBtn = document.getElementById("sound-toggle");
-    if (sBtn) {
-      var muted = true;
-      sBtn.addEventListener("click", function () {
-        muted = !muted;
-        cmd(muted ? "mute" : "unMute");
-        if (!muted) cmd("playVideo");
-        sBtn.querySelector(".vt-icon").textContent = muted ? "🔊" : "🔇";
-        sBtn.querySelector(".vt-label").textContent = muted ? (en() ? "Sound on" : "Activar sonido") : (en() ? "Mute" : "Silenciar");
-      });
-    }
-    var vBtn = document.getElementById("video-toggle");
-    if (vBtn) {
-      var playing = true;
-      vBtn.addEventListener("click", function () {
-        playing = !playing;
-        cmd(playing ? "playVideo" : "pauseVideo");
-        vBtn.querySelector(".vt-icon").textContent = playing ? "❚❚" : "▶";
-        vBtn.querySelector(".vt-label").textContent = playing ? (en() ? "Pause" : "Pausar") : (en() ? "Play" : "Reproducir");
-      });
-    }
+    if (sBtn) sBtn.addEventListener("click", function () {
+      soundOn = !soundOn;
+      if (player && ready) {
+        if (soundOn) { player.unMute(); try { player.setVolume(100); } catch (e) {} player.playVideo(); playing = true; setPlayUI(); }
+        else { player.mute(); }
+      } else {
+        pm(soundOn ? "unMute" : "mute");
+        if (soundOn) pm("playVideo");
+      }
+      setSoundUI();
+    });
+    if (vBtn) vBtn.addEventListener("click", function () {
+      playing = !playing;
+      if (player && ready) { if (playing) { player.playVideo(); } else { player.pauseVideo(); } }
+      else { pm(playing ? "playVideo" : "pauseVideo"); }
+      setPlayUI();
+    });
+    /* Mantener las etiquetas correctas al cambiar de idioma */
+    document.addEventListener("aym:langchange", function () { setSoundUI(); setPlayUI(); });
   })();
 </script>
 </body>
