@@ -1,0 +1,50 @@
+# =============================================================
+# A&M Universe · Configuración del panel (Sveltia CMS)
+# El panel guarda los cambios en este mismo repositorio de GitHub
+# y GitHub Pages vuelve a publicar el sitio solo en 1-2 minutos.
+# =============================================================
+
+backend:
+  name: github
+  repo: Droko1982/a-y-m          # dueño/repositorio
+  branch: main
+  # ↓↓↓ PASO DEL LOGIN: reemplaza esta URL por la de tu Worker de
+  #     Cloudflare "sveltia-cms-auth" (ver PANEL-ADMIN.md, Paso 2).
+  base_url: https://REEMPLAZA-CON-TU-WORKER.workers.dev
+
+# Idioma del panel
+locale: es
+
+# Dónde se ven los cambios publicados
+site_url: https://droko1982.github.io/a-y-m/
+display_url: https://droko1982.github.io/a-y-m/
+
+# Carpeta donde se guardan las fotos que se suban (para la Fase 2)
+media_folder: assets
+public_folder: assets
+
+collections:
+  # -------- PRECIOS --------
+  - name: precios
+    label: "Precios"
+    icon: attach_money
+    files:
+      - name: precios
+        label: "Precios de las camisetas"
+        file: data/config.json
+        description: "Cambia el precio de cada horma. Se actualiza en toda la tienda."
+        fields:
+          - { name: precio_regular, label: "Precio Regular fit (COP)", widget: number, value_type: int, min: 0, step: 1000 }
+          - { name: precio_oversized, label: "Precio Oversized (COP)", widget: number, value_type: int, min: 0, step: 1000 }
+
+  # -------- IMPACTO --------
+  - name: impacto
+    label: "Impacto"
+    icon: volunteer_activism
+    files:
+      - name: contador
+        label: "Contador de impacto"
+        file: data/impacto.json
+        description: "Total de camisetas vendidas. El contador del sitio calcula el dinero apartado para los animalitos."
+        fields:
+          - { name: camisetas, label: "Camisetas vendidas (total)", widget: number, value_type: int, min: 0 }
