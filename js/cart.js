@@ -28,6 +28,28 @@
 
   function price(fit) { return FIT_PRICES[fit] || FIT_PRICES.regular; }
 
+  /* ---------- Configuración editable desde el panel (data/config.json) ----------
+     Permite a las dueñas cambiar los precios desde el panel de administración.
+     Si el archivo no está o falla, se usan los valores por defecto de arriba. */
+  function applyConfig(cfg) {
+    if (!cfg || typeof cfg !== "object") return;
+    var r = Number(cfg.precio_regular), o = Number(cfg.precio_oversized);
+    if (r > 0) FIT_PRICES.regular = r;
+    if (o > 0) FIT_PRICES.oversized = o;
+    document.querySelectorAll("#fit-toggle .fit-btn").forEach(function (b) {
+      var f = b.getAttribute("data-fit"), pe = b.querySelector(".fit-price");
+      if (pe && FIT_PRICES[f]) pe.textContent = fmt(FIT_PRICES[f]);
+    });
+  }
+  function loadConfig(done) {
+    try {
+      fetch("data/config.json", { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (cfg) { applyConfig(cfg); done(); })
+        .catch(function () { done(); });
+    } catch (e) { done(); }
+  }
+
   /* ---------- Estado ---------- */
   var currentFit = "regular";
   try { var sf = localStorage.getItem("aym-fit"); if (FITS.indexOf(sf) >= 0) currentFit = sf; } catch (e) {}
@@ -246,6 +268,8 @@
     });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
     render();
+    // Cargar precios editables desde el panel y refrescar
+    loadConfig(function () { applyFit(); render(); });
   });
 
   document.addEventListener("aym:langchange", render);
