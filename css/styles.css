@@ -933,6 +933,10 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
 }
 .btn-add:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
 .btn-add:active { transform: translateY(0) scale(.97); }
+.btn-add[disabled] { opacity: .5; cursor: not-allowed; pointer-events: none; box-shadow: none; transform: none; }
+/* Producto agotado (interruptor Disponible/Agotado del panel) */
+.product.is-soldout { opacity: .78; }
+.product.is-soldout .product-media { filter: grayscale(.35); }
 .shop-note { text-align: center; margin-top: 26px; font-size: .84rem; color: var(--text-soft); }
 .cards-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; max-width: 760px; margin: 0 auto; }
 

@@ -37,6 +37,30 @@ collections:
           - { name: precio_regular, label: "Precio Regular fit (COP)", widget: number, value_type: int, min: 0, step: 1000 }
           - { name: precio_oversized, label: "Precio Oversized (COP)", widget: number, value_type: int, min: 0, step: 1000 }
 
+  # -------- PRODUCTOS --------
+  - name: productos
+    label: "Productos"
+    icon: checkroom
+    files:
+      - name: productos
+        label: "Camisetas de la tienda"
+        file: data/productos.json
+        description: "Crea, edita, reordena o marca Agotado. Sube la foto de cada camiseta."
+        fields:
+          - name: productos
+            label: "Productos"
+            label_singular: "Producto"
+            widget: list
+            summary: "{{fields.nombre_es}}"
+            fields:
+              - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: coral2. No repetir con otro producto." }
+              - { name: imagen, label: "Foto de la camiseta", widget: image, choose_url: false }
+              - { name: nombre_es, label: "Nombre (español)", widget: string }
+              - { name: nombre_en, label: "Nombre (inglés)", widget: string }
+              - { name: desc_es, label: "Descripción (español)", widget: text }
+              - { name: desc_en, label: "Descripción (inglés)", widget: text }
+              - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
+
   # -------- IMPACTO --------
   - name: impacto
     label: "Impacto"
