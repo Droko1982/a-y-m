@@ -18,12 +18,19 @@
   function pick(p, base) { var en = lang() === "en"; return (en ? (p[base + "_en"] || p[base + "_es"]) : (p[base + "_es"] || p[base + "_en"])) || ""; }
 
   var products = null; // se llena desde el JSON
+  var IMG_DEFECTO = "assets/tee-ocean.svg";
+
+  /* El panel guarda la foto como "/assets/foto.jpg" (Sveltia antepone siempre
+     una barra). La tienda no vive en la raíz del dominio sino en /a-y-m/, así
+     que esa ruta apuntaría fuera del sitio y la foto saldría rota. Se pasa a
+     ruta relativa, que funciona igual con dominio propio el día que lo haya. */
+  function ruta(v) { return String(v == null ? "" : v).trim().replace(/^\/+/, ""); }
 
   function cardHTML(p) {
     var en = lang() === "en";
     var nombre = pick(p, "nombre"), desc = pick(p, "desc");
     var soldout = p.disponible === false;
-    var img = p.imagen || "assets/tee-ocean.svg";
+    var img = ruta(p.imagen) || IMG_DEFECTO;
     var tag = soldout
       ? '<span class="tag">' + (en ? "Sold out" : "Agotado") + '</span>'
       : '<span class="tag tag-live">' + (en ? "Available" : "Disponible") + '</span>';
@@ -53,12 +60,27 @@
   function render() {
     var grid = document.getElementById(GRID_ID);
     if (!grid || !Array.isArray(products)) return;
-    var valid = products.filter(function (p) { return p && p.id; });
+    /* Si por error se repite un id en el panel, se conserva el primero: dos
+       productos con el mismo id harían que el carrito confundiera uno con otro. */
+    var usados = {};
+    var valid = products.filter(function (p) {
+      if (!p || !p.id || usados[p.id]) return false;
+      usados[p.id] = true;
+      return true;
+    });
     if (!valid.length) return; // no vaciar la grilla si el JSON viene vacío
     grid.innerHTML = valid.map(cardHTML).join("");
-    // Exponer el mapa de productos para el carrito
+    /* Mapa para el carrito: el nombre viaja aquí para que el carrito pueda
+       nombrar bien también las camisetas agotadas y las creadas en el panel. */
     var map = {};
-    valid.forEach(function (p) { map[p.id] = { img: p.imagen, disponible: p.disponible !== false }; });
+    valid.forEach(function (p) {
+      map[p.id] = {
+        img: ruta(p.imagen) || IMG_DEFECTO,
+        nombre_es: p.nombre_es || "",
+        nombre_en: p.nombre_en || "",
+        disponible: p.disponible !== false
+      };
+    });
     window.AYM_PRODUCTS = map;
     document.dispatchEvent(new CustomEvent("aym:productsrendered"));
   }
