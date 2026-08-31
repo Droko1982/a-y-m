@@ -15,7 +15,7 @@
         }
         @media (prefers-color-scheme: dark) {
             :root { --bg: #0D0D0D; --surface: #191919; --ink: #ECE3D1; --soft: #A99C86;
-                    --accent: #CBA968; --accent-ink: #0D0D0D; --line: rgba(236,227,209,.16); --olive: #8A975A; }
+                    --accent: #CBA968; --accent-ink: #0D0D0D; --line: rgba(236,227,209,.16); --olive: #55613A; }
         }
         * { margin: 0; box-sizing: border-box; }
         body {
@@ -43,7 +43,9 @@
             font-size: .92rem; color: var(--soft); }
         .contact a { color: var(--accent); text-decoration: none; font-weight: 600; }
         .contact a:hover { text-decoration: underline; }
-        .wa { display: inline-flex; align-items: center; gap: 8px; background: var(--olive); color: #F5F0E4;
+        /* .contact a gana en especificidad, así que el rótulo salía en café
+           sobre el verde del propio botón (contraste 1,1:1). */
+        .contact a.wa { display: inline-flex; align-items: center; gap: 8px; background: var(--olive); color: #F5F0E4;
             text-decoration: none; font-weight: 600; padding: 11px 20px; }
         .wa:hover { filter: brightness(1.05); }
         .loc { display: block; margin-top: 16px; font-size: .86rem; color: var(--soft); }
