@@ -1,8 +1,9 @@
 /* =========================================================
    A&M Universe · textos editables
-   Toma data/textos.json y reemplaza los textos de la portada,
-   las colecciones, las preguntas frecuentes y contacto/envíos
-   para que se puedan cambiar desde el panel.
+   Toma data/textos.json y reemplaza los textos del sitio
+   (portada, colecciones, tienda, Océano, propósito, impacto,
+   preguntas frecuentes y contacto/envíos) para que se puedan
+   cambiar desde el panel.
    Las preguntas frecuentes se pintan en vivo (se pueden agregar,
    quitar y reordenar) y se actualizan también los datos
    estructurados de SEO.
@@ -58,7 +59,83 @@
     ["contacto.paso3_texto", "step.3.d"],
     ["contacto.contacto_titulo", "contact.title"],
     ["contacto.contacto_texto", "contact.lead"],
-    ["contacto.contacto_boton", "contact.cta"]
+    ["contacto.contacto_boton", "contact.cta"],
+    // Portada · Nuestros valores
+    ["portada.valores_titulo", "values.title"],
+    ["portada.valor1_titulo", "value.1.t"],
+    ["portada.valor1_texto", "value.1.d"],
+    ["portada.valor2_titulo", "value.2.t"],
+    ["portada.valor2_texto", "value.2.d"],
+    ["portada.valor3_titulo", "value.3.t"],
+    ["portada.valor3_texto", "value.3.d"],
+    ["portada.valor4_titulo", "value.4.t"],
+    ["portada.valor4_texto", "value.4.d"],
+    // Tienda
+    ["tienda.eyebrow", "shop.eyebrow"],
+    ["tienda.texto", "shop.lead"],
+    ["tienda.nota", "shop.note"],
+    // Océano
+    ["oceano.historia_eyebrow", "ocn.s1.eyebrow"],
+    ["oceano.historia_titulo", "ocn.s1.title"],
+    ["oceano.historia_p1", "ocn.s1.p1"],
+    ["oceano.historia_p2", "ocn.s1.p2"],
+    ["oceano.historia_p3", "ocn.s1.p3"],
+    ["oceano.esperanza_eyebrow", "ocn.s2.eyebrow"],
+    ["oceano.esperanza_titulo", "ocn.s2.title"],
+    ["oceano.esperanza_texto", "ocn.s2.p1"],
+    ["oceano.dato1_numero", "ocn.stat1.num"],
+    ["oceano.dato1_texto", "ocn.stat1"],
+    ["oceano.dato2_numero", "ocn.stat2.num"],
+    ["oceano.dato2_texto", "ocn.stat2"],
+    ["oceano.dato3_numero", "ocn.stat3.num"],
+    ["oceano.dato3_texto", "ocn.stat3"],
+    ["oceano.curiosidad_eyebrow", "ocn.cur.eyebrow"],
+    ["oceano.curiosidad_titulo", "ocn.cur.title"],
+    ["oceano.curiosidad_p1", "ocn.cur.p1"],
+    ["oceano.curiosidad_p2", "ocn.cur.p2"],
+    ["oceano.curiosidad_frase", "ocn.cur.quote"],
+    ["oceano.acciones_eyebrow", "ocn.s5.eyebrow"],
+    ["oceano.acciones_titulo", "ocn.s5.title"],
+    ["oceano.acciones_texto", "ocn.s5.lead"],
+    ["oceano.accion1_titulo", "ocn.a1.t"],
+    ["oceano.accion1_texto", "ocn.a1.d"],
+    ["oceano.accion2_titulo", "ocn.a2.t"],
+    ["oceano.accion2_texto", "ocn.a2.d"],
+    ["oceano.accion3_titulo", "ocn.a3.t"],
+    ["oceano.accion3_texto", "ocn.a3.d"],
+    ["oceano.accion4_titulo", "ocn.a4.t"],
+    ["oceano.accion4_texto", "ocn.a4.d"],
+    // Propósito
+    ["proposito.eyebrow", "purpose.eyebrow"],
+    ["proposito.titulo", "purpose.title"],
+    ["proposito.texto", "purpose.lead"],
+    ["proposito.tarjeta1_titulo", "purpose.c1.t"],
+    ["proposito.tarjeta1_texto", "purpose.c1.d"],
+    ["proposito.tarjeta2_titulo", "purpose.c2.t"],
+    ["proposito.tarjeta2_texto", "purpose.c2.d"],
+    ["proposito.tarjeta3_titulo", "purpose.c3.t"],
+    ["proposito.tarjeta3_texto", "purpose.c3.d"],
+    ["proposito.tarjeta4_titulo", "purpose.c4.t"],
+    ["proposito.tarjeta4_texto", "purpose.c4.d"],
+    // Impacto y nuestra causa
+    ["impacto.eyebrow", "impact.eyebrow"],
+    ["impacto.titulo", "impact.title"],
+    ["impacto.texto", "impact.lead"],
+    ["impacto.boton", "impact.cta"],
+    ["impacto.frase", "impact.quote"],
+    ["impacto.contador_envivo", "impact.count.live"],
+    ["impacto.contador_camisetas", "impact.count.shirts"],
+    ["impacto.contador_dinero", "impact.count.money"],
+    ["impacto.causa_eyebrow", "rescue.eyebrow"],
+    ["impacto.causa_titulo", "rescue.title"],
+    ["impacto.causa_texto", "rescue.lead"],
+    ["impacto.causa_nota", "rescue.note"]
+  ];
+
+  /* Avisos de "fotos de referencia": se apagan con un interruptor del panel */
+  var AVISOS = [
+    ["tienda", "mostrar_nota", ".shop-note"],
+    ["impacto", "mostrar_causa_nota", ".gallery-note"]
   ];
 
   var faqs = null; // lista de preguntas del panel
@@ -97,6 +174,15 @@
       if (loc != null) dict["contact.loc"] = PIN_SVG + loc;
     });
     api.apply();
+  }
+
+  /* ---------- Avisos temporales ---------- */
+  function applyAvisos(data) {
+    AVISOS.forEach(function (a) {
+      var group = data[a[0]];
+      if (!group || group[a[1]] !== false) return; // solo se oculta si el panel lo apaga
+      document.querySelectorAll(a[2]).forEach(function (el) { el.hidden = true; });
+    });
   }
 
   /* ---------- Preguntas frecuentes ---------- */
@@ -147,6 +233,7 @@
             renderFaqSeo();
           }
           applyTexts(data);
+          applyAvisos(data);
         })
         .catch(function () {});
     } catch (e) {}

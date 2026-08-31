@@ -17,11 +17,16 @@ cambios se publican solos en el sitio (GitHub Pages) en **1 a 2 minutos**.
 | **Precios** | Precio de Regular fit y de Oversized en toda la tienda |
 | **Productos** | Crear, editar, reordenar y marcar *Agotado* las camisetas; subir la foto y escribir nombre y descripción en español e inglés |
 | **Impacto** | El número de camisetas vendidas (el contador del perrito) |
-| **Textos** | Los textos de la **portada**, las **colecciones**, las **preguntas frecuentes** (se pueden agregar, quitar y reordenar) y **contacto/envíos**, en español e inglés |
+| **Textos** | **Todos** los textos del sitio, en español e inglés: portada, colecciones, tienda, la historia de *Océano*, *Propósito*, *Impacto y nuestra causa*, las **preguntas frecuentes** (se pueden agregar, quitar y reordenar) y contacto/envíos |
+| **Datos legales** | Los datos que en la página de políticas salen `[entre corchetes]`: razón social, NIT o cédula, tiempo de envío y plazo de cambios |
 
-**Lo que aún no está en el panel:** la narrativa de la página *Océano*, los
-textos de *Propósito* e *Impacto*, y las páginas legales (`politicas.html`).
-Se pueden agregar más adelante si hace falta.
+También hay dos **interruptores** para quitar los avisos de "fotos de
+referencia" (uno en *Tienda* y otro en *Impacto*): se apagan el día que
+lleguen las fotos reales, sin tocar código.
+
+**Lo que sigue fuera del panel:** el texto completo de las políticas y
+términos (`politicas.html`) — solo sus datos `[entre corchetes]` son
+editables — y los detalles de pago del carrito. Se pueden agregar si hace falta.
 
 **Pedidos:** siguen llegando por **WhatsApp** (así ya funciona). Un panel
 gratuito no puede tener un tablero de pedidos "de verdad"; si más adelante lo
@@ -113,13 +118,21 @@ Cada dueña que vaya a editar necesita:
    - **Impacto** → escribir el nuevo total de camisetas vendidas → **Save** →
      **Publish**.
    - **Textos** → abrir el grupo que quieran (*Portada*, *Colecciones*,
-     *Preguntas frecuentes*, *Contacto y envíos*), cambiar el texto → **Save**
-     → **Publish**.
+     *Tienda*, *Océano*, *Propósito*, *Impacto y nuestra causa*, *Preguntas
+     frecuentes*, *Contacto y envíos*), cambiar el texto → **Save** →
+     **Publish**.
      - Cada texto tiene su casilla en **español** y en **inglés**.
      - Si una casilla se deja **vacía**, el sitio conserva el texto que ya tenía
        (nunca queda un espacio en blanco).
      - En *Preguntas frecuentes* se pueden **agregar** y **quitar** preguntas
        con los botones **+** y **🗑**, y arrastrarlas para cambiar el orden.
+     - En *Tienda* y en *Impacto* hay un interruptor **"¿Mostrar el aviso de
+       fotos de referencia?"**: apágalo cuando ya estén las fotos reales y el
+       aviso desaparece del sitio.
+   - **Datos legales** → escribir la razón social, el NIT o cédula, el tiempo
+     de envío y el plazo de cambios → **Save** → **Publish**. Cuando los cuatro
+     están llenos, el aviso de *"Plantilla base"* de la página de políticas
+     desaparece solo.
 4. Esperar **1–2 minutos** y refrescar el sitio: el cambio ya está publicado.
 
 ### "Instalar" el acceso en el PC (opcional, para tenerlo a mano)
@@ -147,7 +160,8 @@ falla, se queda con lo que ya está escrito en el HTML (respaldo).
 | `data/config.json` | `js/cart.js` | Precios de las dos hormas |
 | `data/impacto.json` | `js/impacto.js` | Total de camisetas del contador |
 | `data/productos.json` | `js/shop.js` | Catálogo de la tienda |
-| `data/textos.json` | `js/textos.js` | Textos de portada, colecciones, FAQ y contacto |
+| `data/textos.json` | `js/textos.js` | Todos los textos del sitio (8 grupos) |
+| `data/negocio.json` | `js/politicas.js` | Datos legales de `politicas.html` |
 
 - `js/textos.js` traduce cada campo del panel a una clave de `I18N` en
   `js/main.js` (tabla `MAP`) y vuelve a aplicar el idioma. Los campos vacíos
@@ -158,8 +172,16 @@ falla, se queda con lo que ya está escrito en el HTML (respaldo).
 - El HTML de `index.html` conserva los textos originales: es lo que ven los
   buscadores sin JavaScript. Si las dueñas cambian mucho un texto, conviene
   actualizarlo también en el HTML de vez en cuando.
+- Los interruptores de los avisos ("¿Mostrar el aviso de fotos de
+  referencia?") son booleanos sueltos en `data/textos.json`; la tabla
+  `AVISOS` de `js/textos.js` los asocia a un selector CSS y solo ocultan el
+  elemento cuando el panel los apaga explícitamente.
+- `js/politicas.js` rellena los huecos `#dato-*` de `politicas.html` con
+  `data/negocio.json`, les quita la clase `.ph` (el resaltado de "falta este
+  dato") y esconde `#aviso-plantilla` solo cuando los cuatro están completos.
 - Para agregar más textos al panel: añadir el campo en `data/textos.json`, el
   par correspondiente en `MAP` (`js/textos.js`) y el campo en la colección
-  *Textos* de `admin/config.yml`. Los tres nombres deben coincidir.
+  *Textos* de `admin/config.yml`. Los tres nombres deben coincidir, y el orden
+  de los grupos debe ser el mismo en el JSON y en el YAML.
 - El panel es un único JS fijado (`@sveltia/cms@0.203.1`); sin servidor ni
   base de datos que mantener. El propio repositorio es el respaldo.
