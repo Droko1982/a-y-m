@@ -46,7 +46,7 @@ Este botón crea todo el contador en tu cuenta de Cloudflare automáticamente
 ### Paso 2 — Conectar la página (desde el panel)
 Entra al panel (https://droko1982.github.io/a-y-m/admin/) →
 **Impacto** → **"Dirección del contador automático"** → pega tu URL →
-**Save** → **Publish**. Sin tocar código.
+**Save**. Sin tocar código.
 
 ### Paso 3 — Guardar tu enlace para sumar
 Guarda en la pantalla de inicio del celular:
@@ -114,7 +114,7 @@ Cópiala. Es la dirección de tu contador.
    ```
    https://aym-contador.TU-USUARIO.workers.dev
    ```
-3. **Save** → **Publish**. En 1–2 minutos el contador aparecerá en vivo en la web. ✅
+3. **Save**. En 1–2 minutos el contador aparecerá en vivo en la web. ✅
 
 > Si algún día el Worker deja de responder, la web no se queda en blanco: vuelve
 > sola al total escrito en **Impacto → Camisetas vendidas**.

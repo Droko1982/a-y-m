@@ -36,8 +36,6 @@
     "eyebrow_en": "Collections",
     "titulo_es": "Lleva contigo una parte del océano.",
     "titulo_en": "Carry a piece of the ocean with you.",
-    "texto_es": "Lanzamos por colecciones temáticas. Cada una nace de una historia real sobre la naturaleza y los animales, para que lleves contigo algo más que un diseño.",
-    "texto_en": "We release themed collections. Each one is born from a real story about nature and animals, so you carry more than just a design.",
     "portal_titulo_es": "Cada colección es un nuevo mundo.",
     "portal_titulo_en": "Every collection is a new world.",
     "portal_texto_es": "Creemos que cada mundo tiene una historia que contar. Por eso creamos colecciones inspiradas en lugares, criaturas, aventuras, emociones y todo aquello que nos invita a mirar el mundo de manera diferente.",
@@ -69,6 +67,14 @@
     "mostrar_nota": true
   },
   "oceano": {
+    "portada_eyebrow_es": "Colección · Disponible",
+    "portada_eyebrow_en": "Collection · Available",
+    "portada_titulo_es": "Océano",
+    "portada_titulo_en": "Ocean",
+    "portada_texto_es": "El mar que nos inspira. Conoce su historia, la vida que lo habita y por qué todavía estamos a tiempo de cuidarlo.",
+    "portada_texto_en": "The sea that inspires us. Discover its story, the life within it and why we're still in time to protect it.",
+    "portada_boton_es": "← Volver a la tienda",
+    "portada_boton_en": "← Back to shop",
     "historia_eyebrow_es": "La historia de esta colección",
     "historia_eyebrow_en": "The story of this collection",
     "historia_titulo_es": "Un mundo entero bajo la superficie",

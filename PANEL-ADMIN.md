@@ -114,22 +114,22 @@ Cada dueña que vaya a editar necesita:
 2. Clic en **"Sign in with GitHub"** y autorizar (la primera vez).
 3. Elegir la sección en el menú:
    - **Precios** → cambiar el valor de Regular u Oversized → **Save** →
-     **Publish**.
+     guardar.
    - **Productos** → agregar una camiseta nueva, cambiar su foto, su nombre o
-     apagar *¿Disponible?* para que salga **Agotado** → **Save** → **Publish**.
+     apagar *¿Disponible?* para que salga **Agotado** → **Save**.
    - **Pagos** → escribir el número de Nequi, el de Daviplata y la llave de
-     Bre-B → **Save** → **Publish**. Los datos de la cuenta bancaria son
+     Bre-B → **Save**. Los datos de la cuenta bancaria son
      opcionales: mientras estén vacíos, el carrito sigue diciendo que se
      coordinan por WhatsApp; al llenarlos, aparecen en el carrito y también en
      el mensaje del pedido.
    - **Impacto** → escribir el nuevo total de camisetas vendidas → **Save** →
-     **Publish**. Aquí también va la **dirección del contador automático**, si
+     guardar. Aquí también va la **dirección del contador automático**, si
      ya instalaron el Worker de Cloudflare (ver
      [`CONTADOR-MENSAJE-CLIENTAS.md`](CONTADOR-MENSAJE-CLIENTAS.md)).
    - **Textos** → abrir el grupo que quieran (*Portada*, *Colecciones*,
      *Tienda*, *Océano*, *Propósito*, *Impacto y nuestra causa*, *Preguntas
      frecuentes*, *Contacto y envíos*), cambiar el texto → **Save** →
-     **Publish**.
+     guardar.
      - Cada texto tiene su casilla en **español** y en **inglés**.
      - Si una casilla se deja **vacía**, el sitio conserva el texto que ya tenía
        (nunca queda un espacio en blanco).
@@ -143,8 +143,13 @@ Cada dueña que vaya a editar necesita:
      aviso de *"Plantilla base"* de la página de políticas desaparece solo.
      Abajo, las **redes sociales**: se puede escribir solo el usuario
      (`@aymuniverse`) o la dirección completa; los íconos aparecen en el pie de
-     la página. → **Save** → **Publish**.
+     la página. → **Save**.
 4. Esperar **1–2 minutos** y refrescar el sitio: el cambio ya está publicado.
+
+> **Un solo botón.** El panel guarda y publica en el mismo paso: al pulsar
+> **Save** el cambio ya queda hecho, no hay que buscar un segundo botón.
+> Si el sitio todavía no muestra el cambio, es cuestión de esperar 1–2
+> minutos y refrescar con **Ctrl+F5**.
 
 ### "Instalar" el acceso en el PC (opcional, para tenerlo a mano)
 

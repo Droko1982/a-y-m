@@ -23,7 +23,13 @@
       "M16.5 3c.3 1.9 1.4 3.1 3.3 3.3v2.4c-1.1.1-2.1-.2-3.2-.8v5.6c0 3.4-2.6 5.5-5.4 5.5-2.7 0-4.9-2-4.9-4.8 0-2.9 2.4-5 5.6-4.7v2.5c-.4-.1-.8-.1-1.2-.1-1.3 0-2.2.9-2.2 2.2s.9 2.3 2.2 2.3c1.4 0 2.4-1 2.4-2.6V3h3.4Z"]
   ];
 
-  function esc(v) { var d = document.createElement("div"); d.textContent = v == null ? "" : String(v); return d.innerHTML; }
+  /* Escapa también las comillas: el valor se mete dentro de href="…", y una
+     comilla escrita en el panel cerraría el atributo y dejaría inyectar otros. */
+  function esc(v) {
+    var d = document.createElement("div");
+    d.textContent = v == null ? "" : String(v);
+    return d.innerHTML.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   /* Acepta la dirección completa (con o sin https) o solo el usuario
      (@nombre o nombre). Lo que trae una barra se toma como dirección. */
