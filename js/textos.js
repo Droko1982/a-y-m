@@ -200,11 +200,14 @@
     }).join("");
   }
 
-  /* Datos estructurados de SEO: siempre en español, como el sitio */
+  /* Datos estructurados de SEO de las preguntas frecuentes.
+     Google exige que el contenido marcado sea el mismo que se ve en pantalla,
+     así que sigue al idioma que está mostrando la página (antes iba siempre en
+     español y, con la página en inglés, el marcado no coincidía con lo visible). */
   function renderFaqSeo() {
     var tag = document.getElementById(FAQ_SEO_ID);
     if (!tag || !Array.isArray(faqs)) return;
-    var valid = faqs.filter(function (p) { return p && p.pregunta_es && p.respuesta_es; });
+    var valid = faqs.filter(function (p) { return p && pick(p, "pregunta") && pick(p, "respuesta"); });
     if (!valid.length) return;
     try {
       tag.textContent = JSON.stringify({
@@ -213,8 +216,8 @@
         "mainEntity": valid.map(function (p) {
           return {
             "@type": "Question",
-            "name": p.pregunta_es.trim(),
-            "acceptedAnswer": { "@type": "Answer", "text": p.respuesta_es.trim() }
+            "name": pick(p, "pregunta"),
+            "acceptedAnswer": { "@type": "Answer", "text": pick(p, "respuesta") }
           };
         })
       }, null, 2);
@@ -241,5 +244,5 @@
 
   if (document.readyState !== "loading") load();
   else document.addEventListener("DOMContentLoaded", load);
-  document.addEventListener("aym:langchange", renderFaq);
+  document.addEventListener("aym:langchange", function () { renderFaq(); renderFaqSeo(); });
 })();

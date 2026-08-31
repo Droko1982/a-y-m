@@ -308,9 +308,13 @@
   try { savedLang = localStorage.getItem("aym-lang"); } catch (e) {}
   try { savedTheme = localStorage.getItem("aym-theme"); } catch (e) {}
 
-  if (!savedLang) {
-    savedLang = (navigator.language || "es").toLowerCase().indexOf("en") === 0 ? "en" : "es";
-  }
+  /* Antes se elegía el idioma según el navegador. Googlebot navega en inglés
+     y nunca trae datos guardados, así que rastreaba la página traducida al
+     inglés mientras el <title>, la descripción, las etiquetas para compartir y
+     los datos estructurados seguían en español: una página que se contradecía
+     a sí misma justo en el mercado que importa. El español es el idioma del
+     sitio; el inglés se activa solo si la persona pulsa el botón. */
+  if (!savedLang) savedLang = "es";
   if (!savedTheme) {
     savedTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }

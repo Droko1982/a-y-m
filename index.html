@@ -334,7 +334,7 @@
     <!-- Colección Océano (video de fondo) -->
     <section class="hero hero--video" data-view="oceano" aria-label="Colección Océano">
         <div class="hero-video" aria-hidden="true">
-            <iframe id="oceano-video" src="https://www.youtube-nocookie.com/embed/RZD9HX_PMys?autoplay=1&mute=1&controls=0&loop=1&playlist=RZD9HX_PMys&playsinline=1&modestbranding=1&rel=0&disablekb=1&fs=0&enablejsapi=1" title="" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
+            <iframe id="oceano-video" data-src="https://www.youtube-nocookie.com/embed/RZD9HX_PMys?autoplay=1&mute=1&controls=0&loop=1&playlist=RZD9HX_PMys&playsinline=1&modestbranding=1&rel=0&disablekb=1&fs=0&enablejsapi=1" title="" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
         </div>
         <div class="video-controls">
             <button class="video-toggle" id="sound-toggle" type="button" aria-label="Activar o silenciar el sonido del mar" data-i18n-aria="aria.sound">
@@ -940,12 +940,34 @@
       vBtn.querySelector(".vt-label").textContent = playing ? (en() ? "Pause" : "Pausar") : (en() ? "Play" : "Reproducir");
       vBtn.setAttribute("aria-pressed", playing ? "false" : "true");
     }
-    /* Cargar la API IFrame de YouTube */
-    if (!window.YT || !window.YT.Player) {
-      var tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.head.appendChild(tag);
+    /* El vídeo NO se carga hasta que alguien entra a la vista Océano.
+       Antes, el iframe traía el src en el HTML y la sección solo se ocultaba
+       con display:none, así que el reproductor de YouTube (~1 MB) se descargaba
+       y el vídeo se reproducía en bucle mientras la visitante miraba la tienda,
+       gastando sus datos y su batería en algo que nunca veía. */
+    var activado = false;
+    function activarVideo() {
+      if (activado) return;
+      activado = true;
+      if (frame.dataset.src && !frame.getAttribute("src")) frame.setAttribute("src", frame.dataset.src);
+      if (!window.YT || !window.YT.Player) {
+        var tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+      }
     }
+
+    /* Al entrar se activa (y se reanuda si la persona no lo había pausado);
+       al salir se pausa para no seguir consumiendo datos de fondo. */
+    document.addEventListener("aym:viewchange", function (e) {
+      if (e.detail === "oceano") {
+        activarVideo();
+        if (player && ready && playing) { try { player.playVideo(); } catch (err) {} }
+      } else if (player && ready) {
+        try { player.pauseVideo(); } catch (err) {}
+      }
+    });
+
     var prevReady = window.onYouTubeIframeAPIReady;
     window.onYouTubeIframeAPIReady = function () {
       if (typeof prevReady === "function") { try { prevReady(); } catch (e) {} }
