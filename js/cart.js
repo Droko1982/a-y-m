@@ -26,6 +26,7 @@
   };
   var FALLBACK = { ocean: "Camiseta Océano", animal: "Camiseta Coral", stars: "Camiseta Ballena", origen: "Camiseta Tortuga" };
   var SIZES = ["S", "M", "L", "XL"];
+  var IMG_DEFECTO = "assets/tee-ocean.svg";
   // Métodos activos (tarjeta de crédito y PSE: por ahora no)
   var PAYMENTS = ["nequi", "daviplata", "breb", "transfer", "cod"];
   // Métodos basados en número/llave (usan el mismo número de WhatsApp por ahora)
@@ -89,7 +90,12 @@
 
   var cart = [];
   try { cart = JSON.parse(localStorage.getItem("aym-cart")) || []; } catch (e) { cart = []; }
-  cart = cart.filter(function (i) { return i && PRODUCTS[i.id] && i.qty > 0; })
+  /* No se descarta nada por el id: en este momento PRODUCTS solo tiene las
+     cuatro camisetas escritas en este archivo, y el catálogo de verdad (con lo
+     que las dueñas hayan creado desde el panel) todavía no ha llegado. Filtrar
+     aquí borraba en silencio esos productos al recargar. La depuración real se
+     hace más abajo, al recibir aym:productsrendered. */
+  cart = cart.filter(function (i) { return i && i.id && i.qty > 0; })
              .map(function (i) {
                return {
                  id: i.id,
@@ -105,6 +111,13 @@
   function getName(id) {
     var b = document.querySelector('.btn-add[data-product="' + id + '"]');
     if (b) { var art = b.closest(".product"); if (art) { var n = art.querySelector(".product-name"); if (n && n.textContent.trim()) return n.textContent.trim(); } }
+    /* Las camisetas agotadas no llevan data-product (su botón está deshabilitado),
+       así que el nombre se toma del catálogo del panel antes que de la tabla fija. */
+    var p = PRODUCTS[id];
+    if (p) {
+      var nom = lang() === "en" ? (p.nombre_en || p.nombre_es) : (p.nombre_es || p.nombre_en);
+      if (nom && String(nom).trim()) return String(nom).trim();
+    }
     return FALLBACK[id] || id;
   }
   function count() { return cart.reduce(function (s, i) { return s + i.qty; }, 0); }
@@ -230,9 +243,11 @@
       if (emptyEl) emptyEl.hidden = true;
       if (footEl) footEl.hidden = false;
       itemsEl.innerHTML = cart.map(function (i) {
-        var p = PRODUCTS[i.id], unit = price(i.fit);
+        /* p puede no existir si el catálogo aún no llegó o si falló: se pinta
+           igual con una imagen de respaldo en vez de romper todo el carrito. */
+        var p = PRODUCTS[i.id] || {}, unit = price(i.fit);
         return '<div class="cart-item">' +
-          '<img src="' + p.img + '" alt="" width="62" height="68">' +
+          '<img src="' + esc(p.img || IMG_DEFECTO) + '" alt="" width="62" height="68">' +
           '<div class="ci-info"><span class="ci-name">' + getName(i.id) + '</span>' +
           '<span class="ci-price">' + FIT_LABEL[i.fit] + ' · ' + tl + ' ' + i.size + ' · ' + fmt(unit) + '</span>' +
           '<div class="ci-qty">' +
@@ -322,7 +337,18 @@
   // El catálogo dinámico (shop.js) avisa cuando pintó los productos:
   // adoptamos el catálogo (incluye productos nuevos) y refrescamos precios.
   document.addEventListener("aym:productsrendered", function () {
-    if (window.AYM_PRODUCTS) PRODUCTS = window.AYM_PRODUCTS;
+    if (window.AYM_PRODUCTS) {
+      PRODUCTS = window.AYM_PRODUCTS;
+      /* Recién ahora sabemos qué existe de verdad. Se quitan del carrito las
+         camisetas que las dueñas hayan borrado, renombrado o marcado Agotado:
+         son las únicas que ya no se pueden pedir. Todo lo demás se conserva. */
+      var antes = cart.length;
+      cart = cart.filter(function (i) {
+        var p = PRODUCTS[i.id];
+        return p && p.disponible !== false;
+      });
+      if (cart.length !== antes) save();
+    }
     applyFit();
     render();
   });
