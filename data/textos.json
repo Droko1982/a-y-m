@@ -1,0 +1,116 @@
+{
+  "portada": {
+    "aviso_es": "🐾 Un porcentaje de cada venta ayuda a los animales de la calle · Envíos a toda Colombia",
+    "aviso_en": "🐾 A share of every sale helps street animals · Shipping across Colombia",
+    "eyebrow_es": "Moda con propósito · Calarcá, Quindío",
+    "eyebrow_en": "Fashion with purpose · Calarcá, Quindío",
+    "titulo_es": "Diseño con propósito.",
+    "titulo_en": "Design with purpose.",
+    "texto_es": "Prendas que cuentan historias. Un proyecto orgánico y diferente que viste tu piel mientras cuida la de los animales y la del planeta.",
+    "texto_en": "Garments that tell stories. An organic, different project that dresses your skin while caring for animals and the planet.",
+    "boton1_es": "Ver colección Océano",
+    "boton1_en": "View Ocean collection",
+    "boton2_es": "Escríbenos por WhatsApp",
+    "boton2_en": "Message us on WhatsApp"
+  },
+  "colecciones": {
+    "eyebrow_es": "Colecciones",
+    "eyebrow_en": "Collections",
+    "titulo_es": "Lleva contigo una parte del océano.",
+    "titulo_en": "Carry a piece of the ocean with you.",
+    "texto_es": "Lanzamos por colecciones temáticas. Cada una nace de una historia real sobre la naturaleza y los animales, para que lleves contigo algo más que un diseño.",
+    "texto_en": "We release themed collections. Each one is born from a real story about nature and animals, so you carry more than just a design.",
+    "portal_titulo_es": "Cada colección es un nuevo mundo.",
+    "portal_titulo_en": "Every collection is a new world.",
+    "portal_texto_es": "Creemos que cada mundo tiene una historia que contar. Por eso creamos colecciones inspiradas en lugares, criaturas, aventuras, emociones y todo aquello que nos invita a mirar el mundo de manera diferente.",
+    "portal_texto_en": "We believe every world has a story to tell. That's why we create collections inspired by places, creatures, adventures, emotions and everything that invites us to look at the world differently.",
+    "portal_texto2_es": "Explora cada universo. Descubre su historia. Hazlo parte de la tuya.",
+    "portal_texto2_en": "Explore each universe. Discover its story. Make it part of yours.",
+    "oceano_nombre_es": "Océano",
+    "oceano_nombre_en": "Ocean",
+    "oceano_desc_es": "Hay un mundo entero bajo la superficie.",
+    "oceano_desc_en": "There's a whole world beneath the surface.",
+    "oceano_boton_es": "Ver colección →",
+    "oceano_boton_en": "View collection →",
+    "felina_etiqueta_es": "Próximamente · en desarrollo",
+    "felina_etiqueta_en": "Coming soon · in the works",
+    "felina_nombre_es": "Felina",
+    "felina_nombre_en": "Felina",
+    "felina_desc_es": "Un universo de miradas, instintos y personalidades en construcción. Escríbenos y te avisamos cuando salga.",
+    "felina_desc_en": "A universe of gazes, instincts and personalities in the making. Message us and we'll let you know when it launches.",
+    "felina_boton_es": "Quiero enterarme →",
+    "felina_boton_en": "Keep me posted →"
+  },
+  "faq": {
+    "eyebrow_es": "Preguntas frecuentes",
+    "eyebrow_en": "Frequently asked",
+    "titulo_es": "Resolvemos tus dudas",
+    "titulo_en": "Your questions, answered",
+    "preguntas": [
+      {
+        "pregunta_es": "¿Hacen envíos a toda Colombia?",
+        "pregunta_en": "Do you ship across Colombia?",
+        "respuesta_es": "Sí. Estamos en Calarcá, Quindío y enviamos a todas las ciudades del país. Coordinamos el envío contigo por WhatsApp.",
+        "respuesta_en": "Yes. We're in Calarcá, Quindío and ship to every city in the country. We arrange delivery with you on WhatsApp."
+      },
+      {
+        "pregunta_es": "¿Qué tallas manejan?",
+        "pregunta_en": "What sizes do you offer?",
+        "respuesta_es": "Nuestras camisetas están disponibles en tallas S, M, L y XL. Si tienes dudas con tu talla, escríbenos y te asesoramos.",
+        "respuesta_en": "Our t-shirts come in sizes S, M, L and XL. If you're unsure about your size, message us and we'll help."
+      },
+      {
+        "pregunta_es": "¿Cómo pago mi pedido?",
+        "pregunta_en": "How do I pay?",
+        "respuesta_es": "Aceptamos Nequi, Daviplata y Bre-B (al 321 579 9683), transferencia bancaria y contra entrega según tu ciudad. Eliges el método en el carrito y coordinamos todo por WhatsApp. Fácil y seguro.",
+        "respuesta_en": "We accept Nequi, Daviplata and Bre-B (to 321 579 9683), bank transfer and cash on delivery depending on your city. Pick your method in the cart and we arrange everything on WhatsApp. Easy and secure."
+      },
+      {
+        "pregunta_es": "¿Cómo ayuda mi compra a los animales?",
+        "pregunta_en": "How does my purchase help the animals?",
+        "respuesta_es": "Un porcentaje de cada venta se destina a fundaciones y a los animales de la calle: comida, cuidado y apoyo para su adopción.",
+        "respuesta_en": "A share of every sale goes to shelters and street animals: food, care and support for their adoption."
+      },
+      {
+        "pregunta_es": "¿De qué material son las camisetas?",
+        "pregunta_en": "What are the t-shirts made of?",
+        "respuesta_es": "Son de algodón suave y cómodo, con estampados originales de cada colección, pensados para durar.",
+        "respuesta_en": "Soft, comfortable cotton with original prints from each collection, made to last."
+      },
+      {
+        "pregunta_es": "¿Puedo cambiar la talla?",
+        "pregunta_en": "Can I change the size?",
+        "respuesta_es": "Claro. Escríbenos por WhatsApp y te ayudamos con el cambio de talla de la forma más sencilla.",
+        "respuesta_en": "Of course. Message us on WhatsApp and we'll help you exchange the size easily."
+      }
+    ]
+  },
+  "contacto": {
+    "eyebrow_es": "Cómo comprar",
+    "eyebrow_en": "How to buy",
+    "titulo_es": "Fácil, y con envíos a toda Colombia",
+    "titulo_en": "Easy, with shipping across Colombia",
+    "texto_es": "Estamos en Calarcá, Quindío, y enviamos a todo el país. Comprar es tan simple como escribirnos.",
+    "texto_en": "We're in Calarcá, Quindío, and we ship nationwide. Buying is as simple as sending us a message.",
+    "paso1_titulo_es": "Elige tu diseño",
+    "paso1_titulo_en": "Choose your design",
+    "paso1_texto_es": "Explora nuestras colecciones y encuentra la historia que más te representa.",
+    "paso1_texto_en": "Explore our collections and find the story that represents you most.",
+    "paso2_titulo_es": "Escríbenos por WhatsApp",
+    "paso2_titulo_en": "Message us on WhatsApp",
+    "paso2_texto_es": "Cuéntanos qué quieres, tu talla y tu ciudad. Te asesoramos con gusto.",
+    "paso2_texto_en": "Tell us what you want, your size and your city. We'll gladly help.",
+    "paso3_titulo_es": "Recíbelo en casa",
+    "paso3_titulo_en": "Get it at home",
+    "paso3_texto_es": "Coordinamos el pago y el envío para que tu pedido llegue a tu puerta.",
+    "paso3_texto_en": "We arrange payment and shipping so your order arrives at your door.",
+    "contacto_titulo_es": "Hagamos historia juntos",
+    "contacto_titulo_en": "Let's make history together",
+    "contacto_texto_es": "¿Lista o listo para vestir con propósito? Escríbenos por WhatsApp y con gusto te ayudamos a elegir.",
+    "contacto_texto_en": "Ready to wear with purpose? Message us on WhatsApp and we'll gladly help you choose.",
+    "contacto_boton_es": "Escríbenos: 321 579 9683",
+    "contacto_boton_en": "Message us: 321 579 9683",
+    "ubicacion_es": "Calarcá, Quindío · Colombia — envíos a todo el país",
+    "ubicacion_en": "Calarcá, Quindío · Colombia — shipping across the country"
+  }
+}

@@ -10,15 +10,18 @@ cambios se publican solos en el sitio (GitHub Pages) en **1 a 2 minutos**.
 
 ---
 
-## ✅ Qué se puede editar hoy (Fase 1)
+## ✅ Qué se puede editar hoy
 
 | En el panel | Qué cambia en el sitio |
 |---|---|
 | **Precios** | Precio de Regular fit y de Oversized en toda la tienda |
+| **Productos** | Crear, editar, reordenar y marcar *Agotado* las camisetas; subir la foto y escribir nombre y descripción en español e inglés |
 | **Impacto** | El número de camisetas vendidas (el contador del perrito) |
+| **Textos** | Los textos de la **portada**, las **colecciones**, las **preguntas frecuentes** (se pueden agregar, quitar y reordenar) y **contacto/envíos**, en español e inglés |
 
-**Próximamente (Fase 2):** crear/editar productos, subir fotos, tallas por
-producto, marcar *Agotado*, y editar los textos de la web.
+**Lo que aún no está en el panel:** la narrativa de la página *Océano*, los
+textos de *Propósito* e *Impacto*, y las páginas legales (`politicas.html`).
+Se pueden agregar más adelante si hace falta.
 
 **Pedidos:** siguen llegando por **WhatsApp** (así ya funciona). Un panel
 gratuito no puede tener un tablero de pedidos "de verdad"; si más adelante lo
@@ -105,8 +108,18 @@ Cada dueña que vaya a editar necesita:
 3. Elegir la sección en el menú:
    - **Precios** → cambiar el valor de Regular u Oversized → **Save** →
      **Publish**.
+   - **Productos** → agregar una camiseta nueva, cambiar su foto, su nombre o
+     apagar *¿Disponible?* para que salga **Agotado** → **Save** → **Publish**.
    - **Impacto** → escribir el nuevo total de camisetas vendidas → **Save** →
      **Publish**.
+   - **Textos** → abrir el grupo que quieran (*Portada*, *Colecciones*,
+     *Preguntas frecuentes*, *Contacto y envíos*), cambiar el texto → **Save**
+     → **Publish**.
+     - Cada texto tiene su casilla en **español** y en **inglés**.
+     - Si una casilla se deja **vacía**, el sitio conserva el texto que ya tenía
+       (nunca queda un espacio en blanco).
+     - En *Preguntas frecuentes* se pueden **agregar** y **quitar** preguntas
+       con los botones **+** y **🗑**, y arrastrarlas para cambiar el orden.
 4. Esperar **1–2 minutos** y refrescar el sitio: el cambio ya está publicado.
 
 ### "Instalar" el acceso en el PC (opcional, para tenerlo a mano)
@@ -125,10 +138,28 @@ No se instala nada de verdad, pero se puede dejar como un ícono:
 ---
 
 ## Notas técnicas (para el desarrollador)
-- El sitio lee `data/config.json` (precios) y `data/impacto.json` (contador).
-  El panel edita esos archivos; `js/cart.js` e `js/impacto.js` los consumen.
-- Fase 2: mover el catálogo a `data/productos.json` y pintar la grilla `#shop`
-  desde ahí; añadir colección *Productos* (con imagen, ES/EN, tallas,
-  disponible/agotado) y colección *Contenido* al `admin/config.yml`.
+
+El panel solo edita archivos JSON; el sitio los lee al cargar y, si alguno
+falla, se queda con lo que ya está escrito en el HTML (respaldo).
+
+| Archivo | Lo consume | Qué controla |
+|---|---|---|
+| `data/config.json` | `js/cart.js` | Precios de las dos hormas |
+| `data/impacto.json` | `js/impacto.js` | Total de camisetas del contador |
+| `data/productos.json` | `js/shop.js` | Catálogo de la tienda |
+| `data/textos.json` | `js/textos.js` | Textos de portada, colecciones, FAQ y contacto |
+
+- `js/textos.js` traduce cada campo del panel a una clave de `I18N` en
+  `js/main.js` (tabla `MAP`) y vuelve a aplicar el idioma. Los campos vacíos
+  se ignoran, así que nunca se borra un texto por accidente.
+- Las preguntas frecuentes se pintan en `#faq-list` y además se regenera el
+  JSON-LD `FAQPage` (`#faq-jsonld`) con las preguntas en español, para que los
+  datos estructurados de SEO no se queden desactualizados.
+- El HTML de `index.html` conserva los textos originales: es lo que ven los
+  buscadores sin JavaScript. Si las dueñas cambian mucho un texto, conviene
+  actualizarlo también en el HTML de vez en cuando.
+- Para agregar más textos al panel: añadir el campo en `data/textos.json`, el
+  par correspondiente en `MAP` (`js/textos.js`) y el campo en la colección
+  *Textos* de `admin/config.yml`. Los tres nombres deben coincidir.
 - El panel es un único JS fijado (`@sveltia/cms@0.203.1`); sin servidor ni
   base de datos que mantener. El propio repositorio es el respaldo.

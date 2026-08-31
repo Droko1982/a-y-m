@@ -283,6 +283,12 @@
     try { localStorage.setItem("aym-lang", lang); } catch (e) {}
   }
 
+  /* Textos editables desde el panel (js/textos.js -> data/textos.json) */
+  window.AYM_I18N = {
+    dicts: I18N,
+    apply: function () { applyLang(root.getAttribute("lang") === "en" ? "en" : "es"); }
+  };
+
   /* ---------- WhatsApp ---------- */
   function updateWaLinks(lang) {
     var href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(WA_MSG[lang] || WA_MSG.es);
