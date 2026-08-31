@@ -46,6 +46,10 @@
     var r = Number(cfg.precio_regular), o = Number(cfg.precio_oversized);
     if (r > 0) FIT_PRICES.regular = r;
     if (o > 0) FIT_PRICES.oversized = o;
+    /* Los datos estructurados de producto (js/shop.js) también necesitan
+       el precio que puso el panel, no el que quedó escrito en el HTML. */
+    window.AYM_PRECIOS = { precio_regular: FIT_PRICES.regular, precio_oversized: FIT_PRICES.oversized };
+    try { document.dispatchEvent(new CustomEvent("aym:preciosaplicados")); } catch (e) {}
     document.querySelectorAll("#fit-toggle .fit-btn").forEach(function (b) {
       var f = b.getAttribute("data-fit"), pe = b.querySelector(".fit-price");
       if (pe && FIT_PRICES[f]) pe.textContent = fmt(FIT_PRICES[f]);

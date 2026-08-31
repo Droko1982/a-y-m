@@ -36,6 +36,11 @@
         .legal-doc ul { padding-left: 22px; margin-bottom: 12px; }
         .legal-doc strong { color: var(--text); }
         .ph { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--text); padding: 1px 6px; border-radius: 5px; font-weight: 600; }
+        /* En pantallas chicas el botón de volver no cabía y la cabecera se
+           recortaba en silencio (la barra usa overflow-x: clip). */
+        @media (max-width: 420px) {
+            .site-header .header-actions .btn { padding: 10px 12px; font-size: .78rem; white-space: normal; }
+        }
         .legal-back { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--accent); margin-top: 8px; }
     </style>
 </head>

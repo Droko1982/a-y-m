@@ -19,6 +19,8 @@
 
   var products = null; // se llena desde el JSON
   var IMG_DEFECTO = "assets/tee-ocean.svg";
+  var SEO_ID = "ld-products";
+  var SITIO = "https://droko1982.github.io/a-y-m/";
 
   /* El panel guarda la foto como "/assets/foto.jpg" (Sveltia antepone siempre
      una barra). La tienda no vive en la raíz del dominio sino en /a-y-m/, así
@@ -82,7 +84,57 @@
       };
     });
     window.AYM_PRODUCTS = map;
+    renderSeo(valid);
     document.dispatchEvent(new CustomEvent("aym:productsrendered"));
+  }
+
+  /* Datos estructurados de los productos.
+     Estaban escritos a mano en index.html con los 4 productos originales y los
+     precios fijos, y ningún script los tocaba: en cuanto las dueñas creaban una
+     camiseta, cambiaban un precio o marcaban Agotado, lo que leían Google y las
+     redes dejaba de ser verdad. Se regeneran con el catálogo y los precios
+     reales, igual que ya se hace con las preguntas frecuentes.
+     Siempre en español, que es el idioma del sitio. */
+  function renderSeo(valid) {
+    var tag = document.getElementById(SEO_ID);
+    if (!tag || !valid.length) return;
+    /* Los precios los edita el panel en data/config.json; si no llegan, se usan
+       los que ya estaban publicados. */
+    var cfg = window.AYM_PRECIOS || {};
+    var bajo = Number(cfg.precio_regular) > 0 ? Number(cfg.precio_regular) : 69000;
+    var alto = Number(cfg.precio_oversized) > 0 ? Number(cfg.precio_oversized) : 79000;
+    try {
+      tag.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": valid.map(function (p, i) {
+          var nombre = (p.nombre_es || p.nombre_en || "").trim();
+          var desc = (p.desc_es || p.desc_en || "").trim();
+          return {
+            "@type": "ListItem",
+            "position": i + 1,
+            "item": {
+              "@type": "Product",
+              "name": nombre,
+              "image": SITIO + (ruta(p.imagen) || IMG_DEFECTO),
+              "description": desc,
+              "brand": { "@type": "Brand", "name": "A&M Universe" },
+              "offers": {
+                "@type": "AggregateOffer",
+                "lowPrice": String(Math.min(bajo, alto)),
+                "highPrice": String(Math.max(bajo, alto)),
+                "offerCount": "2",
+                "priceCurrency": "COP",
+                "availability": p.disponible === false
+                  ? "https://schema.org/OutOfStock"
+                  : "https://schema.org/InStock",
+                "url": SITIO + "#oceano"
+              }
+            }
+          };
+        })
+      }, null, 2);
+    } catch (e) {}
   }
 
   function load() {
@@ -96,6 +148,12 @@
         .catch(function () {});
     } catch (e) {}
   }
+
+  /* cart.js puede terminar de cargar los precios después de que se pintó el
+     catálogo: en ese caso hay que rehacer los datos estructurados. */
+  document.addEventListener("aym:preciosaplicados", function () {
+    if (Array.isArray(products)) renderSeo(products.filter(function (p) { return p && p.id; }));
+  });
 
   if (document.readyState !== "loading") load();
   else document.addEventListener("DOMContentLoaded", load);
