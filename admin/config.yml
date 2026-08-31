@@ -72,3 +72,120 @@ collections:
         description: "Total de camisetas vendidas. El contador del sitio calcula el dinero apartado para los animalitos."
         fields:
           - { name: camisetas, label: "Camisetas vendidas (total)", widget: number, value_type: int, min: 0 }
+
+  # -------- TEXTOS --------
+  - name: contenido
+    label: "Textos"
+    icon: edit_note
+    files:
+      - name: textos
+        label: "Textos del sitio"
+        file: data/textos.json
+        description: "Cambia los textos de la portada, las colecciones, las preguntas frecuentes y contacto/envíos. Si dejas un campo vacío, el sitio conserva el texto que ya tenía."
+        fields:
+          # ----- Portada -----
+          - name: portada
+            label: "Portada"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: aviso_es, label: "Aviso de la barra superior (español)", widget: string, required: false }
+              - { name: aviso_en, label: "Aviso de la barra superior (inglés)", widget: string, required: false }
+              - { name: eyebrow_es, label: "Línea pequeña sobre el título (español)", widget: string, required: false }
+              - { name: eyebrow_en, label: "Línea pequeña sobre el título (inglés)", widget: string, required: false }
+              - { name: titulo_es, label: "Título grande (español)", widget: string, required: false }
+              - { name: titulo_en, label: "Título grande (inglés)", widget: string, required: false }
+              - { name: texto_es, label: "Texto bajo el título (español)", widget: text, required: false }
+              - { name: texto_en, label: "Texto bajo el título (inglés)", widget: text, required: false }
+              - { name: boton1_es, label: "Botón 1 · ver colección (español)", widget: string, required: false }
+              - { name: boton1_en, label: "Botón 1 · ver colección (inglés)", widget: string, required: false }
+              - { name: boton2_es, label: "Botón 2 · WhatsApp (español)", widget: string, required: false }
+              - { name: boton2_en, label: "Botón 2 · WhatsApp (inglés)", widget: string, required: false }
+
+          # ----- Colecciones -----
+          - name: colecciones
+            label: "Colecciones"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow_es, label: "Línea pequeña de la sección (español)", widget: string, required: false }
+              - { name: eyebrow_en, label: "Línea pequeña de la sección (inglés)", widget: string, required: false }
+              - { name: titulo_es, label: "Título de la sección (español)", widget: string, required: false }
+              - { name: titulo_en, label: "Título de la sección (inglés)", widget: string, required: false }
+              - { name: texto_es, label: "Texto de la sección (español)", widget: text, required: false }
+              - { name: texto_en, label: "Texto de la sección (inglés)", widget: text, required: false }
+              - { name: portal_titulo_es, label: "Portal · título (español)", widget: string, required: false }
+              - { name: portal_titulo_en, label: "Portal · título (inglés)", widget: string, required: false }
+              - { name: portal_texto_es, label: "Portal · primer párrafo (español)", widget: text, required: false }
+              - { name: portal_texto_en, label: "Portal · primer párrafo (inglés)", widget: text, required: false }
+              - { name: portal_texto2_es, label: "Portal · segundo párrafo (español)", widget: text, required: false }
+              - { name: portal_texto2_en, label: "Portal · segundo párrafo (inglés)", widget: text, required: false }
+              - { name: oceano_nombre_es, label: "Océano · nombre (español)", widget: string, required: false }
+              - { name: oceano_nombre_en, label: "Océano · nombre (inglés)", widget: string, required: false }
+              - { name: oceano_desc_es, label: "Océano · descripción (español)", widget: text, required: false }
+              - { name: oceano_desc_en, label: "Océano · descripción (inglés)", widget: text, required: false }
+              - { name: oceano_boton_es, label: "Océano · botón (español)", widget: string, required: false }
+              - { name: oceano_boton_en, label: "Océano · botón (inglés)", widget: string, required: false }
+              - { name: felina_etiqueta_es, label: "Felina · etiqueta (español)", widget: string, required: false }
+              - { name: felina_etiqueta_en, label: "Felina · etiqueta (inglés)", widget: string, required: false }
+              - { name: felina_nombre_es, label: "Felina · nombre (español)", widget: string, required: false }
+              - { name: felina_nombre_en, label: "Felina · nombre (inglés)", widget: string, required: false }
+              - { name: felina_desc_es, label: "Felina · descripción (español)", widget: text, required: false }
+              - { name: felina_desc_en, label: "Felina · descripción (inglés)", widget: text, required: false }
+              - { name: felina_boton_es, label: "Felina · botón (español)", widget: string, required: false }
+              - { name: felina_boton_en, label: "Felina · botón (inglés)", widget: string, required: false }
+
+          # ----- Preguntas frecuentes -----
+          - name: faq
+            label: "Preguntas frecuentes"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow_es, label: "Línea pequeña de la sección (español)", widget: string, required: false }
+              - { name: eyebrow_en, label: "Línea pequeña de la sección (inglés)", widget: string, required: false }
+              - { name: titulo_es, label: "Título de la sección (español)", widget: string, required: false }
+              - { name: titulo_en, label: "Título de la sección (inglés)", widget: string, required: false }
+              - name: preguntas
+                label: "Preguntas"
+                label_singular: "Pregunta"
+                widget: list
+                summary: "{{fields.pregunta_es}}"
+                hint: "Puedes agregar, quitar y reordenar preguntas. Aparecen en la página FAQ en este mismo orden."
+                fields:
+                  - { name: pregunta_es, label: "Pregunta (español)", widget: string }
+                  - { name: pregunta_en, label: "Pregunta (inglés)", widget: string, required: false }
+                  - { name: respuesta_es, label: "Respuesta (español)", widget: text }
+                  - { name: respuesta_en, label: "Respuesta (inglés)", widget: text, required: false }
+
+          # ----- Contacto y envíos -----
+          - name: contacto
+            label: "Contacto y envíos"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow_es, label: "Línea pequeña · cómo comprar (español)", widget: string, required: false }
+              - { name: eyebrow_en, label: "Línea pequeña · cómo comprar (inglés)", widget: string, required: false }
+              - { name: titulo_es, label: "Título de la sección (español)", widget: string, required: false }
+              - { name: titulo_en, label: "Título de la sección (inglés)", widget: string, required: false }
+              - { name: texto_es, label: "Texto de la sección (español)", widget: text, required: false }
+              - { name: texto_en, label: "Texto de la sección (inglés)", widget: text, required: false }
+              - { name: paso1_titulo_es, label: "Paso 1 · título (español)", widget: string, required: false }
+              - { name: paso1_titulo_en, label: "Paso 1 · título (inglés)", widget: string, required: false }
+              - { name: paso1_texto_es, label: "Paso 1 · texto (español)", widget: text, required: false }
+              - { name: paso1_texto_en, label: "Paso 1 · texto (inglés)", widget: text, required: false }
+              - { name: paso2_titulo_es, label: "Paso 2 · título (español)", widget: string, required: false }
+              - { name: paso2_titulo_en, label: "Paso 2 · título (inglés)", widget: string, required: false }
+              - { name: paso2_texto_es, label: "Paso 2 · texto (español)", widget: text, required: false }
+              - { name: paso2_texto_en, label: "Paso 2 · texto (inglés)", widget: text, required: false }
+              - { name: paso3_titulo_es, label: "Paso 3 · título (español)", widget: string, required: false }
+              - { name: paso3_titulo_en, label: "Paso 3 · título (inglés)", widget: string, required: false }
+              - { name: paso3_texto_es, label: "Paso 3 · texto (español)", widget: text, required: false }
+              - { name: paso3_texto_en, label: "Paso 3 · texto (inglés)", widget: text, required: false }
+              - { name: contacto_titulo_es, label: "Contacto · título (español)", widget: string, required: false }
+              - { name: contacto_titulo_en, label: "Contacto · título (inglés)", widget: string, required: false }
+              - { name: contacto_texto_es, label: "Contacto · texto (español)", widget: text, required: false }
+              - { name: contacto_texto_en, label: "Contacto · texto (inglés)", widget: text, required: false }
+              - { name: contacto_boton_es, label: "Contacto · botón de WhatsApp (español)", widget: string, required: false }
+              - { name: contacto_boton_en, label: "Contacto · botón de WhatsApp (inglés)", widget: string, required: false }
+              - { name: ubicacion_es, label: "Línea de ubicación (español)", widget: string, required: false, hint: "El ícono del mapa se conserva automáticamente." }
+              - { name: ubicacion_en, label: "Línea de ubicación (inglés)", widget: string, required: false }

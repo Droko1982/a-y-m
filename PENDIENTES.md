@@ -49,7 +49,10 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 - **Contador de impacto** con perrito animado que come según lo recaudado ($1.000/camiseta, ajustable).
 - Correo de marca `aymuniversebrand@gmail.com` en contacto, datos estructurados y políticas.
 - Página en **español e inglés**, modo claro/oscuro, SEO, favicon e imagen para compartir.
-- Secciones: propósito, colecciones, historias, testimonios, envíos, **FAQ**, políticas.
+- Secciones: tienda, Océano, propósito, impacto, **FAQ**, contacto y envíos, políticas.
+- **Panel de administración gratuito** en `/admin/`: precios, productos (fotos,
+  nombres, Agotado), contador de impacto y los textos de portada, colecciones,
+  FAQ y contacto — ver [`PANEL-ADMIN.md`](PANEL-ADMIN.md).
 
 ---
 
