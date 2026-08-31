@@ -352,18 +352,36 @@
     scrim.className = "nav-scrim";
     document.body.appendChild(scrim);
 
+    /* El menú se aparta con transform, así que estando cerrado sus enlaces
+       seguían recibiendo foco fuera de la pantalla. inert lo evita, y solo
+       se aplica cuando el menú actúa como panel lateral (en escritorio la
+       barra está siempre visible y no debe marcarse nunca inert). */
+    function esPanelLateral() {
+      return window.matchMedia && window.matchMedia("(max-width: 860px)").matches;
+    }
+    function sincronizaInert() {
+      nav.inert = esPanelLateral() && !nav.classList.contains("open");
+    }
     function closeMenu() {
+      var estaba = nav.classList.contains("open");
       nav.classList.remove("open");
       scrim.classList.remove("show");
       document.body.classList.remove("nav-open");
       if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
+      if (estaba && menuBtn && nav.contains(document.activeElement)) menuBtn.focus();
+      sincronizaInert();
     }
     function toggleMenu() {
       var open = nav.classList.toggle("open");
       scrim.classList.toggle("show", open);
       document.body.classList.toggle("nav-open", open);
       if (menuBtn) menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      sincronizaInert();
+      if (open) { var primero = nav.querySelector("a"); if (primero) primero.focus(); }
+      else if (menuBtn) menuBtn.focus();
     }
+    sincronizaInert();
+    window.addEventListener("resize", sincronizaInert);
     if (menuBtn && nav) {
       menuBtn.addEventListener("click", toggleMenu);
       scrim.addEventListener("click", closeMenu);

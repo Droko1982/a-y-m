@@ -265,22 +265,60 @@
     applyPay();
   }
 
+  /* Foco al que volver cuando se cierre el carrito */
+  var focoPrevio = null;
+
+  /* Controles del cajón que se pueden enfocar, en orden */
+  function focusables(d) {
+    return Array.prototype.filter.call(
+      d.querySelectorAll('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'),
+      function (el) { return el.offsetParent !== null || el === document.activeElement; }
+    );
+  }
+
+  /* Mientras el carrito está abierto, Tab no se escapa a la página de detrás */
+  function atrapaFoco(e) {
+    if (e.key !== "Tab") return;
+    var d = document.getElementById("cart-drawer");
+    if (!d || !d.classList.contains("open")) return;
+    var f = focusables(d);
+    if (!f.length) return;
+    var primero = f[0], ultimo = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+    else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
+  }
+
   function open() {
     var d = document.getElementById("cart-drawer"), s = document.getElementById("cart-scrim");
     if (!d) return;
+    focoPrevio = document.activeElement;
     d.classList.add("open"); d.setAttribute("aria-hidden", "false");
+    /* inert: sin esto, el cajón cerrado deja 11 botones invisibles en el
+       recorrido del tabulador, fuera de la pantalla. */
+    d.inert = false;
     if (s) { s.hidden = false; requestAnimationFrame(function () { s.classList.add("show"); }); }
     document.body.classList.add("cart-open");
+    var cerrar = document.getElementById("cart-close");
+    if (cerrar) cerrar.focus();
+    document.addEventListener("keydown", atrapaFoco, true);
   }
   function close() {
     var d = document.getElementById("cart-drawer"), s = document.getElementById("cart-scrim");
     if (!d) return;
+    document.removeEventListener("keydown", atrapaFoco, true);
+    /* Si el foco está dentro del cajón hay que sacarlo ANTES de marcarlo inert */
+    if (focoPrevio && typeof focoPrevio.focus === "function") focoPrevio.focus();
+    else if (d.contains(document.activeElement)) document.activeElement.blur();
+    focoPrevio = null;
     d.classList.remove("open"); d.setAttribute("aria-hidden", "true");
+    d.inert = true;
     if (s) { s.classList.remove("show"); setTimeout(function () { s.hidden = true; }, 300); }
     document.body.classList.remove("cart-open");
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    var drawerInicial = document.getElementById("cart-drawer");
+    if (drawerInicial && !drawerInicial.classList.contains("open")) drawerInicial.inert = true;
     // selector de horma (global)
     var fitToggle = document.getElementById("fit-toggle");
     if (fitToggle) fitToggle.addEventListener("click", function (e) {

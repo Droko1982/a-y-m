@@ -15,7 +15,8 @@
     --accent-ink:#FFFFFF;
     --green:     #5E6A3C;   /* olivo (acento tierra) */
     --green-soft:#EBE1CE;   /* beige suave (medios) */
-    --olive:      #6B7742;  /* olivo (botón WhatsApp) */
+    --olive:      #5A6537;  /* olivo (topbar y botón WhatsApp) — oscurecido para
+                               que el texto crema pase el contraste AA */
     --olive-ink:  #F5F0E4;
     --olive-strong:#5A6537;
     --on-alt:     #F4EFE3;  /* texto claro sobre bandas olivo */
@@ -38,6 +39,7 @@
     --green:     #B9C08A;   /* olivo claro */
     --green-soft:#161616;
     --olive:      #77844A;
+    --on-alt:     #14120B;  /* en oscuro el olivo aclara: el texto debe oscurecer */
     --olive-ink:  #14120B;
     --olive-strong:#68743F;
     --line:      rgba(236, 227, 209, .13);
@@ -112,7 +114,12 @@ img { max-width: 100%; display: block; }
     border: 1.5px solid transparent;
     cursor: pointer;
     transition: transform .2s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
-    white-space: nowrap;
+    /* Los rótulos de 6 botones salen del panel: si no pueden partirse, un texto
+       largo se corta a media palabra y estira la columna de la grilla. */
+    white-space: normal;
+    text-align: center;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
 .btn:active { transform: translateY(1px) scale(.99); }
 
@@ -446,6 +453,7 @@ section[id] { scroll-margin-top: 84px; }
     gap: 56px;
     align-items: center;
 }
+.impact-copy { min-width: 0; } /* un rótulo largo del panel no debe estirar la columna */
 .impact-copy .btn { margin-top: 26px; }
 
 /* ---------- Contador de impacto en vivo (perrito comiendo) ---------- */
@@ -1072,6 +1080,9 @@ html:not([lang="en"]) .size-in { display: none; }
     transform: translateX(102%);
     transition: transform .35s cubic-bezier(.4,0,.2,1);
     display: flex; flex-direction: column;
+    /* En pantallas bajas el pie no cabe: sin esto, el boton de finalizar
+       quedaba por debajo del cajon y no habia forma de alcanzarlo. */
+    overflow-y: auto;
 }
 .cart-drawer.open { transform: none; }
 .cart-head {
@@ -1085,7 +1096,10 @@ html:not([lang="en"]) .size-in { display: none; }
     display: grid; place-items: center;
 }
 .cart-close:hover { background: var(--green-soft); color: var(--accent); }
-.cart-items { flex: 1; overflow-y: auto; padding: 6px 24px; }
+/* El pie del carrito (total + 5 métodos de pago + botones) mide ~450 px fijos.
+   Sin un piso, en un teléfono la lista de productos se reducía a unos pocos
+   píxeles y no se veía lo que se estaba comprando. */
+.cart-items { flex: 1 1 auto; overflow-y: auto; min-height: 34dvh; padding: 6px 24px; }
 .cart-item {
     display: grid; grid-template-columns: 62px 1fr auto; gap: 14px;
     align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line);
