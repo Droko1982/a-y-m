@@ -12,9 +12,10 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 ## 🔴 Falta para lanzar 100% (requiere a las dueñas)
 
 ### 1) Activar el contador de impacto 🐕
-- [ ] Instalar el contador en Cloudflare y **enviar la dirección del Worker**
-      (ver [`CONTADOR-MENSAJE-CLIENTAS.md`](CONTADOR-MENSAJE-CLIENTAS.md)).
-      Luego se pega en `js/impacto.js` → `IMPACT_API`.
+- [ ] Instalar el contador en Cloudflare (ver
+      [`CONTADOR-MENSAJE-CLIENTAS.md`](CONTADOR-MENSAJE-CLIENTAS.md)) y pegar la
+      dirección del Worker en el panel → **Impacto → Dirección del contador
+      automático**. Ya no hay que tocar código.
 - [ ] (Opcional) Número inicial de camisetas si ya vendieron antes del lanzamiento.
 - Hoy el contador muestra **0** (tazón vacío) hasta que se conecte y haya ventas.
 
@@ -22,7 +23,8 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 - [ ] **Daviplata:** ¿es el mismo número `321 579 9683` o uno distinto?
 - [ ] **Bre-B:** ¿cuál es la **llave** exacta (celular, @usuario, correo o cédula)?
 - [ ] **Transferencia bancaria:** banco, tipo de cuenta, número y titular
-      (hoy dice "coordinamos por WhatsApp"). Se pueden mostrar en el carrito.
+      (hoy dice "coordinamos por WhatsApp").
+> Los tres se escriben en el panel → **Pagos**, sin tocar código.
 - Nequi ya está confirmado (`321 579 9683`). Tarjeta y PSE quedan fuera por ahora.
 
 ### 3) Contenido real 📸
@@ -36,8 +38,9 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 > el panel (*Textos → Tienda* y *Textos → Impacto*), sin tocar código.
 
 ### 4) Datos del negocio 🏪
-- [ ] **Redes sociales** (Instagram / Facebook / TikTok) para el pie de página
-      y los datos estructurados (`sameAs`, hoy vacío).
+- [ ] **Redes sociales** (Instagram / Facebook / TikTok). Se escriben en el
+      panel → **Datos del negocio**: aparecen solas en el pie de página y en
+      los datos estructurados (`sameAs`).
 - [ ] **Datos legales**: razón social/nombre, NIT o cédula, tiempo estimado de
       envío y plazo de cambios. Ya no hay que tocar código: se escriben en el
       panel → **Datos legales**, y el aviso de "Plantilla base" de
@@ -53,10 +56,11 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 - Correo de marca `aymuniversebrand@gmail.com` en contacto, datos estructurados y políticas.
 - Página en **español e inglés**, modo claro/oscuro, SEO, favicon e imagen para compartir.
 - Secciones: tienda, Océano, propósito, impacto, **FAQ**, contacto y envíos, políticas.
-- **Panel de administración gratuito** en `/admin/`: precios, productos (fotos,
-  nombres, Agotado), contador de impacto, **todos** los textos del sitio en
-  español e inglés (portada, colecciones, tienda, Océano, propósito, impacto,
-  FAQ y contacto) y los **datos legales** de la página de políticas — ver
+- **Panel de administración gratuito** en `/admin/`: precios, **datos de pago**,
+  productos (fotos, nombres, Agotado), contador de impacto y su Worker,
+  **todos** los textos del sitio en español e inglés (portada, colecciones,
+  tienda, Océano, propósito, impacto, FAQ y contacto), los **datos legales** de
+  la página de políticas y las **redes sociales** — ver
   [`PANEL-ADMIN.md`](PANEL-ADMIN.md).
 
 ---

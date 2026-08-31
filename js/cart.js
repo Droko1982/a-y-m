@@ -6,7 +6,12 @@
   "use strict";
 
   var WA_NUMBER = "573215799683";
-  var NEQUI_DISPLAY = "321 579 9683"; // mismo número de WhatsApp para Nequi
+  /* Número o llave de cada billetera. Editables desde el panel
+     (data/pagos.json); por ahora las tres usan el número de WhatsApp. */
+  var PAY_KEY = { nequi: "321 579 9683", daviplata: "321 579 9683", breb: "321 579 9683" };
+  /* Cuenta bancaria para transferencia. Mientras esté vacía, el carrito
+     sigue diciendo que los datos se coordinan por WhatsApp. */
+  var BANCO = { banco: "", tipo: "", numero: "", titular: "" };
 
   // Precio por horma (aplica a todos los diseños)
   var FIT_PRICES = { regular: 69000, oversized: 79000 };
@@ -27,6 +32,10 @@
   var PHONE_PAY = { nequi: "Nequi", daviplata: "Daviplata", breb: "Bre-B" };
 
   function price(fit) { return FIT_PRICES[fit] || FIT_PRICES.regular; }
+  function esc(v) { var d = document.createElement("div"); d.textContent = v == null ? "" : String(v); return d.innerHTML; }
+  function limpio(v) { return typeof v === "string" && v.trim() !== "" ? v.trim() : ""; }
+  /* ¿Hay datos de cuenta suficientes para mostrarlos en el carrito? */
+  function hayBanco() { return BANCO.banco !== "" || BANCO.numero !== ""; }
 
   /* ---------- Configuración editable desde el panel (data/config.json) ----------
      Permite a las dueñas cambiar los precios desde el panel de administración.
@@ -41,11 +50,32 @@
       if (pe && FIT_PRICES[f]) pe.textContent = fmt(FIT_PRICES[f]);
     });
   }
+  /* Datos de pago editables desde el panel (data/pagos.json).
+     Cada campo vacío conserva el valor que ya estaba. */
+  function applyPagos(p) {
+    if (!p || typeof p !== "object") return;
+    ["nequi", "daviplata", "breb"].forEach(function (k) {
+      var v = limpio(p[k]);
+      if (v) PAY_KEY[k] = v;
+    });
+    BANCO.banco = limpio(p.banco);
+    BANCO.tipo = limpio(p.tipo_cuenta);
+    BANCO.numero = limpio(p.numero_cuenta);
+    BANCO.titular = limpio(p.titular);
+  }
+
+  function pedirJson(url) {
+    try {
+      return fetch(url, { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; });
+    } catch (e) { return Promise.resolve(null); }
+  }
+
   function loadConfig(done) {
     try {
-      fetch("data/config.json", { cache: "no-store" })
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (cfg) { applyConfig(cfg); done(); })
+      Promise.all([pedirJson("data/config.json"), pedirJson("data/pagos.json")])
+        .then(function (r) { applyConfig(r[0]); applyPagos(r[1]); done(); })
         .catch(function () { done(); });
     } catch (e) { done(); }
   }
@@ -122,12 +152,24 @@
         var brand = PHONE_PAY[currentPay];
         var to = currentPay === "breb" ? (en ? "to the key" : "a la llave") : (en ? "to" : "al");
         info.innerHTML = en
-          ? "Pay with " + brand + " " + to + " <strong>" + NEQUI_DISPLAY + "</strong> and send us the receipt on WhatsApp."
-          : "Paga con " + brand + " " + to + " <strong>" + NEQUI_DISPLAY + "</strong> y envíanos el comprobante por WhatsApp.";
+          ? "Pay with " + brand + " " + to + " <strong>" + esc(PAY_KEY[currentPay]) + "</strong> and send us the receipt on WhatsApp."
+          : "Paga con " + brand + " " + to + " <strong>" + esc(PAY_KEY[currentPay]) + "</strong> y envíanos el comprobante por WhatsApp.";
       } else if (currentPay === "transfer") {
-        info.textContent = en
-          ? "We'll share the bank account details on WhatsApp when we confirm your order."
-          : "Te compartimos los datos de la cuenta para la transferencia por WhatsApp al confirmar tu pedido.";
+        if (hayBanco()) {
+          var partes = [];
+          if (BANCO.banco) partes.push("<strong>" + esc(BANCO.banco) + "</strong>");
+          if (BANCO.tipo) partes.push(esc(BANCO.tipo));
+          if (BANCO.numero) partes.push("<strong>" + esc(BANCO.numero) + "</strong>");
+          var titular = BANCO.titular
+            ? (en ? " in the name of <strong>" : " a nombre de <strong>") + esc(BANCO.titular) + "</strong>"
+            : "";
+          info.innerHTML = (en ? "Transfer to " : "Transfiere a ") + partes.join(" · ") + titular +
+            (en ? ", and send us the receipt on WhatsApp." : ", y envíanos el comprobante por WhatsApp.");
+        } else {
+          info.textContent = en
+            ? "We'll share the bank account details on WhatsApp when we confirm your order."
+            : "Te compartimos los datos de la cuenta para la transferencia por WhatsApp al confirmar tu pedido.";
+        }
       } else {
         info.textContent = en
           ? "Pay in cash when your order arrives (availability by city)."
@@ -144,8 +186,13 @@
       return "• " + i.qty + "× " + getName(i.id) + " (" + FIT_LABEL[i.fit] + " · " + tl + " " + i.size + ") — " + fmt(i.qty * price(i.fit));
     });
     var payVal;
-    if (PHONE_PAY[currentPay]) payVal = PHONE_PAY[currentPay] + " (" + NEQUI_DISPLAY + ")";
-    else if (currentPay === "transfer") payVal = en ? "Bank transfer" : "Transferencia bancaria";
+    if (PHONE_PAY[currentPay]) payVal = PHONE_PAY[currentPay] + " (" + PAY_KEY[currentPay] + ")";
+    else if (currentPay === "transfer") {
+      payVal = en ? "Bank transfer" : "Transferencia bancaria";
+      if (hayBanco()) {
+        payVal += " (" + [BANCO.banco, BANCO.tipo, BANCO.numero].filter(Boolean).join(" ") + ")";
+      }
+    }
     else payVal = en ? "Cash on delivery" : "Contra entrega";
     var n = count(), msg;
     if (en) {

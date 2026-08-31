@@ -652,6 +652,9 @@ html[data-page="contacto"]  main section[data-view]:not([data-view="contacto"]) 
 .footer-brand p { font-size: .86rem; color: var(--text-soft); }
 .footer-contact { display: flex; flex-direction: column; gap: 7px; font-size: .9rem; }
 .footer-contact a { display: inline-flex; align-items: center; gap: 8px; color: var(--text-soft); }
+.footer-social { display: flex; gap: 9px; margin-top: 6px; }
+.footer-social a { width: 34px; height: 34px; justify-content: center; gap: 0; border: 1px solid var(--line); border-radius: 50%; transition: color .2s, border-color .2s; }
+.footer-social a:hover { color: var(--accent); border-color: var(--accent); }
 .footer-contact a:hover { color: var(--accent); }
 .footer-contact span { display: inline-flex; align-items: center; gap: 8px; color: var(--text-soft); font-size: .86rem; }
 .footer-bottom { padding: 12px 0; }

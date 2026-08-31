@@ -11,13 +11,14 @@ contador ellas mismas. Ver también la guía técnica: [`CONTADOR-IMPACTO.md`](C
 > Las guías/demo son enlaces privados de Claude: ábrelos y usa **Compartir** para
 > que las clientas los puedan ver.
 
-## Paso que hace quien administra la web (una sola vez)
-Cuando las clientas envíen su dirección del Worker (paso 7), pégala en
-[`js/impacto.js`](js/impacto.js):
-```js
-var IMPACT_API = "https://aym-contador.SU-USUARIO.workers.dev";
-```
-Guarda (commit) y en 1–2 min el contador queda en vivo.
+## Conectar la dirección del Worker (una sola vez)
+Ya no hace falta tocar código: la dirección se escribe en el panel.
+**Panel → Impacto → "Dirección del contador automático"** → pegar la URL del
+Worker (paso 7) → **Save** → **Publish**. En 1–2 min el contador queda en vivo.
+
+Lo pueden hacer las clientas mismas, o quien administra la web si prefieren
+mandársela. Si la dirección queda vacía o el Worker falla, el contador sigue
+funcionando con el total escrito en el panel (**Impacto → Camisetas vendidas**).
 
 ---
 
