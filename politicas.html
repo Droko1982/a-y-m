@@ -58,7 +58,7 @@
 
 <main class="legal-wrap">
     <h1 style="font-size:clamp(2rem,5vw,2.8rem);margin-bottom:12px;">Políticas y términos</h1>
-    <div class="legal-note">
+    <div class="legal-note" id="aviso-plantilla">
         📝 <strong>Plantilla base.</strong> Reemplaza los campos <span class="ph">[entre corchetes]</span> con los datos reales del negocio y revisa el contenido (idealmente con un asesor) antes de publicarlo como definitivo.
     </div>
 
@@ -71,10 +71,10 @@
     <!-- ============ DATOS ============ -->
     <section class="legal-doc" id="datos">
         <h2>Política de tratamiento de datos personales</h2>
-        <p class="upd">Última actualización: julio de 2026 · Ley 1581 de 2012 y Decreto 1074 de 2015 (Colombia)</p>
+        <p class="upd">Última actualización: <span class="js-fecha">julio de 2026</span> · Ley 1581 de 2012 y Decreto 1074 de 2015 (Colombia)</p>
 
         <h3>1. Responsable</h3>
-        <p><strong>A&M Universe</strong>, a cargo de <span class="ph">[RAZÓN SOCIAL / NOMBRE]</span>, identificado(a) con <span class="ph">[NIT o C.C.]</span>, ubicado(a) en Calarcá, Quindío, Colombia. Contacto: WhatsApp <strong>321 579 9683</strong> · correo <strong>aymuniversebrand@gmail.com</strong>.</p>
+        <p><strong>A&M Universe</strong>, a cargo de <span class="ph" id="dato-razon">[RAZÓN SOCIAL / NOMBRE]</span>, identificado(a) con <span class="ph" id="dato-nit">[NIT o C.C.]</span>, ubicado(a) en Calarcá, Quindío, Colombia. Contacto: WhatsApp <strong>321 579 9683</strong> · correo <strong>aymuniversebrand@gmail.com</strong>.</p>
 
         <h3>2. Datos que recolectamos</h3>
         <p>Recolectamos únicamente los datos necesarios para gestionar tu pedido: nombre, número de teléfono/WhatsApp, dirección de envío, ciudad y, si aplica, correo electrónico.</p>
@@ -99,7 +99,7 @@
     <!-- ============ TÉRMINOS ============ -->
     <section class="legal-doc" id="terminos">
         <h2>Términos y condiciones</h2>
-        <p class="upd">Última actualización: julio de 2026</p>
+        <p class="upd">Última actualización: <span class="js-fecha">julio de 2026</span></p>
 
         <h3>1. Objeto</h3>
         <p>Estos términos regulan la compra de camisetas y demás productos de <strong>A&M Universe</strong> a través de este sitio y de WhatsApp.</p>
@@ -123,16 +123,16 @@
     <!-- ============ ENVÍOS ============ -->
     <section class="legal-doc" id="envios">
         <h2>Política de envíos, cambios y devoluciones</h2>
-        <p class="upd">Última actualización: julio de 2026 · Ley 1480 de 2011 (Estatuto del Consumidor)</p>
+        <p class="upd">Última actualización: <span class="js-fecha">julio de 2026</span> · Ley 1480 de 2011 (Estatuto del Consumidor)</p>
 
         <h3>1. Cobertura y tiempos</h3>
-        <p>Enviamos a toda Colombia desde Calarcá, Quindío. El costo y el tiempo de entrega dependen de tu ciudad y de la transportadora; te los informamos al confirmar el pedido. Tiempo estimado: <span class="ph">[X a Y días hábiles]</span>.</p>
+        <p>Enviamos a toda Colombia desde Calarcá, Quindío. El costo y el tiempo de entrega dependen de tu ciudad y de la transportadora; te los informamos al confirmar el pedido. Tiempo estimado: <span class="ph" id="dato-envio">[X a Y días hábiles]</span>.</p>
 
         <h3>2. Derecho de retracto</h3>
         <p>En compras a distancia tienes hasta <strong>5 días hábiles</strong> desde que recibes el producto para ejercer el retracto, siempre que la prenda esté sin uso, con sus etiquetas y empaque original. Los costos de devolución en este caso corren por cuenta del comprador, salvo la ley disponga lo contrario.</p>
 
         <h3>3. Cambios de talla</h3>
-        <p>Realizamos cambios de talla dentro de <span class="ph">[X días]</span>, sujeto a disponibilidad. La prenda debe estar sin uso, con etiquetas. Escríbenos por WhatsApp y te guiamos.</p>
+        <p>Realizamos cambios de talla dentro de <span class="ph" id="dato-cambio">[X días]</span>, sujeto a disponibilidad. La prenda debe estar sin uso, con etiquetas. Escríbenos por WhatsApp y te guiamos.</p>
 
         <h3>4. Garantía por defectos</h3>
         <p>Si tu producto presenta un defecto de fabricación, contáctanos: haremos el cambio o la reposición según corresponda, conforme al Estatuto del Consumidor.</p>
@@ -170,5 +170,6 @@
   });
 })();
 </script>
+<script src="js/politicas.js"></script>
 </body>
 </html>

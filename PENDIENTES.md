@@ -32,13 +32,16 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 - [ ] **Logo oficial** en alta calidad (archivo original).
 - [ ] **Nombre de la fundación** o a quién ayudan (da confianza).
 - [ ] Confirmar **materiales** de las camisetas (algodón, etc.).
-> Al llegar este contenido se quitan las notas de "mockup / referencia / ejemplo".
+> Al llegar este contenido se apagan los avisos de "fotos de referencia" desde
+> el panel (*Textos → Tienda* y *Textos → Impacto*), sin tocar código.
 
 ### 4) Datos del negocio 🏪
 - [ ] **Redes sociales** (Instagram / Facebook / TikTok) para el pie de página
       y los datos estructurados (`sameAs`, hoy vacío).
-- [ ] **Datos legales** en [`politicas.html`](politicas.html): razón social/nombre,
-      NIT o cédula, tiempo estimado de envío `[X a Y días]` y de cambios `[X días]`.
+- [ ] **Datos legales**: razón social/nombre, NIT o cédula, tiempo estimado de
+      envío y plazo de cambios. Ya no hay que tocar código: se escriben en el
+      panel → **Datos legales**, y el aviso de "Plantilla base" de
+      [`politicas.html`](politicas.html) desaparece solo al completarlos.
 
 ---
 
@@ -51,8 +54,10 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 - Página en **español e inglés**, modo claro/oscuro, SEO, favicon e imagen para compartir.
 - Secciones: tienda, Océano, propósito, impacto, **FAQ**, contacto y envíos, políticas.
 - **Panel de administración gratuito** en `/admin/`: precios, productos (fotos,
-  nombres, Agotado), contador de impacto y los textos de portada, colecciones,
-  FAQ y contacto — ver [`PANEL-ADMIN.md`](PANEL-ADMIN.md).
+  nombres, Agotado), contador de impacto, **todos** los textos del sitio en
+  español e inglés (portada, colecciones, tienda, Océano, propósito, impacto,
+  FAQ y contacto) y los **datos legales** de la página de políticas — ver
+  [`PANEL-ADMIN.md`](PANEL-ADMIN.md).
 
 ---
 
