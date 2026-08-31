@@ -16,9 +16,10 @@ cambios se publican solos en el sitio (GitHub Pages) en **1 a 2 minutos**.
 |---|---|
 | **Precios** | Precio de Regular fit y de Oversized en toda la tienda |
 | **Productos** | Crear, editar, reordenar y marcar *Agotado* las camisetas; subir la foto y escribir nombre y descripción en español e inglés |
-| **Impacto** | El número de camisetas vendidas (el contador del perrito) |
+| **Pagos** | El número de Nequi y Daviplata, la llave de Bre-B y los datos de la cuenta para transferencias — es lo que ve la clienta en el carrito |
+| **Impacto** | El número de camisetas vendidas y la dirección del contador automático (el Worker de Cloudflare) |
 | **Textos** | **Todos** los textos del sitio, en español e inglés: portada, colecciones, tienda, la historia de *Océano*, *Propósito*, *Impacto y nuestra causa*, las **preguntas frecuentes** (se pueden agregar, quitar y reordenar) y contacto/envíos |
-| **Datos legales** | Los datos que en la página de políticas salen `[entre corchetes]`: razón social, NIT o cédula, tiempo de envío y plazo de cambios |
+| **Datos del negocio** | Los datos que en la página de políticas salen `[entre corchetes]` (razón social, NIT o cédula, tiempo de envío, plazo de cambios) y las **redes sociales**, que aparecen en el pie de página |
 
 También hay dos **interruptores** para quitar los avisos de "fotos de
 referencia" (uno en *Tienda* y otro en *Impacto*): se apagan el día que
@@ -26,7 +27,8 @@ lleguen las fotos reales, sin tocar código.
 
 **Lo que sigue fuera del panel:** el texto completo de las políticas y
 términos (`politicas.html`) — solo sus datos `[entre corchetes]` son
-editables — y los detalles de pago del carrito. Se pueden agregar si hace falta.
+editables — y el número de WhatsApp, que está en varios sitios a la vez.
+Se pueden agregar si hace falta.
 
 **Pedidos:** siguen llegando por **WhatsApp** (así ya funciona). Un panel
 gratuito no puede tener un tablero de pedidos "de verdad"; si más adelante lo
@@ -115,8 +117,15 @@ Cada dueña que vaya a editar necesita:
      **Publish**.
    - **Productos** → agregar una camiseta nueva, cambiar su foto, su nombre o
      apagar *¿Disponible?* para que salga **Agotado** → **Save** → **Publish**.
+   - **Pagos** → escribir el número de Nequi, el de Daviplata y la llave de
+     Bre-B → **Save** → **Publish**. Los datos de la cuenta bancaria son
+     opcionales: mientras estén vacíos, el carrito sigue diciendo que se
+     coordinan por WhatsApp; al llenarlos, aparecen en el carrito y también en
+     el mensaje del pedido.
    - **Impacto** → escribir el nuevo total de camisetas vendidas → **Save** →
-     **Publish**.
+     **Publish**. Aquí también va la **dirección del contador automático**, si
+     ya instalaron el Worker de Cloudflare (ver
+     [`CONTADOR-MENSAJE-CLIENTAS.md`](CONTADOR-MENSAJE-CLIENTAS.md)).
    - **Textos** → abrir el grupo que quieran (*Portada*, *Colecciones*,
      *Tienda*, *Océano*, *Propósito*, *Impacto y nuestra causa*, *Preguntas
      frecuentes*, *Contacto y envíos*), cambiar el texto → **Save** →
@@ -129,10 +138,12 @@ Cada dueña que vaya a editar necesita:
      - En *Tienda* y en *Impacto* hay un interruptor **"¿Mostrar el aviso de
        fotos de referencia?"**: apágalo cuando ya estén las fotos reales y el
        aviso desaparece del sitio.
-   - **Datos legales** → escribir la razón social, el NIT o cédula, el tiempo
-     de envío y el plazo de cambios → **Save** → **Publish**. Cuando los cuatro
-     están llenos, el aviso de *"Plantilla base"* de la página de políticas
-     desaparece solo.
+   - **Datos del negocio** → arriba, la razón social, el NIT o cédula, el
+     tiempo de envío y el plazo de cambios → cuando los cuatro están llenos, el
+     aviso de *"Plantilla base"* de la página de políticas desaparece solo.
+     Abajo, las **redes sociales**: se puede escribir solo el usuario
+     (`@aymuniverse`) o la dirección completa; los íconos aparecen en el pie de
+     la página. → **Save** → **Publish**.
 4. Esperar **1–2 minutos** y refrescar el sitio: el cambio ya está publicado.
 
 ### "Instalar" el acceso en el PC (opcional, para tenerlo a mano)
@@ -158,10 +169,11 @@ falla, se queda con lo que ya está escrito en el HTML (respaldo).
 | Archivo | Lo consume | Qué controla |
 |---|---|---|
 | `data/config.json` | `js/cart.js` | Precios de las dos hormas |
-| `data/impacto.json` | `js/impacto.js` | Total de camisetas del contador |
+| `data/pagos.json` | `js/cart.js` | Números de billetera y cuenta bancaria |
+| `data/impacto.json` | `js/impacto.js` | Total de camisetas y URL del Worker |
 | `data/productos.json` | `js/shop.js` | Catálogo de la tienda |
 | `data/textos.json` | `js/textos.js` | Todos los textos del sitio (8 grupos) |
-| `data/negocio.json` | `js/politicas.js` | Datos legales de `politicas.html` |
+| `data/negocio.json` | `js/politicas.js` · `js/redes.js` | Datos legales y redes sociales |
 
 - `js/textos.js` traduce cada campo del panel a una clave de `I18N` en
   `js/main.js` (tabla `MAP`) y vuelve a aplicar el idioma. Los campos vacíos
@@ -176,6 +188,17 @@ falla, se queda con lo que ya está escrito en el HTML (respaldo).
   referencia?") son booleanos sueltos en `data/textos.json`; la tabla
   `AVISOS` de `js/textos.js` los asocia a un selector CSS y solo ocultan el
   elemento cuando el panel los apaga explícitamente.
+- `js/cart.js` carga `data/config.json` y `data/pagos.json` en paralelo antes
+  del primer render; cada campo vacío conserva el valor por defecto. La nota de
+  transferencia solo muestra la cuenta si hay banco o número, y se arma con las
+  partes que existan (no inventa "a nombre de" si no hay titular).
+- `js/redes.js` normaliza lo que escriban (usuario, `@usuario`, dominio sin
+  `https` o dirección completa), pinta los íconos en `#footer-social` y
+  reescribe `sameAs` en los dos bloques JSON-LD (`#ld-store`, `#ld-org`). Sin
+  redes no pinta nada y el pie queda como está hoy.
+- `js/impacto.js` lee siempre `data/impacto.json`; si trae una `api` con forma
+  de URL, pide ese Worker y usa su total, y si el Worker falla vuelve al total
+  local. La constante `IMPACT_API` del archivo manda sobre el panel.
 - `js/politicas.js` rellena los huecos `#dato-*` de `politicas.html` con
   `data/negocio.json`, les quita la clase `.ph` (el resaltado de "falta este
   dato") y esconde `#aviso-plantilla` solo cuando los cuatro están completos.

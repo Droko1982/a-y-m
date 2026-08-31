@@ -43,12 +43,10 @@ Este botón crea todo el contador en tu cuenta de Cloudflare automáticamente
 - Termina el despliegue. Al final verás la URL de tu Worker, algo como
   **`https://aym-contador.TU-USUARIO.workers.dev`** — cópiala.
 
-### Paso 2 — Conectar la página (una línea)
-Abre [`js/impacto.js`](js/impacto.js) en GitHub (✏️ *Edit*), pega tu URL así y
-guarda (*Commit*):
-```js
-var IMPACT_API = "https://aym-contador.TU-USUARIO.workers.dev";
-```
+### Paso 2 — Conectar la página (desde el panel)
+Entra al panel (https://droko1982.github.io/a-y-m/admin/) →
+**Impacto** → **"Dirección del contador automático"** → pega tu URL →
+**Save** → **Publish**. Sin tocar código.
 
 ### Paso 3 — Guardar tu enlace para sumar
 Guarda en la pantalla de inicio del celular:
@@ -110,17 +108,19 @@ Cópiala. Es la dirección de tu contador.
 
 ## Parte B — Conectar la página con el contador
 
-1. Abre el archivo [`js/impacto.js`](js/impacto.js) (puedes editarlo en
-   GitHub: botón ✏️ *Edit*).
-2. En la línea que dice:
-   ```js
-   var IMPACT_API = "";
+1. Entra al panel: **https://droko1982.github.io/a-y-m/admin/** e inicia sesión.
+2. Sección **Impacto** → campo **"Dirección del contador automático (opcional)"**.
+   Pega tu dirección **sin la barra final**, así:
    ```
-   pega tu dirección **sin la barra final**, así:
-   ```js
-   var IMPACT_API = "https://aym-contador.TU-USUARIO.workers.dev";
+   https://aym-contador.TU-USUARIO.workers.dev
    ```
-3. Guarda (**Commit changes**). En 1–2 minutos el contador aparecerá en vivo en la web. ✅
+3. **Save** → **Publish**. En 1–2 minutos el contador aparecerá en vivo en la web. ✅
+
+> Si algún día el Worker deja de responder, la web no se queda en blanco: vuelve
+> sola al total escrito en **Impacto → Camisetas vendidas**.
+>
+> *(Para quien programa: `js/impacto.js` → `IMPACT_API` sigue existiendo y manda
+> sobre el panel; normalmente se deja vacío.)*
 
 ---
 

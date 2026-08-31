@@ -8,18 +8,19 @@
   "use strict";
 
   /* ─────────────── Configuración ───────────────
-     1) IMPACT_API: URL de tu Worker de Cloudflare (ver
-        CONTADOR-IMPACTO.md). Si lo dejas vacío, se usa el
-        archivo local data/impacto.json como respaldo.
+     1) IMPACT_API: URL del Worker de Cloudflare (ver
+        CONTADOR-IMPACTO.md). Normalmente se deja vacía y se
+        escribe desde el panel: Impacto → "Dirección del
+        contador". Este valor manda sobre el del panel.
      2) APORTE_POR_CAMISETA: pesos apartados por camiseta.
      3) BOLSA: pesos que representan una "bolsa de comida"
-        (cada bolsa llena el tazón del perrito).            */
+        (cada bolsa llena el tazón del perrito).
+     Sin Worker (o si el Worker falla) se usa el total escrito
+     en data/impacto.json, que también sale del panel.        */
   var IMPACT_API = "";
   var LOCAL_JSON = "data/impacto.json";
   var APORTE_POR_CAMISETA = 1000;
   var BOLSA = 50000;
-
-  var SOURCE = IMPACT_API || LOCAL_JSON;
 
   function fmt(n) { return "$" + Number(n).toLocaleString("es-CO"); }
   function lang() { return document.documentElement.getAttribute("lang") === "en" ? "en" : "es"; }
@@ -81,16 +82,32 @@
     if (goal) goal.innerHTML = goalText(n);
   }
 
+  function pedir(url) {
+    try {
+      return fetch(url, { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; });
+    } catch (e) { return Promise.resolve(null); }
+  }
+
+  /* Pinta el contador si los datos traen un total válido */
+  function mostrar(data) {
+    var n = parseInt(data && data.camisetas, 10);
+    if (isNaN(n) || n < 0) return false;
+    paint(n);
+    return true;
+  }
+
   function load() {
     if (!document.getElementById("impact-tracker")) return;
-    fetch(SOURCE, { cache: "no-store" })
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-      .then(function (data) {
-        var n = parseInt(data && data.camisetas, 10);
-        if (isNaN(n) || n < 0) return;
-        paint(n);
-      })
-      .catch(function () { /* sin datos → el tracker queda oculto */ });
+    pedir(LOCAL_JSON).then(function (local) {
+      var api = IMPACT_API || (local && typeof local.api === "string" ? local.api.trim() : "");
+      if (!/^https?:\/\//i.test(api)) { mostrar(local); return; }
+      // Con Worker conectado manda el dato en vivo; si falla, el archivo local
+      pedir(api).then(function (vivo) {
+        if (!mostrar(vivo)) mostrar(local);
+      });
+    });
   }
 
   // Retraducir la meta al cambiar de idioma (sin re-animar los números)

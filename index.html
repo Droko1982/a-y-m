@@ -58,7 +58,7 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <!-- Datos estructurados para SEO -->
-    <script type="application/ld+json">
+    <script type="application/ld+json" id="ld-store">
     {
       "@context": "https://schema.org",
       "@type": "Store",
@@ -86,7 +86,7 @@
     }
     </script>
     <link rel="preload" as="image" href="assets/tee-ocean.svg" type="image/svg+xml">
-    <script type="application/ld+json">
+    <script type="application/ld+json" id="ld-org">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -845,6 +845,7 @@
             </a>
             <a href="mailto:aymuniversebrand@gmail.com"><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7.5 9 5.5 9-5.5"/></svg> aymuniversebrand@gmail.com</a>
             <span><svg class="ci" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg> Calarcá, Quindío · Colombia</span>
+            <div class="footer-social" id="footer-social" hidden></div>
         </div>
     </div>
     <div class="footer-bottom">
@@ -915,6 +916,7 @@
 <script src="js/shop.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/impacto.js"></script>
+<script src="js/redes.js"></script>
 <script>
   /* Controles del video de la colección Océano (sonido + pausa).
      Usa la API oficial de YouTube (más fiable para activar el sonido),
