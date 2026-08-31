@@ -25,6 +25,14 @@ También hay dos **interruptores** para quitar los avisos de "fotos de
 referencia" (uno en *Tienda* y otro en *Impacto*): se apagan el día que
 lleguen las fotos reales, sin tocar código.
 
+> **Lo que se ve al compartir el enlace.** El título, la descripción y la
+> imagen que aparecen cuando alguien pega el enlace de la tienda en WhatsApp,
+> Facebook o Instagram **no** se cambian desde el panel. Esas redes no ejecutan
+> el JavaScript de la página cuando arman la vista previa, así que leen lo que
+> está escrito fijo en el HTML. Si cambian mucho el eslogan o la promesa de la
+> marca y quieren que la vista previa lo refleje, hay que pedírselo a quien
+> mantiene el sitio (es un cambio de una línea en `index.html`).
+
 **Lo que sigue fuera del panel:** el texto completo de las políticas y
 términos (`politicas.html`) — solo sus datos `[entre corchetes]` son
 editables — y el número de WhatsApp, que está en varios sitios a la vez.
