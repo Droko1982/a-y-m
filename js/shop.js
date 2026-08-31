@@ -20,7 +20,10 @@
   var products = null; // se llena desde el JSON
   var IMG_DEFECTO = "assets/tee-ocean.svg";
   var SEO_ID = "ld-products";
-  var SITIO = "https://droko1982.github.io/a-y-m/";
+  /* Base absoluta del sitio, deducida de la propia página. Así los datos
+     estructurados siguen siendo correctos si la tienda cambia de dirección
+     (cuenta nueva, dominio propio) sin tener que tocar este archivo. */
+  var SITIO = location.origin + location.pathname.replace(/[^/]*$/, "");
 
   /* El panel guarda la foto como "/assets/foto.jpg" (Sveltia antepone siempre
      una barra). La tienda no vive en la raíz del dominio sino en /a-y-m/, así

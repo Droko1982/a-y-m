@@ -65,6 +65,20 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 
 ---
 
+## 🚚 Mudanza a la cuenta de marca
+
+El proyecto se va a pasar a una cuenta de GitHub propia de A&M Universe.
+**Hacer la mudanza ANTES de instalar el acceso al panel**, o hay que rehacer
+el Worker, la App OAuth y las 27 direcciones del sitio.
+Paso a paso en [`MUDANZA-DE-CUENTA.md`](MUDANZA-DE-CUENTA.md).
+
+- [ ] Crear la cuenta de marca con **aymuniversebrand@gmail.com** y enviar el usuario.
+- [ ] Transferir el repositorio y encender GitHub Pages.
+- [ ] Cambiar las direcciones: `node herramientas/cambiar-direccion.js --sitio=… --repo=…`
+- [ ] Recién entonces: Worker de Cloudflare + App OAuth + colaboradoras.
+
+---
+
 ## 💡 Opcional / a futuro
 - [ ] **Dominio propio** (ej. `aymuniverse.co`) en vez del link largo.
 - [ ] **Pagos en línea** (tarjeta / PSE con Wompi o Mercado Pago) — por ahora se cierra por WhatsApp.
