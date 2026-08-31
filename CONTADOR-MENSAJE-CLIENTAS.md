@@ -14,7 +14,7 @@ contador ellas mismas. Ver también la guía técnica: [`CONTADOR-IMPACTO.md`](C
 ## Conectar la dirección del Worker (una sola vez)
 Ya no hace falta tocar código: la dirección se escribe en el panel.
 **Panel → Impacto → "Dirección del contador automático"** → pegar la URL del
-Worker (paso 7) → **Save** → **Publish**. En 1–2 min el contador queda en vivo.
+Worker (paso 7) → **Save**. En 1–2 min el contador queda en vivo.
 
 Lo pueden hacer las clientas mismas, o quien administra la web si prefieren
 mandársela. Si la dirección queda vacía o el Worker falla, el contador sigue

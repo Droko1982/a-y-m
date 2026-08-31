@@ -148,12 +148,10 @@ collections:
             fields:
               - { name: eyebrow_es, label: "Línea pequeña de la sección (español)", widget: string, required: false }
               - { name: eyebrow_en, label: "Línea pequeña de la sección (inglés)", widget: string, required: false }
-              - { name: titulo_es, label: "Título de la sección (español)", widget: string, required: false }
-              - { name: titulo_en, label: "Título de la sección (inglés)", widget: string, required: false }
-              - { name: texto_es, label: "Texto de la sección (español)", widget: text, required: false }
-              - { name: texto_en, label: "Texto de la sección (inglés)", widget: text, required: false }
-              - { name: portal_titulo_es, label: "Portal · título (español)", widget: string, required: false }
-              - { name: portal_titulo_en, label: "Portal · título (inglés)", widget: string, required: false }
+              - { name: titulo_es, label: "Título sobre las camisetas de Océano (español)", widget: string, required: false, hint: "Es el encabezado que sale encima de la grilla de camisetas, no el de esta sección." }
+              - { name: titulo_en, label: "Título sobre las camisetas de Océano (inglés)", widget: string, required: false }
+              - { name: portal_titulo_es, label: "Título de la sección Colecciones (español)", widget: string, required: false }
+              - { name: portal_titulo_en, label: "Título de la sección Colecciones (inglés)", widget: string, required: false }
               - { name: portal_texto_es, label: "Portal · primer párrafo (español)", widget: text, required: false }
               - { name: portal_texto_en, label: "Portal · primer párrafo (inglés)", widget: text, required: false }
               - { name: portal_texto2_es, label: "Portal · segundo párrafo (español)", widget: text, required: false }
@@ -193,6 +191,15 @@ collections:
             widget: object
             collapsed: true
             fields:
+              # ----- Portada de la colección (lo primero que se ve al entrar) -----
+              - { name: portada_eyebrow_es, label: "Portada · línea pequeña (español)", widget: string, required: false }
+              - { name: portada_eyebrow_en, label: "Portada · línea pequeña (inglés)", widget: string, required: false }
+              - { name: portada_titulo_es, label: "Portada · nombre de la colección (español)", widget: string, required: false, hint: "Es el título grande sobre el video. Si renombras la colección, cámbialo también en la tarjeta (grupo Colecciones)." }
+              - { name: portada_titulo_en, label: "Portada · nombre de la colección (inglés)", widget: string, required: false }
+              - { name: portada_texto_es, label: "Portada · texto de entrada (español)", widget: text, required: false }
+              - { name: portada_texto_en, label: "Portada · texto de entrada (inglés)", widget: text, required: false }
+              - { name: portada_boton_es, label: "Portada · botón de volver (español)", widget: string, required: false }
+              - { name: portada_boton_en, label: "Portada · botón de volver (inglés)", widget: string, required: false }
               - { name: historia_eyebrow_es, label: "Historia · línea pequeña (español)", widget: string, required: false }
               - { name: historia_eyebrow_en, label: "Historia · línea pequeña (inglés)", widget: string, required: false }
               - { name: historia_titulo_es, label: "Historia · título (español)", widget: string, required: false }

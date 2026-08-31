@@ -28,6 +28,13 @@
   var state = null; // guardamos el último n para poder retraducir la meta
 
   function animate(el, to, render) {
+    /* Quien pide menos animación recibe el número de una vez: además de la
+       preferencia, la cuenta escribía ~100 veces dentro de una región
+       aria-live y encolaba un anuncio por fotograma. */
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.textContent = render(to);
+      return;
+    }
     var from = 0, start = null, dur = 900;
     function step(ts) {
       if (start === null) start = ts;
@@ -62,6 +69,10 @@
     state = n;
     var box = document.getElementById("impact-tracker");
     if (!box) return;
+    /* Mientras corren las cuentas, la región viva queda en silencio; se
+       anuncia una sola vez, ya con las cifras finales. */
+    box.setAttribute("aria-busy", "true");
+    setTimeout(function () { box.removeAttribute("aria-busy"); }, 1000);
     var collected = n * APORTE_POR_CAMISETA;
     var inBag = BOLSA > 0 ? (collected % BOLSA) / BOLSA : 0;
     if (n > 0 && inBag === 0) inBag = 1; // bolsa recién completada = tazón lleno
@@ -82,11 +93,23 @@
     if (goal) goal.innerHTML = goalText(n);
   }
 
-  function pedir(url) {
+  var ESPERA_WORKER = 4000; // ms: pasado esto, se sigue con el número local
+
+  function pedir(url, msLimite) {
     try {
-      return fetch(url, { cache: "no-store" })
+      var opciones = { cache: "no-store" };
+      var corta;
+      /* Sin límite de tiempo, un Worker que acepta la conexión y no responde
+         dejaba el contador invisible para siempre. */
+      if (msLimite && typeof AbortController === "function") {
+        var ac = new AbortController();
+        opciones.signal = ac.signal;
+        corta = setTimeout(function () { try { ac.abort(); } catch (e) {} }, msLimite);
+      }
+      return fetch(url, opciones)
         .then(function (r) { return r.ok ? r.json() : null; })
-        .catch(function () { return null; });
+        .catch(function () { return null; })
+        .then(function (d) { if (corta) clearTimeout(corta); return d; });
     } catch (e) { return Promise.resolve(null); }
   }
 
@@ -101,12 +124,13 @@
   function load() {
     if (!document.getElementById("impact-tracker")) return;
     pedir(LOCAL_JSON).then(function (local) {
+      /* El número local se pinta enseguida: así el contador aparece de
+         inmediato aunque el Worker tarde o no conteste nunca. */
+      mostrar(local);
       var api = IMPACT_API || (local && typeof local.api === "string" ? local.api.trim() : "");
-      if (!/^https?:\/\//i.test(api)) { mostrar(local); return; }
-      // Con Worker conectado manda el dato en vivo; si falla, el archivo local
-      pedir(api).then(function (vivo) {
-        if (!mostrar(vivo)) mostrar(local);
-      });
+      if (!/^https?:\/\//i.test(api)) return;
+      // Si el Worker responde a tiempo, su dato en vivo manda sobre el local
+      pedir(api, ESPERA_WORKER).then(function (vivo) { mostrar(vivo); });
     });
   }
 

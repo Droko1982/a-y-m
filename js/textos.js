@@ -33,7 +33,6 @@
     // Colecciones
     ["colecciones.eyebrow", "collections.eyebrow"],
     ["colecciones.titulo", "collections.title"],
-    ["colecciones.texto", "collections.lead"],
     ["colecciones.portal_titulo", "portal.title"],
     ["colecciones.portal_texto", "portal.lead"],
     ["colecciones.portal_texto2", "portal.lead2"],
@@ -75,6 +74,10 @@
     ["tienda.texto", "shop.lead"],
     ["tienda.nota", "shop.note"],
     // Océano
+    ["oceano.portada_eyebrow", "oceano.eyebrow"],
+    ["oceano.portada_titulo", "oceano.title"],
+    ["oceano.portada_texto", "oceano.lead"],
+    ["oceano.portada_boton", "oceano.back"],
     ["oceano.historia_eyebrow", "ocn.s1.eyebrow"],
     ["oceano.historia_titulo", "ocn.s1.title"],
     ["oceano.historia_p1", "ocn.s1.p1"],
@@ -143,6 +146,24 @@
   function lang() { return document.documentElement.getAttribute("lang") === "en" ? "en" : "es"; }
   function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : String(s); return d.innerHTML; }
 
+  /* El sitio pinta con innerHTML cualquier texto que traiga un "<" (así se
+     conservan las negritas y cursivas que el propio panel recomienda). Eso
+     significa que una etiqueta mal cerrada se tragaba el texto en silencio, y
+     que cualquier marcado pegado desde Word entraba tal cual. Aquí se dejan
+     pasar solo <strong>, <em>, <b>, <i> y <br>; todo lo demás se muestra tal
+     como se escribió, para que un error se vea en vez de borrar el párrafo. */
+  var PERMITIDAS = /&lt;(\/?)(strong|em|b|i|br)\s*\/?&gt;/gi;
+
+  function seguro(v) {
+    if (v.indexOf("<") === -1) return v;               // texto normal: intacto
+    var s = esc(v).replace(PERMITIDAS, function (m, cierre, etiqueta) {
+      return "<" + cierre + etiqueta.toLowerCase() + ">";
+    });
+    /* Si no quedó ninguna etiqueta válida, se envuelve para que el sitio lo
+       trate como HTML y muestre literalmente lo que la dueña escribió. */
+    return s.indexOf("<") === -1 ? "<span>" + s + "</span>" : s;
+  }
+
   /* Valor de un campo, solo si trae texto de verdad */
   function val(data, path, suffix) {
     var parts = path.split(".");
@@ -168,10 +189,10 @@
       if (!dict) return;
       MAP.forEach(function (pair) {
         var v = val(data, pair[0], lg);
-        if (v != null) dict[pair[1]] = v;
+        if (v != null) dict[pair[1]] = seguro(v);
       });
       var loc = val(data, "contacto.ubicacion", lg);
-      if (loc != null) dict["contact.loc"] = PIN_SVG + loc;
+      if (loc != null) dict["contact.loc"] = PIN_SVG + esc(loc);
     });
     api.apply();
   }
