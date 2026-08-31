@@ -228,21 +228,19 @@
     });
     applyFit();
 
-    // selector de talla
-    document.querySelectorAll(".product-sizes").forEach(function (grp) {
-      grp.addEventListener("click", function (e) {
-        var pill = e.target.closest(".size-pill"); if (!pill) return;
-        grp.querySelectorAll(".size-pill").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
-        pill.classList.add("is-active"); pill.setAttribute("aria-pressed", "true");
-      });
+    // selector de talla (delegado: funciona también con productos dinámicos)
+    document.addEventListener("click", function (e) {
+      var pill = e.target.closest(".product-sizes .size-pill"); if (!pill) return;
+      var grp = pill.closest(".product-sizes"); if (!grp) return;
+      grp.querySelectorAll(".size-pill").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
+      pill.classList.add("is-active"); pill.setAttribute("aria-pressed", "true");
     });
-    // agregar (usa la horma activa)
-    document.querySelectorAll(".btn-add").forEach(function (b) {
-      b.addEventListener("click", function () {
-        var art = b.closest(".product");
-        var active = art ? art.querySelector(".size-pill.is-active") : null;
-        add(b.getAttribute("data-product"), currentFit, active ? active.getAttribute("data-size") : "M");
-      });
+    // agregar al carrito (delegado; usa la horma activa)
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest(".btn-add[data-product]"); if (!b) return;
+      var art = b.closest(".product");
+      var active = art ? art.querySelector(".size-pill.is-active") : null;
+      add(b.getAttribute("data-product"), currentFit, active ? active.getAttribute("data-size") : "M");
     });
 
     // selector de pago
@@ -273,4 +271,12 @@
   });
 
   document.addEventListener("aym:langchange", render);
+
+  // El catálogo dinámico (shop.js) avisa cuando pintó los productos:
+  // adoptamos el catálogo (incluye productos nuevos) y refrescamos precios.
+  document.addEventListener("aym:productsrendered", function () {
+    if (window.AYM_PRODUCTS) PRODUCTS = window.AYM_PRODUCTS;
+    applyFit();
+    render();
+  });
 })();

@@ -1,0 +1,40 @@
+{
+  "productos": [
+    {
+      "id": "ocean",
+      "imagen": "assets/tee-ocean.svg",
+      "nombre_es": "Camiseta Océano",
+      "nombre_en": "Ocean Tee",
+      "desc_es": "Estampado del mar y la vida que lo habita. Algodón suave, tallas S–XL.",
+      "desc_en": "A print of the sea and the life within it. Soft cotton, sizes S–XL.",
+      "disponible": true
+    },
+    {
+      "id": "animal",
+      "imagen": "assets/tee-animal.svg",
+      "nombre_es": "Camiseta Coral",
+      "nombre_en": "Coral Tee",
+      "desc_es": "Los arrecifes de coral y su color de vida. Algodón suave, tallas S–XL.",
+      "desc_en": "The coral reefs and their living color. Soft cotton, sizes S–XL.",
+      "disponible": true
+    },
+    {
+      "id": "stars",
+      "imagen": "assets/tee-stars.svg",
+      "nombre_es": "Camiseta Ballena",
+      "nombre_en": "Whale Tee",
+      "desc_es": "Las ballenas jorobadas que visitan el Pacífico colombiano. Algodón suave, tallas S–XL.",
+      "desc_en": "The humpback whales that visit the Colombian Pacific. Soft cotton, sizes S–XL.",
+      "disponible": true
+    },
+    {
+      "id": "origen",
+      "imagen": "assets/tee-origen.svg",
+      "nombre_es": "Camiseta Tortuga",
+      "nombre_en": "Turtle Tee",
+      "desc_es": "Las tortugas marinas que anidan en nuestras costas. Algodón suave, tallas S–XL.",
+      "desc_en": "The sea turtles that nest on our coasts. Soft cotton, sizes S–XL.",
+      "disponible": true
+    }
+  ]
+}
