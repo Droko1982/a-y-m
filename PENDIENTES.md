@@ -72,7 +72,10 @@ El proyecto se va a pasar a una cuenta de GitHub propia de A&M Universe.
 el Worker, la App OAuth y las 27 direcciones del sitio.
 Paso a paso en [`MUDANZA-DE-CUENTA.md`](MUDANZA-DE-CUENTA.md).
 
-- [ ] Crear la cuenta de marca con **aymuniversebrand@gmail.com** y enviar el usuario.
+- [x] Crear la cuenta de marca. Quedó como `aymuniversebrand-creator`.
+- [ ] **Renombrarla a `aymuniverse`** (Settings → Account → Change username). Verificado
+      libre. Bloquea todo lo demás: renombrar después obliga a rehacer las 27 direcciones.
+      Mensaje listo para enviar en [`PANEL-MENSAJE-CLIENTAS.md`](PANEL-MENSAJE-CLIENTAS.md).
 - [ ] Transferir el repositorio y encender GitHub Pages.
 - [ ] Cambiar las direcciones: `node herramientas/cambiar-direccion.js --sitio=… --repo=…`
 - [ ] Recién entonces: Worker de Cloudflare + App OAuth + colaboradoras.
