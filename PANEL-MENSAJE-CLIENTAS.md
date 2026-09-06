@@ -26,35 +26,67 @@ mandarlos. La guía técnica completa está en
 
 ---
 
-## Mensaje 1 · Renombrar la cuenta (1 minuto)
+## Mensaje 1 · Renombrar la cuenta de GitHub (1 minuto)
 
-> Mandar ahora. Es lo único que bloquea todo lo demás.
+> Estado verificado el 2026-09-06: la cuenta de GitHub que existe es
+> **`aymuniversebrand-creator`**, creada el 31 de agosto. El correo
+> `aym.universedesing@gmail.com` que mandó Dahianna es una cuenta de **Gmail**,
+> no de GitHub — ya quedó como el correo de contacto de la tienda.
 
-¡Hola chicas! 💚 Antes de pasar la tienda a la cuenta nueva necesito que cambien una cosita, y es rapidísimo.
+¡Hola chicas! 💚 Ya tengo todo listo de mi lado. Falta una cosita de ustedes y es rapidísima.
 
-Cuando se registraron, GitHub les puso un nombre automático largo: *aymuniversebrand-creator*. Ese nombre queda dentro de la dirección de la tienda, así:
+Son dos cuentas distintas y es fácil confundirlas:
+
+📧 *El correo* (Gmail) — el que crearon: aym.universedesing@gmail.com
+   Ese ya lo dejé puesto como correo de contacto de la tienda ✅
+
+🐙 *La cuenta de GitHub* — donde vive la tienda
+   Esa ya existe también, pero le quedó un nombre automático largo:
+   *aymuniversebrand-creator*
+
+Ese nombre se mete dentro de la dirección de la tienda:
 
 ❌ aymuniversebrand-creator.github.io/a-y-m
-
-Ya verifiqué que *aymuniverse* está libre, y quedaría así:
-
 ✅ aymuniverse.github.io/a-y-m
 
-Mucho más fácil de dictar y de compartir. 🙌
+Ya verifiqué que *aymuniverse* está libre. Es el mismo link que van a compartir por Instagram y WhatsApp, así que vale la pena que sea corto. 🙌
 
 ━━━━━━━━━━━
 ✏️ *CÓMO CAMBIARLO (1 min)*
 ━━━━━━━━━━━
-1️⃣ Entrar a github.com con la cuenta nueva
-2️⃣ Arriba a la derecha, tocar la foto de perfil → *Settings*
-3️⃣ En el menú de la izquierda: *Account*
-4️⃣ Donde dice *Change username*, tocar el botón
-5️⃣ Escribir: *aymuniverse*
-6️⃣ Confirmar
+1️⃣ Entrar a *github.com* (no a Gmail)
+2️⃣ Iniciar sesión — es la cuenta que crearon el domingo pasado
+3️⃣ Arriba a la derecha, tocar la foto de perfil → *Settings*
+4️⃣ En el menú de la izquierda: *Account*
+5️⃣ Donde dice *Change username*, tocar el botón
+6️⃣ Escribir: *aymuniverse*
+7️⃣ Confirmar
 
-Es gratis y no se pierde nada. ⚠️ Solo importa hacerlo *ahora*, antes de que yo pase la tienda: si lo cambian después, hay que rehacer un montón de cosas.
+Es gratis y no se pierde nada. ⚠️ Lo importante es hacerlo *ahora*, antes de que yo les pase la tienda: si se cambia después, hay que rehacer un montón de cosas.
 
-Cuando esté, me avisan y sigo con el resto. 🐾
+Si no recuerdan con cuál correo entraron a GitHub, prueben con *aymuniversebrand@gmail.com* — si tampoco, mándenme captura de lo que les salga y lo resolvemos. 🐾
+
+Cuando esté, me avisan con un ✅ y yo sigo con todo lo demás.
+
+---
+
+## 🔒 Aparte: cambiar la contraseña del correo
+
+> Mandar por separado. La contraseña de `aym.universedesing@gmail.com` viajó por
+> el chat, así que quedó en el historial de WhatsApp de varias personas y en las
+> copias de seguridad de sus celulares. **No se guarda en ningún archivo de este
+> proyecto y no hace falta para nada de lo que viene.**
+
+Chicas, un consejo de seguridad 🔐 La contraseña que me pasaron por acá quedó guardada en el chat, y WhatsApp hace copias en la nube. Mejor cambiarla:
+
+1️⃣ Entrar a Gmail con esa cuenta
+2️⃣ Foto de perfil → *Gestionar tu cuenta de Google*
+3️⃣ Pestaña *Seguridad* → *Contraseña*
+4️⃣ Poner una nueva
+
+Y si pueden, activen ahí mismo la *verificación en 2 pasos*: es lo que de verdad protege la cuenta aunque alguien sepa la clave. 💚
+
+No hace falta que me la manden: para todo lo que sigue ustedes hacen los clics desde su sesión, yo nunca necesito su contraseña.
 
 ---
 

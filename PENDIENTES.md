@@ -53,7 +53,7 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 - **5 métodos de pago** en el carrito (Nequi, Daviplata, Bre-B, transferencia, contra entrega) con iconos.
 - Pedido por WhatsApp con **resumen detallado** (ítems, total, envío, pago, datos de envío).
 - **Contador de impacto** con perrito animado que come según lo recaudado ($1.000/camiseta, ajustable).
-- Correo de marca `aymuniversebrand@gmail.com` en contacto, datos estructurados y políticas.
+- Correo de marca `aym.universedesing@gmail.com` en contacto, datos estructurados y políticas.
 - Página en **español e inglés**, modo claro/oscuro, SEO, favicon e imagen para compartir.
 - Secciones: tienda, Océano, propósito, impacto, **FAQ**, contacto y envíos, políticas.
 - **Panel de administración gratuito** en `/admin/`: precios, **datos de pago**,
