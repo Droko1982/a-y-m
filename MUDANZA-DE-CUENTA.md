@@ -12,7 +12,7 @@ GitHub propia de A&M Universe, y dejar el panel funcionando.
 
 ## Antes de empezar
 
-- [ ] Crear la cuenta de GitHub de la marca con **aymuniversebrand@gmail.com**
+- [ ] Crear la cuenta de GitHub de la marca con **aym.universedesing@gmail.com**
       (usuario sugerido: `aymuniverse`) y **enviar el nombre de usuario**.
 - [ ] Tener a mano la cuenta de Cloudflare (la misma del contador sirve).
 
