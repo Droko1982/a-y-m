@@ -41,9 +41,23 @@
   /* ---------- Configuración editable desde el panel (data/config.json) ----------
      Permite a las dueñas cambiar los precios desde el panel de administración.
      Si el archivo no está o falla, se usan los valores por defecto de arriba. */
+  /* Un precio del panel, leído como lo escribiría una persona en Colombia.
+     "69.000" con Number() daba 69, y ese $69 llegaba hasta el pedido de
+     WhatsApp: alguien podía pedir una camiseta por 69 pesos. En pesos no hay
+     centavos, así que puntos, comas, espacios y el signo son separadores.
+     El piso descarta los errores de dedo (un cero de menos, un 0, un negativo):
+     ninguna camiseta cuesta menos de mil pesos, así que ante un valor
+     imposible se conserva el precio anterior en vez de publicarlo. */
+  var PRECIO_MINIMO = 1000;
+  function precioDelPanel(v) {
+    var n = typeof v === "number" ? Math.round(v)
+          : parseInt(String(v == null ? "" : v).replace(/[^\d]/g, ""), 10);
+    return isFinite(n) && n >= PRECIO_MINIMO ? n : 0;
+  }
+
   function applyConfig(cfg) {
     if (!cfg || typeof cfg !== "object") return;
-    var r = Number(cfg.precio_regular), o = Number(cfg.precio_oversized);
+    var r = precioDelPanel(cfg.precio_regular), o = precioDelPanel(cfg.precio_oversized);
     if (r > 0) FIT_PRICES.regular = r;
     if (o > 0) FIT_PRICES.oversized = o;
     /* Los datos estructurados de producto (js/shop.js) también necesitan
