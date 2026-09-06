@@ -34,8 +34,8 @@ collections:
         file: data/config.json
         description: "Cambia el precio de cada horma. Se actualiza en toda la tienda."
         fields:
-          - { name: precio_regular, label: "Precio Regular fit (COP)", widget: number, value_type: int, min: 0, step: 1000 }
-          - { name: precio_oversized, label: "Precio Oversized (COP)", widget: number, value_type: int, min: 0, step: 1000 }
+          - { name: precio_regular, label: "Precio Regular fit (COP)", widget: number, value_type: int, min: 1000, step: 1000, hint: "Puedes escribirlo 75000 o 75.000, las dos formas sirven. Por seguridad se ignora cualquier valor menor a 1.000." }
+          - { name: precio_oversized, label: "Precio Oversized (COP)", widget: number, value_type: int, min: 1000, step: 1000 }
 
   # -------- PAGOS --------
   - name: pagos
