@@ -65,11 +65,25 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 
 ---
 
-## 🚚 Mudanza a la cuenta de marca
+## 🔓 Abrir el panel (lo que falta para que entren)
+
+El acceso NO depende de la mudanza: el panel funciona en el repositorio actual.
+Paso a paso en [`ACCESO-PANEL-AHORA.md`](ACCESO-PANEL-AHORA.md).
+
+- [x] Invitar la cuenta de marca al repositorio (`aymuniversebrand-creator`, permiso de escritura).
+- [ ] **Ellas:** aceptar la invitación que les llegó al correo (caduca en 7 días).
+- [ ] **Quien administra:** desplegar el Worker `sveltia-cms-auth` en Cloudflare.
+- [ ] **Quien administra:** crear la App OAuth de GitHub (callback = `<worker>/callback`).
+- [ ] Poner las 3 variables en Cloudflare y el `base_url` en `admin/config.yml`.
+
+---
+
+## 🚚 Mudanza a la cuenta de marca (aparte, sin prisa)
 
 El proyecto se va a pasar a una cuenta de GitHub propia de A&M Universe.
-**Hacer la mudanza ANTES de instalar el acceso al panel**, o hay que rehacer
-el Worker, la App OAuth y las 27 direcciones del sitio.
+Decisión de **propiedad**, no un requisito para acceder. Si se hace después de
+abrir el panel, rehacerlo cuesta ~5 minutos: el callback de OAuth,
+`ALLOWED_DOMAINS` y `base_url`.
 Paso a paso en [`MUDANZA-DE-CUENTA.md`](MUDANZA-DE-CUENTA.md).
 
 - [x] Crear la cuenta de marca. Quedó como `aymuniversebrand-creator`.

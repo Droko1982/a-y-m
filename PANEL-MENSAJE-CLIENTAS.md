@@ -1,81 +1,99 @@
 # 📩 Panel de administración — mensajes para las clientas
 
-Mensajes listos para copiar y pegar por WhatsApp, en el orden en que hay que
-mandarlos. La guía técnica completa está en
-[`MUDANZA-DE-CUENTA.md`](MUDANZA-DE-CUENTA.md) y [`PANEL-ADMIN.md`](PANEL-ADMIN.md).
+Mensajes listos para copiar y pegar por WhatsApp. La parte técnica está en
+[`ACCESO-PANEL-AHORA.md`](ACCESO-PANEL-AHORA.md).
 
 ## Enlaces
-- **Tienda en vivo (hoy):** https://droko1982.github.io/a-y-m/
-- **Guía del panel para las dueñas:** https://claude.ai/code/artifact/876da455-70a2-4f47-8720-13dbc4a1253a
+
+- **Tienda:** https://droko1982.github.io/a-y-m/
+- **Panel:** https://droko1982.github.io/a-y-m/admin/
+- **Guía del panel:** https://claude.ai/artifact/Hix4BkDGz2t3otEf868V3F
 
 > ⚠️ La guía es un enlace **privado** de Claude. Hay que abrirla y usar el menú
 > de **Compartir** del propio artifact; si solo se copia la URL, a las clientas
 > les sale un error de acceso en vez de la guía.
 
-## El orden importa
+## El orden, corregido
 
-1. **Renombrar la cuenta** a `aymuniverse` — _mensaje 1_
-2. Transferir el repositorio — lo lanza quien administra, ellas aceptan
-3. Activar GitHub Pages — _mensaje 2_
-4. Worker de Cloudflare + App OAuth — _mensaje 3_
-5. Agregarlas como colaboradoras — lo hace quien administra
+El acceso al panel estaba encadenado a la mudanza de cuenta, y eso las tuvo
+bloqueadas dos semanas sin necesidad. Ya no: **el panel funciona en el
+repositorio actual** y la mudanza quedó como una decisión aparte, sin prisa.
 
-> Si se instala el login (pasos 4 y 5) **antes** de mudar, hay que rehacerlo
-> todo: el callback de OAuth, el dominio permitido y las 27 direcciones del
-> sitio. Por eso el orden.
+| | Quién | Estado |
+|---|---|---|
+| Invitar la cuenta de marca al repositorio | nosotros | ✅ enviada |
+| Aceptar la invitación | ellas | _mensaje 1_ |
+| Worker de Cloudflare + App OAuth | **quien administra** | ⏳ |
+| Poner el `base_url` | nosotros | ⏳ |
+| Entrar al panel | ellas | _mensaje 2_ |
+
+> Los dos pasos de navegador los hace **quien administra**, no ellas. Si los
+> hace la clienta se traba: ya lo vimos con el renombrado de la cuenta.
 
 ---
 
-## Mensaje 1 · Renombrar la cuenta de GitHub (1 minuto)
+## Mensaje 1 · Aceptar la invitación
 
-> Estado verificado el 2026-09-06: la cuenta de GitHub que existe es
-> **`aymuniversebrand-creator`**, creada el 31 de agosto. El correo
-> `aym.universedesing@gmail.com` que mandó Dahianna es una cuenta de **Gmail**,
-> no de GitHub — ya quedó como el correo de contacto de la tienda.
+> Se puede mandar **ya**. La invitación caduca en 7 días.
 
-¡Hola chicas! 💚 Ya tengo todo listo de mi lado. Falta una cosita de ustedes y es rapidísima.
-
-Son dos cuentas distintas y es fácil confundirlas:
-
-📧 *El correo* (Gmail) — el que crearon: aym.universedesing@gmail.com
-   Ese ya lo dejé puesto como correo de contacto de la tienda ✅
-
-🐙 *La cuenta de GitHub* — donde vive la tienda
-   Esa ya existe también, pero le quedó un nombre automático largo:
-   *aymuniversebrand-creator*
-
-Ese nombre se mete dentro de la dirección de la tienda:
-
-❌ aymuniversebrand-creator.github.io/a-y-m
-✅ aymuniverse.github.io/a-y-m
-
-Ya verifiqué que *aymuniverse* está libre. Es el mismo link que van a compartir por Instagram y WhatsApp, así que vale la pena que sea corto. 🙌
+¡Hola chicas! 💚 Les acabo de dar acceso a la tienda. Es un solo clic.
 
 ━━━━━━━━━━━
-✏️ *CÓMO CAMBIARLO (1 min)*
+📬 *ACEPTAR LA INVITACIÓN*
 ━━━━━━━━━━━
-1️⃣ Entrar a *github.com* (no a Gmail)
-2️⃣ Iniciar sesión — es la cuenta que crearon el domingo pasado
-3️⃣ Arriba a la derecha, tocar la foto de perfil → *Settings*
-4️⃣ En el menú de la izquierda: *Account*
-5️⃣ Donde dice *Change username*, tocar el botón
-6️⃣ Escribir: *aymuniverse*
-7️⃣ Confirmar
+1️⃣ Busquen en el correo un mensaje de *GitHub* que dice algo como
+    *"invited you to collaborate"*
+2️⃣ Ábranlo y toquen el botón verde para aceptar
 
-Es gratis y no se pierde nada. ⚠️ Lo importante es hacerlo *ahora*, antes de que yo les pase la tienda: si se cambia después, hay que rehacer un montón de cosas.
+Eso es todo por ahora. Es lo que les da permiso para editar la tienda.
 
-Si no recuerdan con cuál correo entraron a GitHub, prueben con *aymuniversebrand@gmail.com* — si tampoco, mándenme captura de lo que les salga y lo resolvemos. 🐾
+⏳ Ojo: la invitación *caduca en 7 días*. Si ya se pasó, me dicen y la mando otra vez.
 
-Cuando esté, me avisan con un ✅ y yo sigo con todo lo demás.
+Yo termino de conectar el panel y les paso el enlace. 🐾
+
+---
+
+## Mensaje 2 · Ya tienen su panel
+
+> Mandar cuando el `base_url` esté puesto y el panel deje iniciar sesión.
+> **Probarlo primero** antes de mandarlo.
+
+¡Listo chicas, ya tienen su panel! 🎉💚 Desde aquí pueden cambiar precios, subir fotos, editar textos y mover el contador de los animalitos, ustedes mismas y cuando quieran.
+
+👉 droko1982.github.io/a-y-m/admin/
+
+━━━━━━━━━━━
+▶️ *PARA ENTRAR*
+━━━━━━━━━━━
+1️⃣ Abrir el enlace
+2️⃣ Tocar *Sign in with GitHub*
+3️⃣ Entrar con la cuenta de GitHub de la marca y autorizar
+
+Les recomiendo *guardarlo en favoritos* o dejarlo en la pantalla de inicio del celular, como si fuera una app.
+
+━━━━━━━━━━━
+📘 *LA GUÍA*
+━━━━━━━━━━━
+Les dejo todo explicado paso a paso — cambiar precios, subir una camiseta, marcar Agotado, el contador del perrito y qué hacer si algo sale mal:
+
+👉 (pegar aquí el enlace de la guía, ya compartido)
+
+━━━━━━━━━━━
+💡 *LO ÚNICO QUE HAY QUE RECORDAR*
+━━━━━━━━━━━
+Hay *un solo botón: Save*. Al tocarlo el cambio ya quedó publicado. La tienda tarda 1 o 2 minutos en mostrarlo, así que si no aparece enseguida es normal: esperan un momento y refrescan.
+
+Y tranquilas: *nada de lo que hagan es definitivo*. Todo queda guardado con historial y se puede devolver. Si algo sale raro, una captura de pantalla y lo resolvemos. 🐾
 
 ---
 
 ## 🔒 Aparte: cambiar la contraseña del correo
 
-> Mandar por separado. La contraseña de `aym.universedesing@gmail.com` viajó por
-> el chat, así que quedó en el historial de WhatsApp de varias personas y en las
-> copias de seguridad de sus celulares. **No se guarda en ningún archivo de este
-> proyecto y no hace falta para nada de lo que viene.**
+> Mandar por separado, como consejo. La contraseña de
+> `aym.universedesing@gmail.com` viajó por el chat, así que quedó en el
+> historial de WhatsApp de varias personas y en las copias de seguridad de sus
+> celulares. **No se guarda en ningún archivo de este proyecto y no hace falta
+> para nada de lo que viene.**
 
 Chicas, un consejo de seguridad 🔐 La contraseña que me pasaron por acá quedó guardada en el chat, y WhatsApp hace copias en la nube. Mejor cambiarla:
 
@@ -90,91 +108,37 @@ No hace falta que me la manden: para todo lo que sigue ustedes hacen los clics d
 
 ---
 
-## Mensaje 2 · Aceptar la tienda y encenderla
+## Mensaje 3 · Los datos que faltan (cuando ya estén usando el panel)
 
-> Mandar cuando ya se lanzó la transferencia.
+> Mandar unos días después, cuando ya se hayan soltado con el panel.
 
-¡Listo chicas! Ya les mandé la tienda a su cuenta nueva. Faltan dos toques de ustedes. 💚
-
-━━━━━━━━━━━
-📬 *PARTE 1 · ACEPTAR*
-━━━━━━━━━━━
-1️⃣ Les llegó un correo de GitHub que dice algo como *"invitation to transfer a-y-m"*
-2️⃣ Ábranlo y toquen el botón para aceptar
-3️⃣ (Si no llega el correo, entren a github.com con la cuenta nueva y arriba les aparece el aviso)
+¡Hola chicas! 💚 Ahora que ya manejan el panel, hay unos datos que solo ustedes tienen y que dejarían la tienda al 100%. No hay prisa, y todos se escriben desde el panel:
 
 ━━━━━━━━━━━
-🌐 *PARTE 2 · ENCENDER LA PÁGINA*
+💳 *PAGOS* (sección Pagos)
 ━━━━━━━━━━━
-1️⃣ Ya dentro, entrar al repositorio *a-y-m*
-2️⃣ Arriba, tocar *Settings*
-3️⃣ En el menú de la izquierda, buscar *Pages*
-4️⃣ Donde dice *Source*, elegir *Deploy from a branch*
-5️⃣ En *Branch* elegir *main*, y al lado la carpeta */ (root)*
-6️⃣ Tocar *Save*
-
-En 1 o 2 minutos la tienda queda publicada en la dirección nueva. Me avisan y yo dejo todo apuntando ahí. 🐾
-
----
-
-## Mensaje 3 · Instalar el acceso al panel (~10 min)
-
-> Mandar cuando la tienda ya esté publicada en la dirección nueva.
-> Requiere una cuenta gratis de Cloudflare (sirve la misma del contador).
-
-¡Vamos con el último paso, chicas! 🎉 Este es el que les abre *su panel*, donde van a poder cambiar precios, subir fotos y editar textos ustedes mismas, sin depender de nadie.
-
-Son dos cositas que se hacen *una sola vez*. Tómense su tiempo y mándenme captura de lo que les pida. 💚
+• ¿El Daviplata es el mismo 321 579 9683 o otro número?
+• ¿Cuál es la *llave* exacta de Bre-B? (celular, @usuario, correo o cédula)
+• Si quieren recibir transferencias: banco, tipo de cuenta, número y a nombre de quién
 
 ━━━━━━━━━━━
-☁️ *PARTE 1 · CLOUDFLARE (~4 min)*
+📄 *DATOS LEGALES* (sección Datos del negocio)
 ━━━━━━━━━━━
-1️⃣ Entrar a: github.com/sveltia/sveltia-cms-auth
-2️⃣ Bajar un poquito y tocar el botón que dice *Deploy to Cloudflare*
-3️⃣ Iniciar sesión en Cloudflare (o crear la cuenta gratis)
-4️⃣ Seguir el asistente hasta el final
-5️⃣ Al terminar les queda una dirección parecida a:
-    sveltia-cms-auth.algo.workers.dev
-    📸 *Mándenme esa dirección* (o captura)
+• Razón social o nombre de quien responde por el negocio
+• NIT o cédula
+• ¿En cuántos días llega un pedido? (ej. 2 a 5 días hábiles)
+• ¿Cuántos días tienen para cambiar una talla? (ej. 8 días)
 
 ━━━━━━━━━━━
-🔑 *PARTE 2 · LA LLAVE DE GITHUB (~5 min)*
+📱 *REDES* (sección Datos del negocio)
 ━━━━━━━━━━━
-1️⃣ Con la cuenta *aymuniverse*, entrar a:
-    github.com/settings/applications/new
-2️⃣ Llenar así:
-    • *Application name:* A&M Universe Panel
-    • *Homepage URL:* la dirección de la tienda
-    • *Authorization callback URL:* la dirección de Cloudflare de la Parte 1, agregándole */callback* al final
-3️⃣ Tocar *Register application*
-4️⃣ Copiar el *Client ID*
-5️⃣ Tocar *Generate a new client secret* y copiar el *Client Secret*
-    ⚠️ Ese código *solo se muestra una vez*: cópienlo enseguida
-6️⃣ 📸 Mándenme los dos códigos por acá
-
-Con eso yo conecto el panel y les mando el enlace con su clave. De ahí en adelante, la tienda es suya. 🐾💚
-
----
-
-## Mensaje 4 · Ya está listo
-
-> Mandar cuando el panel ya deja iniciar sesión.
-
-¡Listo chicas, ya tienen su panel! 🎉💚
-
-👉 (dirección del panel)
+• Instagram, Facebook, TikTok — basta el usuario
 
 ━━━━━━━━━━━
-▶️ *PARA ENTRAR*
+📸 *FOTOS* (sección Productos)
 ━━━━━━━━━━━
-1️⃣ Abrir el enlace
-2️⃣ Tocar *Sign in with GitHub*
-3️⃣ Entrar con su cuenta y autorizar
+• Las fotos reales de las camisetas: *cuadradas*, mínimo 1000 × 1000, fondo claro
+• Cuando las suban, se puede apagar el aviso de "fotos de referencia" desde
+  *Textos → Tienda*
 
-Les recomiendo *guardarlo en favoritos* o dejarlo como acceso directo en la pantalla del celular.
-
-Les paso también la guía con todo explicado paso a paso — precios, fotos, textos, el contador del perrito y qué hacer si algo sale mal:
-
-👉 (enlace de la guía)
-
-Lo único que hay que recordar: *hay un solo botón, Save*. Al tocarlo el cambio ya quedó publicado, y la tienda tarda 1 o 2 minutos en mostrarlo. 🐾
+Lo que no esté, no pasa nada: la tienda funciona igual con los textos provisionales. 🐾
