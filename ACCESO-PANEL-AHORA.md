@@ -16,10 +16,56 @@
 | Repositorio | `Droko1982/a-y-m` |
 | Tienda | https://droko1982.github.io/a-y-m/ |
 | Panel | https://droko1982.github.io/a-y-m/admin/ |
-| Colaboradora invitada | `aymuniversebrand-creator` ✅ (invitación enviada, expira en 7 días) |
-| `base_url` en `admin/config.yml` | ⏳ pendiente del paso 2 |
+| Colaboradora | ✅ **aceptada** — `aymuniversebrand-creator` con permiso de escritura |
+| `base_url` en `admin/config.yml` | ⏳ solo hace falta para la vía OAuth |
 
 ---
+
+## ⚡ Atajo verificado: entrar HOY, sin Cloudflare
+
+El panel tiene un segundo modo de entrada, **Sign In Using Access Token**, que
+no usa el Worker ni la App OAuth. Comprobado en el panel real (v0.203.1): el
+botón existe y pide un token con acceso de lectura/escritura al repositorio.
+`base_url` puede seguir con el texto de ejemplo.
+
+**Quién lo hace:** la dueña, desde el dispositivo donde va a usar el panel.
+**Una sola vez por dispositivo.**
+
+### Crear el token (con la cuenta `aymuniversebrand-creator`)
+
+1. Entrar a **https://github.com/settings/tokens/new** (token *clásico*).
+2. **Note:** `Panel A&M Universe`
+3. **Expiration:** lo que prefieran (90 días, 1 año, o sin caducidad).
+4. Marcar **solo** la casilla **`repo`**.
+5. **Generate token** y copiar el código que aparece (empieza por `ghp_`).
+   ⚠️ Solo se muestra una vez.
+
+> **Por qué clásico y no "fine-grained":** los tokens de grano fino solo
+> alcanzan repositorios de la propia cuenta, y `a-y-m` todavía pertenece a
+> `Droko1982`. El token clásico con `repo` sí funciona para un repositorio
+> donde se es colaboradora. Ese alcance cubre todos los repos de la cuenta,
+> pero esa cuenta no tiene ningún otro, así que no expone nada más.
+
+### Entrar
+
+1. Abrir **https://droko1982.github.io/a-y-m/admin/**
+2. Pulsar **Sign In Using Access Token**
+3. Pegar el token y **Sign In**
+
+El token queda guardado en ese navegador. En otro teléfono o computador hay que
+volver a pegarlo (el mismo sirve).
+
+⚠️ El token es una llave: no se manda por WhatsApp ni a nadie, tampoco a
+quien administra. Si se filtra, se borra en la misma página y se crea otro.
+
+---
+
+## La otra vía (opcional, más cómoda a la larga)
+
+Con el Worker y la App OAuth, la entrada es solo **Sign In with GitHub**: sin
+tokens que copiar ni que caduquen. Son ~10 minutos de quien administra y se
+puede hacer cuando haya tiempo, sin prisa, porque el atajo de arriba ya las
+dejó trabajando.
 
 ## Los dos pasos que necesitan un navegador
 
