@@ -6,9 +6,123 @@
   <meta name="robots" content="noindex">
   <title>A&amp;M Universe · Panel de administración</title>
   <link rel="icon" href="../favicon.ico">
+  <style>
+    /* Aviso propio sobre la pantalla de entrada de Sveltia.
+       Se muestra solo mientras la pantalla de login está visible. */
+    #aym-aviso {
+      position: fixed; inset: 0 0 auto 0; z-index: 9999;
+      background: #5A6537; color: #F4EFE3;
+      font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      padding: 16px 20px; box-sizing: border-box;
+      box-shadow: 0 6px 24px -12px rgba(0,0,0,.6);
+    }
+    #aym-aviso .aym-in { max-width: 44rem; margin: 0 auto; }
+    #aym-aviso b { font-weight: 600; }
+    #aym-aviso p { margin: 0 0 6px; }
+    #aym-aviso p:last-child { margin-bottom: 0; }
+    #aym-aviso .aym-chico { font-size: 13px; opacity: .85; }
+    /* Deja aire para que el aviso no tape los botones */
+    body.aym-con-aviso { padding-top: 116px; }
+  </style>
 </head>
 <body>
   <!-- Panel de administración (Sveltia CMS) — la configuración está en admin/config.yml -->
   <script src="https://unpkg.com/@sveltia/cms@0.203.1/dist/sveltia-cms.js" type="module"></script>
+
+  <script>
+  /* =========================================================================
+     Por qué existe este script.
+
+     Sveltia muestra dos formas de entrar: "Sign In with GitHub" (la azul, arriba)
+     y "Sign In Using Access Token" (la de abajo). La primera necesita un Worker
+     de Cloudflare que TODAVÍA NO está desplegado: `base_url` en admin/config.yml
+     sigue con un dominio de ejemplo. Al pulsarla, Sveltia abre una ventana hacia
+     ese dominio inexistente, el navegador muestra "No se puede acceder a este
+     sitio web" y el panel responde "Se canceló la autenticación" — que es
+     exactamente lo que le pasó a una de las dueñas durante dos días.
+
+     Mientras el Worker no exista, aquí se oculta ese botón y se explica en
+     español cuál usar. El día que se despliegue el Worker y se ponga su
+     dirección en `base_url`, basta cambiar WORKER_LISTO a true: vuelve el botón
+     azul y desaparece el aviso.
+     ========================================================================= */
+  (function () {
+    "use strict";
+
+    var WORKER_LISTO = false; // ← poner true cuando base_url apunte a un Worker real
+
+    if (WORKER_LISTO) return;
+
+    var TEXTO_GITHUB = /sign\s*in\s*with\s*github|iniciar\s*sesión\s*con\s*github/i;
+    var TEXTO_TOKEN = /access\s*token|token\s*de\s*acceso/i;
+
+    /* Sveltia envuelve el nombre del servicio en marcas invisibles de dirección
+       de texto (U+2066…U+2069), así que "Sign In with ⁨GitHub⁩" no coincide con
+       una búsqueda normal. Aquí se quitan antes de comparar. */
+    function limpio(t) {
+      return String(t || "").replace(/[‎‏‪-‮⁦-⁩]/g, "");
+    }
+    function botones() {
+      return Array.prototype.slice.call(document.querySelectorAll("button"));
+    }
+    function buscar(re) {
+      var bs = botones();
+      for (var i = 0; i < bs.length; i++) {
+        if (re.test(limpio(bs[i].textContent))) return bs[i];
+      }
+      return null;
+    }
+    function botonGitHub() { return buscar(TEXTO_GITHUB); }
+    function botonToken() { return buscar(TEXTO_TOKEN); }
+
+    function pintarAviso() {
+      if (document.getElementById("aym-aviso")) return;
+      var d = document.createElement("div");
+      d.id = "aym-aviso";
+      d.setAttribute("role", "status");
+      d.innerHTML =
+        '<div class="aym-in">' +
+        '<p>👋 <b>Para entrar, usa el botón de abajo:</b> «Sign In Using Access Token».</p>' +
+        '<p class="aym-chico">El otro botón todavía no está conectado, por eso daba el error ' +
+        '«Se canceló la autenticación». Si no tienes el código, pídelo por WhatsApp.</p>' +
+        '</div>';
+      document.body.appendChild(d);
+      document.body.classList.add("aym-con-aviso");
+    }
+    function quitarAviso() {
+      var d = document.getElementById("aym-aviso");
+      if (d) d.remove();
+      document.body.classList.remove("aym-con-aviso");
+    }
+
+    /* Se revisa cada vez que Sveltia repinta: la pantalla de entrada aparece
+       tarde (el paquete pesa 2 MB) y desaparece al iniciar sesión. */
+    function revisar() {
+      var g = botonGitHub();
+      var t = botonToken();
+      if (g && t) {
+        /* Se oculta en vez de borrarse: si una versión futura de Sveltia cambia
+           el orden o los textos, el panel sigue usable con el otro botón. */
+        g.style.display = "none";
+        g.setAttribute("aria-hidden", "true");
+        g.tabIndex = -1;
+        /* El de token pasa a ser el principal, para que se vea como la opción */
+        t.style.minWidth = "16rem";
+        t.style.fontWeight = "600";
+        pintarAviso();
+      } else if (!t) {
+        /* Ya no hay pantalla de entrada: se inició sesión */
+        quitarAviso();
+      }
+    }
+
+    try {
+      new MutationObserver(revisar).observe(document.documentElement, { childList: true, subtree: true });
+    } catch (e) {}
+    document.addEventListener("DOMContentLoaded", revisar);
+    var reintentos = 0;
+    var t = setInterval(function () { revisar(); if (++reintentos > 60) clearInterval(t); }, 500);
+  })();
+  </script>
 </body>
 </html>
