@@ -126,7 +126,7 @@ Mándame solo **la dirección del Worker** y pongo el `base_url` en
 
 1. Le llegó un correo de GitHub a la cuenta `aymuniversebrand-creator`
    («invited you to collaborate»). Aceptarla.
-2. Abrir el panel y pulsar **Sign in with GitHub**.
+2. Abrir el panel y pulsar **Sign In Using Access Token** (mientras el Worker no exista, es el único botón que se muestra).
 
 Nada de Cloudflare, nada de OAuth, nada de renombrar cuentas.
 
@@ -134,7 +134,7 @@ Nada de Cloudflare, nada de OAuth, nada de renombrar cuentas.
 
 ## Comprobar que quedó bien
 
-- [ ] El panel deja pulsar **Sign in with GitHub** y entra sin error.
+- [ ] El panel deja pulsar **Sign In Using Access Token**, acepta el código y entra sin error.
 - [ ] Cambiar un precio y verlo en la tienda a los 1–2 minutos.
 - [ ] Subir una foto en Productos y comprobar que se ve (no debe salir rota).
 - [ ] Marcar una camiseta como Agotado y ver el sello en la tienda.

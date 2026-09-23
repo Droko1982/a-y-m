@@ -119,7 +119,10 @@ Cada dueña que vaya a editar necesita:
 > Esto es **fácil**. Pásales estas instrucciones.
 
 1. Abrir **https://droko1982.github.io/a-y-m/admin/**
-2. Clic en **"Sign in with GitHub"** y autorizar (la primera vez).
+2. Clic en **"Sign In Using Access Token"** y pegar el código (la primera vez).
+   Mientras no esté desplegado el Worker de Cloudflare, ese es el único botón
+   que muestra el panel: el de GitHub se oculta porque llevaba a un dominio
+   que todavía no existe.
 3. Elegir la sección en el menú:
    - **Precios** → cambiar el valor de Regular u Oversized → **Save** →
      guardar.
