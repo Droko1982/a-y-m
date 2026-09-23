@@ -47,13 +47,13 @@ collections:
         file: data/pagos.json
         description: "El número o la llave que ve la clienta al elegir cada método de pago. Los datos de la cuenta bancaria son opcionales: mientras estén vacíos, el carrito dice que se coordinan por WhatsApp."
         fields:
-          - { name: nequi, label: "Nequi · número", widget: string, required: false }
+          - { name: nequi, label: "Nequi · número", widget: string, required: false, hint: "Ej: 321 579 9683. Es el número que ve la clienta al elegir Nequi en el carrito." }
           - { name: daviplata, label: "Daviplata · número", widget: string, required: false, hint: "Si es el mismo de Nequi, escríbelo igual." }
           - { name: breb, label: "Bre-B · llave", widget: string, required: false, hint: "La llave exacta: celular, @usuario, correo o cédula." }
           - { name: banco, label: "Transferencia · banco", widget: string, required: false, hint: "Ej: Bancolombia. Déjalo vacío si prefieres pasar los datos por WhatsApp." }
           - { name: tipo_cuenta, label: "Transferencia · tipo de cuenta", widget: string, required: false, hint: "Ej: Ahorros o Corriente." }
-          - { name: numero_cuenta, label: "Transferencia · número de cuenta", widget: string, required: false }
-          - { name: titular, label: "Transferencia · a nombre de", widget: string, required: false }
+          - { name: numero_cuenta, label: "Transferencia · número de cuenta", widget: string, required: false, hint: "Ej: 912-345678-90. Déjalo vacío si prefieres pasar los datos por WhatsApp." }
+          - { name: titular, label: "Transferencia · a nombre de", widget: string, required: false, hint: "El nombre tal como aparece en la cuenta del banco. Ej: Cristina Marín" }
 
   # -------- PRODUCTOS --------
   - name: productos
@@ -89,7 +89,7 @@ collections:
         file: data/impacto.json
         description: "Total de camisetas vendidas. El contador del sitio calcula el dinero apartado para los animalitos."
         fields:
-          - { name: camisetas, label: "Camisetas vendidas (total)", widget: number, value_type: int, min: 0 }
+          - { name: camisetas, label: "Camisetas vendidas (total)", widget: number, value_type: int, min: 0, hint: "Es el TOTAL acumulado desde el principio, no las de esta semana. Si iban en 12 y vendieron 3, se escribe 15." }
           - { name: api, label: "Dirección del contador automático (opcional)", widget: string, required: false, hint: "La URL del Worker de Cloudflare, si ya lo instalaron (ver CONTADOR-MENSAJE-CLIENTAS.md). Vacío = se usa el total escrito arriba." }
 
   # -------- TEXTOS --------
@@ -385,10 +385,10 @@ collections:
       - name: negocio
         label: "Datos legales y redes sociales"
         file: data/negocio.json
-        description: "Arriba: los datos que en la página de políticas aparecen [entre corchetes] (cuando los cuatro estén completos, el aviso de “Plantilla base” desaparece solo). Abajo: las redes sociales, que salen en el pie de la página."
+        description: "Cada campo vacío se ve en la tienda como un hueco [entre corchetes], así que pueden llenarlos poco a poco. Arriba: los datos que en la página de políticas aparecen [entre corchetes] (cuando los cuatro estén completos, el aviso de “Plantilla base” desaparece solo). Abajo: las redes sociales, que salen en el pie de la página."
         fields:
           - { name: razon_social, label: "Razón social o nombre del responsable", widget: string, required: false, hint: "Quien responde por el negocio. Ej: María Pérez o A&M Universe S.A.S." }
-          - { name: identificacion, label: "NIT o cédula", widget: string, required: false }
+          - { name: identificacion, label: "NIT o cédula", widget: string, required: false, hint: "Ej: C.C. 1.094.123.456 · o NIT 901.234.567-8 si hay empresa. Mientras esté vacío, en las políticas se ve [NIT o C.C.]." }
           - { name: dias_envio, label: "Tiempo estimado de envío", widget: string, required: false, hint: "Ej: 2 a 5 días hábiles" }
           - { name: dias_cambio, label: "Plazo para cambios de talla", widget: string, required: false, hint: "Ej: 8 días" }
           - { name: actualizado, label: "Fecha de última actualización", widget: string, required: false, hint: "Ej: marzo de 2027. Si lo dejas vacío queda la fecha actual de la página." }
