@@ -66,8 +66,8 @@ Yo termino de conectar el panel y les paso el enlace. 🐾
 ▶️ *PARA ENTRAR*
 ━━━━━━━━━━━
 1️⃣ Abrir el enlace
-2️⃣ Tocar *Sign in with GitHub*
-3️⃣ Entrar con la cuenta de GitHub de la marca y autorizar
+2️⃣ Tocar *Sign In Using Access Token* (es el único botón que sale)
+3️⃣ Pegar el código que les mandé y tocar *Sign In*
 
 Les recomiendo *guardarlo en favoritos* o dejarlo en la pantalla de inicio del celular, como si fuera una app.
 
