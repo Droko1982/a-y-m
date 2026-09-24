@@ -40,10 +40,10 @@ function pagina(titulo, total) {
 <title>${titulo}</title>
 <style>
   body{margin:0;min-height:100vh;display:grid;place-items:center;text-align:center;
-       font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#12241B;color:#ECE4D3;padding:24px}
+       font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#0D0D0D;color:#ECE3D1;padding:24px}
   .n{font-size:4rem;font-weight:700;color:#CBA968;line-height:1;margin:8px 0}
-  p{color:#A7B7AB;margin:6px 0}
-  .big{font-size:1.3rem;color:#ECE4D3;margin-top:14px}
+  p{color:#A99C86;margin:6px 0}
+  .big{font-size:1.3rem;color:#ECE3D1;margin-top:14px}
 </style></head><body><div>
   <p>${titulo}</p>
   <div class="n">${total.toLocaleString("es-CO")}</div>

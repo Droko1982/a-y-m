@@ -10,3 +10,6 @@ desktop.ini
 # Dependencias / logs
 node_modules/
 *.log
+
+# Intermedios generados por herramientas/generar-logos.js
+assets/marca/logo-og.png

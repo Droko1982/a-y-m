@@ -256,8 +256,8 @@
   };
 
   var WA_MSG = {
-    es: "¡Hola A&M Universe! 🐘 Me encantó su propuesta y quiero más información sobre las camisetas.",
-    en: "Hi A&M Universe! 🐘 I love what you do and I'd like more info about your t-shirts."
+    es: "¡Hola A&M Universe! 🐱 Me encantó su propuesta y quiero más información sobre las camisetas.",
+    en: "Hi A&M Universe! 🐱 I love what you do and I'd like more info about your t-shirts."
   };
 
   var root = document.documentElement;
