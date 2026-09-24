@@ -60,7 +60,10 @@
        de texto (U+2066…U+2069), así que "Sign In with ⁨GitHub⁩" no coincide con
        una búsqueda normal. Aquí se quitan antes de comparar. */
     function limpio(t) {
-      return String(t || "").replace(/[‎‏‪-‮⁦-⁩]/g, "");
+      return String(t || "")
+        .replace(/[\u200E\u200F\u202A-\u202E\u2066-\u2069]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
     }
     function botones() {
       return Array.prototype.slice.call(document.querySelectorAll("button"));
@@ -75,14 +78,26 @@
     function botonGitHub() { return buscar(TEXTO_GITHUB); }
     function botonToken() { return buscar(TEXTO_TOKEN); }
 
-    function pintarAviso() {
-      if (document.getElementById("aym-aviso")) return;
+    function escapar(t) {
+      var d = document.createElement("div");
+      d.textContent = t;
+      return d.innerHTML;
+    }
+
+    function pintarAviso(nombreBoton) {
+      var ya = document.getElementById("aym-aviso");
+      if (ya && ya.dataset.boton === nombreBoton) return;
+      if (ya) ya.remove();
       var d = document.createElement("div");
       d.id = "aym-aviso";
+      d.dataset.boton = nombreBoton;
       d.setAttribute("role", "status");
+      /* El nombre se lee del botón de verdad: Sveltia traduce su interfaz, así
+         que en unos navegadores dice "Sign In Using Access Token" y en otros
+         "Iniciar sesión con un token de acceso". Escribirlo a mano confundía. */
       d.innerHTML =
         '<div class="aym-in">' +
-        '<p>👋 <b>Para entrar, usa el botón de abajo:</b> «Sign In Using Access Token».</p>' +
+        '<p>👋 <b>Para entrar, usa el botón de abajo:</b> «' + escapar(nombreBoton) + '».</p>' +
         '<p class="aym-chico">El otro botón todavía no está conectado, por eso daba el error ' +
         '«Se canceló la autenticación». Si no tienes el código, pídelo por WhatsApp.</p>' +
         '</div>';
@@ -109,7 +124,7 @@
         /* El de token pasa a ser el principal, para que se vea como la opción */
         t.style.minWidth = "16rem";
         t.style.fontWeight = "600";
-        pintarAviso();
+        pintarAviso(limpio(t.textContent));
       } else if (!t) {
         /* Ya no hay pantalla de entrada: se inició sesión */
         quitarAviso();
