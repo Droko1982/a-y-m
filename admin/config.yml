@@ -15,6 +15,9 @@ backend:
 # Idioma del panel
 locale: es
 
+# El logo de la marca en el panel, para que se sienta suyo y no de la herramienta
+logo_url: ../assets/logo-light.png
+
 # Dónde se ven los cambios publicados
 site_url: https://droko1982.github.io/a-y-m/
 display_url: https://droko1982.github.io/a-y-m/
