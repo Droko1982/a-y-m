@@ -8,19 +8,33 @@ Esta guía resume cómo terminar de dejar la tienda lista para vender y cómo ap
 
 ## ✏️ Cómo cambiar cosas rápido
 
+**Casi todo se cambia desde el panel, sin tocar código:**
+👉 https://droko1982.github.io/a-y-m/admin/ · instrucciones en [`PANEL-ADMIN.md`](PANEL-ADMIN.md)
+y enlaces que abren cada sección de una vez en [`ENLACES-DIRECTOS.md`](ENLACES-DIRECTOS.md).
+
 | Quiero cambiar… | Dónde |
 |---|---|
-| **Precios por horma** | `js/cart.js` → objeto `FIT_PRICES` (`regular: 69000`, `oversized: 79000`). Actualiza también el `$69.000`/`$79.000` visible en el selector de horma y los precios de datos estructurados (JSON-LD) en `index.html` |
-| **Métodos de pago** | `js/cart.js` → `NEQUI_DISPLAY` (número Nequi). Las opciones son Nequi, Daviplata, Bre-B, transferencia y contra entrega; se eligen en el carrito |
-| **Contador de impacto** (camisetas vendidas + dinero para animalitos) | Guía completa en [`CONTADOR-IMPACTO.md`](CONTADOR-IMPACTO.md). Aporte por camiseta: `js/impacto.js` → `APORTE_POR_CAMISETA` |
-| **Nombres/descripciones de camisetas** | `js/main.js` → claves `shop.ocean.name`, `shop.ocean.desc`, etc. (ES y EN) |
-| **Número de WhatsApp** | `js/main.js` y `js/cart.js` → variable `WA_NUMBER` (formato `57` + número) |
-| **Logo** | Reemplazar `assets/logo-light.png` y `assets/logo-dark.png` (mismo nombre) |
-| **Fotos de camisetas** | Reemplazar `assets/tee-ocean.svg` … por fotos (`.jpg`) y ajustar la ruta en `index.html` |
+| **Precios** | Panel → *Precios* (los dos precios por horma) y *Productos* (si una camiseta tiene precio propio) |
+| **Textos de la página** (inicio, Océano, Propósito, Impacto, preguntas) | Panel → *Textos* |
+| **Nombres y descripciones de camisetas** | Panel → *Productos* |
+| **Fotos de camisetas** | Panel → *Productos* → campo de la imagen (se suben desde el panel) |
+| **Métodos de pago** (Nequi, Daviplata, Bre-B, cuenta bancaria) | Panel → *Pagos* |
+| **Redes sociales** | Panel → *Datos del negocio* (abajo: Instagram, Facebook, TikTok) |
+| **Datos legales, envíos y cambios** | Panel → *Datos del negocio* (arriba) |
+| **Camisetas vendidas** (contador de impacto) | Panel → *Impacto* |
+
+Lo que todavía pide entrar al código:
+
+| Quiero cambiar… | Dónde |
+|---|---|
+| **El logo** | Reemplazar `assets/marca/logo-original.png` y correr `node herramientas/generar-logos.js` (ver [`README.md`](README.md)) |
+| **El número de WhatsApp** | `js/main.js` y `js/cart.js` → variable `WA_NUMBER` (formato `57` + número, sin espacios) |
+| **Los colores del tema** | `css/styles.css` → bloques `:root` (claro) y `[data-theme="dark"]` (oscuro) |
 | **Fotos de animalitos** | Reemplazar `assets/dogs/dog1.jpg` … `dog4.jpg` |
 | **Testimonios** | `js/main.js` → claves `tst.1.q`, `tst.1.n`, `tst.1.c`, etc. |
-| **% donado / textos** | `js/main.js` (busca la frase) |
-| **Datos legales** | `politicas.html` → reemplazar los campos `[entre corchetes]` |
+| **Aporte por camiseta** (cuánto se dona) | `js/impacto.js` → `APORTE_POR_CAMISETA`; guía en [`CONTADOR-IMPACTO.md`](CONTADOR-IMPACTO.md) |
+| **La dirección del sitio** (dominio propio) | `node herramientas/cambiar-direccion.js` (ver [`MUDANZA-DE-CUENTA.md`](MUDANZA-DE-CUENTA.md)) |
+| **La imagen que se ve al compartir el enlace** | `node herramientas/generar-og.js` |
 
 Tras editar, sube los cambios (git o desde github.com → editar archivo → *Commit*). El sitio se actualiza solo en 1–2 minutos.
 

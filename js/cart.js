@@ -227,7 +227,7 @@
     else payVal = en ? "Cash on delivery" : "Contra entrega";
     var n = count(), msg;
     if (en) {
-      msg = "Hi A&M Universe! 🐘 I'd like to place this order:\n\n" +
+      msg = "Hi A&M Universe! 🐱 I'd like to place this order:\n\n" +
         lines.join("\n") + "\n\n" +
         n + (n === 1 ? " item" : " items") + " · Products total: " + fmt(total()) + "\n" +
         "Shipping: to be arranged by city\n" +
@@ -235,7 +235,7 @@
         "📦 Shipping details\n" +
         "Full name: \nPhone: \nCity & state: \nAddress: ";
     } else {
-      msg = "¡Hola A&M Universe! 🐘 Quiero hacer este pedido:\n\n" +
+      msg = "¡Hola A&M Universe! 🐱 Quiero hacer este pedido:\n\n" +
         lines.join("\n") + "\n\n" +
         n + (n === 1 ? " prenda" : " prendas") + " · Total productos: " + fmt(total()) + "\n" +
         "Envío: a coordinar según tu ciudad\n" +
