@@ -20,20 +20,20 @@
     },
     {
       "id": "stars",
-      "imagen": "assets/tee-stars.svg",
-      "nombre_es": "Camiseta Ballena",
-      "nombre_en": "Whale Tee",
-      "desc_es": "Las ballenas jorobadas que visitan el Pacífico colombiano. Algodón suave, tallas S–XL.",
-      "desc_en": "The humpback whales that visit the Colombian Pacific. Soft cotton, sizes S–XL.",
+      "imagen": "/assets/camiseta 3.jpg",
+      "nombre_es": "Bajo el ruido",
+      "nombre_en": "Beneath the noise",
+      "desc_es": "Un llamado en el océano que nadie logra escuchar. El impacto de la contaminación acústica marina silencia el canto de las ballenas.",
+      "desc_en": "A call in the ocean that goes unheard. The impact of marine noise pollution silences the song of the whales.",
       "disponible": true
     },
     {
-      "id": "origen",
+      "id": "11",
       "imagen": "assets/tee-origen.svg",
-      "nombre_es": "Camiseta Tortuga",
-      "nombre_en": "Turtle Tee",
-      "desc_es": "Las tortugas marinas que anidan en nuestras costas. Algodón suave, tallas S–XL.",
-      "desc_en": "The sea turtles that nest on our coasts. Soft cotton, sizes S–XL.",
+      "nombre_es": "11",
+      "nombre_en": "111",
+      "desc_es": "11",
+      "desc_en": "11",
       "disponible": true
     }
   ]
