@@ -10,12 +10,12 @@
       "disponible": true
     },
     {
-      "id": "animal",
-      "imagen": "assets/tee-animal.svg",
-      "nombre_es": "Camiseta Coral",
-      "nombre_en": "Coral Tee",
-      "desc_es": "Los arrecifes de coral y su color de vida. Algodón suave, tallas S–XL.",
-      "desc_en": "The coral reefs and their living color. Soft cotton, sizes S–XL.",
+      "id": "Marine",
+      "imagen": "/assets/camiseta 2.jpg",
+      "nombre_es": "Alma marina",
+      "nombre_en": "Marine Soul",
+      "desc_es": "Inspirada en la biodiversidad costera y el espíritu del mar, esta camiseta es un homenaje a nuestras especies y ecosistemas.\n100% algodon 280gr",
+      "desc_en": "Inspired by coastal biodiversity and the spirit of the sea, this T-shirt is a tribute to our species and ecosystems.\n100% cotton, 280g.",
       "disponible": true
     },
     {
