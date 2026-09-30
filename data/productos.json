@@ -1,12 +1,12 @@
 {
   "productos": [
     {
-      "id": "ocean",
-      "imagen": "assets/tee-ocean.svg",
-      "nombre_es": "Camiseta Océano",
-      "nombre_en": "Ocean Tee",
-      "desc_es": "Estampado del mar y la vida que lo habita. Algodón suave, tallas S–XL.",
-      "desc_en": "A print of the sea and the life within it. Soft cotton, sizes S–XL.",
+      "id": "origin",
+      "imagen": "/assets/mockup_ig_post_20260929_114704.png",
+      "nombre_es": "Camiseta Origen",
+      "nombre_en": "Origin",
+      "desc_es": "Una ballena, un horizonte y la inmensidad del océano convertidos en una sola historia.",
+      "desc_en": "A whale, a horizon, and the vastness of the ocean transformed into a single story.",
       "disponible": true
     },
     {
