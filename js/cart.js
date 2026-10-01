@@ -33,6 +33,17 @@
   var PHONE_PAY = { nequi: "Nequi", daviplata: "Daviplata", breb: "Bre-B" };
 
   function price(fit) { return FIT_PRICES[fit] || FIT_PRICES.regular; }
+
+  /* API mínima para la ventana de fotos (js/shop.js): agregar al carrito con
+     la horma y la talla elegidas ahí, y leer el precio/horma actuales para
+     mostrarlos. Es la única puerta de entrada al carrito desde fuera. */
+  window.AYM_CART = {
+    add: function (id, fit, size) { add(id, fit, size); },
+    open: function () { open(); },
+    fit: function () { return currentFit; },
+    price: function (fit) { return price(FITS.indexOf(fit) >= 0 ? fit : currentFit); },
+    fmt: function (n) { return fmt(n); }
+  };
   function esc(v) { var d = document.createElement("div"); d.textContent = v == null ? "" : String(v); return d.innerHTML; }
   function limpio(v) { return typeof v === "string" && v.trim() !== "" ? v.trim() : ""; }
   /* ¿Hay datos de cuenta suficientes para mostrarlos en el carrito? */

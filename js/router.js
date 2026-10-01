@@ -6,7 +6,7 @@
 (function () {
   "use strict";
 
-  var VIEWS = ["tienda", "oceano", "proposito", "impacto", "faq", "contacto"];
+  var VIEWS = ["tienda", "essentials", "oceano", "proposito", "impacto", "faq", "contacto"];
   var DEFAULT = "tienda";
   var root = document.documentElement;
 
