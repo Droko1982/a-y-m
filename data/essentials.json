@@ -1,0 +1,40 @@
+{
+  "productos": [
+    {
+      "id": "ess-blanca",
+      "imagen": "assets/tee-origen.svg",
+      "galeria": ["assets/tee-origen.svg", "assets/tee-stars.svg"],
+      "nombre_es": "Esencial Blanca",
+      "nombre_en": "White Essential",
+      "desc_es": "La camiseta básica de todos los días. Algodón suave, tallas S–XL.",
+      "desc_en": "The everyday basic tee. Soft cotton, sizes S–XL.",
+      "desc_larga_es": "Una camiseta básica para usar con todo. Algodón suave y transpirable, sin estampado, pensada para el día a día. Corte unisex, horma Regular u Oversized, tallas S a XL. (Foto de referencia — se reemplaza desde el panel cuando lleguen las fotos reales.)",
+      "desc_larga_en": "A basic tee that goes with everything. Soft, breathable cotton, no print, made for everyday wear. Unisex cut, Regular or Oversized fit, sizes S to XL. (Reference image — replace it from the panel once the real photos are ready.)",
+      "disponible": true
+    },
+    {
+      "id": "ess-negra",
+      "imagen": "assets/tee-animal.svg",
+      "galeria": [],
+      "nombre_es": "Esencial Negra",
+      "nombre_en": "Black Essential",
+      "desc_es": "El básico en negro, para combinar con todo. Algodón suave, tallas S–XL.",
+      "desc_en": "The black basic, pairs with everything. Soft cotton, sizes S–XL.",
+      "desc_larga_es": "El básico en negro, el que nunca falla. Algodón suave y transpirable, sin estampado. Corte unisex, horma Regular u Oversized, tallas S a XL. (Foto de referencia — se reemplaza desde el panel cuando lleguen las fotos reales.)",
+      "desc_larga_en": "The black basic, the one that never fails. Soft, breathable cotton, no print. Unisex cut, Regular or Oversized fit, sizes S to XL. (Reference image — replace it from the panel once the real photos are ready.)",
+      "disponible": true
+    },
+    {
+      "id": "ess-arena",
+      "imagen": "assets/tee-ocean.svg",
+      "galeria": [],
+      "nombre_es": "Esencial Arena",
+      "nombre_en": "Sand Essential",
+      "desc_es": "Un tono tierra, cálido y neutro. Algodón suave, tallas S–XL.",
+      "desc_en": "A warm, neutral earth tone. Soft cotton, sizes S–XL.",
+      "desc_larga_es": "Un tono tierra, cálido y neutro, que acompaña cualquier look. Algodón suave y transpirable, sin estampado. Corte unisex, horma Regular u Oversized, tallas S a XL. (Foto de referencia — se reemplaza desde el panel cuando lleguen las fotos reales.)",
+      "desc_larga_en": "A warm, neutral earth tone that goes with any look. Soft, breathable cotton, no print. Unisex cut, Regular or Oversized fit, sizes S to XL. (Reference image — replace it from the panel once the real photos are ready.)",
+      "disponible": true
+    }
+  ]
+}

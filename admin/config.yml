@@ -75,11 +75,51 @@ collections:
             summary: "{{fields.nombre_es}}"
             fields:
               - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: coral2. No repetir con otro producto." }
-              - { name: imagen, label: "Foto de la camiseta", widget: image, choose_url: false }
+              - { name: imagen, label: "Foto principal", widget: image, choose_url: false }
+              - name: galeria
+                label: "Más fotos (galería)"
+                widget: list
+                required: false
+                field: { name: foto, label: "Foto", widget: image, choose_url: false }
+                hint: "Fotos adicionales que se ven en la ventana al hacer clic en la camiseta. La principal es la de arriba. Puedes agregar varias."
               - { name: nombre_es, label: "Nombre (español)", widget: string }
               - { name: nombre_en, label: "Nombre (inglés)", widget: string }
-              - { name: desc_es, label: "Descripción (español)", widget: text }
-              - { name: desc_en, label: "Descripción (inglés)", widget: text }
+              - { name: desc_es, label: "Descripción corta (español)", widget: text, hint: "La que se ve en la tarjeta de la tienda." }
+              - { name: desc_en, label: "Descripción corta (inglés)", widget: text }
+              - { name: desc_larga_es, label: "Descripción ampliada (español)", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
+              - { name: desc_larga_en, label: "Descripción ampliada (inglés)", widget: text, required: false }
+              - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
+
+  # -------- ESSENTIALS --------
+  - name: essentials
+    label: "Essentials"
+    icon: dry_cleaning
+    files:
+      - name: essentials
+        label: "Línea de básicos"
+        file: data/essentials.json
+        description: "Las camisetas básicas (lisas). Funcionan igual que los Productos: crea, edita, reordena o marca Agotado, sube fotos y escribe descripciones. Aparecen en la pestaña Essentials del pie de la página."
+        fields:
+          - name: productos
+            label: "Básicos"
+            label_singular: "Básico"
+            widget: list
+            summary: "{{fields.nombre_es}}"
+            fields:
+              - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ess-gris. No repetir con otro producto, ni con los de la tienda." }
+              - { name: imagen, label: "Foto principal", widget: image, choose_url: false }
+              - name: galeria
+                label: "Más fotos (galería)"
+                widget: list
+                required: false
+                field: { name: foto, label: "Foto", widget: image, choose_url: false }
+                hint: "Fotos adicionales que se ven en la ventana al hacer clic. La principal es la de arriba."
+              - { name: nombre_es, label: "Nombre (español)", widget: string }
+              - { name: nombre_en, label: "Nombre (inglés)", widget: string }
+              - { name: desc_es, label: "Descripción corta (español)", widget: text, hint: "La que se ve en la tarjeta." }
+              - { name: desc_en, label: "Descripción corta (inglés)", widget: text }
+              - { name: desc_larga_es, label: "Descripción ampliada (español)", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
+              - { name: desc_larga_en, label: "Descripción ampliada (inglés)", widget: text, required: false }
               - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
 
   # -------- IMPACTO --------
