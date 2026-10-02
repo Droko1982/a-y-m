@@ -2,7 +2,7 @@
   "productos": [
     {
       "id": "origin",
-      "imagen": "/assets/camiseta 1.png",
+      "imagen": "/assets/camiseta 1.jpg",
       "nombre_es": "Camiseta Origen",
       "nombre_en": "Origin",
       "desc_es": "Una ballena, un horizonte y la inmensidad del océano convertidos en una sola historia.\n100% algodon 240gr",
