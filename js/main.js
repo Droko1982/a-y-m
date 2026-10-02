@@ -371,7 +371,10 @@
        se aplica cuando el menú actúa como panel lateral (en escritorio la
        barra está siempre visible y no debe marcarse nunca inert). */
     function esPanelLateral() {
-      return window.matchMedia && window.matchMedia("(max-width: 860px)").matches;
+      /* Debe coincidir con el punto de corte del CSS (820px). Antes estaba en
+         860: entre 821 y 860 el menú se marcaba inert sin ser panel lateral, y
+         en esas anchuras la barra de escritorio quedaba sin poder pulsarse. */
+      return window.matchMedia && window.matchMedia("(max-width: 820px)").matches;
     }
     function sincronizaInert() {
       nav.inert = esPanelLateral() && !nav.classList.contains("open");

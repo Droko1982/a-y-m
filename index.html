@@ -336,6 +336,12 @@
         <div class="hero-video" aria-hidden="true">
             <iframe id="oceano-video" data-src="https://www.youtube-nocookie.com/embed/RZD9HX_PMys?autoplay=1&mute=1&controls=0&loop=1&playlist=RZD9HX_PMys&playsinline=1&modestbranding=1&rel=0&disablekb=1&fs=0&enablejsapi=1" title="" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
         </div>
+        <!-- Póster propio: tapa el botón de play de YouTube (feo, centrado) hasta
+             que el video reproduce. Se desvanece solo al empezar. -->
+        <div class="video-poster" id="video-poster" aria-hidden="true"></div>
+        <!-- Capa para tocar el video y que reproduzca o pause. El control
+             accesible (teclado/lectores) es el botón de la esquina. -->
+        <button class="video-click" id="video-click" type="button" tabindex="-1" aria-hidden="true"></button>
         <div class="video-controls">
             <button class="video-toggle" id="sound-toggle" type="button" aria-label="Activar o silenciar el sonido del mar" data-i18n-aria="aria.sound">
                 <span class="vt-icon" aria-hidden="true">🔊</span>
@@ -1005,10 +1011,31 @@
   (function () {
     var frame = document.getElementById("oceano-video");
     if (!frame) return;
-    var player = null, ready = false, soundOn = false, playing = true;
+    /* playing arranca en false: en el móvil el autoplay suele estar bloqueado,
+       así que no damos por hecho que está reproduciendo. El estado real llega
+       por onStateChange, que además decide cuándo se desvanece el póster. */
+    var player = null, ready = false, soundOn = false, playing = false, userPaused = false;
     var sBtn = document.getElementById("sound-toggle");
     var vBtn = document.getElementById("video-toggle");
+    var section = frame.closest(".hero--video");
+    var clickLayer = document.getElementById("video-click");
     function en() { return document.documentElement.getAttribute("lang") === "en"; }
+    /* Fuente de verdad del estado: actualiza la variable, el póster y el botón. */
+    function setPlaying(p) {
+      playing = p;
+      if (section) section.classList.toggle("is-playing", p);
+      setPlayUI();
+    }
+    /* Tocar el video (o el botón de la esquina) reproduce o pausa. */
+    function togglePlay() {
+      activarVideo();
+      var willPlay = !playing;
+      userPaused = !willPlay;   // recordamos si fue la persona quien pausó
+      if (player && ready) { if (willPlay) { player.playVideo(); } else { player.pauseVideo(); } }
+      else { pm(willPlay ? "playVideo" : "pauseVideo"); }
+      /* Reflejo inmediato (póster + botón); onStateChange lo confirma luego. */
+      setPlaying(willPlay);
+    }
     function setSoundUI() {
       if (!sBtn) return;
       sBtn.querySelector(".vt-icon").textContent = soundOn ? "🔇" : "🔊";
@@ -1043,7 +1070,7 @@
     document.addEventListener("aym:viewchange", function (e) {
       if (e.detail === "oceano") {
         activarVideo();
-        if (player && ready && playing) { try { player.playVideo(); } catch (err) {} }
+        if (player && ready && !userPaused) { try { player.playVideo(); } catch (err) {} }
       } else if (player && ready) {
         try { player.pauseVideo(); } catch (err) {}
       }
@@ -1055,7 +1082,16 @@
       try {
         player = new YT.Player("oceano-video", {
           host: "https://www.youtube-nocookie.com",
-          events: { onReady: function () { ready = true; try { player.mute(); player.playVideo(); } catch (e) {} } }
+          events: {
+            onReady: function () { ready = true; try { player.mute(); player.playVideo(); } catch (e) {} },
+            /* El estado real del reproductor manda el póster: solo se desvanece
+               cuando el video está reproduciendo de verdad (1). Al pausar o
+               terminar (2 / 0) el póster vuelve y tapa la pantalla de YouTube. */
+            onStateChange: function (ev) {
+              if (ev.data === 1) setPlaying(true);
+              else if (ev.data === 2 || ev.data === 0) setPlaying(false);
+            }
+          }
         });
       } catch (e) { player = null; }
     };
@@ -1066,7 +1102,7 @@
     if (sBtn) sBtn.addEventListener("click", function () {
       soundOn = !soundOn;
       if (player && ready) {
-        if (soundOn) { player.unMute(); try { player.setVolume(100); } catch (e) {} player.playVideo(); playing = true; setPlayUI(); }
+        if (soundOn) { player.unMute(); try { player.setVolume(100); } catch (e) {} userPaused = false; player.playVideo(); setPlaying(true); }
         else { player.mute(); }
       } else {
         pm(soundOn ? "unMute" : "mute");
@@ -1074,12 +1110,9 @@
       }
       setSoundUI();
     });
-    if (vBtn) vBtn.addEventListener("click", function () {
-      playing = !playing;
-      if (player && ready) { if (playing) { player.playVideo(); } else { player.pauseVideo(); } }
-      else { pm(playing ? "playVideo" : "pauseVideo"); }
-      setPlayUI();
-    });
+    if (vBtn) vBtn.addEventListener("click", togglePlay);
+    /* Tocar el propio video reproduce o pausa (sin el botón feo de YouTube). */
+    if (clickLayer) clickLayer.addEventListener("click", togglePlay);
     /* Mantener las etiquetas correctas al cambiar de idioma */
     document.addEventListener("aym:langchange", function () { setSoundUI(); setPlayUI(); });
   })();
