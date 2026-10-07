@@ -75,13 +75,8 @@ collections:
             summary: "{{fields.nombre_es}}"
             fields:
               - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: coral2. No repetir con otro producto." }
-              - { name: imagen, label: "Foto principal", widget: image, choose_url: false }
-              - name: galeria
-                label: "Más fotos (galería)"
-                widget: list
-                required: false
-                field: { name: foto, label: "Foto", widget: image, choose_url: false }
-                hint: "Fotos adicionales que se ven en la ventana al hacer clic en la camiseta. La principal es la de arriba. Puedes agregar varias."
+              - { name: imagen, label: "Foto principal", widget: image, choose_url: false, hint: "La foto que se ve en la tarjeta de la tienda." }
+              - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Sube una o varias fotos MÁS de esta camiseta (además de la principal). Se ven al hacer clic en la camiseta, en la ventana de fotos. Puedes arrastrar varias a la vez." }
               - { name: nombre_es, label: "Nombre (español)", widget: string }
               - { name: nombre_en, label: "Nombre (inglés)", widget: string }
               - { name: desc_es, label: "Descripción corta (español)", widget: text, hint: "La que se ve en la tarjeta de la tienda." }
@@ -107,13 +102,8 @@ collections:
             summary: "{{fields.nombre_es}}"
             fields:
               - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ess-gris. No repetir con otro producto, ni con los de la tienda." }
-              - { name: imagen, label: "Foto principal", widget: image, choose_url: false }
-              - name: galeria
-                label: "Más fotos (galería)"
-                widget: list
-                required: false
-                field: { name: foto, label: "Foto", widget: image, choose_url: false }
-                hint: "Fotos adicionales que se ven en la ventana al hacer clic. La principal es la de arriba."
+              - { name: imagen, label: "Foto principal", widget: image, choose_url: false, hint: "La foto que se ve en la tarjeta." }
+              - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Sube una o varias fotos MÁS de este básico (además de la principal). Se ven al hacer clic, en la ventana de fotos. Puedes arrastrar varias a la vez." }
               - { name: nombre_es, label: "Nombre (español)", widget: string }
               - { name: nombre_en, label: "Nombre (inglés)", widget: string }
               - { name: desc_es, label: "Descripción corta (español)", widget: text, hint: "La que se ve en la tarjeta." }
