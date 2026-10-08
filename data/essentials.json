@@ -1,9 +1,12 @@
 {
   "productos": [
     {
-      "id": "ess-blanca",
-      "imagen": "assets/tee-origen.svg",
-      "galeria": ["assets/tee-origen.svg", "assets/tee-stars.svg"],
+      "id": "cativity",
+      "imagen": "/assets/purranormal cativity esential..jpg",
+      "galeria": [
+        "/assets/mockup_ig_post_20261001_164214.png",
+        "assets/tee-stars.svg"
+      ],
       "nombre_es": "Esencial Blanca",
       "nombre_en": "White Essential",
       "desc_es": "La camiseta básica de todos los días. Algodón suave, tallas S–XL.",
