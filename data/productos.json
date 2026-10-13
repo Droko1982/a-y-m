@@ -7,6 +7,8 @@
       "nombre_en": "Origin",
       "desc_es": "Una ballena, un horizonte y la inmensidad del océano convertidos en una sola historia.\n100% algodon 240gr",
       "desc_en": "A whale, a horizon, and the vastness of the ocean transformed into a single story.",
+      "desc_larga_es": "",
+      "desc_larga_en": "",
       "disponible": true
     },
     {
@@ -16,6 +18,8 @@
       "nombre_en": "Marine Soul",
       "desc_es": "Inspirada en la biodiversidad costera y el espíritu del mar, esta camiseta es un homenaje a nuestras especies y ecosistemas.\n100% algodon 280gr",
       "desc_en": "Inspired by coastal biodiversity and the spirit of the sea, this T-shirt is a tribute to our species and ecosystems.\n100% cotton, 280g.",
+      "desc_larga_es": "",
+      "desc_larga_en": "",
       "disponible": true
     },
     {
@@ -25,6 +29,8 @@
       "nombre_en": "Beneath the noise",
       "desc_es": "Un llamado en el océano que nadie logra escuchar. El impacto de la contaminación acústica marina silencia el canto de las ballenas.",
       "desc_en": "A call in the ocean that goes unheard. The impact of marine noise pollution silences the song of the whales.",
+      "desc_larga_es": "",
+      "desc_larga_en": "",
       "disponible": true
     },
     {
@@ -34,6 +40,8 @@
       "nombre_en": "111",
       "desc_es": "11",
       "desc_en": "11",
+      "desc_larga_es": "",
+      "desc_larga_en": "",
       "disponible": true
     }
   ]
