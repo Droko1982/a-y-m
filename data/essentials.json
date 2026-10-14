@@ -31,6 +31,10 @@
       "id": "ess-arena",
       "imagen": "assets/tee-ocean.svg",
       "galeria": [],
+      "colores": [
+        { "nombre_es": "Arena", "nombre_en": "Sand", "color": "#D8C3A5", "imagen": "assets/tee-ocean.svg" },
+        { "nombre_es": "Verde", "nombre_en": "Green", "color": "#5A6537", "imagen": "assets/tee-stars.svg", "galeria": ["assets/tee-origen.svg"] }
+      ],
       "nombre_es": "Esencial Arena",
       "nombre_en": "Sand Essential",
       "desc_es": "Un tono tierra, cálido y neutro. Algodón suave, tallas S–XL.",

@@ -50,7 +50,7 @@
      la horma y la talla elegidas ahí, y leer el precio de esa camiseta en la
      horma pedida. Es la única puerta de entrada al carrito desde fuera. */
   window.AYM_CART = {
-    add: function (id, fit, size) { add(id, fit, size); },
+    add: function (id, fit, size, color) { add(id, fit, size, color); },
     open: function () { open(); },
     fit: function () { return currentFit; },
     price: function (id, fit) { return price(id, FITS.indexOf(fit) >= 0 ? fit : currentFit); },
@@ -142,6 +142,7 @@
                  id: i.id,
                  fit: FITS.indexOf(i.fit) >= 0 ? i.fit : "regular",
                  size: SIZES.indexOf(i.size) >= 0 ? i.size : "M",
+                 color: typeof i.color === "string" ? i.color : "",
                  qty: i.qty
                };
              });
@@ -163,22 +164,52 @@
   }
   function count() { return cart.reduce(function (s, i) { return s + i.qty; }, 0); }
   function total() { return cart.reduce(function (s, i) { return s + i.qty * price(i.id, i.fit); }, 0); }
-  function find(id, fit, size) { for (var i = 0; i < cart.length; i++) if (cart[i].id === id && cart[i].fit === fit && cart[i].size === size) return cart[i]; return null; }
+  function mismo(x, id, fit, size, color) {
+    return x.id === id && x.fit === fit && x.size === size && (x.color || "") === (color || "");
+  }
+  function find(id, fit, size, color) { for (var i = 0; i < cart.length; i++) if (mismo(cart[i], id, fit, size, color)) return cart[i]; return null; }
 
-  function add(id, fit, size) {
+  /* Nombre del color según el idioma, a partir de su clave (nombre_es). Si el
+     color ya no existe en el catálogo, se muestra la clave guardada. */
+  function getColorName(id, key) {
+    if (!key) return "";
+    var p = PRODUCTS[id];
+    if (p && Array.isArray(p.colores)) {
+      for (var i = 0; i < p.colores.length; i++) {
+        if (p.colores[i].nombre_es === key) {
+          var c = p.colores[i], nm = lang() === "en" ? (c.nombre_en || c.nombre_es) : (c.nombre_es || c.nombre_en);
+          if (nm) return nm;
+        }
+      }
+    }
+    return key;
+  }
+  /* Foto del color elegido (para la miniatura del carrito). */
+  function getColorImg(id, key) {
+    var p = PRODUCTS[id];
+    if (p && Array.isArray(p.colores) && key) {
+      for (var i = 0; i < p.colores.length; i++) {
+        if (p.colores[i].nombre_es === key && p.colores[i].img) return p.colores[i].img;
+      }
+    }
+    return p && p.img ? p.img : IMG_DEFECTO;
+  }
+
+  function add(id, fit, size, color) {
     if (!PRODUCTS[id]) return;
     if (FITS.indexOf(fit) < 0) fit = "regular";
     if (SIZES.indexOf(size) < 0) size = "M";
-    var it = find(id, fit, size); if (it) it.qty++; else cart.push({ id: id, fit: fit, size: size, qty: 1 });
+    color = color || "";
+    var it = find(id, fit, size, color); if (it) it.qty++; else cart.push({ id: id, fit: fit, size: size, color: color, qty: 1 });
     save(); render(); open();
   }
-  function setQty(id, fit, size, q) {
-    var it = find(id, fit, size); if (!it) return;
+  function setQty(id, fit, size, color, q) {
+    var it = find(id, fit, size, color); if (!it) return;
     it.qty = q;
-    if (it.qty <= 0) cart = cart.filter(function (x) { return !(x.id === id && x.fit === fit && x.size === size); });
+    if (it.qty <= 0) cart = cart.filter(function (x) { return !mismo(x, id, fit, size, color); });
     save(); render();
   }
-  function remove(id, fit, size) { cart = cart.filter(function (x) { return !(x.id === id && x.fit === fit && x.size === size); }); save(); render(); }
+  function remove(id, fit, size, color) { cart = cart.filter(function (x) { return !mismo(x, id, fit, size, color); }); save(); render(); }
 
   /* ---------- Horma ---------- */
   function applyFit() {
@@ -240,7 +271,8 @@
     if (!cart.length) return "https://wa.me/" + WA_NUMBER;
     var en = lang() === "en", tl = en ? "Size" : "Talla";
     var lines = cart.map(function (i) {
-      return "• " + i.qty + "× " + getName(i.id) + " (" + FIT_LABEL[i.fit] + " · " + tl + " " + i.size + ") — " + fmt(i.qty * price(i.id, i.fit));
+      var colName = getColorName(i.id, i.color);
+      return "• " + i.qty + "× " + getName(i.id) + " (" + FIT_LABEL[i.fit] + " · " + tl + " " + i.size + (colName ? " · " + colName : "") + ") — " + fmt(i.qty * price(i.id, i.fit));
     });
     var payVal;
     if (PHONE_PAY[currentPay]) payVal = PHONE_PAY[currentPay] + " (" + PAY_KEY[currentPay] + ")";
@@ -290,15 +322,17 @@
         /* p puede no existir si el catálogo aún no llegó o si falló: se pinta
            igual con una imagen de respaldo en vez de romper todo el carrito. */
         var p = PRODUCTS[i.id] || {}, unit = price(i.id, i.fit);
+        var colName = getColorName(i.id, i.color);
+        var dc = ' data-id="' + esc(i.id) + '" data-fit="' + esc(i.fit) + '" data-size="' + esc(i.size) + '" data-color="' + esc(i.color || "") + '"';
         return '<div class="cart-item">' +
-          '<img src="' + esc(p.img || IMG_DEFECTO) + '" alt="" width="62" height="68">' +
+          '<img src="' + esc(getColorImg(i.id, i.color)) + '" alt="" width="62" height="68">' +
           '<div class="ci-info"><span class="ci-name">' + getName(i.id) + '</span>' +
-          '<span class="ci-price">' + FIT_LABEL[i.fit] + ' · ' + tl + ' ' + i.size + ' · ' + fmt(unit) + '</span>' +
+          '<span class="ci-price">' + FIT_LABEL[i.fit] + ' · ' + tl + ' ' + i.size + (colName ? ' · ' + esc(colName) : '') + ' · ' + fmt(unit) + '</span>' +
           '<div class="ci-qty">' +
-            '<button type="button" data-act="dec" data-id="' + i.id + '" data-fit="' + i.fit + '" data-size="' + i.size + '" aria-label="menos">−</button>' +
+            '<button type="button" data-act="dec"' + dc + ' aria-label="menos">−</button>' +
             '<span class="ci-num">' + i.qty + '</span>' +
-            '<button type="button" data-act="inc" data-id="' + i.id + '" data-fit="' + i.fit + '" data-size="' + i.size + '" aria-label="mas">+</button>' +
-            '<button type="button" class="ci-remove" data-act="rm" data-id="' + i.id + '" data-fit="' + i.fit + '" data-size="' + i.size + '">' + rm + '</button>' +
+            '<button type="button" data-act="inc"' + dc + ' aria-label="mas">+</button>' +
+            '<button type="button" class="ci-remove" data-act="rm"' + dc + '>' + rm + '</button>' +
           '</div></div>' +
           '<span class="ci-line">' + fmt(i.qty * unit) + '</span>' +
         '</div>';
@@ -379,12 +413,14 @@
       grp.querySelectorAll(".size-pill").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
       pill.classList.add("is-active"); pill.setAttribute("aria-pressed", "true");
     });
-    // agregar al carrito (delegado; usa la horma activa)
+    // agregar al carrito (delegado; usa la horma activa, la talla y el color
+    // marcados en la tarjeta)
     document.addEventListener("click", function (e) {
       var b = e.target.closest(".btn-add[data-product]"); if (!b) return;
       var art = b.closest(".product");
       var active = art ? art.querySelector(".size-pill.is-active") : null;
-      add(b.getAttribute("data-product"), currentFit, active ? active.getAttribute("data-size") : "M");
+      var sw = art ? art.querySelector(".color-swatch.is-active") : null;
+      add(b.getAttribute("data-product"), currentFit, active ? active.getAttribute("data-size") : "M", sw ? sw.getAttribute("data-color") : "");
     });
 
     // selector de pago
@@ -403,10 +439,10 @@
     var items = document.getElementById("cart-items");
     if (items) items.addEventListener("click", function (e) {
       var btn = e.target.closest("button[data-act]"); if (!btn) return;
-      var id = btn.getAttribute("data-id"), fit = btn.getAttribute("data-fit"), size = btn.getAttribute("data-size"), act = btn.getAttribute("data-act"), it = find(id, fit, size);
-      if (act === "inc") setQty(id, fit, size, (it ? it.qty : 0) + 1);
-      else if (act === "dec") setQty(id, fit, size, (it ? it.qty : 0) - 1);
-      else if (act === "rm") remove(id, fit, size);
+      var id = btn.getAttribute("data-id"), fit = btn.getAttribute("data-fit"), size = btn.getAttribute("data-size"), color = btn.getAttribute("data-color") || "", act = btn.getAttribute("data-act"), it = find(id, fit, size, color);
+      if (act === "inc") setQty(id, fit, size, color, (it ? it.qty : 0) + 1);
+      else if (act === "dec") setQty(id, fit, size, color, (it ? it.qty : 0) - 1);
+      else if (act === "rm") remove(id, fit, size, color);
     });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
     render();

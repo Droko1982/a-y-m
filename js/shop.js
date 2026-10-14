@@ -45,13 +45,43 @@
     return isFinite(n) && n >= 1000 ? n : 0;
   }
 
-  /* Lista de fotos de un producto: la principal + la galería, sin repetidas. */
-  function fotos(p) {
-    var lista = [ruta(p.imagen)];
-    if (Array.isArray(p.galeria)) p.galeria.forEach(function (g) { lista.push(ruta(g)); });
+  /* Lista de fotos (rutas, sin repetidas) a partir de una imagen principal y
+     una galería opcional. */
+  function listaFotos(imagen, galeria) {
+    var lista = [ruta(imagen)];
+    if (Array.isArray(galeria)) galeria.forEach(function (g) { lista.push(ruta(g)); });
     var vistas = {}, out = [];
     lista.forEach(function (f) { if (f && !vistas[f]) { vistas[f] = 1; out.push(f); } });
+    return out;
+  }
+  /* Fotos por defecto del producto (sin color elegido). */
+  function fotos(p) {
+    var out = listaFotos(p.imagen, p.galeria);
     return out.length ? out : [IMG_DEFECTO];
+  }
+
+  /* Colores de un producto, cada uno con su propia foto. [] si no tiene.
+     Un color sin foto se descarta: la idea es "cada color con su foto". */
+  function coloresDe(p) {
+    if (!Array.isArray(p.colores)) return [];
+    return p.colores
+      .map(function (c) {
+        if (!c) return null;
+        return {
+          nombre_es: (c.nombre_es || c.nombre_en || "").trim(),
+          nombre_en: (c.nombre_en || c.nombre_es || "").trim(),
+          hex: typeof c.color === "string" ? c.color.trim() : "",
+          imgs: listaFotos(c.imagen, c.galeria)
+        };
+      })
+      .filter(function (c) { return c && c.imgs.length && (c.nombre_es || c.nombre_en); });
+  }
+  function nombreColor(c, en) { return en ? (c.nombre_en || c.nombre_es) : (c.nombre_es || c.nombre_en); }
+  /* El cuadrito del color: el hex si lo pusieron, si no una miniatura de su foto. */
+  function swatchHTML(c) {
+    return c.hex
+      ? '<span class="color-dot" style="background:' + esc(c.hex) + '"></span>'
+      : '<span class="color-dot"><img src="' + esc(c.imgs[0]) + '" alt=""></span>';
   }
 
   /* Estado: lo que llegó de cada archivo, y el catálogo combinado */
@@ -62,8 +92,22 @@
     var en = lang() === "en";
     var nombre = pick(p, "nombre"), desc = pick(p, "desc");
     var soldout = p.disponible === false;
-    var imgs = fotos(p);
+    var cols = coloresDe(p);
+    /* Con colores: la tarjeta arranca en el primer color (su foto). Sin
+       colores: la foto principal de siempre. */
+    var imgs = cols.length ? cols[0].imgs : fotos(p);
     var hayGaleria = imgs.length > 1;
+    var swatches = cols.length
+      ? '<div class="product-colors" role="group" aria-label="' + (en ? "Color" : "Color") + '">' +
+          cols.map(function (c, k) {
+            var nm = nombreColor(c, en);
+            return '<button type="button" class="color-swatch' + (k === 0 ? " is-active" : "") +
+              '" data-color="' + esc(c.nombre_es) + '" data-img="' + esc(c.imgs[0]) +
+              '" title="' + esc(nm) + '" aria-label="' + esc(nm) +
+              '" aria-pressed="' + (k === 0 ? "true" : "false") + '">' + swatchHTML(c) + '</button>';
+          }).join("") +
+        '</div>'
+      : "";
     var tag = soldout
       ? '<span class="tag">' + (en ? "Sold out" : "Agotado") + '</span>'
       : '<span class="tag tag-live">' + (en ? "Available" : "Disponible") + '</span>';
@@ -90,6 +134,7 @@
       tag +
       '<h3 class="product-name">' + esc(nombre) + '</h3>' +
       '<p class="product-desc">' + esc(desc) + '</p>' +
+      swatches +
       '<div class="product-sizes" role="group" aria-label="Talla / Size">' +
         '<span class="size-label">' + (en ? "Size" : "Talla") + '</span>' + sizes +
       '</div>' +
@@ -133,15 +178,19 @@
        nombrar bien también las agotadas y las creadas en el panel. */
     var map = {};
     todos.forEach(function (p) {
+      var cols = coloresDe(p);
       map[p.id] = {
-        img: fotos(p)[0],
+        img: cols.length ? cols[0].imgs[0] : fotos(p)[0],
         nombre_es: p.nombre_es || "",
         nombre_en: p.nombre_en || "",
         disponible: p.disponible !== false,
         /* Precio propio de la camiseta (si lo pusieron en el panel). El carrito
            lo usa; si está vacío, usa el precio general. */
         precio_regular: p.precio_regular,
-        precio_oversized: p.precio_oversized
+        precio_oversized: p.precio_oversized,
+        /* Colores: el carrito resuelve el nombre (según idioma) y la foto de
+           cada color a partir de su clave (nombre_es). */
+        colores: cols.map(function (c) { return { nombre_es: c.nombre_es, nombre_en: c.nombre_en, img: c.imgs[0] }; })
       };
     });
     window.AYM_PRODUCTS = map;
@@ -229,6 +278,8 @@
       if (next) return mover(1);
       var th = t.closest(".pv-thumb");
       if (th) { pvActual.idx = parseInt(th.getAttribute("data-i"), 10) || 0; pintarFoto(); return; }
+      var col = t.closest(".pv-color");
+      if (col) { elegirColor(parseInt(col.getAttribute("data-i"), 10) || 0); return; }
       var fit = t.closest(".pv-fit-btn");
       if (fit) { elegirFit(fit.getAttribute("data-fit")); return; }
       var sz = t.closest(".pv-size");
@@ -274,6 +325,42 @@
     return "$" + Number(n || 0).toLocaleString("es-CO");
   }
 
+  /* HTML de la galería (foto grande + flechas + miniaturas) para una lista
+     de fotos. Se usa al abrir y al cambiar de color. */
+  function galeriaHTML(imgs, en) {
+    var nav = imgs.length > 1
+      ? '<button type="button" class="pv-nav pv-prev" aria-label="' + (en ? "Previous photo" : "Foto anterior") + '"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' +
+        '<button type="button" class="pv-nav pv-next" aria-label="' + (en ? "Next photo" : "Siguiente foto") + '"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' +
+        '<span class="pv-count"></span>'
+      : "";
+    var thumbs = imgs.length > 1
+      ? '<div class="pv-thumbs">' + imgs.map(function (src, k) {
+          return '<button type="button" class="pv-thumb" data-i="' + k + '" aria-label="' +
+            (en ? "Photo " : "Foto ") + (k + 1) + '"><img src="' + esc(src) + '" alt="" loading="lazy"></button>';
+        }).join("") + '</div>'
+      : "";
+    return '<div class="pv-main">' + nav + '<img src="' + esc(imgs[0]) + '" alt=""></div>' + thumbs;
+  }
+  function pintarGaleria() {
+    var g = PV.querySelector(".pv-gallery");
+    if (g) g.innerHTML = galeriaHTML(pvActual.imgs, lang() === "en");
+    pintarFoto();
+  }
+  /* Elegir un color en la ventana: cambia las fotos a las de ese color. */
+  function elegirColor(idx) {
+    if (!pvActual || !pvActual.cols || !pvActual.cols[idx]) return;
+    pvActual.colorIdx = idx;
+    pvActual.color = pvActual.cols[idx].nombre_es;
+    pvActual.imgs = pvActual.cols[idx].imgs;
+    pvActual.idx = 0;
+    PV.querySelectorAll(".pv-color").forEach(function (b, k) {
+      var on = k === idx;
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    pintarGaleria();
+  }
+
   function pintarFoto() {
     var imgs = pvActual.imgs, i = pvActual.idx;
     var main = PV.querySelector(".pv-main img");
@@ -304,7 +391,7 @@
     if (pr) pr.textContent = fmt(precioFit(fit));
   }
 
-  function abrirVentana(id) {
+  function abrirVentana(id, colorKey) {
     var p = CATALOGO[id];
     if (!p) return;
     construirVentana();
@@ -314,19 +401,23 @@
     var desc = (en
       ? (p.desc_larga_en || p.desc_larga_es || p.desc_en || p.desc_es)
       : (p.desc_larga_es || p.desc_larga_en || p.desc_es || p.desc_en)) || "";
-    var imgs = fotos(p);
+    var cols = coloresDe(p);
+    var colorIdx = 0;
+    if (colorKey && cols.length) {
+      for (var ci = 0; ci < cols.length; ci++) { if (cols[ci].nombre_es === colorKey) { colorIdx = ci; break; } }
+    }
+    var imgs = cols.length ? cols[colorIdx].imgs : fotos(p);
     var fitInicial = (window.AYM_CART && typeof window.AYM_CART.fit === "function") ? window.AYM_CART.fit() : "regular";
-    pvActual = { id: id, imgs: imgs, idx: 0, fit: fitInicial };
+    pvActual = { id: id, cols: cols, colorIdx: colorIdx, color: cols.length ? cols[colorIdx].nombre_es : "", imgs: imgs, idx: 0, fit: fitInicial };
 
-    var thumbs = imgs.length > 1 ? imgs.map(function (src, k) {
-      return '<button type="button" class="pv-thumb" data-i="' + k + '" aria-label="' +
-        (en ? "Photo " : "Foto ") + (k + 1) + '"><img src="' + esc(src) + '" alt="" loading="lazy"></button>';
+    var colorBtns = cols.length ? cols.map(function (c, k) {
+      var nm = nombreColor(c, en);
+      return '<button type="button" class="pv-color' + (k === colorIdx ? " is-active" : "") + '" data-i="' + k +
+        '" title="' + esc(nm) + '" aria-label="' + esc(nm) + '" aria-pressed="' + (k === colorIdx ? "true" : "false") + '">' + swatchHTML(c) + '</button>';
     }).join("") : "";
-
-    var nav = imgs.length > 1
-      ? '<button type="button" class="pv-nav pv-prev" aria-label="' + (en ? "Previous photo" : "Foto anterior") + '"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>' +
-        '<button type="button" class="pv-nav pv-next" aria-label="' + (en ? "Next photo" : "Siguiente foto") + '"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>' +
-        '<span class="pv-count"></span>'
+    var colorOpt = cols.length
+      ? '<div class="pv-opt"><span class="pv-opt-label">' + (en ? "Color" : "Color") + '</span>' +
+          '<div class="pv-colors" role="group" aria-label="' + (en ? "Color" : "Color") + '">' + colorBtns + '</div></div>'
       : "";
 
     var tag = soldout
@@ -353,15 +444,13 @@
       '<button type="button" class="pv-close" aria-label="' + (en ? "Close" : "Cerrar") + '">' +
         '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
       '</button>' +
-      '<div class="pv-gallery">' +
-        '<div class="pv-main">' + nav + '<img src="' + esc(imgs[0]) + '" alt="' + esc(nombre) + '"></div>' +
-        (thumbs ? '<div class="pv-thumbs">' + thumbs + '</div>' : '') +
-      '</div>' +
+      '<div class="pv-gallery">' + galeriaHTML(imgs, en) + '</div>' +
       '<div class="pv-info">' +
         tag +
         '<h3 class="pv-title" id="pv-name">' + esc(nombre) + '</h3>' +
         '<p class="pv-desc">' + esc(desc) + '</p>' +
         '<div class="pv-opts">' +
+          colorOpt +
           '<div class="pv-opt"><span class="pv-opt-label">' + (en ? "Fit" : "Horma") + '</span>' +
             '<div class="pv-fit" role="group" aria-label="' + (en ? "Fit" : "Horma") + '">' + fitBtns + '</div></div>' +
           '<div class="pv-opt"><span class="pv-opt-label">' + (en ? "Size" : "Talla") + '</span>' +
@@ -405,18 +494,36 @@
     var id = pvActual.id;
     var size = szEl ? szEl.getAttribute("data-size") : DEFAULT_SIZE;
     var fit = pvActual.fit || "regular";
+    var color = pvActual.color || "";
     cerrarVentana();
     if (id && window.AYM_CART && typeof window.AYM_CART.add === "function") {
-      window.AYM_CART.add(id, fit, size);
+      window.AYM_CART.add(id, fit, size, color);
     }
   }
 
-  /* Un clic en la foto de cualquier producto abre su ventana. */
+  /* Un clic en la foto de cualquier producto abre su ventana. Si en la tarjeta
+     hay un color elegido, la ventana abre en ese color. */
   document.addEventListener("click", function (e) {
     var t = e.target.closest(".pv-trigger[data-open]");
     if (!t) return;
     e.preventDefault();
-    abrirVentana(t.getAttribute("data-open"));
+    var art = t.closest(".product");
+    var sw = art ? art.querySelector(".color-swatch.is-active") : null;
+    abrirVentana(t.getAttribute("data-open"), sw ? sw.getAttribute("data-color") : null);
+  });
+
+  /* Elegir un color en la TARJETA: cambia su foto y deja ese color marcado
+     (el botón Agregar lo lee del color activo de la tarjeta). */
+  document.addEventListener("click", function (e) {
+    var sw = e.target.closest(".color-swatch[data-color]");
+    if (!sw) return;
+    var grp = sw.closest(".product-colors"); if (!grp) return;
+    grp.querySelectorAll(".color-swatch").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
+    sw.classList.add("is-active"); sw.setAttribute("aria-pressed", "true");
+    var art = sw.closest(".product");
+    var img = art ? art.querySelector(".product-media img") : null;
+    var nueva = sw.getAttribute("data-img");
+    if (img && nueva) img.setAttribute("src", nueva);
   });
 
   /* =======================================================

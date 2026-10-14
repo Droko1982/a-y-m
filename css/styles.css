@@ -1443,3 +1443,21 @@ body.pv-open { overflow: hidden; }
    en los propios controles (no al tocar el video, que también toma el foco). */
 .hero--video.is-playing:hover .video-controls,
 .hero--video.is-playing .video-controls:focus-within { opacity: 1; pointer-events: auto; }
+
+/* =========================================================
+   Cuadritos de color (tarjeta de producto y ventana de fotos)
+   ========================================================= */
+.product-colors { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.color-swatch, .pv-color {
+    width: 28px; height: 28px; padding: 2px; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 50%; background: var(--surface);
+    display: inline-grid; place-items: center; overflow: hidden;
+    transition: border-color .2s, box-shadow .2s;
+}
+.color-swatch:hover, .pv-color:hover { border-color: var(--accent); }
+.color-swatch.is-active, .pv-color.is-active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.color-swatch:focus-visible, .pv-color:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.color-dot { width: 100%; height: 100%; border-radius: 50%; display: block; overflow: hidden; background-size: cover; background-position: center; }
+.color-dot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pv-colors { display: inline-flex; flex-wrap: wrap; gap: 8px; }
+.pv-color { width: 30px; height: 30px; }
