@@ -1416,3 +1416,30 @@ body.pv-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
     .pv-modal, .pv-scrim { transition: opacity .01ms; }
 }
+
+/* =========================================================
+   Océano · enlaces de datos (debajo del título) + video limpio
+   ========================================================= */
+.ocean-stats-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 2px 0 14px; }
+.ocean-stat-link {
+    display: inline-flex; align-items: baseline; gap: 7px;
+    padding: 7px 15px; border: 1px solid var(--line); border-radius: 999px;
+    background: var(--surface); color: var(--text-soft); text-decoration: none;
+    font-size: .82rem; line-height: 1;
+    transition: border-color .2s, color .2s, transform .2s;
+}
+.ocean-stat-link strong { font-family: 'Fraunces', serif; color: var(--accent); font-size: 1rem; font-weight: 600; }
+.ocean-stat-link .osl-arrow { opacity: .45; transition: transform .2s, opacity .2s; }
+.ocean-stat-link:hover { border-color: var(--accent); color: var(--text); transform: translateY(-1px); }
+.ocean-stat-link:hover .osl-arrow { transform: translateX(3px); opacity: .85; }
+/* Para que el ancla no quede tapada por el encabezado fijo al saltar */
+.oc-anchor { scroll-margin-top: 92px; }
+
+/* Controles del video: se ocultan mientras el video reproduce (quedan limpios);
+   vuelven al pausar, al pasar el cursor o al enfocar con el teclado. */
+.video-controls { transition: opacity .4s ease; }
+.hero--video.is-playing .video-controls { opacity: 0; pointer-events: none; }
+/* Vuelven al pasar el cursor por el video, o cuando el foco del teclado entra
+   en los propios controles (no al tocar el video, que también toma el foco). */
+.hero--video.is-playing:hover .video-controls,
+.hero--video.is-playing .video-controls:focus-within { opacity: 1; pointer-events: auto; }

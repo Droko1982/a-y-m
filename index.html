@@ -419,7 +419,7 @@
                     <div class="cc-body">
                         <span class="tag" data-i18n="portal.felina.tag">Próximamente · en desarrollo</span>
                         <h3 data-i18n="portal.felina.name">Felina</h3>
-                        <p data-i18n="portal.felina.desc">Un universo de miradas, instintos y personalidades en construcción. Escríbenos y te avisamos cuando salga.</p>
+                        <p data-i18n="portal.felina.desc">Un universo de miradas, instintos y personalidades en construcción.</p>
                         <span class="link-arrow" data-i18n="portal.felina.cta">Quiero enterarme →</span>
                     </div>
                 </a>
@@ -435,16 +435,11 @@
                 <h1 class="section-title" data-i18n="purpose.title">Vestir con conciencia, dejar huella</h1>
                 <p class="section-lead" data-i18n="purpose.lead">A&M Universe nace de una idea sencilla: que lo que usas también pueda hacer el bien. Creamos camisetas estampadas que cuentan historias sobre la naturaleza y los animales que amamos, y con cada una ayudamos a quienes más lo necesitan.</p>
             </div>
-            <div class="cards-4">
+            <div class="cards-3">
                 <article class="card-purpose">
                     <span class="card-ico" aria-hidden="true">🐕</span>
                     <h3 data-i18n="purpose.c1.t">Animales de la calle</h3>
                     <p data-i18n="purpose.c1.d">Destinamos parte de cada venta a fundaciones y a los animalitos de la calle que buscan una segunda oportunidad.</p>
-                </article>
-                <article class="card-purpose">
-                    <span class="card-ico" aria-hidden="true">🏡</span>
-                    <h3 data-i18n="purpose.c2.t">Adopción</h3>
-                    <p data-i18n="purpose.c2.d">Impulsamos la adopción de animales sin hogar y visibilizamos a los que están buscando una familia.</p>
                 </article>
                 <article class="card-purpose">
                     <span class="card-ico" aria-hidden="true">🌱</span>
@@ -471,11 +466,9 @@
             <div class="fit-toggle" id="fit-toggle" role="group" aria-label="Horma / Fit">
                 <button type="button" class="fit-btn is-active" data-fit="regular" aria-pressed="true">
                     <span class="fit-name" data-i18n="fit.regular">Regular fit</span>
-                    <span class="fit-price">$69.000</span>
                 </button>
                 <button type="button" class="fit-btn" data-fit="oversized" aria-pressed="false">
                     <span class="fit-name" data-i18n="fit.oversized">Oversized</span>
-                    <span class="fit-price">$79.000</span>
                 </button>
             </div>
             <div class="shop-grid" id="shop-grid">
@@ -659,16 +652,21 @@
                 <p class="eyebrow" data-i18n="ocn.s1.eyebrow">La historia de esta colección</p>
                 <h2 class="section-title" data-i18n="ocn.s1.title">Un mundo entero bajo la superficie</h2>
             </div>
+            <nav class="ocean-stats-links" aria-label="Datos del océano">
+                <a class="ocean-stat-link" href="#oc-coral"><strong data-i18n="ocn.stat1.num">84,4%</strong> <span data-i18n="ocn.link1">coral blanqueado</span> <span class="osl-arrow" aria-hidden="true">→</span></a>
+                <a class="ocean-stat-link" href="#oc-esperanza"><strong data-i18n="ocn.stat2.num">30%</strong> <span data-i18n="ocn.link2">meta 2030</span> <span class="osl-arrow" aria-hidden="true">→</span></a>
+                <a class="ocean-stat-link" href="#oc-ballenas"><strong data-i18n="ocn.stat3.num">8.500 km</strong> <span data-i18n="ocn.link3">las ballenas</span> <span class="osl-arrow" aria-hidden="true">→</span></a>
+            </nav>
             <div class="ocean-prose">
                 <p data-i18n="ocn.s1.p1">El océano cubre cerca de tres cuartas partes de nuestro planeta y es hogar de una enorme diversidad de vida. Sin embargo, todavía conocemos muy poco de este universo.</p>
                 <p data-i18n="ocn.s1.p2">Una de sus habitantes más amenazadas es la tortuga carey (<em>Eretmochelys imbricata</em>), clasificada como En Peligro Crítico por la UICN (Unión Internacional para la Conservación de la Naturaleza). La pérdida de hábitat, la captura, la contaminación y el comercio ilegal de su caparazón se encuentran entre las amenazas que enfrenta.</p>
-                <p data-i18n="ocn.s1.p3">Y no solo sus habitantes están en riesgo. Los arrecifes de coral también enfrentan una amenaza creciente: el blanqueamiento coralino que ocurre por el calentamiento del mar. Cuando el agua permanece demasiado caliente, los corales expulsan las microalgas que viven en sus tejidos y que proporcionan gran parte de su color y energía. Si el estrés térmico persiste, pueden enfermar o morir. El evento global de blanqueamiento coralino entre 2023 y 2025 fue registrado y documentado por la NOAA (Administración Nacional Oceánica y Atmosférica de Estados Unidos), convirtiéndose en el episodio más extenso observado hasta la fecha, afectando aproximadamente al <strong>84,4 % de los arrecifes de coral del mundo</strong>.</p>
+                <p id="oc-coral" class="oc-anchor" data-i18n="ocn.s1.p3">Y no solo sus habitantes están en riesgo. Los arrecifes de coral también enfrentan una amenaza creciente: el blanqueamiento coralino que ocurre por el calentamiento del mar. Cuando el agua permanece demasiado caliente, los corales expulsan las microalgas que viven en sus tejidos y que proporcionan gran parte de su color y energía. Si el estrés térmico persiste, pueden enfermar o morir. El evento global de blanqueamiento coralino entre 2023 y 2025 fue registrado y documentado por la NOAA (Administración Nacional Oceánica y Atmosférica de Estados Unidos), convirtiéndose en el episodio más extenso observado hasta la fecha, afectando aproximadamente al <strong>84,4 % de los arrecifes de coral del mundo</strong>.</p>
             </div>
         </div>
     </section>
 
     <!-- Océano · Pero todavía hay esperanza -->
-    <section class="section" data-view="oceano">
+    <section class="section oc-anchor" id="oc-esperanza" data-view="oceano">
         <div class="container">
             <div class="section-head center">
                 <p class="eyebrow" data-i18n="ocn.s2.eyebrow">Buenas noticias</p>
@@ -676,11 +674,6 @@
             </div>
             <div class="ocean-prose">
                 <p data-i18n="ocn.s2.p1">La conservación funciona. Proteger ecosistemas, restaurar áreas degradadas y reducir las presiones sobre el océano puede ayudar a que la vida marina se recupere. A nivel mundial, existe el objetivo de conservar y gestionar eficazmente al menos el <strong>30 % de los océanos y zonas costeras para 2030</strong>.</p>
-            </div>
-            <div class="ocean-stats">
-                <div class="ocean-stat"><span class="os-num" data-i18n="ocn.stat1.num">84,4%</span><span class="os-label" data-i18n="ocn.stat1">de los arrecifes de coral del mundo afectados por el blanqueamiento (2023–2025)</span></div>
-                <div class="ocean-stat"><span class="os-num" data-i18n="ocn.stat2.num">30%</span><span class="os-label" data-i18n="ocn.stat2">de los océanos y zonas costeras: la meta global de conservación para 2030</span></div>
-                <div class="ocean-stat"><span class="os-num" data-i18n="ocn.stat3.num">8.500 km</span><span class="os-label" data-i18n="ocn.stat3">recorren las ballenas jorobadas desde la Antártida hasta el Pacífico colombiano</span></div>
             </div>
         </div>
     </section>
@@ -719,7 +712,7 @@
     </section>
 
     <!-- Océano · Dato curioso: las ballenas -->
-    <section class="section ocean-curio" data-view="oceano">
+    <section class="section ocean-curio oc-anchor" id="oc-ballenas" data-view="oceano">
         <div class="container">
             <div class="section-head center">
                 <p class="eyebrow" data-i18n="ocn.cur.eyebrow">Dato curioso</p>

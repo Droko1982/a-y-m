@@ -37,6 +37,14 @@
      estructurados, que siguen siendo correctos si la tienda cambia de dirección). */
   var SITIO = location.origin + location.pathname.replace(/[^/]*$/, "");
 
+  /* Un precio del panel (puede venir como número o como "59.000"); 0 si no es
+     válido. Igual criterio que el carrito: mínimo 1.000. */
+  function numPrecio(v) {
+    var n = typeof v === "number" ? Math.round(v)
+          : parseInt(String(v == null ? "" : v).replace(/[^\d]/g, ""), 10);
+    return isFinite(n) && n >= 1000 ? n : 0;
+  }
+
   /* Lista de fotos de un producto: la principal + la galería, sin repetidas. */
   function fotos(p) {
     var lista = [ruta(p.imagen)];
@@ -129,7 +137,11 @@
         img: fotos(p)[0],
         nombre_es: p.nombre_es || "",
         nombre_en: p.nombre_en || "",
-        disponible: p.disponible !== false
+        disponible: p.disponible !== false,
+        /* Precio propio de la camiseta (si lo pusieron en el panel). El carrito
+           lo usa; si está vacío, usa el precio general. */
+        precio_regular: p.precio_regular,
+        precio_oversized: p.precio_oversized
       };
     });
     window.AYM_PRODUCTS = map;
@@ -153,6 +165,9 @@
         "itemListElement": valid.map(function (p, i) {
           var nombre = (p.nombre_es || p.nombre_en || "").trim();
           var desc = (p.desc_larga_es || p.desc_es || p.desc_larga_en || p.desc_en || "").trim();
+          /* Precio propio de la camiseta si lo tiene; si no, el general. */
+          var bajoP = numPrecio(p.precio_regular) || bajo;
+          var altoP = numPrecio(p.precio_oversized) || alto;
           return {
             "@type": "ListItem",
             "position": i + 1,
@@ -164,8 +179,8 @@
               "brand": { "@type": "Brand", "name": "A&M Universe" },
               "offers": {
                 "@type": "AggregateOffer",
-                "lowPrice": String(Math.min(bajo, alto)),
-                "highPrice": String(Math.max(bajo, alto)),
+                "lowPrice": String(Math.min(bajoP, altoP)),
+                "highPrice": String(Math.max(bajoP, altoP)),
                 "offerCount": "2",
                 "priceCurrency": "COP",
                 "availability": p.disponible === false
@@ -245,7 +260,12 @@
   }
 
   function precioFit(fit) {
-    if (window.AYM_CART && typeof window.AYM_CART.price === "function") return window.AYM_CART.price(fit);
+    var id = pvActual ? pvActual.id : null;
+    if (window.AYM_CART && typeof window.AYM_CART.price === "function") return window.AYM_CART.price(id, fit);
+    /* Respaldo si el carrito aún no cargó: precio propio del producto o el general */
+    var p = id ? CATALOGO[id] : null;
+    var propio = p ? numPrecio(fit === "oversized" ? p.precio_oversized : p.precio_regular) : 0;
+    if (propio > 0) return propio;
     var cfg = window.AYM_PRECIOS || {};
     return fit === "oversized" ? (Number(cfg.precio_oversized) || 79000) : (Number(cfg.precio_regular) || 69000);
   }
