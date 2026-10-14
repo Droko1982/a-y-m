@@ -77,6 +77,19 @@ collections:
               - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: coral2. No repetir con otro producto." }
               - { name: imagen, label: "Foto principal", widget: image, choose_url: false, hint: "La foto que se ve en la tarjeta de la tienda." }
               - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Sube una o varias fotos MÁS de esta camiseta (además de la principal). Se ven al hacer clic en la camiseta, en la ventana de fotos. Puedes arrastrar varias a la vez." }
+              - name: colores
+                label: "Colores (cada uno con su foto) — opcional"
+                widget: list
+                required: false
+                label_singular: "Color"
+                summary: "{{fields.nombre_es}}"
+                hint: "Si esta prenda viene en varios colores del MISMO estampado, agrega cada color con su foto. En la tienda salen cuadritos para elegir y la foto cambia según el color. El color elegido va en el pedido."
+                fields:
+                  - { name: nombre_es, label: "Nombre del color (español)", widget: string }
+                  - { name: nombre_en, label: "Nombre del color (inglés)", widget: string, required: false }
+                  - { name: color, label: "Cuadrito de color", widget: color, required: false, hint: "El color del círculo que se toca para elegir. Si lo dejas vacío, se usa una miniatura de la foto." }
+                  - { name: imagen, label: "Foto de este color", widget: image, choose_url: false }
+                  - { name: galeria, label: "Más fotos de este color", widget: image, required: false, multiple: true, choose_url: false }
               - { name: nombre_es, label: "Nombre (español)", widget: string }
               - { name: nombre_en, label: "Nombre (inglés)", widget: string }
               - { name: precio_regular, label: "Precio Regular fit (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Regular fit. Si lo dejas vacío, usa el precio general de la sección Precios. (Puedes escribir 59000 o 59.000.)" }
@@ -106,6 +119,19 @@ collections:
               - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ess-gris. No repetir con otro producto, ni con los de la tienda." }
               - { name: imagen, label: "Foto principal", widget: image, choose_url: false, hint: "La foto que se ve en la tarjeta." }
               - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Sube una o varias fotos MÁS de este básico (además de la principal). Se ven al hacer clic, en la ventana de fotos. Puedes arrastrar varias a la vez." }
+              - name: colores
+                label: "Colores (cada uno con su foto) — opcional"
+                widget: list
+                required: false
+                label_singular: "Color"
+                summary: "{{fields.nombre_es}}"
+                hint: "Si esta prenda viene en varios colores del MISMO estampado, agrega cada color con su foto. En la tienda salen cuadritos para elegir y la foto cambia según el color. El color elegido va en el pedido."
+                fields:
+                  - { name: nombre_es, label: "Nombre del color (español)", widget: string }
+                  - { name: nombre_en, label: "Nombre del color (inglés)", widget: string, required: false }
+                  - { name: color, label: "Cuadrito de color", widget: color, required: false, hint: "El color del círculo que se toca para elegir. Si lo dejas vacío, se usa una miniatura de la foto." }
+                  - { name: imagen, label: "Foto de este color", widget: image, choose_url: false }
+                  - { name: galeria, label: "Más fotos de este color", widget: image, required: false, multiple: true, choose_url: false }
               - { name: nombre_es, label: "Nombre (español)", widget: string }
               - { name: nombre_en, label: "Nombre (inglés)", widget: string }
               - { name: precio_regular, label: "Precio Regular fit (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Regular fit. Si lo dejas vacío, usa el precio general de la sección Precios. (Puedes escribir 59000 o 59.000.)" }
