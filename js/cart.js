@@ -32,16 +32,28 @@
   // Métodos basados en número/llave (usan el mismo número de WhatsApp por ahora)
   var PHONE_PAY = { nequi: "Nequi", daviplata: "Daviplata", breb: "Bre-B" };
 
-  function price(fit) { return FIT_PRICES[fit] || FIT_PRICES.regular; }
+  /* Precio de UNA camiseta en una horma. Si la camiseta trae su propio precio
+     (precio_regular / precio_oversized, puesto en el panel por producto) se usa
+     ese; si no, el precio general de la sección Precios (FIT_PRICES). Así cada
+     camiseta puede costar distinto sin afectar a las demás. */
+  function price(id, fit) {
+    var p = PRODUCTS[id];
+    if (p) {
+      var raw = fit === "oversized" ? p.precio_oversized : p.precio_regular;
+      var n = precioDelPanel(raw);
+      if (n > 0) return n;
+    }
+    return FIT_PRICES[fit] || FIT_PRICES.regular;
+  }
 
   /* API mínima para la ventana de fotos (js/shop.js): agregar al carrito con
-     la horma y la talla elegidas ahí, y leer el precio/horma actuales para
-     mostrarlos. Es la única puerta de entrada al carrito desde fuera. */
+     la horma y la talla elegidas ahí, y leer el precio de esa camiseta en la
+     horma pedida. Es la única puerta de entrada al carrito desde fuera. */
   window.AYM_CART = {
     add: function (id, fit, size) { add(id, fit, size); },
     open: function () { open(); },
     fit: function () { return currentFit; },
-    price: function (fit) { return price(FITS.indexOf(fit) >= 0 ? fit : currentFit); },
+    price: function (id, fit) { return price(id, FITS.indexOf(fit) >= 0 ? fit : currentFit); },
     fmt: function (n) { return fmt(n); }
   };
   function esc(v) { var d = document.createElement("div"); d.textContent = v == null ? "" : String(v); return d.innerHTML; }
@@ -150,7 +162,7 @@
     return FALLBACK[id] || id;
   }
   function count() { return cart.reduce(function (s, i) { return s + i.qty; }, 0); }
-  function total() { return cart.reduce(function (s, i) { return s + i.qty * price(i.fit); }, 0); }
+  function total() { return cart.reduce(function (s, i) { return s + i.qty * price(i.id, i.fit); }, 0); }
   function find(id, fit, size) { for (var i = 0; i < cart.length; i++) if (cart[i].id === id && cart[i].fit === fit && cart[i].size === size) return cart[i]; return null; }
 
   function add(id, fit, size) {
@@ -175,8 +187,11 @@
       b.classList.toggle("is-active", on);
       b.setAttribute("aria-pressed", on ? "true" : "false");
     });
-    var txt = fmt(price(currentFit));
-    document.querySelectorAll(".product-price").forEach(function (el) { el.textContent = txt; });
+    /* Cada tarjeta muestra el precio de SU camiseta en la horma elegida
+       (el precio puede variar por producto). */
+    document.querySelectorAll(".product-price[data-price]").forEach(function (el) {
+      el.textContent = fmt(price(el.getAttribute("data-price"), currentFit));
+    });
     try { localStorage.setItem("aym-fit", currentFit); } catch (e) {}
   }
 
@@ -225,7 +240,7 @@
     if (!cart.length) return "https://wa.me/" + WA_NUMBER;
     var en = lang() === "en", tl = en ? "Size" : "Talla";
     var lines = cart.map(function (i) {
-      return "• " + i.qty + "× " + getName(i.id) + " (" + FIT_LABEL[i.fit] + " · " + tl + " " + i.size + ") — " + fmt(i.qty * price(i.fit));
+      return "• " + i.qty + "× " + getName(i.id) + " (" + FIT_LABEL[i.fit] + " · " + tl + " " + i.size + ") — " + fmt(i.qty * price(i.id, i.fit));
     });
     var payVal;
     if (PHONE_PAY[currentPay]) payVal = PHONE_PAY[currentPay] + " (" + PAY_KEY[currentPay] + ")";
@@ -274,7 +289,7 @@
       itemsEl.innerHTML = cart.map(function (i) {
         /* p puede no existir si el catálogo aún no llegó o si falló: se pinta
            igual con una imagen de respaldo en vez de romper todo el carrito. */
-        var p = PRODUCTS[i.id] || {}, unit = price(i.fit);
+        var p = PRODUCTS[i.id] || {}, unit = price(i.id, i.fit);
         return '<div class="cart-item">' +
           '<img src="' + esc(p.img || IMG_DEFECTO) + '" alt="" width="62" height="68">' +
           '<div class="ci-info"><span class="ci-name">' + getName(i.id) + '</span>' +

@@ -79,6 +79,8 @@ collections:
               - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Sube una o varias fotos MÁS de esta camiseta (además de la principal). Se ven al hacer clic en la camiseta, en la ventana de fotos. Puedes arrastrar varias a la vez." }
               - { name: nombre_es, label: "Nombre (español)", widget: string }
               - { name: nombre_en, label: "Nombre (inglés)", widget: string }
+              - { name: precio_regular, label: "Precio Regular fit (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Regular fit. Si lo dejas vacío, usa el precio general de la sección Precios. (Puedes escribir 59000 o 59.000.)" }
+              - { name: precio_oversized, label: "Precio Oversized (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Oversized. Vacío = usa el precio general." }
               - { name: desc_es, label: "Descripción corta (español)", widget: text, hint: "La que se ve en la tarjeta de la tienda." }
               - { name: desc_en, label: "Descripción corta (inglés)", widget: text }
               - { name: desc_larga_es, label: "Descripción ampliada (español)", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
@@ -106,6 +108,8 @@ collections:
               - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Sube una o varias fotos MÁS de este básico (además de la principal). Se ven al hacer clic, en la ventana de fotos. Puedes arrastrar varias a la vez." }
               - { name: nombre_es, label: "Nombre (español)", widget: string }
               - { name: nombre_en, label: "Nombre (inglés)", widget: string }
+              - { name: precio_regular, label: "Precio Regular fit (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Regular fit. Si lo dejas vacío, usa el precio general de la sección Precios. (Puedes escribir 59000 o 59.000.)" }
+              - { name: precio_oversized, label: "Precio Oversized (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Oversized. Vacío = usa el precio general." }
               - { name: desc_es, label: "Descripción corta (español)", widget: text, hint: "La que se ve en la tarjeta." }
               - { name: desc_en, label: "Descripción corta (inglés)", widget: text }
               - { name: desc_larga_es, label: "Descripción ampliada (español)", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
