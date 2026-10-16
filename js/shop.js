@@ -77,6 +77,31 @@
       .filter(function (c) { return c && c.imgs.length && (c.nombre_es || c.nombre_en); });
   }
   function nombreColor(c, en) { return en ? (c.nombre_en || c.nombre_es) : (c.nombre_es || c.nombre_en); }
+
+  /* TODAS las fotos del producto en una sola galería: primero la portada y la
+     galería general, después las fotos de cada color. `colorDe[i]` dice a qué
+     color pertenece la foto i ("" = portada/galería general, sin color).
+     La portada siempre va primero: los colores SUMAN fotos, no la reemplazan. */
+  function todasLasFotos(p) {
+    var cols = coloresDe(p);
+    var imgs = [], colorDe = [], indice = {};
+    function poner(src, key) {
+      if (!src) return;
+      if (indice.hasOwnProperty(src)) {
+        /* La misma foto ya está (p. ej. la portada ES la foto del color negro):
+           no se repite en la galería, pero queda asociada a ese color para que
+           tocarlo la muestre. */
+        var i = indice[src];
+        if (key && !colorDe[i]) colorDe[i] = key;
+        return;
+      }
+      indice[src] = imgs.length; imgs.push(src); colorDe.push(key || "");
+    }
+    listaFotos(p.imagen, p.galeria).forEach(function (s) { poner(s, ""); });
+    cols.forEach(function (c) { c.imgs.forEach(function (s) { poner(s, c.nombre_es); }); });
+    if (!imgs.length) { imgs.push(IMG_DEFECTO); colorDe.push(""); }
+    return { imgs: imgs, colorDe: colorDe, cols: cols };
+  }
   /* El cuadrito del color: el hex si lo pusieron, si no una miniatura de su foto. */
   function swatchHTML(c) {
     return c.hex
@@ -92,19 +117,20 @@
     var en = lang() === "en";
     var nombre = pick(p, "nombre"), desc = pick(p, "desc");
     var soldout = p.disponible === false;
-    var cols = coloresDe(p);
-    /* Con colores: la tarjeta arranca en el primer color (su foto). Sin
-       colores: la foto principal de siempre. */
-    var imgs = cols.length ? cols[0].imgs : fotos(p);
-    var hayGaleria = imgs.length > 1;
+    var todas = todasLasFotos(p);
+    var cols = todas.cols;
+    /* La tarjeta SIEMPRE muestra la portada. Los colores son opcionales: tocar
+       uno muestra su foto; tocarlo otra vez vuelve a la portada. Nadie tiene
+       que elegir un color para ver una foto. */
+    var portada = todas.imgs[0];
+    var hayGaleria = todas.imgs.length > 1;
     var swatches = cols.length
-      ? '<div class="product-colors" role="group" aria-label="' + (en ? "Color" : "Color") + '">' +
-          cols.map(function (c, k) {
+      ? '<div class="product-colors" role="group" aria-label="Color">' +
+          cols.map(function (c) {
             var nm = nombreColor(c, en);
-            return '<button type="button" class="color-swatch' + (k === 0 ? " is-active" : "") +
-              '" data-color="' + esc(c.nombre_es) + '" data-img="' + esc(c.imgs[0]) +
-              '" title="' + esc(nm) + '" aria-label="' + esc(nm) +
-              '" aria-pressed="' + (k === 0 ? "true" : "false") + '">' + swatchHTML(c) + '</button>';
+            return '<button type="button" class="color-swatch" data-color="' + esc(c.nombre_es) +
+              '" data-img="' + esc(c.imgs[0]) + '" title="' + esc(nm) + '" aria-label="' + esc(nm) +
+              '" aria-pressed="false">' + swatchHTML(c) + '</button>';
           }).join("") +
         '</div>'
       : "";
@@ -128,7 +154,7 @@
     return '<article class="product' + (soldout ? " is-soldout" : "") + '">' +
       '<button type="button" class="product-media pv-trigger" data-open="' + esc(p.id) + '" aria-label="' +
         (en ? "View photos of " : "Ver fotos de ") + esc(nombre) + '">' +
-        '<img src="' + esc(imgs[0]) + '" alt="' + esc(nombre) + '" loading="lazy" width="260" height="288">' +
+        '<img src="' + esc(portada) + '" data-portada="' + esc(portada) + '" alt="' + esc(nombre) + '" loading="lazy" width="260" height="288">' +
         lupa +
       '</button>' +
       tag +
@@ -180,7 +206,7 @@
     todos.forEach(function (p) {
       var cols = coloresDe(p);
       map[p.id] = {
-        img: cols.length ? cols[0].imgs[0] : fotos(p)[0],
+        img: fotos(p)[0],   // la portada, siempre
         nombre_es: p.nombre_es || "",
         nombre_en: p.nombre_en || "",
         disponible: p.disponible !== false,
@@ -291,6 +317,21 @@
       var add = t.closest(".pv-add");
       if (add && !add.disabled) return agregarDesdeVentana();
     });
+
+    /* Deslizar con el dedo (celular): izquierda = siguiente, derecha = anterior.
+       Solo sobre la foto, para no estorbar el scroll del texto. */
+    var x0 = null, y0 = null;
+    PV.addEventListener("touchstart", function (e) {
+      if (!e.target.closest(".pv-main") || !e.touches || !e.touches[0]) { x0 = null; return; }
+      x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+    }, { passive: true });
+    PV.addEventListener("touchend", function (e) {
+      if (x0 === null || !e.changedTouches || !e.changedTouches[0]) return;
+      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      x0 = null;
+      /* Gesto claramente horizontal y de al menos 40px */
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) mover(dx < 0 ? 1 : -1);
+    }, { passive: true });
   }
 
   function focusables(cont) {
@@ -341,26 +382,20 @@
       : "";
     return '<div class="pv-main">' + nav + '<img src="' + esc(imgs[0]) + '" alt=""></div>' + thumbs;
   }
-  function pintarGaleria() {
-    var g = PV.querySelector(".pv-gallery");
-    if (g) g.innerHTML = galeriaHTML(pvActual.imgs, lang() === "en");
+  /* Elegir un color en la ventana = saltar a la primera foto de ese color.
+     Tocar el color que ya está marcado vuelve a la portada. */
+  function elegirColor(k) {
+    if (!pvActual || !pvActual.cols || !pvActual.cols[k]) return;
+    var key = pvActual.cols[k].nombre_es;
+    if (pvActual.color === key) { pvActual.idx = 0; pintarFoto(); return; }
+    var i = pvActual.colorDe.indexOf(key);
+    if (i < 0) return;
+    pvActual.idx = i;
     pintarFoto();
   }
-  /* Elegir un color en la ventana: cambia las fotos a las de ese color. */
-  function elegirColor(idx) {
-    if (!pvActual || !pvActual.cols || !pvActual.cols[idx]) return;
-    pvActual.colorIdx = idx;
-    pvActual.color = pvActual.cols[idx].nombre_es;
-    pvActual.imgs = pvActual.cols[idx].imgs;
-    pvActual.idx = 0;
-    PV.querySelectorAll(".pv-color").forEach(function (b, k) {
-      var on = k === idx;
-      b.classList.toggle("is-active", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-    pintarGaleria();
-  }
 
+  /* Pinta la foto actual y deja marcado el color al que pertenece: lo que se ve
+     es lo que se pide. En la portada o la galería general no hay color. */
   function pintarFoto() {
     var imgs = pvActual.imgs, i = pvActual.idx;
     var main = PV.querySelector(".pv-main img");
@@ -372,6 +407,17 @@
     });
     var cuenta = PV.querySelector(".pv-count");
     if (cuenta) cuenta.textContent = (i + 1) + " / " + imgs.length;
+    pvActual.color = (pvActual.colorDe && pvActual.colorDe[i]) || "";
+    PV.querySelectorAll(".pv-color").forEach(function (b, k) {
+      var on = !!(pvActual.cols[k] && pvActual.cols[k].nombre_es === pvActual.color);
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    /* Que la miniatura activa quede a la vista si hay muchas */
+    var activa = PV.querySelector(".pv-thumb.is-active");
+    if (activa && activa.scrollIntoView) {
+      try { activa.scrollIntoView({ block: "nearest", inline: "nearest" }); } catch (e) {}
+    }
   }
   function mover(d) {
     if (!pvActual || pvActual.imgs.length < 2) return;
@@ -401,19 +447,19 @@
     var desc = (en
       ? (p.desc_larga_en || p.desc_larga_es || p.desc_en || p.desc_es)
       : (p.desc_larga_es || p.desc_larga_en || p.desc_es || p.desc_en)) || "";
-    var cols = coloresDe(p);
-    var colorIdx = 0;
-    if (colorKey && cols.length) {
-      for (var ci = 0; ci < cols.length; ci++) { if (cols[ci].nombre_es === colorKey) { colorIdx = ci; break; } }
-    }
-    var imgs = cols.length ? cols[colorIdx].imgs : fotos(p);
+    /* Una sola galería con todas las fotos; arranca en la portada, o en la
+       primera foto del color que la persona tocó en la tarjeta. */
+    var todas = todasLasFotos(p);
+    var cols = todas.cols, imgs = todas.imgs;
+    var idxInicial = 0;
+    if (colorKey) { var j = todas.colorDe.indexOf(colorKey); if (j >= 0) idxInicial = j; }
     var fitInicial = (window.AYM_CART && typeof window.AYM_CART.fit === "function") ? window.AYM_CART.fit() : "regular";
-    pvActual = { id: id, cols: cols, colorIdx: colorIdx, color: cols.length ? cols[colorIdx].nombre_es : "", imgs: imgs, idx: 0, fit: fitInicial };
+    pvActual = { id: id, cols: cols, colorDe: todas.colorDe, color: todas.colorDe[idxInicial] || "", imgs: imgs, idx: idxInicial, fit: fitInicial };
 
     var colorBtns = cols.length ? cols.map(function (c, k) {
       var nm = nombreColor(c, en);
-      return '<button type="button" class="pv-color' + (k === colorIdx ? " is-active" : "") + '" data-i="' + k +
-        '" title="' + esc(nm) + '" aria-label="' + esc(nm) + '" aria-pressed="' + (k === colorIdx ? "true" : "false") + '">' + swatchHTML(c) + '</button>';
+      return '<button type="button" class="pv-color" data-i="' + k +
+        '" title="' + esc(nm) + '" aria-label="' + esc(nm) + '" aria-pressed="false">' + swatchHTML(c) + '</button>';
     }).join("") : "";
     var colorOpt = cols.length
       ? '<div class="pv-opt"><span class="pv-opt-label">' + (en ? "Color" : "Color") + '</span>' +
@@ -512,16 +558,22 @@
     abrirVentana(t.getAttribute("data-open"), sw ? sw.getAttribute("data-color") : null);
   });
 
-  /* Elegir un color en la TARJETA: cambia su foto y deja ese color marcado
-     (el botón Agregar lo lee del color activo de la tarjeta). */
+  /* Elegir un color en la TARJETA: muestra su foto y lo deja marcado (el botón
+     Agregar lo lee del color activo). Tocar el color ya marcado lo desmarca y
+     vuelve a la portada: la portada es siempre el punto de partida. */
   document.addEventListener("click", function (e) {
     var sw = e.target.closest(".color-swatch[data-color]");
     if (!sw) return;
     var grp = sw.closest(".product-colors"); if (!grp) return;
-    grp.querySelectorAll(".color-swatch").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
-    sw.classList.add("is-active"); sw.setAttribute("aria-pressed", "true");
     var art = sw.closest(".product");
     var img = art ? art.querySelector(".product-media img") : null;
+    var yaEstaba = sw.classList.contains("is-active");
+    grp.querySelectorAll(".color-swatch").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
+    if (yaEstaba) {
+      if (img && img.getAttribute("data-portada")) img.setAttribute("src", img.getAttribute("data-portada"));
+      return;
+    }
+    sw.classList.add("is-active"); sw.setAttribute("aria-pressed", "true");
     var nueva = sw.getAttribute("data-img");
     if (img && nueva) img.setAttribute("src", nueva);
   });
