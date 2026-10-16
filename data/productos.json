@@ -45,6 +45,12 @@
           "nombre_en": "Bone wite",
           "color": "#f3efe6",
           "imagen": "/assets/mockup_ig_post_20261015_191701.png"
+        },
+        {
+          "nombre_es": "Crema",
+          "nombre_en": "Cream",
+          "color": "#fcf2ce",
+          "imagen": "/assets/mockup_ig_post_20261015_191821.png"
         }
       ],
       "nombre_es": "Alma marina",
