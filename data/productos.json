@@ -3,9 +3,6 @@
     {
       "id": "origin",
       "imagen": "/assets/camiseta 1.jpg",
-      "galeria": [
-        "/assets/camiseta 1.jpg"
-      ],
       "colores": [
         {
           "nombre_es": "Negro",
@@ -80,20 +77,6 @@
       "precio_oversized": null,
       "desc_es": "Un llamado en el océano que nadie logra escuchar. El impacto de la contaminación acústica marina silencia el canto de las ballenas.",
       "desc_en": "A call in the ocean that goes unheard. The impact of marine noise pollution silences the song of the whales.",
-      "desc_larga_es": "",
-      "desc_larga_en": "",
-      "disponible": true
-    },
-    {
-      "id": "11",
-      "imagen": "/assets/portada pulpo.jpg",
-      "colores": [],
-      "nombre_es": "11",
-      "nombre_en": "111",
-      "precio_regular": null,
-      "precio_oversized": null,
-      "desc_es": "11",
-      "desc_en": "11",
       "desc_larga_es": "",
       "desc_larga_en": "",
       "disponible": true
