@@ -66,7 +66,14 @@
     {
       "id": "Noise",
       "imagen": "/assets/camiseta 3.jpg",
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Azul Navi",
+          "nombre_en": "Navy",
+          "color": "#292d4a",
+          "imagen": "/assets/mockup_ig_post_20261015_200813.png"
+        }
+      ],
       "nombre_es": "Bajo el ruido",
       "nombre_en": "Beneath the noise",
       "precio_regular": null,
