@@ -320,13 +320,10 @@
   try { savedLang = localStorage.getItem("aym-lang"); } catch (e) {}
   try { savedTheme = localStorage.getItem("aym-theme"); } catch (e) {}
 
-  /* Antes se elegía el idioma según el navegador. Googlebot navega en inglés
-     y nunca trae datos guardados, así que rastreaba la página traducida al
-     inglés mientras el <title>, la descripción, las etiquetas para compartir y
-     los datos estructurados seguían en español: una página que se contradecía
-     a sí misma justo en el mercado que importa. El español es el idioma del
-     sitio; el inglés se activa solo si la persona pulsa el botón. */
-  if (!savedLang) savedLang = "es";
+  /* La tienda es solo en español (las dueñas lo pidieron así). Se fuerza el
+     español aunque alguien tenga guardado "en" de cuando existía el botón de
+     idioma: si no, esa persona seguiría viendo la página en inglés. */
+  savedLang = "es";
   if (!savedTheme) {
     savedTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
@@ -342,12 +339,6 @@
     var themeBtn = document.getElementById("theme-toggle");
     if (themeBtn) themeBtn.addEventListener("click", function () {
       applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
-    });
-
-    // toggle idioma
-    var langBtn = document.getElementById("lang-toggle");
-    if (langBtn) langBtn.addEventListener("click", function () {
-      applyLang(root.getAttribute("lang") === "en" ? "es" : "en");
     });
 
     // header con sombra + botón "volver arriba"

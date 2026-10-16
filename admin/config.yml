@@ -85,19 +85,15 @@ collections:
                 summary: "{{fields.nombre_es}}"
                 hint: "Si esta prenda viene en varios colores del MISMO estampado, agrega cada color con su foto. En la tienda salen cuadritos para elegir y la foto cambia según el color. El color elegido va en el pedido."
                 fields:
-                  - { name: nombre_es, label: "Nombre del color (español)", widget: string }
-                  - { name: nombre_en, label: "Nombre del color (inglés)", widget: string, required: false }
+                  - { name: nombre_es, label: "Nombre del color", widget: string }
                   - { name: color, label: "Cuadrito de color", widget: color, required: false, hint: "El color del círculo que se toca para elegir. Si lo dejas vacío, se usa una miniatura de la foto." }
                   - { name: imagen, label: "Foto de este color", widget: image, choose_url: false }
                   - { name: galeria, label: "Más fotos de este color", widget: image, required: false, multiple: true, choose_url: false }
-              - { name: nombre_es, label: "Nombre (español)", widget: string }
-              - { name: nombre_en, label: "Nombre (inglés)", widget: string }
+              - { name: nombre_es, label: "Nombre", widget: string }
               - { name: precio_regular, label: "Precio Regular fit (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Regular fit. Si lo dejas vacío, usa el precio general de la sección Precios. (Puedes escribir 59000 o 59.000.)" }
               - { name: precio_oversized, label: "Precio Oversized (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Oversized. Vacío = usa el precio general." }
-              - { name: desc_es, label: "Descripción corta (español)", widget: text, hint: "La que se ve en la tarjeta de la tienda." }
-              - { name: desc_en, label: "Descripción corta (inglés)", widget: text }
-              - { name: desc_larga_es, label: "Descripción ampliada (español)", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
-              - { name: desc_larga_en, label: "Descripción ampliada (inglés)", widget: text, required: false }
+              - { name: desc_es, label: "Descripción corta", widget: text, hint: "La que se ve en la tarjeta de la tienda." }
+              - { name: desc_larga_es, label: "Descripción ampliada", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
               - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
 
   # -------- ESSENTIALS --------
@@ -127,19 +123,15 @@ collections:
                 summary: "{{fields.nombre_es}}"
                 hint: "Si esta prenda viene en varios colores del MISMO estampado, agrega cada color con su foto. En la tienda salen cuadritos para elegir y la foto cambia según el color. El color elegido va en el pedido."
                 fields:
-                  - { name: nombre_es, label: "Nombre del color (español)", widget: string }
-                  - { name: nombre_en, label: "Nombre del color (inglés)", widget: string, required: false }
+                  - { name: nombre_es, label: "Nombre del color", widget: string }
                   - { name: color, label: "Cuadrito de color", widget: color, required: false, hint: "El color del círculo que se toca para elegir. Si lo dejas vacío, se usa una miniatura de la foto." }
                   - { name: imagen, label: "Foto de este color", widget: image, choose_url: false }
                   - { name: galeria, label: "Más fotos de este color", widget: image, required: false, multiple: true, choose_url: false }
-              - { name: nombre_es, label: "Nombre (español)", widget: string }
-              - { name: nombre_en, label: "Nombre (inglés)", widget: string }
+              - { name: nombre_es, label: "Nombre", widget: string }
               - { name: precio_regular, label: "Precio Regular fit (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Regular fit. Si lo dejas vacío, usa el precio general de la sección Precios. (Puedes escribir 59000 o 59.000.)" }
               - { name: precio_oversized, label: "Precio Oversized (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Oversized. Vacío = usa el precio general." }
-              - { name: desc_es, label: "Descripción corta (español)", widget: text, hint: "La que se ve en la tarjeta." }
-              - { name: desc_en, label: "Descripción corta (inglés)", widget: text }
-              - { name: desc_larga_es, label: "Descripción ampliada (español)", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
-              - { name: desc_larga_en, label: "Descripción ampliada (inglés)", widget: text, required: false }
+              - { name: desc_es, label: "Descripción corta", widget: text, hint: "La que se ve en la tarjeta." }
+              - { name: desc_larga_es, label: "Descripción ampliada", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
               - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
 
   # -------- IMPACTO --------
@@ -171,68 +163,41 @@ collections:
             widget: object
             collapsed: true
             fields:
-              - { name: aviso_es, label: "Aviso de la barra superior (español)", widget: string, required: false }
-              - { name: aviso_en, label: "Aviso de la barra superior (inglés)", widget: string, required: false }
-              - { name: eyebrow_es, label: "Línea pequeña sobre el título (español)", widget: string, required: false }
-              - { name: eyebrow_en, label: "Línea pequeña sobre el título (inglés)", widget: string, required: false }
-              - { name: titulo_es, label: "Título grande (español)", widget: string, required: false }
-              - { name: titulo_en, label: "Título grande (inglés)", widget: string, required: false }
-              - { name: texto_es, label: "Texto bajo el título (español)", widget: text, required: false }
-              - { name: texto_en, label: "Texto bajo el título (inglés)", widget: text, required: false }
-              - { name: boton1_es, label: "Botón 1 · ver colección (español)", widget: string, required: false }
-              - { name: boton1_en, label: "Botón 1 · ver colección (inglés)", widget: string, required: false }
-              - { name: boton2_es, label: "Botón 2 · WhatsApp (español)", widget: string, required: false }
-              - { name: boton2_en, label: "Botón 2 · WhatsApp (inglés)", widget: string, required: false }
+              - { name: aviso_es, label: "Aviso de la barra superior", widget: string, required: false }
+              - { name: eyebrow_es, label: "Línea pequeña sobre el título", widget: string, required: false }
+              - { name: titulo_es, label: "Título grande", widget: string, required: false }
+              - { name: texto_es, label: "Texto bajo el título", widget: text, required: false }
+              - { name: boton1_es, label: "Botón 1 · ver colección", widget: string, required: false }
+              - { name: boton2_es, label: "Botón 2 · WhatsApp", widget: string, required: false }
 
               # ----- Franja de valores (las 4 tarjetas bajo la portada) -----
-              - { name: valores_titulo_es, label: "Valores · título para lectores de pantalla (español)", widget: string, required: false }
-              - { name: valores_titulo_en, label: "Valores · título para lectores de pantalla (inglés)", widget: string, required: false }
-              - { name: valor1_titulo_es, label: "Valor 1 · título (español)", widget: string, required: false }
-              - { name: valor1_titulo_en, label: "Valor 1 · título (inglés)", widget: string, required: false }
-              - { name: valor1_texto_es, label: "Valor 1 · texto (español)", widget: text, required: false }
-              - { name: valor1_texto_en, label: "Valor 1 · texto (inglés)", widget: text, required: false }
-              - { name: valor2_titulo_es, label: "Valor 2 · título (español)", widget: string, required: false }
-              - { name: valor2_titulo_en, label: "Valor 2 · título (inglés)", widget: string, required: false }
-              - { name: valor2_texto_es, label: "Valor 2 · texto (español)", widget: text, required: false }
-              - { name: valor2_texto_en, label: "Valor 2 · texto (inglés)", widget: text, required: false }
-              - { name: valor3_titulo_es, label: "Valor 3 · título (español)", widget: string, required: false }
-              - { name: valor3_titulo_en, label: "Valor 3 · título (inglés)", widget: string, required: false }
-              - { name: valor3_texto_es, label: "Valor 3 · texto (español)", widget: text, required: false }
-              - { name: valor3_texto_en, label: "Valor 3 · texto (inglés)", widget: text, required: false }
-              - { name: valor4_titulo_es, label: "Valor 4 · título (español)", widget: string, required: false }
-              - { name: valor4_titulo_en, label: "Valor 4 · título (inglés)", widget: string, required: false }
-              - { name: valor4_texto_es, label: "Valor 4 · texto (español)", widget: text, required: false }
-              - { name: valor4_texto_en, label: "Valor 4 · texto (inglés)", widget: text, required: false }
+              - { name: valores_titulo_es, label: "Valores · título para lectores de pantalla", widget: string, required: false }
+              - { name: valor1_titulo_es, label: "Valor 1 · título", widget: string, required: false }
+              - { name: valor1_texto_es, label: "Valor 1 · texto", widget: text, required: false }
+              - { name: valor2_titulo_es, label: "Valor 2 · título", widget: string, required: false }
+              - { name: valor2_texto_es, label: "Valor 2 · texto", widget: text, required: false }
+              - { name: valor3_titulo_es, label: "Valor 3 · título", widget: string, required: false }
+              - { name: valor3_texto_es, label: "Valor 3 · texto", widget: text, required: false }
+              - { name: valor4_titulo_es, label: "Valor 4 · título", widget: string, required: false }
+              - { name: valor4_texto_es, label: "Valor 4 · texto", widget: text, required: false }
           # ----- Colecciones -----
           - name: colecciones
             label: "Colecciones"
             widget: object
             collapsed: true
             fields:
-              - { name: eyebrow_es, label: "Línea pequeña de la sección (español)", widget: string, required: false }
-              - { name: eyebrow_en, label: "Línea pequeña de la sección (inglés)", widget: string, required: false }
-              - { name: titulo_es, label: "Título sobre las camisetas de Océano (español)", widget: string, required: false, hint: "Es el encabezado que sale encima de la grilla de camisetas, no el de esta sección." }
-              - { name: titulo_en, label: "Título sobre las camisetas de Océano (inglés)", widget: string, required: false }
-              - { name: portal_titulo_es, label: "Título de la sección Colecciones (español)", widget: string, required: false }
-              - { name: portal_titulo_en, label: "Título de la sección Colecciones (inglés)", widget: string, required: false }
-              - { name: portal_texto_es, label: "Portal · primer párrafo (español)", widget: text, required: false }
-              - { name: portal_texto_en, label: "Portal · primer párrafo (inglés)", widget: text, required: false }
-              - { name: portal_texto2_es, label: "Portal · segundo párrafo (español)", widget: text, required: false }
-              - { name: portal_texto2_en, label: "Portal · segundo párrafo (inglés)", widget: text, required: false }
-              - { name: oceano_nombre_es, label: "Océano · nombre (español)", widget: string, required: false }
-              - { name: oceano_nombre_en, label: "Océano · nombre (inglés)", widget: string, required: false }
-              - { name: oceano_desc_es, label: "Océano · descripción (español)", widget: text, required: false }
-              - { name: oceano_desc_en, label: "Océano · descripción (inglés)", widget: text, required: false }
-              - { name: oceano_boton_es, label: "Océano · botón (español)", widget: string, required: false }
-              - { name: oceano_boton_en, label: "Océano · botón (inglés)", widget: string, required: false }
-              - { name: felina_etiqueta_es, label: "Felina · etiqueta (español)", widget: string, required: false }
-              - { name: felina_etiqueta_en, label: "Felina · etiqueta (inglés)", widget: string, required: false }
-              - { name: felina_nombre_es, label: "Felina · nombre (español)", widget: string, required: false }
-              - { name: felina_nombre_en, label: "Felina · nombre (inglés)", widget: string, required: false }
-              - { name: felina_desc_es, label: "Felina · descripción (español)", widget: text, required: false }
-              - { name: felina_desc_en, label: "Felina · descripción (inglés)", widget: text, required: false }
-              - { name: felina_boton_es, label: "Felina · botón (español)", widget: string, required: false }
-              - { name: felina_boton_en, label: "Felina · botón (inglés)", widget: string, required: false }
+              - { name: eyebrow_es, label: "Línea pequeña de la sección", widget: string, required: false }
+              - { name: titulo_es, label: "Título sobre las camisetas de Océano", widget: string, required: false, hint: "Es el encabezado que sale encima de la grilla de camisetas, no el de esta sección." }
+              - { name: portal_titulo_es, label: "Título de la sección Colecciones", widget: string, required: false }
+              - { name: portal_texto_es, label: "Portal · primer párrafo", widget: text, required: false }
+              - { name: portal_texto2_es, label: "Portal · segundo párrafo", widget: text, required: false }
+              - { name: oceano_nombre_es, label: "Océano · nombre", widget: string, required: false }
+              - { name: oceano_desc_es, label: "Océano · descripción", widget: text, required: false }
+              - { name: oceano_boton_es, label: "Océano · botón", widget: string, required: false }
+              - { name: felina_etiqueta_es, label: "Felina · etiqueta", widget: string, required: false }
+              - { name: felina_nombre_es, label: "Felina · nombre", widget: string, required: false }
+              - { name: felina_desc_es, label: "Felina · descripción", widget: text, required: false }
+              - { name: felina_boton_es, label: "Felina · botón", widget: string, required: false }
 
           # ----- Tienda (camisetas) -----
           - name: tienda
@@ -240,12 +205,9 @@ collections:
             widget: object
             collapsed: true
             fields:
-              - { name: eyebrow_es, label: "Línea pequeña de la sección (español)", widget: string, required: false }
-              - { name: eyebrow_en, label: "Línea pequeña de la sección (inglés)", widget: string, required: false }
-              - { name: texto_es, label: "Texto de la sección (español)", widget: text, required: false }
-              - { name: texto_en, label: "Texto de la sección (inglés)", widget: text, required: false }
-              - { name: nota_es, label: "Aviso de fotos de referencia (español)", widget: text, required: false }
-              - { name: nota_en, label: "Aviso de fotos de referencia (inglés)", widget: text, required: false }
+              - { name: eyebrow_es, label: "Línea pequeña de la sección", widget: string, required: false }
+              - { name: texto_es, label: "Texto de la sección", widget: text, required: false }
+              - { name: nota_es, label: "Aviso de fotos de referencia", widget: text, required: false }
               - { name: mostrar_nota, label: "¿Mostrar el aviso de fotos de referencia?", widget: boolean, default: true, required: false, hint: "Apágalo cuando ya estén las fotos reales de las camisetas." }
 
           # ----- Océano (la historia de la colección) -----
@@ -255,74 +217,40 @@ collections:
             collapsed: true
             fields:
               # ----- Portada de la colección (lo primero que se ve al entrar) -----
-              - { name: portada_eyebrow_es, label: "Portada · línea pequeña (español)", widget: string, required: false }
-              - { name: portada_eyebrow_en, label: "Portada · línea pequeña (inglés)", widget: string, required: false }
-              - { name: portada_titulo_es, label: "Portada · nombre de la colección (español)", widget: string, required: false, hint: "Es el título grande sobre el video. Si renombras la colección, cámbialo también en la tarjeta (grupo Colecciones)." }
-              - { name: portada_titulo_en, label: "Portada · nombre de la colección (inglés)", widget: string, required: false }
-              - { name: portada_texto_es, label: "Portada · texto de entrada (español)", widget: text, required: false }
-              - { name: portada_texto_en, label: "Portada · texto de entrada (inglés)", widget: text, required: false }
-              - { name: portada_boton_es, label: "Portada · botón de volver (español)", widget: string, required: false }
-              - { name: portada_boton_en, label: "Portada · botón de volver (inglés)", widget: string, required: false }
-              - { name: historia_eyebrow_es, label: "Historia · línea pequeña (español)", widget: string, required: false }
-              - { name: historia_eyebrow_en, label: "Historia · línea pequeña (inglés)", widget: string, required: false }
-              - { name: historia_titulo_es, label: "Historia · título (español)", widget: string, required: false }
-              - { name: historia_titulo_en, label: "Historia · título (inglés)", widget: string, required: false }
-              - { name: historia_p1_es, label: "Historia · párrafo 1 (español)", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
-              - { name: historia_p1_en, label: "Historia · párrafo 1 (inglés)", widget: text, required: false }
-              - { name: historia_p2_es, label: "Historia · párrafo 2 (español)", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
-              - { name: historia_p2_en, label: "Historia · párrafo 2 (inglés)", widget: text, required: false }
-              - { name: historia_p3_es, label: "Historia · párrafo 3 (español)", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
-              - { name: historia_p3_en, label: "Historia · párrafo 3 (inglés)", widget: text, required: false }
-              - { name: esperanza_eyebrow_es, label: "Esperanza · línea pequeña (español)", widget: string, required: false }
-              - { name: esperanza_eyebrow_en, label: "Esperanza · línea pequeña (inglés)", widget: string, required: false }
-              - { name: esperanza_titulo_es, label: "Esperanza · título (español)", widget: string, required: false }
-              - { name: esperanza_titulo_en, label: "Esperanza · título (inglés)", widget: string, required: false }
-              - { name: esperanza_texto_es, label: "Esperanza · texto (español)", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
-              - { name: esperanza_texto_en, label: "Esperanza · texto (inglés)", widget: text, required: false }
-              - { name: dato1_numero_es, label: "Cifra 1 · número grande (español)", widget: string, required: false }
-              - { name: dato1_numero_en, label: "Cifra 1 · número grande (inglés)", widget: string, required: false }
-              - { name: dato1_texto_es, label: "Cifra 1 · explicación (español)", widget: text, required: false }
-              - { name: dato1_texto_en, label: "Cifra 1 · explicación (inglés)", widget: text, required: false }
-              - { name: dato2_numero_es, label: "Cifra 2 · número grande (español)", widget: string, required: false }
-              - { name: dato2_numero_en, label: "Cifra 2 · número grande (inglés)", widget: string, required: false }
-              - { name: dato2_texto_es, label: "Cifra 2 · explicación (español)", widget: text, required: false }
-              - { name: dato2_texto_en, label: "Cifra 2 · explicación (inglés)", widget: text, required: false }
-              - { name: dato3_numero_es, label: "Cifra 3 · número grande (español)", widget: string, required: false }
-              - { name: dato3_numero_en, label: "Cifra 3 · número grande (inglés)", widget: string, required: false }
-              - { name: dato3_texto_es, label: "Cifra 3 · explicación (español)", widget: text, required: false }
-              - { name: dato3_texto_en, label: "Cifra 3 · explicación (inglés)", widget: text, required: false }
-              - { name: curiosidad_eyebrow_es, label: "Dato curioso · línea pequeña (español)", widget: string, required: false }
-              - { name: curiosidad_eyebrow_en, label: "Dato curioso · línea pequeña (inglés)", widget: string, required: false }
-              - { name: curiosidad_titulo_es, label: "Dato curioso · título (español)", widget: string, required: false }
-              - { name: curiosidad_titulo_en, label: "Dato curioso · título (inglés)", widget: string, required: false }
-              - { name: curiosidad_p1_es, label: "Dato curioso · párrafo 1 (español)", widget: text, required: false }
-              - { name: curiosidad_p1_en, label: "Dato curioso · párrafo 1 (inglés)", widget: text, required: false }
-              - { name: curiosidad_p2_es, label: "Dato curioso · párrafo 2 (español)", widget: text, required: false }
-              - { name: curiosidad_p2_en, label: "Dato curioso · párrafo 2 (inglés)", widget: text, required: false }
-              - { name: curiosidad_frase_es, label: "Dato curioso · frase destacada (español)", widget: text, required: false }
-              - { name: curiosidad_frase_en, label: "Dato curioso · frase destacada (inglés)", widget: text, required: false }
-              - { name: acciones_eyebrow_es, label: "Cómo ayudar · línea pequeña (español)", widget: string, required: false }
-              - { name: acciones_eyebrow_en, label: "Cómo ayudar · línea pequeña (inglés)", widget: string, required: false }
-              - { name: acciones_titulo_es, label: "Cómo ayudar · título (español)", widget: string, required: false }
-              - { name: acciones_titulo_en, label: "Cómo ayudar · título (inglés)", widget: string, required: false }
-              - { name: acciones_texto_es, label: "Cómo ayudar · texto (español)", widget: text, required: false }
-              - { name: acciones_texto_en, label: "Cómo ayudar · texto (inglés)", widget: text, required: false }
-              - { name: accion1_titulo_es, label: "Acción 1 · título (español)", widget: string, required: false }
-              - { name: accion1_titulo_en, label: "Acción 1 · título (inglés)", widget: string, required: false }
-              - { name: accion1_texto_es, label: "Acción 1 · texto (español)", widget: text, required: false }
-              - { name: accion1_texto_en, label: "Acción 1 · texto (inglés)", widget: text, required: false }
-              - { name: accion2_titulo_es, label: "Acción 2 · título (español)", widget: string, required: false }
-              - { name: accion2_titulo_en, label: "Acción 2 · título (inglés)", widget: string, required: false }
-              - { name: accion2_texto_es, label: "Acción 2 · texto (español)", widget: text, required: false }
-              - { name: accion2_texto_en, label: "Acción 2 · texto (inglés)", widget: text, required: false }
-              - { name: accion3_titulo_es, label: "Acción 3 · título (español)", widget: string, required: false }
-              - { name: accion3_titulo_en, label: "Acción 3 · título (inglés)", widget: string, required: false }
-              - { name: accion3_texto_es, label: "Acción 3 · texto (español)", widget: text, required: false }
-              - { name: accion3_texto_en, label: "Acción 3 · texto (inglés)", widget: text, required: false }
-              - { name: accion4_titulo_es, label: "Acción 4 · título (español)", widget: string, required: false }
-              - { name: accion4_titulo_en, label: "Acción 4 · título (inglés)", widget: string, required: false }
-              - { name: accion4_texto_es, label: "Acción 4 · texto (español)", widget: text, required: false }
-              - { name: accion4_texto_en, label: "Acción 4 · texto (inglés)", widget: text, required: false }
+              - { name: portada_eyebrow_es, label: "Portada · línea pequeña", widget: string, required: false }
+              - { name: portada_titulo_es, label: "Portada · nombre de la colección", widget: string, required: false, hint: "Es el título grande sobre el video. Si renombras la colección, cámbialo también en la tarjeta (grupo Colecciones)." }
+              - { name: portada_texto_es, label: "Portada · texto de entrada", widget: text, required: false }
+              - { name: portada_boton_es, label: "Portada · botón de volver", widget: string, required: false }
+              - { name: historia_eyebrow_es, label: "Historia · línea pequeña", widget: string, required: false }
+              - { name: historia_titulo_es, label: "Historia · título", widget: string, required: false }
+              - { name: historia_p1_es, label: "Historia · párrafo 1", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: historia_p2_es, label: "Historia · párrafo 2", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: historia_p3_es, label: "Historia · párrafo 3", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: esperanza_eyebrow_es, label: "Esperanza · línea pequeña", widget: string, required: false }
+              - { name: esperanza_titulo_es, label: "Esperanza · título", widget: string, required: false }
+              - { name: esperanza_texto_es, label: "Esperanza · texto", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: dato1_numero_es, label: "Cifra 1 · número grande", widget: string, required: false }
+              - { name: dato1_texto_es, label: "Cifra 1 · explicación", widget: text, required: false }
+              - { name: dato2_numero_es, label: "Cifra 2 · número grande", widget: string, required: false }
+              - { name: dato2_texto_es, label: "Cifra 2 · explicación", widget: text, required: false }
+              - { name: dato3_numero_es, label: "Cifra 3 · número grande", widget: string, required: false }
+              - { name: dato3_texto_es, label: "Cifra 3 · explicación", widget: text, required: false }
+              - { name: curiosidad_eyebrow_es, label: "Dato curioso · línea pequeña", widget: string, required: false }
+              - { name: curiosidad_titulo_es, label: "Dato curioso · título", widget: string, required: false }
+              - { name: curiosidad_p1_es, label: "Dato curioso · párrafo 1", widget: text, required: false }
+              - { name: curiosidad_p2_es, label: "Dato curioso · párrafo 2", widget: text, required: false }
+              - { name: curiosidad_frase_es, label: "Dato curioso · frase destacada", widget: text, required: false }
+              - { name: acciones_eyebrow_es, label: "Cómo ayudar · línea pequeña", widget: string, required: false }
+              - { name: acciones_titulo_es, label: "Cómo ayudar · título", widget: string, required: false }
+              - { name: acciones_texto_es, label: "Cómo ayudar · texto", widget: text, required: false }
+              - { name: accion1_titulo_es, label: "Acción 1 · título", widget: string, required: false }
+              - { name: accion1_texto_es, label: "Acción 1 · texto", widget: text, required: false }
+              - { name: accion2_titulo_es, label: "Acción 2 · título", widget: string, required: false }
+              - { name: accion2_texto_es, label: "Acción 2 · texto", widget: text, required: false }
+              - { name: accion3_titulo_es, label: "Acción 3 · título", widget: string, required: false }
+              - { name: accion3_texto_es, label: "Acción 3 · texto", widget: text, required: false }
+              - { name: accion4_titulo_es, label: "Acción 4 · título", widget: string, required: false }
+              - { name: accion4_texto_es, label: "Acción 4 · texto", widget: text, required: false }
 
           # ----- Propósito -----
           - name: proposito
@@ -330,28 +258,17 @@ collections:
             widget: object
             collapsed: true
             fields:
-              - { name: eyebrow_es, label: "Línea pequeña de la sección (español)", widget: string, required: false }
-              - { name: eyebrow_en, label: "Línea pequeña de la sección (inglés)", widget: string, required: false }
-              - { name: titulo_es, label: "Título de la sección (español)", widget: string, required: false }
-              - { name: titulo_en, label: "Título de la sección (inglés)", widget: string, required: false }
-              - { name: texto_es, label: "Texto de la sección (español)", widget: text, required: false }
-              - { name: texto_en, label: "Texto de la sección (inglés)", widget: text, required: false }
-              - { name: tarjeta1_titulo_es, label: "Tarjeta 1 · título (español)", widget: string, required: false }
-              - { name: tarjeta1_titulo_en, label: "Tarjeta 1 · título (inglés)", widget: string, required: false }
-              - { name: tarjeta1_texto_es, label: "Tarjeta 1 · texto (español)", widget: text, required: false }
-              - { name: tarjeta1_texto_en, label: "Tarjeta 1 · texto (inglés)", widget: text, required: false }
-              - { name: tarjeta2_titulo_es, label: "Tarjeta 2 · título (español)", widget: string, required: false }
-              - { name: tarjeta2_titulo_en, label: "Tarjeta 2 · título (inglés)", widget: string, required: false }
-              - { name: tarjeta2_texto_es, label: "Tarjeta 2 · texto (español)", widget: text, required: false }
-              - { name: tarjeta2_texto_en, label: "Tarjeta 2 · texto (inglés)", widget: text, required: false }
-              - { name: tarjeta3_titulo_es, label: "Tarjeta 3 · título (español)", widget: string, required: false }
-              - { name: tarjeta3_titulo_en, label: "Tarjeta 3 · título (inglés)", widget: string, required: false }
-              - { name: tarjeta3_texto_es, label: "Tarjeta 3 · texto (español)", widget: text, required: false }
-              - { name: tarjeta3_texto_en, label: "Tarjeta 3 · texto (inglés)", widget: text, required: false }
-              - { name: tarjeta4_titulo_es, label: "Tarjeta 4 · título (español)", widget: string, required: false }
-              - { name: tarjeta4_titulo_en, label: "Tarjeta 4 · título (inglés)", widget: string, required: false }
-              - { name: tarjeta4_texto_es, label: "Tarjeta 4 · texto (español)", widget: text, required: false }
-              - { name: tarjeta4_texto_en, label: "Tarjeta 4 · texto (inglés)", widget: text, required: false }
+              - { name: eyebrow_es, label: "Línea pequeña de la sección", widget: string, required: false }
+              - { name: titulo_es, label: "Título de la sección", widget: string, required: false }
+              - { name: texto_es, label: "Texto de la sección", widget: text, required: false }
+              - { name: tarjeta1_titulo_es, label: "Tarjeta 1 · título", widget: string, required: false }
+              - { name: tarjeta1_texto_es, label: "Tarjeta 1 · texto", widget: text, required: false }
+              - { name: tarjeta2_titulo_es, label: "Tarjeta 2 · título", widget: string, required: false }
+              - { name: tarjeta2_texto_es, label: "Tarjeta 2 · texto", widget: text, required: false }
+              - { name: tarjeta3_titulo_es, label: "Tarjeta 3 · título", widget: string, required: false }
+              - { name: tarjeta3_texto_es, label: "Tarjeta 3 · texto", widget: text, required: false }
+              - { name: tarjeta4_titulo_es, label: "Tarjeta 4 · título", widget: string, required: false }
+              - { name: tarjeta4_texto_es, label: "Tarjeta 4 · texto", widget: text, required: false }
 
           # ----- Impacto y nuestra causa (textos) -----
           - name: impacto
@@ -359,30 +276,18 @@ collections:
             widget: object
             collapsed: true
             fields:
-              - { name: eyebrow_es, label: "Línea pequeña de la sección (español)", widget: string, required: false }
-              - { name: eyebrow_en, label: "Línea pequeña de la sección (inglés)", widget: string, required: false }
-              - { name: titulo_es, label: "Título de la sección (español)", widget: string, required: false }
-              - { name: titulo_en, label: "Título de la sección (inglés)", widget: string, required: false }
-              - { name: texto_es, label: "Texto de la sección (español)", widget: text, required: false }
-              - { name: texto_en, label: "Texto de la sección (inglés)", widget: text, required: false }
-              - { name: boton_es, label: "Botón de WhatsApp (español)", widget: string, required: false }
-              - { name: boton_en, label: "Botón de WhatsApp (inglés)", widget: string, required: false }
-              - { name: frase_es, label: "Frase entre comillas (español)", widget: text, required: false }
-              - { name: frase_en, label: "Frase entre comillas (inglés)", widget: text, required: false }
-              - { name: contador_envivo_es, label: "Contador · etiqueta “En vivo” (español)", widget: string, required: false }
-              - { name: contador_envivo_en, label: "Contador · etiqueta “En vivo” (inglés)", widget: string, required: false }
-              - { name: contador_camisetas_es, label: "Contador · texto bajo las camisetas (español)", widget: string, required: false }
-              - { name: contador_camisetas_en, label: "Contador · texto bajo las camisetas (inglés)", widget: string, required: false }
-              - { name: contador_dinero_es, label: "Contador · texto bajo el dinero (español)", widget: string, required: false }
-              - { name: contador_dinero_en, label: "Contador · texto bajo el dinero (inglés)", widget: string, required: false }
-              - { name: causa_eyebrow_es, label: "Nuestra causa · línea pequeña (español)", widget: string, required: false }
-              - { name: causa_eyebrow_en, label: "Nuestra causa · línea pequeña (inglés)", widget: string, required: false }
-              - { name: causa_titulo_es, label: "Nuestra causa · título (español)", widget: string, required: false }
-              - { name: causa_titulo_en, label: "Nuestra causa · título (inglés)", widget: string, required: false }
-              - { name: causa_texto_es, label: "Nuestra causa · texto (español)", widget: text, required: false }
-              - { name: causa_texto_en, label: "Nuestra causa · texto (inglés)", widget: text, required: false }
-              - { name: causa_nota_es, label: "Nuestra causa · aviso de fotos de referencia (español)", widget: text, required: false }
-              - { name: causa_nota_en, label: "Nuestra causa · aviso de fotos de referencia (inglés)", widget: text, required: false }
+              - { name: eyebrow_es, label: "Línea pequeña de la sección", widget: string, required: false }
+              - { name: titulo_es, label: "Título de la sección", widget: string, required: false }
+              - { name: texto_es, label: "Texto de la sección", widget: text, required: false }
+              - { name: boton_es, label: "Botón de WhatsApp", widget: string, required: false }
+              - { name: frase_es, label: "Frase entre comillas", widget: text, required: false }
+              - { name: contador_envivo_es, label: "Contador · etiqueta “En vivo”", widget: string, required: false }
+              - { name: contador_camisetas_es, label: "Contador · texto bajo las camisetas", widget: string, required: false }
+              - { name: contador_dinero_es, label: "Contador · texto bajo el dinero", widget: string, required: false }
+              - { name: causa_eyebrow_es, label: "Nuestra causa · línea pequeña", widget: string, required: false }
+              - { name: causa_titulo_es, label: "Nuestra causa · título", widget: string, required: false }
+              - { name: causa_texto_es, label: "Nuestra causa · texto", widget: text, required: false }
+              - { name: causa_nota_es, label: "Nuestra causa · aviso de fotos de referencia", widget: text, required: false }
               - { name: mostrar_causa_nota, label: "¿Mostrar el aviso de fotos de referencia?", widget: boolean, default: true, required: false, hint: "Apágalo cuando ya estén las fotos reales de los animalitos." }
 
           # ----- Preguntas frecuentes -----
@@ -391,10 +296,8 @@ collections:
             widget: object
             collapsed: true
             fields:
-              - { name: eyebrow_es, label: "Línea pequeña de la sección (español)", widget: string, required: false }
-              - { name: eyebrow_en, label: "Línea pequeña de la sección (inglés)", widget: string, required: false }
-              - { name: titulo_es, label: "Título de la sección (español)", widget: string, required: false }
-              - { name: titulo_en, label: "Título de la sección (inglés)", widget: string, required: false }
+              - { name: eyebrow_es, label: "Línea pequeña de la sección", widget: string, required: false }
+              - { name: titulo_es, label: "Título de la sección", widget: string, required: false }
               - name: preguntas
                 label: "Preguntas"
                 label_singular: "Pregunta"
@@ -402,10 +305,8 @@ collections:
                 summary: "{{fields.pregunta_es}}"
                 hint: "Puedes agregar, quitar y reordenar preguntas. Aparecen en la página FAQ en este mismo orden."
                 fields:
-                  - { name: pregunta_es, label: "Pregunta (español)", widget: string }
-                  - { name: pregunta_en, label: "Pregunta (inglés)", widget: string, required: false }
-                  - { name: respuesta_es, label: "Respuesta (español)", widget: text }
-                  - { name: respuesta_en, label: "Respuesta (inglés)", widget: text, required: false }
+                  - { name: pregunta_es, label: "Pregunta", widget: string }
+                  - { name: respuesta_es, label: "Respuesta", widget: text }
 
           # ----- Contacto y envíos -----
           - name: contacto
@@ -413,32 +314,19 @@ collections:
             widget: object
             collapsed: true
             fields:
-              - { name: eyebrow_es, label: "Línea pequeña · cómo comprar (español)", widget: string, required: false }
-              - { name: eyebrow_en, label: "Línea pequeña · cómo comprar (inglés)", widget: string, required: false }
-              - { name: titulo_es, label: "Título de la sección (español)", widget: string, required: false }
-              - { name: titulo_en, label: "Título de la sección (inglés)", widget: string, required: false }
-              - { name: texto_es, label: "Texto de la sección (español)", widget: text, required: false }
-              - { name: texto_en, label: "Texto de la sección (inglés)", widget: text, required: false }
-              - { name: paso1_titulo_es, label: "Paso 1 · título (español)", widget: string, required: false }
-              - { name: paso1_titulo_en, label: "Paso 1 · título (inglés)", widget: string, required: false }
-              - { name: paso1_texto_es, label: "Paso 1 · texto (español)", widget: text, required: false }
-              - { name: paso1_texto_en, label: "Paso 1 · texto (inglés)", widget: text, required: false }
-              - { name: paso2_titulo_es, label: "Paso 2 · título (español)", widget: string, required: false }
-              - { name: paso2_titulo_en, label: "Paso 2 · título (inglés)", widget: string, required: false }
-              - { name: paso2_texto_es, label: "Paso 2 · texto (español)", widget: text, required: false }
-              - { name: paso2_texto_en, label: "Paso 2 · texto (inglés)", widget: text, required: false }
-              - { name: paso3_titulo_es, label: "Paso 3 · título (español)", widget: string, required: false }
-              - { name: paso3_titulo_en, label: "Paso 3 · título (inglés)", widget: string, required: false }
-              - { name: paso3_texto_es, label: "Paso 3 · texto (español)", widget: text, required: false }
-              - { name: paso3_texto_en, label: "Paso 3 · texto (inglés)", widget: text, required: false }
-              - { name: contacto_titulo_es, label: "Contacto · título (español)", widget: string, required: false }
-              - { name: contacto_titulo_en, label: "Contacto · título (inglés)", widget: string, required: false }
-              - { name: contacto_texto_es, label: "Contacto · texto (español)", widget: text, required: false }
-              - { name: contacto_texto_en, label: "Contacto · texto (inglés)", widget: text, required: false }
-              - { name: contacto_boton_es, label: "Contacto · botón de WhatsApp (español)", widget: string, required: false }
-              - { name: contacto_boton_en, label: "Contacto · botón de WhatsApp (inglés)", widget: string, required: false }
-              - { name: ubicacion_es, label: "Línea de ubicación (español)", widget: string, required: false, hint: "El ícono del mapa se conserva automáticamente." }
-              - { name: ubicacion_en, label: "Línea de ubicación (inglés)", widget: string, required: false }
+              - { name: eyebrow_es, label: "Línea pequeña · cómo comprar", widget: string, required: false }
+              - { name: titulo_es, label: "Título de la sección", widget: string, required: false }
+              - { name: texto_es, label: "Texto de la sección", widget: text, required: false }
+              - { name: paso1_titulo_es, label: "Paso 1 · título", widget: string, required: false }
+              - { name: paso1_texto_es, label: "Paso 1 · texto", widget: text, required: false }
+              - { name: paso2_titulo_es, label: "Paso 2 · título", widget: string, required: false }
+              - { name: paso2_texto_es, label: "Paso 2 · texto", widget: text, required: false }
+              - { name: paso3_titulo_es, label: "Paso 3 · título", widget: string, required: false }
+              - { name: paso3_texto_es, label: "Paso 3 · texto", widget: text, required: false }
+              - { name: contacto_titulo_es, label: "Contacto · título", widget: string, required: false }
+              - { name: contacto_texto_es, label: "Contacto · texto", widget: text, required: false }
+              - { name: contacto_boton_es, label: "Contacto · botón de WhatsApp", widget: string, required: false }
+              - { name: ubicacion_es, label: "Línea de ubicación", widget: string, required: false, hint: "El ícono del mapa se conserva automáticamente." }
 
   # -------- DATOS LEGALES --------
   - name: negocio
