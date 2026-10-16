@@ -39,7 +39,14 @@
     {
       "id": "Marine",
       "imagen": "/assets/camiseta 2.jpg",
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "blanco hueso",
+          "nombre_en": "Bone wite",
+          "color": "#f3efe6",
+          "imagen": "/assets/mockup_ig_post_20261015_191701.png"
+        }
+      ],
       "nombre_es": "Alma marina",
       "nombre_en": "Marine Soul",
       "precio_regular": null,
