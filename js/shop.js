@@ -18,9 +18,14 @@
   var SEO_ID = "ld-products";
 
   /* Las dos cuadrículas y su archivo de datos */
+  /* Los tres espacios de la tienda. Cada espacio tiene sus propios diseños y
+     su horma: una camiseta es Regular u Oversized según dónde la suban.
+     (productos.json es el espacio Regular fit desde antes; se conserva el
+     nombre para no romper nada de lo que ya tenían.) */
   var GRIDS = [
-    { grid: "shop-grid", archivo: "data/productos.json" },
-    { grid: "essentials-grid", archivo: "data/essentials.json" }
+    { grid: "regular-grid",    archivo: "data/productos.json",  espacio: "regular",    fit: "regular" },
+    { grid: "oversized-grid",  archivo: "data/oversized.json",  espacio: "oversized",  fit: "oversized" },
+    { grid: "esenciales-grid", archivo: "data/essentials.json", espacio: "esenciales", fit: "regular" }
   ];
 
   function lang() { return document.documentElement.getAttribute("lang") === "en" ? "en" : "es"; }
@@ -171,19 +176,37 @@
     '</article>';
   }
 
-  /* Pinta una cuadrícula y devuelve la lista válida que mostró.
-     `usados` lleva los id ya usados (entre las dos cuadrículas) para que un id
+  /* Precio de una camiseta: el suyo propio si lo pusieron en el panel; si no,
+     el precio general de su espacio (sección Precios). El carrito es quien
+     cobra; esto solo alimenta los datos para Google y el respaldo de la ventana. */
+  function precioDe(p) {
+    var propio = numPrecio(p.precio);
+    if (propio > 0) return propio;
+    var cfg = window.AYM_PRECIOS || {};
+    if (p._espacio === "esenciales" && numPrecio(cfg.precio_esenciales) > 0) return numPrecio(cfg.precio_esenciales);
+    if (p._fit === "oversized") return numPrecio(cfg.precio_oversized) || 79000;
+    return numPrecio(cfg.precio_regular) || 69000;
+  }
+
+  /* Pinta un espacio y devuelve la lista válida que mostró.
+     `usados` lleva los id ya usados (entre los tres espacios) para que un id
      repetido no haga que el carrito confunda un producto con otro. */
-  function renderGrid(gridId, lista, usados) {
-    var grid = document.getElementById(gridId);
+  function renderGrid(g, lista, usados) {
+    var grid = document.getElementById(g.grid);
     if (!grid || !Array.isArray(lista)) return [];
     var valid = lista.filter(function (p) {
       if (!p || !p.id || usados[p.id]) return false;
       usados[p.id] = true;
       return true;
     });
-    if (!valid.length) return []; // no vaciar la grilla si el JSON viene vacío
+    /* El espacio define la horma de cada camiseta (ya no se elige aparte) */
+    valid.forEach(function (p) { p._espacio = g.espacio; p._fit = g.fit; });
     grid.innerHTML = valid.map(cardHTML).join("");
+    /* Espacio sin camisetas todavía (p. ej. Oversized antes de subir los
+       primeros diseños): un aviso amable en vez de un hueco vacío. */
+    var panel = grid.closest(".shop-panel");
+    var vacio = panel ? panel.querySelector(".shop-empty") : null;
+    if (vacio) vacio.hidden = valid.length > 0;
     return valid;
   }
 
@@ -192,16 +215,17 @@
     var todos = [];
     GRIDS.forEach(function (g) {
       var lista = datos[g.archivo];
-      if (Array.isArray(lista)) todos = todos.concat(renderGrid(g.grid, lista, usados));
+      if (Array.isArray(lista)) todos = todos.concat(renderGrid(g, lista, usados));
     });
+    /* Si no llegó ningún catálogo, no se toca el carrito (podría vaciarlo) */
     if (!todos.length) return;
 
     /* Catálogo para la ventana de fotos (objetos completos) */
     CATALOGO = {};
     todos.forEach(function (p) { CATALOGO[p.id] = p; });
 
-    /* Mapa para el carrito: el nombre viaja aquí para que el carrito pueda
-       nombrar bien también las agotadas y las creadas en el panel. */
+    /* Mapa para el carrito: nombre, foto, espacio y horma de cada camiseta,
+       su precio propio (si tiene) y sus colores. */
     var map = {};
     todos.forEach(function (p) {
       var cols = coloresDe(p);
@@ -210,12 +234,9 @@
         nombre_es: p.nombre_es || "",
         nombre_en: p.nombre_en || "",
         disponible: p.disponible !== false,
-        /* Precio propio de la camiseta (si lo pusieron en el panel). El carrito
-           lo usa; si está vacío, usa el precio general. */
-        precio_regular: p.precio_regular,
-        precio_oversized: p.precio_oversized,
-        /* Colores: el carrito resuelve el nombre (según idioma) y la foto de
-           cada color a partir de su clave (nombre_es). */
+        espacio: p._espacio,
+        fit: p._fit,
+        precio: p.precio,
         colores: cols.map(function (c) { return { nombre_es: c.nombre_es, nombre_en: c.nombre_en, img: c.imgs[0] }; })
       };
     });
@@ -225,14 +246,10 @@
   }
 
   /* Datos estructurados de los productos (se regeneran con el catálogo y los
-     precios reales; antes estaban escritos a mano en index.html y quedaban
-     desactualizados en cuanto el panel cambiaba algo). Siempre en español. */
+     precios reales). Cada camiseta tiene una horma y un precio. */
   function renderSeo(valid) {
     var tag = document.getElementById(SEO_ID);
     if (!tag || !valid.length) return;
-    var cfg = window.AYM_PRECIOS || {};
-    var bajo = Number(cfg.precio_regular) > 0 ? Number(cfg.precio_regular) : 69000;
-    var alto = Number(cfg.precio_oversized) > 0 ? Number(cfg.precio_oversized) : 79000;
     try {
       tag.textContent = JSON.stringify({
         "@context": "https://schema.org",
@@ -240,9 +257,6 @@
         "itemListElement": valid.map(function (p, i) {
           var nombre = (p.nombre_es || p.nombre_en || "").trim();
           var desc = (p.desc_larga_es || p.desc_es || p.desc_larga_en || p.desc_en || "").trim();
-          /* Precio propio de la camiseta si lo tiene; si no, el general. */
-          var bajoP = numPrecio(p.precio_regular) || bajo;
-          var altoP = numPrecio(p.precio_oversized) || alto;
           return {
             "@type": "ListItem",
             "position": i + 1,
@@ -253,15 +267,13 @@
               "description": desc,
               "brand": { "@type": "Brand", "name": "A&M Universe" },
               "offers": {
-                "@type": "AggregateOffer",
-                "lowPrice": String(Math.min(bajoP, altoP)),
-                "highPrice": String(Math.max(bajoP, altoP)),
-                "offerCount": "2",
+                "@type": "Offer",
+                "price": String(precioDe(p)),
                 "priceCurrency": "COP",
                 "availability": p.disponible === false
                   ? "https://schema.org/OutOfStock"
                   : "https://schema.org/InStock",
-                "url": SITIO + "#oceano"
+                "url": SITIO + "#" + (p._espacio || "regular")
               }
             }
           };
@@ -269,6 +281,45 @@
       }, null, 2);
     } catch (e) {}
   }
+
+  /* =======================================================
+     Pestañas de la tienda: Regular fit · Oversized · Esenciales
+     ======================================================= */
+  var PESTANAS = ["regular", "oversized", "esenciales"];
+  function mostrarTab(tab) {
+    if (PESTANAS.indexOf(tab) < 0) tab = "regular";
+    document.querySelectorAll(".shop-tab[data-tab]").forEach(function (b) {
+      var on = b.getAttribute("data-tab") === tab;
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-selected", on ? "true" : "false");
+      b.tabIndex = on ? 0 : -1;
+    });
+    document.querySelectorAll(".shop-panel[data-panel]").forEach(function (pn) {
+      pn.hidden = pn.getAttribute("data-panel") !== tab;
+    });
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest(".shop-tab[data-tab]");
+    if (!b) return;
+    var tab = b.getAttribute("data-tab");
+    mostrarTab(tab);
+    /* El enlace queda compartible (#oversized…) sin saltar la página */
+    try { history.replaceState(null, "", "#" + tab); } catch (err) {}
+  });
+  /* Teclado: ← → entre pestañas (patrón de pestañas accesible) */
+  document.addEventListener("keydown", function (e) {
+    var b = e.target.closest && e.target.closest(".shop-tab[data-tab]");
+    if (!b || (e.key !== "ArrowLeft" && e.key !== "ArrowRight")) return;
+    e.preventDefault();
+    var i = PESTANAS.indexOf(b.getAttribute("data-tab"));
+    var sig = PESTANAS[(i + (e.key === "ArrowRight" ? 1 : -1) + PESTANAS.length) % PESTANAS.length];
+    mostrarTab(sig);
+    var nb = document.querySelector('.shop-tab[data-tab="' + sig + '"]');
+    if (nb) nb.focus();
+    try { history.replaceState(null, "", "#" + sig); } catch (err) {}
+  });
+  /* El enrutador avisa cuando se entra por #regular / #oversized / #essentials */
+  document.addEventListener("aym:tab", function (e) { mostrarTab(e.detail); });
 
   /* =======================================================
      Ventana de fotos (galería + descripción + agregar)
@@ -306,8 +357,6 @@
       if (th) { pvActual.idx = parseInt(th.getAttribute("data-i"), 10) || 0; pintarFoto(); return; }
       var col = t.closest(".pv-color");
       if (col) { elegirColor(parseInt(col.getAttribute("data-i"), 10) || 0); return; }
-      var fit = t.closest(".pv-fit-btn");
-      if (fit) { elegirFit(fit.getAttribute("data-fit")); return; }
       var sz = t.closest(".pv-size");
       if (sz) {
         PV.querySelectorAll(".pv-size").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
@@ -351,15 +400,13 @@
     else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
   }
 
-  function precioFit(fit) {
+  /* Precio de la camiseta abierta en la ventana (lo calcula el carrito, que es
+     quien cobra; si aún no cargó, el respaldo de precioDe). */
+  function precioVentana() {
     var id = pvActual ? pvActual.id : null;
-    if (window.AYM_CART && typeof window.AYM_CART.price === "function") return window.AYM_CART.price(id, fit);
-    /* Respaldo si el carrito aún no cargó: precio propio del producto o el general */
+    if (window.AYM_CART && typeof window.AYM_CART.price === "function") return window.AYM_CART.price(id, pvActual.fit);
     var p = id ? CATALOGO[id] : null;
-    var propio = p ? numPrecio(fit === "oversized" ? p.precio_oversized : p.precio_regular) : 0;
-    if (propio > 0) return propio;
-    var cfg = window.AYM_PRECIOS || {};
-    return fit === "oversized" ? (Number(cfg.precio_oversized) || 79000) : (Number(cfg.precio_regular) || 69000);
+    return p ? precioDe(p) : 0;
   }
   function fmt(n) {
     if (window.AYM_CART && typeof window.AYM_CART.fmt === "function") return window.AYM_CART.fmt(n);
@@ -425,16 +472,9 @@
     pvActual.idx = (pvActual.idx + d + n) % n;
     pintarFoto();
   }
-  function elegirFit(fit) {
-    if (fit !== "regular" && fit !== "oversized") return;
-    pvActual.fit = fit;
-    PV.querySelectorAll(".pv-fit-btn").forEach(function (b) {
-      var on = b.getAttribute("data-fit") === fit;
-      b.classList.toggle("is-active", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
+  function pintarPrecio() {
     var pr = PV.querySelector(".pv-price");
-    if (pr) pr.textContent = fmt(precioFit(fit));
+    if (pr) pr.textContent = fmt(precioVentana());
   }
 
   function abrirVentana(id, colorKey) {
@@ -453,8 +493,10 @@
     var cols = todas.cols, imgs = todas.imgs;
     var idxInicial = 0;
     if (colorKey) { var j = todas.colorDe.indexOf(colorKey); if (j >= 0) idxInicial = j; }
-    var fitInicial = (window.AYM_CART && typeof window.AYM_CART.fit === "function") ? window.AYM_CART.fit() : "regular";
-    pvActual = { id: id, cols: cols, colorDe: todas.colorDe, color: todas.colorDe[idxInicial] || "", imgs: imgs, idx: idxInicial, fit: fitInicial };
+    /* La horma la define el espacio donde está la camiseta */
+    var fit = p._fit === "oversized" ? "oversized" : "regular";
+    var etiquetaHorma = p._espacio === "esenciales" ? "Esenciales" : (fit === "oversized" ? "Oversized" : "Regular fit");
+    pvActual = { id: id, cols: cols, colorDe: todas.colorDe, color: todas.colorDe[idxInicial] || "", imgs: imgs, idx: idxInicial, fit: fit };
 
     var colorBtns = cols.length ? cols.map(function (c, k) {
       var nm = nombreColor(c, en);
@@ -469,12 +511,6 @@
     var tag = soldout
       ? '<span class="tag">' + (en ? "Sold out" : "Agotado") + '</span>'
       : '<span class="tag tag-live">' + (en ? "Available" : "Disponible") + '</span>';
-
-    var fitBtns = [["regular", en ? "Regular fit" : "Regular fit"], ["oversized", "Oversized"]].map(function (f) {
-      var on = f[0] === fitInicial;
-      return '<button type="button" class="pv-fit-btn' + (on ? " is-active" : "") + '" data-fit="' + f[0] +
-        '" aria-pressed="' + (on ? "true" : "false") + '">' + esc(f[1]) + '</button>';
-    }).join("");
 
     var sizeBtns = SIZES.map(function (sz) {
       var on = sz === DEFAULT_SIZE;
@@ -497,8 +533,8 @@
         '<p class="pv-desc">' + esc(desc) + '</p>' +
         '<div class="pv-opts">' +
           colorOpt +
-          '<div class="pv-opt"><span class="pv-opt-label">' + (en ? "Fit" : "Horma") + '</span>' +
-            '<div class="pv-fit" role="group" aria-label="' + (en ? "Fit" : "Horma") + '">' + fitBtns + '</div></div>' +
+          '<div class="pv-opt"><span class="pv-opt-label">Horma</span>' +
+            '<span class="pv-fit-fija">' + esc(etiquetaHorma) + '</span></div>' +
           '<div class="pv-opt"><span class="pv-opt-label">' + (en ? "Size" : "Talla") + '</span>' +
             '<div class="pv-sizes" role="group" aria-label="' + (en ? "Size" : "Talla") + '">' + sizeBtns + '</div></div>' +
         '</div>' +
@@ -506,7 +542,7 @@
       '</div>';
 
     pintarFoto();
-    elegirFit(fitInicial);
+    pintarPrecio();
 
     pvFocoPrevio = document.activeElement;
     pvScrim.hidden = false;
@@ -586,7 +622,7 @@
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (data) {
         var list = data && Array.isArray(data.productos) ? data.productos : (Array.isArray(data) ? data : null);
-        if (list && list.length) datos[archivo] = list;
+        if (list) datos[archivo] = list;
       })
       .catch(function () {});
   }
@@ -606,7 +642,7 @@
     var todos = [];
     GRIDS.forEach(function (g) { if (Array.isArray(datos[g.archivo])) todos = todos.concat(datos[g.archivo].filter(function (p) { return p && p.id; })); });
     if (todos.length) renderSeo(todos);
-    if (PV && PV.classList.contains("open") && pvActual) elegirFit(pvActual.fit);
+    if (PV && PV.classList.contains("open") && pvActual) pintarPrecio();
   });
 
   if (document.readyState !== "loading") load();

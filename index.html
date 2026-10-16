@@ -408,18 +408,68 @@
                         <span class="link-arrow" data-i18n="portal.ocean.cta">Ver colección →</span>
                     </div>
                 </a>
-                <a class="collection-card is-soon" href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%86%20Quiero%20enterarme%20cuando%20salga%20la%20colecci%C3%B3n%20Felina." target="_blank" rel="noopener">
-                    <div class="cc-media" style="background-image:url('assets/felina.jpg')">
+                <a class="collection-card" href="#felina">
+                    <div class="cc-media cc-media--felina" style="background-image:url('assets/felina-leopardo.jpg')">
                         <span class="cc-index" aria-hidden="true"><small data-i18n="coll.index">Colección</small>002</span>
                     </div>
                     <div class="cc-body">
-                        <span class="tag" data-i18n="portal.felina.tag">Próximamente · en desarrollo</span>
+                        <span class="tag tag-live" data-i18n="portal.felina.tag">Nueva colección</span>
                         <h3 data-i18n="portal.felina.name">Felina</h3>
-                        <p data-i18n="portal.felina.desc">Un universo de miradas, instintos y personalidades en construcción.</p>
-                        <span class="link-arrow" data-i18n="portal.felina.cta">Quiero enterarme →</span>
+                        <p data-i18n="portal.felina.desc">Un universo de miradas, instintos y personalidades.</p>
+                        <span class="link-arrow" data-i18n="portal.felina.cta">Ver colección →</span>
                     </div>
                 </a>
             </div>
+        </div>
+    </section>
+
+    <!-- Camisetas: tres espacios (Regular fit · Oversized · Esenciales).
+         Cada espacio tiene sus propios diseños; la horma la define el espacio. -->
+    <section class="section shop" id="camisetas" data-view="tienda">
+        <div class="container">
+            <div class="section-head center">
+                <p class="eyebrow" data-i18n="shop.eyebrow">Camisetas</p>
+                <h2 class="section-title" data-i18n="collections.title">Nuestras camisetas</h2>
+                <p class="section-lead" data-i18n="shop.lead">Cada horma tiene sus propios diseños. Elige el espacio, tu talla y, si quieres, el color.</p>
+            </div>
+            <div class="shop-tabs" role="tablist" aria-label="Espacios de la tienda">
+                <button type="button" class="shop-tab is-active" role="tab" id="tab-regular" data-tab="regular" aria-selected="true" aria-controls="panel-regular" data-i18n="fit.regular">Regular fit</button>
+                <button type="button" class="shop-tab" role="tab" id="tab-oversized" data-tab="oversized" aria-selected="false" aria-controls="panel-oversized" tabindex="-1" data-i18n="fit.oversized">Oversized</button>
+                <button type="button" class="shop-tab" role="tab" id="tab-esenciales" data-tab="esenciales" aria-selected="false" aria-controls="panel-esenciales" tabindex="-1" data-i18n="nav.essentials">Esenciales</button>
+            </div>
+            <div class="shop-panel" role="tabpanel" id="panel-regular" data-panel="regular" aria-labelledby="tab-regular">
+                <p class="shop-panel-lead" data-i18n="esp.regular.lead">Corte clásico, a tu medida.</p>
+                <div class="shop-grid" id="regular-grid"></div>
+                <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
+            </div>
+            <div class="shop-panel" role="tabpanel" id="panel-oversized" data-panel="oversized" aria-labelledby="tab-oversized" hidden>
+                <p class="shop-panel-lead" data-i18n="esp.oversized.lead">Corte amplio y relajado, con diseños propios.</p>
+                <div class="shop-grid" id="oversized-grid"></div>
+                <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
+            </div>
+            <div class="shop-panel" role="tabpanel" id="panel-esenciales" data-panel="esenciales" aria-labelledby="tab-esenciales" hidden>
+                <p class="shop-panel-lead" data-i18n="esp.esenciales.lead">Básicos en algodón suave, para usar con todo.</p>
+                <div class="shop-grid" id="esenciales-grid"></div>
+                <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
+            </div>
+            <div class="size-guide">
+                <h3 class="size-guide-title" data-i18n="size.title">Guía de tallas</h3>
+                <p class="size-guide-note" data-i18n="size.note">Medidas de referencia de la prenda (Regular fit). El Oversized queda más holgado. ¿Dudas con tu talla? Escríbenos.</p>
+                <div class="size-table-wrap">
+                    <table class="size-table size-cm">
+                        <thead>
+                            <tr><th>Talla</th><th>Pecho (cm)</th><th>Largo (cm)</th><th>Hombros (cm)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>S</td><td>100</td><td>69</td><td>44</td></tr>
+                            <tr><td>M</td><td>106</td><td>71</td><td>46</td></tr>
+                            <tr><td>L</td><td>112</td><td>73</td><td>48</td></tr>
+                            <tr><td>XL</td><td>118</td><td>75</td><td>50</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="shop-note" data-i18n="shop.note">👕 Imágenes de referencia (mockups) — se reemplazan fácilmente cuando lleguen las fotos reales de las camisetas.</p>
         </div>
     </section>
 
@@ -450,196 +500,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Camisetas de la colección Océano (se muestran dentro de #oceano) -->
-    <section class="section shop" id="shop" data-view="oceano">
-        <div class="container">
-            <div class="section-head center">
-                <p class="eyebrow" data-i18n="shop.eyebrow">Colección Océano · Camisetas</p>
-                <h2 class="section-title" data-i18n="collections.title">Lleva contigo una parte del océano.</h2>
-                <p class="section-lead" data-i18n="shop.lead">Prendas inspiradas en las criaturas que existen bajo la superficie. Elige tu horma y talla.</p>
-            </div>
-            <div class="fit-toggle" id="fit-toggle" role="group" aria-label="Horma / Fit">
-                <button type="button" class="fit-btn is-active" data-fit="regular" aria-pressed="true">
-                    <span class="fit-name" data-i18n="fit.regular">Regular fit</span>
-                </button>
-                <button type="button" class="fit-btn" data-fit="oversized" aria-pressed="false">
-                    <span class="fit-name" data-i18n="fit.oversized">Oversized</span>
-                </button>
-            </div>
-            <div class="shop-grid" id="shop-grid">
-                <article class="product">
-                    <div class="product-media"><img src="assets/tee-ocean.svg" alt="Camiseta Océano" loading="lazy" width="260" height="288"></div>
-                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
-                    <h3 class="product-name" data-i18n="shop.ocean.name">Camiseta Océano</h3>
-                    <p class="product-desc" data-i18n="shop.ocean.desc">Estampado del mar y la vida que lo habita. Algodón suave, tallas S–XL.</p>
-                    <div class="product-sizes" role="group" aria-label="Talla / Size">
-                        <span class="size-label" data-i18n="shop.size">Talla</span>
-                        <button type="button" class="size-pill" data-size="S" aria-pressed="false">S</button>
-                        <button type="button" class="size-pill is-active" data-size="M" aria-pressed="true">M</button>
-                        <button type="button" class="size-pill" data-size="L" aria-pressed="false">L</button>
-                        <button type="button" class="size-pill" data-size="XL" aria-pressed="false">XL</button>
-                    </div>
-                    <div class="product-buy">
-                        <span class="product-price" data-price="ocean">$69.000</span>
-                        <button class="btn btn-add" data-product="ocean" type="button"><span data-i18n="shop.add">Agregar</span></button>
-                    </div>
-                </article>
-                <article class="product">
-                    <div class="product-media"><img src="assets/tee-animal.svg" alt="Camiseta Coral" loading="lazy" width="260" height="288"></div>
-                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
-                    <h3 class="product-name" data-i18n="shop.animal.name">Camiseta Coral</h3>
-                    <p class="product-desc" data-i18n="shop.animal.desc">Los arrecifes de coral y su color de vida. Algodón suave, tallas S–XL.</p>
-                    <div class="product-sizes" role="group" aria-label="Talla / Size">
-                        <span class="size-label" data-i18n="shop.size">Talla</span>
-                        <button type="button" class="size-pill" data-size="S" aria-pressed="false">S</button>
-                        <button type="button" class="size-pill is-active" data-size="M" aria-pressed="true">M</button>
-                        <button type="button" class="size-pill" data-size="L" aria-pressed="false">L</button>
-                        <button type="button" class="size-pill" data-size="XL" aria-pressed="false">XL</button>
-                    </div>
-                    <div class="product-buy">
-                        <span class="product-price" data-price="animal">$69.000</span>
-                        <button class="btn btn-add" data-product="animal" type="button"><span data-i18n="shop.add">Agregar</span></button>
-                    </div>
-                </article>
-                <article class="product">
-                    <div class="product-media"><img src="assets/tee-stars.svg" alt="Camiseta Ballena" loading="lazy" width="260" height="288"></div>
-                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
-                    <h3 class="product-name" data-i18n="shop.stars.name">Camiseta Ballena</h3>
-                    <p class="product-desc" data-i18n="shop.stars.desc">Las ballenas jorobadas que visitan el Pacífico colombiano. Algodón suave, tallas S–XL.</p>
-                    <div class="product-sizes" role="group" aria-label="Talla / Size">
-                        <span class="size-label" data-i18n="shop.size">Talla</span>
-                        <button type="button" class="size-pill" data-size="S" aria-pressed="false">S</button>
-                        <button type="button" class="size-pill is-active" data-size="M" aria-pressed="true">M</button>
-                        <button type="button" class="size-pill" data-size="L" aria-pressed="false">L</button>
-                        <button type="button" class="size-pill" data-size="XL" aria-pressed="false">XL</button>
-                    </div>
-                    <div class="product-buy">
-                        <span class="product-price" data-price="stars">$69.000</span>
-                        <button class="btn btn-add" data-product="stars" type="button"><span data-i18n="shop.add">Agregar</span></button>
-                    </div>
-                </article>
-                <article class="product">
-                    <div class="product-media"><img src="assets/tee-origen.svg" alt="Camiseta Tortuga" loading="lazy" width="260" height="288"></div>
-                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
-                    <h3 class="product-name" data-i18n="shop.origen.name">Camiseta Tortuga</h3>
-                    <p class="product-desc" data-i18n="shop.origen.desc">Las tortugas marinas que anidan en nuestras costas. Algodón suave, tallas S–XL.</p>
-                    <div class="product-sizes" role="group" aria-label="Talla / Size">
-                        <span class="size-label" data-i18n="shop.size">Talla</span>
-                        <button type="button" class="size-pill" data-size="S" aria-pressed="false">S</button>
-                        <button type="button" class="size-pill is-active" data-size="M" aria-pressed="true">M</button>
-                        <button type="button" class="size-pill" data-size="L" aria-pressed="false">L</button>
-                        <button type="button" class="size-pill" data-size="XL" aria-pressed="false">XL</button>
-                    </div>
-                    <div class="product-buy">
-                        <span class="product-price" data-price="origen">$69.000</span>
-                        <button class="btn btn-add" data-product="origen" type="button"><span data-i18n="shop.add">Agregar</span></button>
-                    </div>
-                </article>
-            </div>
-            <div class="size-guide">
-                <h3 class="size-guide-title" data-i18n="size.title">Guía de tallas</h3>
-                <p class="size-guide-note" data-i18n="size.note">Medidas de referencia de la prenda (Regular fit). El Oversized queda más holgado. ¿Dudas con tu talla? Escríbenos.</p>
-                <div class="size-table-wrap">
-                    <table class="size-table size-cm">
-                        <thead>
-                            <tr><th>Talla</th><th>Pecho (cm)</th><th>Largo (cm)</th><th>Hombros (cm)</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>S</td><td>100</td><td>69</td><td>44</td></tr>
-                            <tr><td>M</td><td>106</td><td>71</td><td>46</td></tr>
-                            <tr><td>L</td><td>112</td><td>73</td><td>48</td></tr>
-                            <tr><td>XL</td><td>118</td><td>75</td><td>50</td></tr>
-                        </tbody>
-                    </table>
-                    <table class="size-table size-in">
-                        <thead>
-                            <tr><th>Size</th><th>Chest (in)</th><th>Length (in)</th><th>Shoulders (in)</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>S</td><td>39.5</td><td>27</td><td>17.5</td></tr>
-                            <tr><td>M</td><td>42</td><td>28</td><td>18</td></tr>
-                            <tr><td>L</td><td>44</td><td>29</td><td>19</td></tr>
-                            <tr><td>XL</td><td>46.5</td><td>29.5</td><td>19.5</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <p class="shop-note" data-i18n="shop.note">👕 Imágenes de referencia (mockups) — se reemplazan fácilmente cuando lleguen las fotos reales de las camisetas.</p>
-        </div>
-    </section>
-
-    <!-- Essentials · Línea de básicos -->
-    <section class="section shop" id="essentials" data-view="essentials">
-        <div class="container">
-            <div class="section-head center">
-                <p class="eyebrow" data-i18n="ess.eyebrow">Essentials · Básicos</p>
-                <h2 class="section-title" data-i18n="ess.title">Los básicos que no fallan.</h2>
-                <p class="section-lead" data-i18n="ess.lead">Camisetas lisas en algodón suave, para usar con todo. Elige tu horma y talla.</p>
-            </div>
-            <div class="shop-grid" id="essentials-grid">
-                <article class="product">
-                    <button type="button" class="product-media pv-trigger" data-open="ess-blanca" aria-label="Ver fotos de Esencial Blanca">
-                        <img src="assets/tee-origen.svg" alt="Esencial Blanca" loading="lazy" width="260" height="288">
-                    </button>
-                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
-                    <h3 class="product-name">Esencial Blanca</h3>
-                    <p class="product-desc">La camiseta básica de todos los días. Algodón suave, tallas S–XL.</p>
-                    <div class="product-sizes" role="group" aria-label="Talla / Size">
-                        <span class="size-label" data-i18n="shop.size">Talla</span>
-                        <button type="button" class="size-pill" data-size="S" aria-pressed="false">S</button>
-                        <button type="button" class="size-pill is-active" data-size="M" aria-pressed="true">M</button>
-                        <button type="button" class="size-pill" data-size="L" aria-pressed="false">L</button>
-                        <button type="button" class="size-pill" data-size="XL" aria-pressed="false">XL</button>
-                    </div>
-                    <div class="product-buy">
-                        <span class="product-price" data-price="ess-blanca">$69.000</span>
-                        <button class="btn btn-add" data-product="ess-blanca" type="button"><span data-i18n="shop.add">Agregar</span></button>
-                    </div>
-                </article>
-                <article class="product">
-                    <button type="button" class="product-media pv-trigger" data-open="ess-negra" aria-label="Ver fotos de Esencial Negra">
-                        <img src="assets/tee-animal.svg" alt="Esencial Negra" loading="lazy" width="260" height="288">
-                    </button>
-                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
-                    <h3 class="product-name">Esencial Negra</h3>
-                    <p class="product-desc">El básico en negro, para combinar con todo. Algodón suave, tallas S–XL.</p>
-                    <div class="product-sizes" role="group" aria-label="Talla / Size">
-                        <span class="size-label" data-i18n="shop.size">Talla</span>
-                        <button type="button" class="size-pill" data-size="S" aria-pressed="false">S</button>
-                        <button type="button" class="size-pill is-active" data-size="M" aria-pressed="true">M</button>
-                        <button type="button" class="size-pill" data-size="L" aria-pressed="false">L</button>
-                        <button type="button" class="size-pill" data-size="XL" aria-pressed="false">XL</button>
-                    </div>
-                    <div class="product-buy">
-                        <span class="product-price" data-price="ess-negra">$69.000</span>
-                        <button class="btn btn-add" data-product="ess-negra" type="button"><span data-i18n="shop.add">Agregar</span></button>
-                    </div>
-                </article>
-                <article class="product">
-                    <button type="button" class="product-media pv-trigger" data-open="ess-arena" aria-label="Ver fotos de Esencial Arena">
-                        <img src="assets/tee-ocean.svg" alt="Esencial Arena" loading="lazy" width="260" height="288">
-                    </button>
-                    <span class="tag tag-live" data-i18n="tag.available">Disponible</span>
-                    <h3 class="product-name">Esencial Arena</h3>
-                    <p class="product-desc">Un tono tierra, cálido y neutro. Algodón suave, tallas S–XL.</p>
-                    <div class="product-sizes" role="group" aria-label="Talla / Size">
-                        <span class="size-label" data-i18n="shop.size">Talla</span>
-                        <button type="button" class="size-pill" data-size="S" aria-pressed="false">S</button>
-                        <button type="button" class="size-pill is-active" data-size="M" aria-pressed="true">M</button>
-                        <button type="button" class="size-pill" data-size="L" aria-pressed="false">L</button>
-                        <button type="button" class="size-pill" data-size="XL" aria-pressed="false">XL</button>
-                    </div>
-                    <div class="product-buy">
-                        <span class="product-price" data-price="ess-arena">$69.000</span>
-                        <button class="btn btn-add" data-product="ess-arena" type="button"><span data-i18n="shop.add">Agregar</span></button>
-                    </div>
-                </article>
-            </div>
-            <p class="shop-note" data-i18n="ess.note">👕 Imágenes de referencia (mockups) — se reemplazan fácilmente desde el panel cuando lleguen las fotos reales.</p>
-        </div>
-    </section>
-
 
     <!-- Océano · Un mundo entero bajo la superficie -->
     <section class="section" data-view="oceano">
@@ -719,6 +579,79 @@
                 <p data-i18n="ocn.cur.p2">Su llegada puede observarse en lugares como Bahía Málaga, Gorgona y Utría, donde el avistamiento responsable busca disfrutar de este espectáculo sin alterar el comportamiento de los animales.</p>
             </div>
             <blockquote class="ocean-quote" data-i18n="ocn.cur.quote">Ver una ballena es un privilegio. Dejarla tranquila también es parte de admirarla.</blockquote>
+        </div>
+    </section>
+
+    <!-- Océano · cierre: de la historia a las camisetas -->
+    <section class="section shop-cta" data-view="oceano">
+        <div class="container center">
+            <h2 class="section-title" data-i18n="oceano.cta.title">Lleva contigo una parte del océano.</h2>
+            <a href="#regular" class="btn btn-primary" data-i18n="oceano.cta.btn">Ver camisetas</a>
+        </div>
+    </section>
+
+    <!-- ================= Colección Felina (página propia) ================= -->
+    <section class="hero hero--photo hero--felina" data-view="felina" aria-label="Colección Felina">
+        <div class="container hero-inner">
+            <div class="hero-copy">
+                <p class="eyebrow" data-i18n="fel.eyebrow">Colección 002</p>
+                <h1 class="hero-title" data-i18n="fel.title">Felina</h1>
+                <p class="hero-sub" data-i18n="fel.lead">Un universo de miradas, instintos y personalidades.</p>
+                <div class="hero-cta">
+                    <a href="#regular" class="btn btn-primary" data-i18n="fel.btn">Ver camisetas</a>
+                    <a href="#tienda" class="btn btn-ghost" data-i18n="oceano.back">← Volver a la tienda</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" data-view="felina">
+        <div class="container">
+            <div class="section-head center">
+                <p class="eyebrow" data-i18n="fel.s1.eyebrow">La historia de esta colección</p>
+                <h2 class="section-title" data-i18n="fel.s1.title">Un universo de miradas</h2>
+            </div>
+            <div class="ocean-prose">
+                <p data-i18n="fel.s1.p1">Felina nace de la fascinación por los felinos: su andar sereno, su mirada que lo dice todo y esa independencia que los hace únicos. Cada diseño de esta colección busca capturar un poco de ese carácter.</p>
+                <p data-i18n="fel.s1.p2">Del gato que duerme en casa al gran felino que recorre la selva, todos comparten algo: viven a su manera. Y como cada camiseta de A&amp;M Universe, una parte de cada venta ayuda a los animales de la calle.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" data-view="felina">
+        <div class="container">
+            <div class="section-head center">
+                <p class="eyebrow" data-i18n="fel.s2.eyebrow">Lo que nos inspira</p>
+                <h2 class="section-title" data-i18n="fel.s2.title">Tres rasgos de un felino</h2>
+            </div>
+            <div class="cards-3">
+                <article class="card-purpose">
+                    <span class="card-ico" aria-hidden="true">👁️</span>
+                    <h3 data-i18n="fel.c1.t">Mirada</h3>
+                    <p data-i18n="fel.c1.d">Ojos que observan antes de actuar. Diseños que invitan a mirar dos veces.</p>
+                </article>
+                <article class="card-purpose">
+                    <span class="card-ico" aria-hidden="true">🐾</span>
+                    <h3 data-i18n="fel.c2.t">Instinto</h3>
+                    <p data-i18n="fel.c2.d">Confiar en lo que sientes. Prendas para moverte a tu propio ritmo.</p>
+                </article>
+                <article class="card-purpose">
+                    <span class="card-ico" aria-hidden="true">✨</span>
+                    <h3 data-i18n="fel.c3.t">Personalidad</h3>
+                    <p data-i18n="fel.c3.d">Ningún felino es igual a otro. Cada estampado tiene su propio carácter.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section shop-cta" data-view="felina">
+        <div class="container center">
+            <h2 class="section-title" data-i18n="fel.cta.title">Muy pronto, las camisetas de Felina</h2>
+            <p class="section-lead" data-i18n="fel.cta.text">Estamos terminando los diseños. Mientras tanto, mira nuestras camisetas o escríbenos y te avisamos cuando salgan.</p>
+            <div class="shop-cta-btns">
+                <a href="#regular" class="btn btn-primary" data-i18n="fel.btn">Ver camisetas</a>
+                <a href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%86%20Quiero%20enterarme%20cuando%20salgan%20las%20camisetas%20de%20Felina." class="btn btn-ghost" target="_blank" rel="noopener" data-i18n="fel.cta.btn">Quiero enterarme</a>
+            </div>
         </div>
     </section>
 
@@ -908,7 +841,7 @@
         <nav class="footer-nav" aria-label="Secciones">
             <span class="footer-nav-title" data-i18n="footer.explore">Explora</span>
             <a href="#tienda" data-nav="tienda" data-i18n="nav.shop">Tienda</a>
-            <a href="#essentials" data-nav="essentials" class="footer-tab" data-i18n="nav.essentials">Essentials</a>
+            <a href="#essentials" data-nav="essentials" class="footer-tab" data-i18n="nav.essentials">Esenciales</a>
             <a href="#proposito" data-nav="proposito" data-i18n="nav.purpose">Propósito</a>
             <a href="#impacto" data-nav="impacto" data-i18n="nav.impact">Impacto</a>
             <a href="#faq" data-nav="faq" data-i18n="nav.faq">FAQ</a>

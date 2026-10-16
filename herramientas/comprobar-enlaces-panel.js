@@ -23,13 +23,16 @@ var doc = fs.readFileSync(path.join(RAIZ, "ENLACES-DIRECTOS.md"), "utf8");
 var fallos = 0;
 var esperados = [];
 
+/* Un enlace por cada archivo de cada sección (Productos tiene tres:
+   Regular fit, Oversized y Esenciales). */
 cfg.collections.forEach(function (col) {
-  if (!col.files || col.files.length !== 1) {
-    console.log("  · " + col.name + ": tiene " + (col.files ? col.files.length : 0) +
-      " archivos, no lleva enlace directo");
+  if (!col.files || !col.files.length) {
+    console.log("  · " + col.name + ": no tiene archivos, no lleva enlace directo");
     return;
   }
-  esperados.push("#/collections/" + col.name + "/entries/" + col.files[0].name);
+  col.files.forEach(function (f) {
+    esperados.push("#/collections/" + col.name + "/entries/" + f.name);
+  });
 });
 
 console.log("Secciones con enlace directo: " + esperados.length);
