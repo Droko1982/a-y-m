@@ -3,6 +3,9 @@
     {
       "id": "origin",
       "imagen": "/assets/camiseta 1.jpg",
+      "galeria": [
+        "/assets/camiseta 1.jpg"
+      ],
       "colores": [
         {
           "nombre_es": "Negro",
@@ -15,6 +18,12 @@
           "nombre_en": "Navy",
           "color": "#292d4a",
           "imagen": "/assets/mockup_ig_post_20261015_185439.png"
+        },
+        {
+          "nombre_es": "Verde Militar",
+          "nombre_en": "Green",
+          "color": "#3a3e2f",
+          "imagen": "/assets/mockup_ig_post_20261015_190859.png"
         }
       ],
       "nombre_es": "Camiseta Origen",
