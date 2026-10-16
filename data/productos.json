@@ -69,6 +69,12 @@
           "nombre_en": "Navy",
           "color": "#292d4a",
           "imagen": "/assets/mockup_ig_post_20261015_200813.png"
+        },
+        {
+          "nombre_es": "Negro",
+          "nombre_en": "Black",
+          "color": "",
+          "imagen": "/assets/mockup_ig_post_20261016_131016.png"
         }
       ],
       "nombre_es": "Bajo el ruido",
