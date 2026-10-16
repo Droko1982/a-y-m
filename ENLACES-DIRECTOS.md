@@ -17,8 +17,9 @@ la herramienta.
 
 | Para… | Enlace |
 |---|---|
-| 👕 **Subir una camiseta o marcar Agotado** | https://droko1982.github.io/a-y-m/admin/#/collections/productos/entries/productos |
-| 🧺 **Editar los básicos (Essentials)** | https://droko1982.github.io/a-y-m/admin/#/collections/essentials/entries/essentials |
+| 👕 **Camisetas Regular fit** (subir, editar, Agotado) | https://droko1982.github.io/a-y-m/admin/#/collections/productos/entries/productos |
+| 👕 **Camisetas Oversized** | https://droko1982.github.io/a-y-m/admin/#/collections/productos/entries/oversized |
+| 🧺 **Esenciales** | https://droko1982.github.io/a-y-m/admin/#/collections/productos/entries/essentials |
 | 🐕 **Actualizar el contador de los animalitos** | https://droko1982.github.io/a-y-m/admin/#/collections/impacto/entries/contador |
 | 💲 **Cambiar los precios** | https://droko1982.github.io/a-y-m/admin/#/collections/precios/entries/precios |
 | ✏️ **Cambiar un texto de la página** | https://droko1982.github.io/a-y-m/admin/#/collections/contenido/entries/textos |
@@ -45,11 +46,14 @@ la herramienta.
 > Guárdenlos en favoritos, o mejor: en la pantalla de inicio del celular con el
 > nombre de la tarea. Así es como tener botones.
 >
-> 👕 *Subir camiseta / marcar Agotado*
+> 👕 *Camisetas Regular fit*
 > https://droko1982.github.io/a-y-m/admin/#/collections/productos/entries/productos
 >
-> 🧺 *Editar los básicos (Essentials)*
-> https://droko1982.github.io/a-y-m/admin/#/collections/essentials/entries/essentials
+> 👕 *Camisetas Oversized*
+> https://droko1982.github.io/a-y-m/admin/#/collections/productos/entries/oversized
+>
+> 🧺 *Esenciales*
+> https://droko1982.github.io/a-y-m/admin/#/collections/productos/entries/essentials
 >
 > 🐕 *Actualizar el contador del perrito*
 > https://droko1982.github.io/a-y-m/admin/#/collections/impacto/entries/contador

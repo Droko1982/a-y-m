@@ -13,8 +13,10 @@
      sigue diciendo que los datos se coordinan por WhatsApp. */
   var BANCO = { banco: "", tipo: "", numero: "", titular: "" };
 
-  // Precio por horma (aplica a todos los diseños)
-  var FIT_PRICES = { regular: 69000, oversized: 79000 };
+  /* Precio general de cada espacio (sección Precios del panel). Se usa para
+     las camisetas que no tienen precio propio. Esenciales en 0 = usa el de
+     Regular fit hasta que pongan uno. */
+  var FIT_PRICES = { regular: 69000, oversized: 79000, esenciales: 0 };
   var FITS = ["regular", "oversized"];
   var FIT_LABEL = { regular: "Regular fit", oversized: "Oversized" };
 
@@ -32,18 +34,27 @@
   // Métodos basados en número/llave (usan el mismo número de WhatsApp por ahora)
   var PHONE_PAY = { nequi: "Nequi", daviplata: "Daviplata", breb: "Bre-B" };
 
-  /* Precio de UNA camiseta en una horma. Si la camiseta trae su propio precio
-     (precio_regular / precio_oversized, puesto en el panel por producto) se usa
-     ese; si no, el precio general de la sección Precios (FIT_PRICES). Así cada
-     camiseta puede costar distinto sin afectar a las demás. */
+  /* Precio de UNA camiseta. Si trae su propio precio (campo "Precio" en el
+     panel) se usa ese; si no, el precio general de su espacio: Esenciales,
+     Oversized o Regular fit. Así cada camiseta puede costar distinto. */
   function price(id, fit) {
     var p = PRODUCTS[id];
     if (p) {
-      var raw = fit === "oversized" ? p.precio_oversized : p.precio_regular;
-      var n = precioDelPanel(raw);
+      var n = precioDelPanel(p.precio);
       if (n > 0) return n;
+      if (p.espacio === "esenciales" && FIT_PRICES.esenciales > 0) return FIT_PRICES.esenciales;
     }
     return FIT_PRICES[fit] || FIT_PRICES.regular;
+  }
+  /* La horma de una camiseta la define su espacio (Regular / Oversized). */
+  function fitDe(id) {
+    var p = PRODUCTS[id];
+    return p && FITS.indexOf(p.fit) >= 0 ? p.fit : "regular";
+  }
+  /* Lo que se escribe en el carrito y en el pedido: la horma, o "Esenciales". */
+  function etiquetaDe(i) {
+    var p = PRODUCTS[i.id];
+    return p && p.espacio === "esenciales" ? "Esenciales" : FIT_LABEL[i.fit];
   }
 
   /* API mínima para la ventana de fotos (js/shop.js): agregar al carrito con
@@ -52,8 +63,7 @@
   window.AYM_CART = {
     add: function (id, fit, size, color) { add(id, fit, size, color); },
     open: function () { open(); },
-    fit: function () { return currentFit; },
-    price: function (id, fit) { return price(id, FITS.indexOf(fit) >= 0 ? fit : currentFit); },
+    price: function (id, fit) { return price(id, FITS.indexOf(fit) >= 0 ? fit : fitDe(id)); },
     fmt: function (n) { return fmt(n); }
   };
   function esc(v) { var d = document.createElement("div"); d.textContent = v == null ? "" : String(v); return d.innerHTML; }
@@ -80,17 +90,19 @@
 
   function applyConfig(cfg) {
     if (!cfg || typeof cfg !== "object") return;
-    var r = precioDelPanel(cfg.precio_regular), o = precioDelPanel(cfg.precio_oversized);
+    var r = precioDelPanel(cfg.precio_regular), o = precioDelPanel(cfg.precio_oversized),
+        e = precioDelPanel(cfg.precio_esenciales);
     if (r > 0) FIT_PRICES.regular = r;
     if (o > 0) FIT_PRICES.oversized = o;
+    if (e > 0) FIT_PRICES.esenciales = e;
     /* Los datos estructurados de producto (js/shop.js) también necesitan
        el precio que puso el panel, no el que quedó escrito en el HTML. */
-    window.AYM_PRECIOS = { precio_regular: FIT_PRICES.regular, precio_oversized: FIT_PRICES.oversized };
-    try { document.dispatchEvent(new CustomEvent("aym:preciosaplicados")); } catch (e) {}
-    document.querySelectorAll("#fit-toggle .fit-btn").forEach(function (b) {
-      var f = b.getAttribute("data-fit"), pe = b.querySelector(".fit-price");
-      if (pe && FIT_PRICES[f]) pe.textContent = fmt(FIT_PRICES[f]);
-    });
+    window.AYM_PRECIOS = {
+      precio_regular: FIT_PRICES.regular,
+      precio_oversized: FIT_PRICES.oversized,
+      precio_esenciales: FIT_PRICES.esenciales || FIT_PRICES.regular
+    };
+    try { document.dispatchEvent(new CustomEvent("aym:preciosaplicados")); } catch (e2) {}
   }
   /* Datos de pago editables desde el panel (data/pagos.json).
      Cada campo vacío conserva el valor que ya estaba. */
@@ -123,8 +135,6 @@
   }
 
   /* ---------- Estado ---------- */
-  var currentFit = "regular";
-  try { var sf = localStorage.getItem("aym-fit"); if (FITS.indexOf(sf) >= 0) currentFit = sf; } catch (e) {}
 
   var currentPay = "nequi";
   try { var sp = localStorage.getItem("aym-pay"); if (PAYMENTS.indexOf(sp) >= 0) currentPay = sp; } catch (e) {}
@@ -211,19 +221,14 @@
   }
   function remove(id, fit, size, color) { cart = cart.filter(function (x) { return !mismo(x, id, fit, size, color); }); save(); render(); }
 
-  /* ---------- Horma ---------- */
+  /* ---------- Precios en las tarjetas ----------
+     Cada tarjeta muestra el precio de SU camiseta, en la horma de su espacio.
+     (Antes había un selector de horma; ahora la horma la define el espacio.) */
   function applyFit() {
-    document.querySelectorAll("#fit-toggle .fit-btn").forEach(function (b) {
-      var on = b.getAttribute("data-fit") === currentFit;
-      b.classList.toggle("is-active", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-    /* Cada tarjeta muestra el precio de SU camiseta en la horma elegida
-       (el precio puede variar por producto). */
     document.querySelectorAll(".product-price[data-price]").forEach(function (el) {
-      el.textContent = fmt(price(el.getAttribute("data-price"), currentFit));
+      var id = el.getAttribute("data-price");
+      el.textContent = fmt(price(id, fitDe(id)));
     });
-    try { localStorage.setItem("aym-fit", currentFit); } catch (e) {}
   }
 
   /* ---------- Pago ---------- */
@@ -272,7 +277,7 @@
     var en = lang() === "en", tl = en ? "Size" : "Talla";
     var lines = cart.map(function (i) {
       var colName = getColorName(i.id, i.color);
-      return "• " + i.qty + "× " + getName(i.id) + " (" + FIT_LABEL[i.fit] + " · " + tl + " " + i.size + (colName ? " · " + colName : "") + ") — " + fmt(i.qty * price(i.id, i.fit));
+      return "• " + i.qty + "× " + getName(i.id) + " (" + etiquetaDe(i) + " · " + tl + " " + i.size + (colName ? " · " + colName : "") + ") — " + fmt(i.qty * price(i.id, i.fit));
     });
     var payVal;
     if (PHONE_PAY[currentPay]) payVal = PHONE_PAY[currentPay] + " (" + PAY_KEY[currentPay] + ")";
@@ -327,7 +332,7 @@
         return '<div class="cart-item">' +
           '<img src="' + esc(getColorImg(i.id, i.color)) + '" alt="" width="62" height="68">' +
           '<div class="ci-info"><span class="ci-name">' + getName(i.id) + '</span>' +
-          '<span class="ci-price">' + FIT_LABEL[i.fit] + ' · ' + tl + ' ' + i.size + (colName ? ' · ' + esc(colName) : '') + ' · ' + fmt(unit) + '</span>' +
+          '<span class="ci-price">' + etiquetaDe(i) + ' · ' + tl + ' ' + i.size + (colName ? ' · ' + esc(colName) : '') + ' · ' + fmt(unit) + '</span>' +
           '<div class="ci-qty">' +
             '<button type="button" data-act="dec"' + dc + ' aria-label="menos">−</button>' +
             '<span class="ci-num">' + i.qty + '</span>' +
@@ -397,13 +402,6 @@
   document.addEventListener("DOMContentLoaded", function () {
     var drawerInicial = document.getElementById("cart-drawer");
     if (drawerInicial && !drawerInicial.classList.contains("open")) drawerInicial.inert = true;
-    // selector de horma (global)
-    var fitToggle = document.getElementById("fit-toggle");
-    if (fitToggle) fitToggle.addEventListener("click", function (e) {
-      var btn = e.target.closest(".fit-btn"); if (!btn) return;
-      var fit = btn.getAttribute("data-fit"); if (FITS.indexOf(fit) < 0) return;
-      currentFit = fit; applyFit();
-    });
     applyFit();
 
     // selector de talla (delegado: funciona también con productos dinámicos)
@@ -413,14 +411,15 @@
       grp.querySelectorAll(".size-pill").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
       pill.classList.add("is-active"); pill.setAttribute("aria-pressed", "true");
     });
-    // agregar al carrito (delegado; usa la horma activa, la talla y el color
-    // marcados en la tarjeta)
+    // agregar al carrito (delegado; la horma es la del espacio de la camiseta,
+    // y la talla y el color, los marcados en la tarjeta)
     document.addEventListener("click", function (e) {
       var b = e.target.closest(".btn-add[data-product]"); if (!b) return;
       var art = b.closest(".product");
       var active = art ? art.querySelector(".size-pill.is-active") : null;
       var sw = art ? art.querySelector(".color-swatch.is-active") : null;
-      add(b.getAttribute("data-product"), currentFit, active ? active.getAttribute("data-size") : "M", sw ? sw.getAttribute("data-color") : "");
+      var pid = b.getAttribute("data-product");
+      add(pid, fitDe(pid), active ? active.getAttribute("data-size") : "M", sw ? sw.getAttribute("data-color") : "");
     });
 
     // selector de pago
@@ -460,12 +459,23 @@
       /* Recién ahora sabemos qué existe de verdad. Se quitan del carrito las
          camisetas que las dueñas hayan borrado, renombrado o marcado Agotado:
          son las únicas que ya no se pueden pedir. Todo lo demás se conserva. */
-      var antes = cart.length;
+      var antes = JSON.stringify(cart);
       cart = cart.filter(function (i) {
         var p = PRODUCTS[i.id];
         return p && p.disponible !== false;
       });
-      if (cart.length !== antes) save();
+      /* Las hormas ya no se eligen: cada camiseta tiene la de su espacio. Un
+         carrito guardado de antes (con Oversized elegido para una camiseta que
+         ahora es Regular) se corrige, y si dos líneas quedan iguales se juntan. */
+      var juntas = {}, limpio2 = [];
+      cart.forEach(function (i) {
+        i.fit = fitDe(i.id);
+        var k = [i.id, i.fit, i.size, i.color || ""].join("|");
+        if (juntas[k]) juntas[k].qty += i.qty;
+        else { juntas[k] = i; limpio2.push(i); }
+      });
+      cart = limpio2;
+      if (JSON.stringify(cart) !== antes) save();
     }
     applyFit();
     render();

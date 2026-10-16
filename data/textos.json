@@ -34,7 +34,7 @@
   "colecciones": {
     "eyebrow_es": "Colecciones",
     "eyebrow_en": "Collections",
-    "titulo_es": "Lleva contigo una parte del océano.",
+    "titulo_es": "Nuestras camisetas",
     "titulo_en": "Carry a piece of the ocean with you.",
     "portal_titulo_es": "Cada colección es un nuevo mundo.",
     "portal_titulo_en": "Every collection is a new world.",
@@ -48,7 +48,7 @@
     "oceano_desc_en": "There's a whole world beneath the surface.",
     "oceano_boton_es": "Ver colección →",
     "oceano_boton_en": "View collection →",
-    "felina_etiqueta_es": "Próximamente · en desarrollo",
+    "felina_etiqueta_es": "Nueva colección",
     "felina_etiqueta_en": "Coming soon · in the works",
     "felina_nombre_es": "Felina",
     "felina_nombre_en": "Felina",
@@ -58,13 +58,17 @@
     "felina_boton_en": "View collection →"
   },
   "tienda": {
-    "eyebrow_es": "Colección Océano · Camisetas",
+    "eyebrow_es": "Camisetas",
     "eyebrow_en": "Ocean collection · T-shirts",
-    "texto_es": "Prendas inspiradas en las criaturas que existen bajo la superficie. Elige tu horma y talla.",
+    "texto_es": "Cada horma tiene sus propios diseños. Elige el espacio, tu talla y, si quieres, el color.",
     "texto_en": "Garments inspired by the creatures that live beneath the surface. Choose your fit and size.",
     "nota_es": "👕 Imágenes de referencia (mockups) — se reemplazan fácilmente cuando lleguen las fotos reales de las camisetas.",
     "nota_en": "👕 Reference images (mockups) — easy to swap once you have the real product photos.",
-    "mostrar_nota": true
+    "mostrar_nota": true,
+    "regular_texto_es": "Corte clásico, a tu medida.",
+    "oversized_texto_es": "Corte amplio y relajado, con diseños propios.",
+    "esenciales_texto_es": "Básicos en algodón suave, para usar con todo.",
+    "vacio_es": "Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos."
   },
   "oceano": {
     "portada_eyebrow_es": "Colección · Disponible",
@@ -134,7 +138,9 @@
     "accion4_titulo_es": "Aprende y comparte",
     "accion4_titulo_en": "Learn and share",
     "accion4_texto_es": "Hablar del océano también es protegerlo: lo que conocemos, lo valoramos; y lo que valoramos, queremos conservarlo.",
-    "accion4_texto_en": "Talking about the ocean is also protecting it: what we know, we value; and what we value, we want to preserve."
+    "accion4_texto_en": "Talking about the ocean is also protecting it: what we know, we value; and what we value, we want to preserve.",
+    "cierre_titulo_es": "Lleva contigo una parte del océano.",
+    "cierre_boton_es": "Ver camisetas"
   },
   "proposito": {
     "eyebrow_es": "Nuestro propósito",
@@ -258,5 +264,26 @@
     "contacto_boton_en": "Message us: 321 579 9683",
     "ubicacion_es": "Calarcá, Quindío · Colombia — envíos a todo el país",
     "ubicacion_en": "Calarcá, Quindío · Colombia — shipping across the country"
+  },
+  "felina": {
+    "eyebrow_es": "Colección 002",
+    "titulo_es": "Felina",
+    "texto_es": "Un universo de miradas, instintos y personalidades.",
+    "boton_es": "Ver camisetas",
+    "historia_eyebrow_es": "La historia de esta colección",
+    "historia_titulo_es": "Un universo de miradas",
+    "historia_p1_es": "Felina nace de la fascinación por los felinos: su andar sereno, su mirada que lo dice todo y esa independencia que los hace únicos. Cada diseño de esta colección busca capturar un poco de ese carácter.",
+    "historia_p2_es": "Del gato que duerme en casa al gran felino que recorre la selva, todos comparten algo: viven a su manera. Y como cada camiseta de A&M Universe, una parte de cada venta ayuda a los animales de la calle.",
+    "inspira_eyebrow_es": "Lo que nos inspira",
+    "inspira_titulo_es": "Tres rasgos de un felino",
+    "rasgo1_titulo_es": "Mirada",
+    "rasgo1_texto_es": "Ojos que observan antes de actuar. Diseños que invitan a mirar dos veces.",
+    "rasgo2_titulo_es": "Instinto",
+    "rasgo2_texto_es": "Confiar en lo que sientes. Prendas para moverte a tu propio ritmo.",
+    "rasgo3_titulo_es": "Personalidad",
+    "rasgo3_texto_es": "Ningún felino es igual a otro. Cada estampado tiene su propio carácter.",
+    "cierre_titulo_es": "Muy pronto, las camisetas de Felina",
+    "cierre_texto_es": "Estamos terminando los diseños. Mientras tanto, mira nuestras camisetas o escríbenos y te avisamos cuando salgan.",
+    "cierre_boton_es": "Quiero enterarme"
   }
 }

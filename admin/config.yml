@@ -33,12 +33,13 @@ collections:
     icon: attach_money
     files:
       - name: precios
-        label: "Precios de las camisetas"
+        label: "Precios generales"
         file: data/config.json
-        description: "Cambia el precio de cada horma. Se actualiza en toda la tienda."
+        description: "El precio general de cada espacio. Se usa para las camisetas que NO tienen precio propio (cada camiseta puede tener el suyo en Productos)."
         fields:
-          - { name: precio_regular, label: "Precio Regular fit (COP)", widget: number, value_type: int, min: 1000, step: 1000, hint: "Puedes escribirlo 75000 o 75.000, las dos formas sirven. Por seguridad se ignora cualquier valor menor a 1.000." }
-          - { name: precio_oversized, label: "Precio Oversized (COP)", widget: number, value_type: int, min: 1000, step: 1000 }
+          - { name: precio_regular, label: "Precio general Regular fit (COP)", widget: number, value_type: int, min: 1000, step: 1000, hint: "Puedes escribirlo 75000 o 75.000, las dos formas sirven. Por seguridad se ignora cualquier valor menor a 1.000." }
+          - { name: precio_oversized, label: "Precio general Oversized (COP)", widget: number, value_type: int, min: 1000, step: 1000 }
+          - { name: precio_esenciales, label: "Precio general Esenciales (COP)", widget: number, value_type: int, min: 1000, step: 1000, required: false, hint: "Si lo dejas vacío, los esenciales usan el precio general de Regular fit." }
 
   # -------- PAGOS --------
   - name: pagos
@@ -62,74 +63,100 @@ collections:
   - name: productos
     label: "Productos"
     icon: checkroom
+    description: "Las camisetas de la tienda, en tres espacios con diseños distintos: Regular fit, Oversized y Esenciales. La horma la define el espacio donde subas cada camiseta."
     files:
       - name: productos
-        label: "Camisetas de la tienda"
+        label: "Regular fit"
         file: data/productos.json
-        description: "Crea, edita, reordena o marca Agotado. Sube la foto de cada camiseta."
+        description: "Camisetas de horma Regular fit (corte clásico). Crea, edita, reordena o marca Agotado."
         fields:
           - name: productos
-            label: "Productos"
-            label_singular: "Producto"
+            label: "Camisetas"
+            label_singular: "Camiseta"
             widget: list
             summary: "{{fields.nombre_es}}"
             fields:
-              - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: coral2. No repetir con otro producto." }
-              - { name: imagen, label: "Foto principal", widget: image, choose_url: false, hint: "La foto que se ve en la tarjeta de la tienda." }
-              - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Sube una o varias fotos MÁS de esta camiseta (además de la principal). Se ven al hacer clic en la camiseta, en la ventana de fotos. Puedes arrastrar varias a la vez." }
+              - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: origen2. No repetir con ninguna otra camiseta de ningún espacio." }
+              - { name: imagen, label: "Foto de portada", widget: image, choose_url: false, hint: "La foto que se ve primero, en la tarjeta y en la ventana. Siempre se muestra, aunque haya colores." }
+              - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Fotos adicionales de esta camiseta. Se ven en la ventana al hacer clic, y se pasan con las flechas o deslizando. Puedes arrastrar varias a la vez." }
               - name: colores
                 label: "Colores (cada uno con su foto) — opcional"
                 widget: list
                 required: false
                 label_singular: "Color"
                 summary: "{{fields.nombre_es}}"
-                hint: "Si esta prenda viene en varios colores del MISMO estampado, agrega cada color con su foto. En la tienda salen cuadritos para elegir y la foto cambia según el color. El color elegido va en el pedido."
+                hint: "Si viene en varios colores del MISMO estampado, agrega cada color con su foto. En la tienda salen cuadritos para elegir (opcionales: la portada se ve siempre). El color elegido va en el pedido."
                 fields:
                   - { name: nombre_es, label: "Nombre del color", widget: string }
                   - { name: color, label: "Cuadrito de color", widget: color, required: false, hint: "El color del círculo que se toca para elegir. Si lo dejas vacío, se usa una miniatura de la foto." }
                   - { name: imagen, label: "Foto de este color", widget: image, choose_url: false }
                   - { name: galeria, label: "Más fotos de este color", widget: image, required: false, multiple: true, choose_url: false }
               - { name: nombre_es, label: "Nombre", widget: string }
-              - { name: precio_regular, label: "Precio Regular fit (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Regular fit. Si lo dejas vacío, usa el precio general de la sección Precios. (Puedes escribir 59000 o 59.000.)" }
-              - { name: precio_oversized, label: "Precio Oversized (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Oversized. Vacío = usa el precio general." }
-              - { name: desc_es, label: "Descripción corta", widget: text, hint: "La que se ve en la tarjeta de la tienda." }
+              - { name: precio, label: "Precio de esta camiseta (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Si lo dejas vacío, usa el precio general de este espacio (sección Precios). Puedes escribir 59000 o 59.000." }
+              - { name: desc_es, label: "Descripción corta", widget: text, hint: "La que se ve en la tarjeta." }
               - { name: desc_larga_es, label: "Descripción ampliada", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
               - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
 
-  # -------- ESSENTIALS --------
-  - name: essentials
-    label: "Essentials"
-    icon: dry_cleaning
-    files:
-      - name: essentials
-        label: "Línea de básicos"
-        file: data/essentials.json
-        description: "Las camisetas básicas (lisas). Funcionan igual que los Productos: crea, edita, reordena o marca Agotado, sube fotos y escribe descripciones. Aparecen en la pestaña Essentials del pie de la página."
+      - name: oversized
+        label: "Oversized"
+        file: data/oversized.json
+        description: "Camisetas de horma Oversized (corte amplio), con sus propios diseños. Mientras esté vacío, en la tienda sale un aviso de 'muy pronto'."
         fields:
           - name: productos
-            label: "Básicos"
-            label_singular: "Básico"
+            label: "Camisetas"
+            label_singular: "Camiseta"
             widget: list
             summary: "{{fields.nombre_es}}"
             fields:
-              - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ess-gris. No repetir con otro producto, ni con los de la tienda." }
-              - { name: imagen, label: "Foto principal", widget: image, choose_url: false, hint: "La foto que se ve en la tarjeta." }
-              - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Sube una o varias fotos MÁS de este básico (además de la principal). Se ven al hacer clic, en la ventana de fotos. Puedes arrastrar varias a la vez." }
+              - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ballena-oversized. No repetir con ninguna otra camiseta de ningún espacio." }
+              - { name: imagen, label: "Foto de portada", widget: image, choose_url: false, hint: "La foto que se ve primero, en la tarjeta y en la ventana. Siempre se muestra, aunque haya colores." }
+              - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Fotos adicionales de esta camiseta. Se ven en la ventana al hacer clic, y se pasan con las flechas o deslizando. Puedes arrastrar varias a la vez." }
               - name: colores
                 label: "Colores (cada uno con su foto) — opcional"
                 widget: list
                 required: false
                 label_singular: "Color"
                 summary: "{{fields.nombre_es}}"
-                hint: "Si esta prenda viene en varios colores del MISMO estampado, agrega cada color con su foto. En la tienda salen cuadritos para elegir y la foto cambia según el color. El color elegido va en el pedido."
+                hint: "Si viene en varios colores del MISMO estampado, agrega cada color con su foto. En la tienda salen cuadritos para elegir (opcionales: la portada se ve siempre). El color elegido va en el pedido."
                 fields:
                   - { name: nombre_es, label: "Nombre del color", widget: string }
                   - { name: color, label: "Cuadrito de color", widget: color, required: false, hint: "El color del círculo que se toca para elegir. Si lo dejas vacío, se usa una miniatura de la foto." }
                   - { name: imagen, label: "Foto de este color", widget: image, choose_url: false }
                   - { name: galeria, label: "Más fotos de este color", widget: image, required: false, multiple: true, choose_url: false }
               - { name: nombre_es, label: "Nombre", widget: string }
-              - { name: precio_regular, label: "Precio Regular fit (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Regular fit. Si lo dejas vacío, usa el precio general de la sección Precios. (Puedes escribir 59000 o 59.000.)" }
-              - { name: precio_oversized, label: "Precio Oversized (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Precio de ESTA camiseta en Oversized. Vacío = usa el precio general." }
+              - { name: precio, label: "Precio de esta camiseta (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Si lo dejas vacío, usa el precio general de este espacio (sección Precios). Puedes escribir 59000 o 59.000." }
+              - { name: desc_es, label: "Descripción corta", widget: text, hint: "La que se ve en la tarjeta." }
+              - { name: desc_larga_es, label: "Descripción ampliada", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
+              - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
+
+      - name: essentials
+        label: "Esenciales"
+        file: data/essentials.json
+        description: "Los básicos: camisetas para usar con todo. Funcionan igual que las demás."
+        fields:
+          - name: productos
+            label: "Camisetas"
+            label_singular: "Camiseta"
+            widget: list
+            summary: "{{fields.nombre_es}}"
+            fields:
+              - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ess-gris. No repetir con ninguna otra camiseta de ningún espacio." }
+              - { name: imagen, label: "Foto de portada", widget: image, choose_url: false, hint: "La foto que se ve primero, en la tarjeta y en la ventana. Siempre se muestra, aunque haya colores." }
+              - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Fotos adicionales de este básico. Se ven en la ventana al hacer clic, y se pasan con las flechas o deslizando. Puedes arrastrar varias a la vez." }
+              - name: colores
+                label: "Colores (cada uno con su foto) — opcional"
+                widget: list
+                required: false
+                label_singular: "Color"
+                summary: "{{fields.nombre_es}}"
+                hint: "Si viene en varios colores del MISMO estampado, agrega cada color con su foto. En la tienda salen cuadritos para elegir (opcionales: la portada se ve siempre). El color elegido va en el pedido."
+                fields:
+                  - { name: nombre_es, label: "Nombre del color", widget: string }
+                  - { name: color, label: "Cuadrito de color", widget: color, required: false, hint: "El color del círculo que se toca para elegir. Si lo dejas vacío, se usa una miniatura de la foto." }
+                  - { name: imagen, label: "Foto de este color", widget: image, choose_url: false }
+                  - { name: galeria, label: "Más fotos de este color", widget: image, required: false, multiple: true, choose_url: false }
+              - { name: nombre_es, label: "Nombre", widget: string }
+              - { name: precio, label: "Precio de esta camiseta (COP) — opcional", widget: number, required: false, value_type: int, min: 1000, step: 1000, hint: "Si lo dejas vacío, usa el precio general de este espacio (sección Precios). Puedes escribir 59000 o 59.000." }
               - { name: desc_es, label: "Descripción corta", widget: text, hint: "La que se ve en la tarjeta." }
               - { name: desc_larga_es, label: "Descripción ampliada", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
               - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
@@ -187,7 +214,7 @@ collections:
             collapsed: true
             fields:
               - { name: eyebrow_es, label: "Línea pequeña de la sección", widget: string, required: false }
-              - { name: titulo_es, label: "Título sobre las camisetas de Océano", widget: string, required: false, hint: "Es el encabezado que sale encima de la grilla de camisetas, no el de esta sección." }
+              - { name: titulo_es, label: "Título de la sección Camisetas", widget: string, required: false, hint: "El encabezado grande encima de las pestañas Regular fit · Oversized · Esenciales." }
               - { name: portal_titulo_es, label: "Título de la sección Colecciones", widget: string, required: false }
               - { name: portal_texto_es, label: "Portal · primer párrafo", widget: text, required: false }
               - { name: portal_texto2_es, label: "Portal · segundo párrafo", widget: text, required: false }
@@ -208,6 +235,10 @@ collections:
               - { name: eyebrow_es, label: "Línea pequeña de la sección", widget: string, required: false }
               - { name: texto_es, label: "Texto de la sección", widget: text, required: false }
               - { name: nota_es, label: "Aviso de fotos de referencia", widget: text, required: false }
+              - { name: regular_texto_es, label: "Texto del espacio Regular fit", widget: string, required: false }
+              - { name: oversized_texto_es, label: "Texto del espacio Oversized", widget: string, required: false }
+              - { name: esenciales_texto_es, label: "Texto del espacio Esenciales", widget: string, required: false }
+              - { name: vacio_es, label: "Aviso cuando un espacio aún no tiene camisetas", widget: string, required: false }
               - { name: mostrar_nota, label: "¿Mostrar el aviso de fotos de referencia?", widget: boolean, default: true, required: false, hint: "Apágalo cuando ya estén las fotos reales de las camisetas." }
 
           # ----- Océano (la historia de la colección) -----
@@ -251,6 +282,34 @@ collections:
               - { name: accion3_texto_es, label: "Acción 3 · texto", widget: text, required: false }
               - { name: accion4_titulo_es, label: "Acción 4 · título", widget: string, required: false }
               - { name: accion4_texto_es, label: "Acción 4 · texto", widget: text, required: false }
+              - { name: cierre_titulo_es, label: "Cierre · título (lleva a las camisetas)", widget: string, required: false }
+              - { name: cierre_boton_es, label: "Cierre · botón", widget: string, required: false }
+
+          # ----- Felina (página de la colección) -----
+          - name: felina
+            label: "Felina"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow_es, label: "Portada · línea pequeña", widget: string, required: false }
+              - { name: titulo_es, label: "Portada · título", widget: string, required: false }
+              - { name: texto_es, label: "Portada · texto", widget: text, required: false }
+              - { name: boton_es, label: "Botón · ver camisetas", widget: string, required: false }
+              - { name: historia_eyebrow_es, label: "Historia · línea pequeña", widget: string, required: false }
+              - { name: historia_titulo_es, label: "Historia · título", widget: string, required: false }
+              - { name: historia_p1_es, label: "Historia · párrafo 1", widget: text, required: false }
+              - { name: historia_p2_es, label: "Historia · párrafo 2", widget: text, required: false }
+              - { name: inspira_eyebrow_es, label: "Lo que inspira · línea pequeña", widget: string, required: false }
+              - { name: inspira_titulo_es, label: "Lo que inspira · título", widget: string, required: false }
+              - { name: rasgo1_titulo_es, label: "Rasgo 1 · título", widget: string, required: false }
+              - { name: rasgo1_texto_es, label: "Rasgo 1 · texto", widget: text, required: false }
+              - { name: rasgo2_titulo_es, label: "Rasgo 2 · título", widget: string, required: false }
+              - { name: rasgo2_texto_es, label: "Rasgo 2 · texto", widget: text, required: false }
+              - { name: rasgo3_titulo_es, label: "Rasgo 3 · título", widget: string, required: false }
+              - { name: rasgo3_texto_es, label: "Rasgo 3 · texto", widget: text, required: false }
+              - { name: cierre_titulo_es, label: "Cierre · título", widget: string, required: false }
+              - { name: cierre_texto_es, label: "Cierre · texto", widget: text, required: false }
+              - { name: cierre_boton_es, label: "Cierre · botón de WhatsApp", widget: string, required: false }
 
           # ----- Propósito -----
           - name: proposito
