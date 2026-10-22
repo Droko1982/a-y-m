@@ -31,9 +31,9 @@
     },
     {
       "id": "Cereal killer",
-      "imagen": "/assets/cereal killer.jpg",
+      "imagen": "/assets/frente cereal killer.jpg",
       "galeria": [
-        "/assets/frente cereal killer.jpg"
+        "/assets/cereal killer.jpg"
       ],
       "colores": [
         {
