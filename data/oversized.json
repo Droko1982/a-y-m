@@ -49,12 +49,23 @@
       "disponible": true
     },
     {
-      "id": "Don't be a...",
+      "id": "Don't",
       "imagen": "/assets/dont be a sucker back.jpg",
       "galeria": [
         "/assets/dondt be a sucker.jpg"
       ],
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Negro",
+          "color": "",
+          "imagen": "/assets/don't be a sucker mocca negro duo.png"
+        },
+        {
+          "nombre_es": "Verde Militar",
+          "color": "#3a3e2f",
+          "imagen": "/assets/don't be a sucker verde duo.png"
+        }
+      ],
       "nombre_es": "Don't be a...",
       "precio": null,
       "desc_es": "Un gráfico divertido y directo con espíritu de conservación marina y ajuste oversize. Confeccionada en algodón de alto gramaje para quienes llevan el cuidado del planeta en su estilo diario.",
