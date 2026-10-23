@@ -1,7 +1,7 @@
 {
   "productos": [
     {
-      "id": "origin",
+      "id": "originSS",
       "imagen": "/assets/camiseta 1.jpg",
       "colores": [
         {
@@ -26,7 +26,7 @@
       "nombre_es": "Camiseta Origen",
       "precio": null,
       "desc_es": "Una ballena, un horizonte y la inmensidad del océano convertidos en una sola historia.\n100% algodon 240gr",
-      "desc_larga_es": "",
+      "desc_larga_es": "La camiseta Camiseta Origen une el misticismo del paisaje terrestre con la inmensidad del mundo marino en una prenda hecha para acompañarte todos los días.\nDetalles del producto:\nDiseño: Ilustración central en el frente que fusiona la silueta de una ballena con montañas y un sol de fondo.\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100% algodon 240gr.",
       "disponible": true,
       "desc_en": "A whale, a horizon, and the vastness of the ocean transformed into a single story.",
       "desc_larga_en": "",
@@ -54,7 +54,7 @@
       "nombre_es": "Alma marina",
       "precio": null,
       "desc_es": "Inspirada en la biodiversidad costera y el espíritu del mar, esta camiseta es un homenaje a nuestras especies y ecosistemas.\n100% algodon 280gr",
-      "desc_larga_es": "",
+      "desc_larga_es": "La camiseta Alma marina captura la esencia de la vida playera y el entorno costero a través de una cuidada ilustración lineal que reúne tablas de surf, vegetación tropical y fauna marina en una prenda hecha para acompañarte todos los días.\nDetalles del producto:\nDiseño: Ilustración frontal corrida con motivos de palmeras, tablas de surf y elementos marinos sobre un tono crema cálido.\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100% algodon 280gr.",
       "disponible": true,
       "desc_en": "Inspired by coastal biodiversity and the spirit of the sea, this T-shirt is a tribute to our species and ecosystems.\n100% cotton, 280g.",
       "desc_larga_en": "",
@@ -77,11 +77,6 @@
           "color": "",
           "imagen": "/assets/mockup_ig_post_20261016_131016.png",
           "nombre_en": "Black"
-        },
-        {
-          "nombre_es": "Blanco",
-          "color": "#ffffff",
-          "imagen": "/assets/ballena 52 hrz negro blanco.png"
         }
       ],
       "nombre_es": "Bajo el ruido",
@@ -94,32 +89,6 @@
       "nombre_en": "Beneath the noise",
       "precio_oversized": null,
       "precio_regular": null
-    },
-    {
-      "id": "Vida",
-      "imagen": "/assets/Nuki.jpg",
-      "colores": [
-        {
-          "nombre_es": "Negro",
-          "color": "",
-          "imagen": "/assets/mucho estres poca vida negro duo.png"
-        },
-        {
-          "nombre_es": "Azul Navi",
-          "color": "#131339",
-          "imagen": "/assets/mucho estres poca vida azul.png"
-        },
-        {
-          "nombre_es": "Verde Militar",
-          "color": "#3a3e2f",
-          "imagen": "/assets/mucho estres pocaa vida.png"
-        }
-      ],
-      "nombre_es": "Mucho estrés, poca vida",
-      "precio": null,
-      "desc_es": "---",
-      "desc_larga_es": "---",
-      "disponible": true
     }
   ]
 }
