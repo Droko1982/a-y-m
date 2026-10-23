@@ -25,7 +25,7 @@
       ],
       "nombre_es": "Marisma",
       "precio": null,
-      "desc_es": "Lleva el ritmo del océano en la piel. Las ballenas han cantado por los mares mucho antes que nosotros; recordémoslo antes de que enmudezcan",
+      "desc_es": "Un diseño divertido con corte oversize, hecha de algodón 100%, para quienes conectan con lo natural y buscan vestir con un propósito consciente.",
       "desc_larga_es": "Las ballenas han surcado y cantado por los mares mucho antes de que nosotros llegáramos; sus melodías han cruzado los abismos durante milenios. Hoy, este eco ancestral se enfrenta al silencio. Recordémoslo antes de que enmudezcan por completo y de que el mar pierda su voz más profunda.",
       "disponible": true
     },
@@ -44,8 +44,8 @@
       ],
       "nombre_es": "Cereal killer",
       "precio": null,
-      "desc_es": "Un diseño divertido con corte oversize, hecha de algodón 100%.\npara quienes conectan con lo natural y buscan vestir con un propósito consciente.",
-      "desc_larga_es": "La camiseta Cereal Killer une el humor con el encanto del mundo marino en una prenda hecha para acompañarte todos los dias.\n\nDetalles del producto:\n\nDiseño: Detalle minimalista de orca en el pecho e ilustración completa en la espalda.\n\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural 100% algodon 280gr.",
+      "desc_es": "Un diseño divertido con corte oversize, hecha de algodón 100%, para quienes conectan con lo natural y buscan vestir con un propósito consciente.",
+      "desc_larga_es": "La camiseta Cereal Killer une el humor con el encanto del mundo marino en una prenda hecha para acompañarte todos los días.\nDetalles del producto:\nDiseño: Detalle minimalista de orca en el pecho e ilustración completa en la espalda.\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100% algodón 280gr.",
       "disponible": true
     },
     {
@@ -59,11 +59,6 @@
           "nombre_es": "Negro",
           "color": "",
           "imagen": "/assets/don't be a sucker mocca negro duo.png"
-        },
-        {
-          "nombre_es": "Mocaa",
-          "color": "#7e6053",
-          "imagen": "/assets/don't be a sucker mocca duo.png"
         },
         {
           "nombre_es": "Verde Militar",
