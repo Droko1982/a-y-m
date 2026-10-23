@@ -61,6 +61,11 @@
           "imagen": "/assets/don't be a sucker mocca negro duo.png"
         },
         {
+          "nombre_es": "Mocaa",
+          "color": "#7e6053",
+          "imagen": "/assets/don't be a sucker mocca duo.png"
+        },
+        {
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
           "imagen": "/assets/don't be a sucker verde duo.png"
