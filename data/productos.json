@@ -103,6 +103,11 @@
           "nombre_es": "Negro",
           "color": "",
           "imagen": "/assets/mucho estres poca vida negro duo.png"
+        },
+        {
+          "nombre_es": "Azul Navi",
+          "color": "#131339",
+          "imagen": "/assets/mucho estres poca vida azul.png"
         }
       ],
       "nombre_es": "Mucho estrés, poca vida",
