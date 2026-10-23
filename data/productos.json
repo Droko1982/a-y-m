@@ -6,32 +6,33 @@
       "colores": [
         {
           "nombre_es": "Negro",
-          "nombre_en": "Black",
           "color": "#000000",
-          "imagen": "/assets/mockup_ig_post_20261015_185456.png"
+          "imagen": "/assets/mockup_ig_post_20261015_185456.png",
+          "nombre_en": "Black"
         },
         {
           "nombre_es": "Azul Navi",
-          "nombre_en": "Navy",
           "color": "#292d4a",
-          "imagen": "/assets/mockup_ig_post_20261015_185439.png"
+          "imagen": "/assets/mockup_ig_post_20261015_185439.png",
+          "nombre_en": "Navy"
         },
         {
           "nombre_es": "Verde Militar",
-          "nombre_en": "Green",
           "color": "#3a3e2f",
-          "imagen": "/assets/mockup_ig_post_20261015_190859.png"
+          "imagen": "/assets/mockup_ig_post_20261015_190859.png",
+          "nombre_en": "Green"
         }
       ],
       "nombre_es": "Camiseta Origen",
-      "nombre_en": "Origin",
-      "precio_regular": null,
-      "precio_oversized": null,
+      "precio": null,
       "desc_es": "Una ballena, un horizonte y la inmensidad del océano convertidos en una sola historia.\n100% algodon 240gr",
-      "desc_en": "A whale, a horizon, and the vastness of the ocean transformed into a single story.",
       "desc_larga_es": "",
+      "disponible": true,
+      "desc_en": "A whale, a horizon, and the vastness of the ocean transformed into a single story.",
       "desc_larga_en": "",
-      "disponible": true
+      "nombre_en": "Origin",
+      "precio_oversized": null,
+      "precio_regular": null
     },
     {
       "id": "Marine",
@@ -39,26 +40,27 @@
       "colores": [
         {
           "nombre_es": "blanco hueso",
-          "nombre_en": "Bone wite",
           "color": "#f3efe6",
-          "imagen": "/assets/mockup_ig_post_20261015_191701.png"
+          "imagen": "/assets/mockup_ig_post_20261015_191701.png",
+          "nombre_en": "Bone wite"
         },
         {
           "nombre_es": "Crema",
-          "nombre_en": "Cream",
           "color": "#fcf2ce",
-          "imagen": "/assets/mockup_ig_post_20261015_191821.png"
+          "imagen": "/assets/mockup_ig_post_20261015_191821.png",
+          "nombre_en": "Cream"
         }
       ],
       "nombre_es": "Alma marina",
-      "nombre_en": "Marine Soul",
-      "precio_regular": null,
-      "precio_oversized": null,
+      "precio": null,
       "desc_es": "Inspirada en la biodiversidad costera y el espíritu del mar, esta camiseta es un homenaje a nuestras especies y ecosistemas.\n100% algodon 280gr",
-      "desc_en": "Inspired by coastal biodiversity and the spirit of the sea, this T-shirt is a tribute to our species and ecosystems.\n100% cotton, 280g.",
       "desc_larga_es": "",
+      "disponible": true,
+      "desc_en": "Inspired by coastal biodiversity and the spirit of the sea, this T-shirt is a tribute to our species and ecosystems.\n100% cotton, 280g.",
       "desc_larga_en": "",
-      "disponible": true
+      "nombre_en": "Marine Soul",
+      "precio_oversized": null,
+      "precio_regular": null
     },
     {
       "id": "Noise",
@@ -66,26 +68,32 @@
       "colores": [
         {
           "nombre_es": "Azul Navi",
-          "nombre_en": "Navy",
           "color": "#292d4a",
-          "imagen": "/assets/mockup_ig_post_20261015_200813.png"
+          "imagen": "/assets/mockup_ig_post_20261015_200813.png",
+          "nombre_en": "Navy"
         },
         {
           "nombre_es": "Negro",
-          "nombre_en": "Black",
           "color": "",
-          "imagen": "/assets/mockup_ig_post_20261016_131016.png"
+          "imagen": "/assets/mockup_ig_post_20261016_131016.png",
+          "nombre_en": "Black"
+        },
+        {
+          "nombre_es": "Blanco",
+          "color": "#ffffff",
+          "imagen": "/assets/ballena 52 hrz negro blanco.png"
         }
       ],
       "nombre_es": "Bajo el ruido",
-      "nombre_en": "Beneath the noise",
-      "precio_regular": null,
-      "precio_oversized": null,
+      "precio": null,
       "desc_es": "Un llamado en el océano que nadie logra escuchar. El impacto de la contaminación acústica marina silencia el canto de las ballenas.",
-      "desc_en": "A call in the ocean that goes unheard. The impact of marine noise pollution silences the song of the whales.",
       "desc_larga_es": "",
+      "disponible": true,
+      "desc_en": "A call in the ocean that goes unheard. The impact of marine noise pollution silences the song of the whales.",
       "desc_larga_en": "",
-      "disponible": true
+      "nombre_en": "Beneath the noise",
+      "precio_oversized": null,
+      "precio_regular": null
     }
   ]
 }
