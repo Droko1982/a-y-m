@@ -94,6 +94,22 @@
       "nombre_en": "Beneath the noise",
       "precio_oversized": null,
       "precio_regular": null
+    },
+    {
+      "id": "Vida",
+      "imagen": "/assets/Nuki.jpg",
+      "colores": [
+        {
+          "nombre_es": "Negro",
+          "color": "",
+          "imagen": "/assets/mucho estres poca vida negro duo.png"
+        }
+      ],
+      "nombre_es": "Mucho estrés, poca vida",
+      "precio": null,
+      "desc_es": "---",
+      "desc_larga_es": "---",
+      "disponible": true
     }
   ]
 }
