@@ -81,6 +81,11 @@
           "imagen": "/assets/don't be a sucker verde duo.png"
         },
         {
+          "nombre_es": "Azul Navy",
+          "color": "#131339",
+          "imagen": "/assets/don't be a sucker azul duo.png"
+        },
+        {
           "nombre_es": "Vainilla",
           "color": "#ffe9b8",
           "imagen": "/assets/don't be a sucker vainilla duo.png"
