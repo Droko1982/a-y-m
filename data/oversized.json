@@ -79,6 +79,11 @@
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
           "imagen": "/assets/don't be a sucker verde duo.png"
+        },
+        {
+          "nombre_es": "Vainilla",
+          "color": "#ffe9b8",
+          "imagen": "/assets/don't be a sucker vainilla duo.png"
         }
       ],
       "nombre_es": "Don't be a...",
