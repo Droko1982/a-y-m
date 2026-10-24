@@ -110,6 +110,25 @@
       "desc_es": "-----",
       "desc_larga_es": "",
       "disponible": true
+    },
+    {
+      "id": "free",
+      "imagen": "/assets/0df874cd-8d86-4fa6-9038-a13a8dc899ec.jpg",
+      "galeria": [
+        "/assets/wild free.jpg"
+      ],
+      "colores": [
+        {
+          "nombre_es": "Crema",
+          "color": "#fcf2ce",
+          "imagen": "/assets/wild free crema.png"
+        }
+      ],
+      "nombre_es": "---",
+      "precio": null,
+      "desc_es": "-----",
+      "desc_larga_es": "",
+      "disponible": true
     }
   ]
 }
