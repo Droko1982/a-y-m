@@ -26,6 +26,11 @@
           "nombre_es": "Azul Navi",
           "color": "#131339",
           "imagen": "/assets/ballenas tipos duo azul.png"
+        },
+        {
+          "nombre_es": "Mocaa",
+          "color": "#7e6053",
+          "imagen": "/assets/ballenas tipos mocca duo.png"
         }
       ],
       "nombre_es": "Marisma",
