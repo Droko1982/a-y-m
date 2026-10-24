@@ -89,6 +89,22 @@
       "nombre_en": "Beneath the noise",
       "precio_oversized": null,
       "precio_regular": null
+    },
+    {
+      "id": "PocaVida",
+      "imagen": "/assets/Nuki.jpg",
+      "colores": [
+        {
+          "nombre_es": "Azul Navy",
+          "color": "",
+          "imagen": "/assets/mucho estres poca vida azul.png"
+        }
+      ],
+      "nombre_es": "----",
+      "precio": null,
+      "desc_es": "-----",
+      "desc_larga_es": "",
+      "disponible": true
     }
   ]
 }
