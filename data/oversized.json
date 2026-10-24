@@ -50,6 +50,11 @@
           "nombre_es": "Blanco",
           "color": "#ffffff",
           "imagen": "/assets/cereal killer duo lanca.png"
+        },
+        {
+          "nombre_es": "Crema",
+          "color": "#fcf2ce",
+          "imagen": "/assets/cereal killer duo crema.png"
         }
       ],
       "nombre_es": "Cereal killer",
