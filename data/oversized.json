@@ -21,6 +21,11 @@
           "nombre_es": "Crema",
           "color": "#fcf2ce",
           "imagen": "/assets/ballenas tipos crema duo.png"
+        },
+        {
+          "nombre_es": "Azul Navi",
+          "color": "#131339",
+          "imagen": "/assets/ballenas tipos duo azul.png"
         }
       ],
       "nombre_es": "Marisma",
