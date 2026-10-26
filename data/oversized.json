@@ -119,6 +119,11 @@
           "nombre_es": "Azul Navy",
           "color": "#131339",
           "imagen": "/assets/wild free azul.png"
+        },
+        {
+          "nombre_es": "Arena",
+          "color": "#d4bc94",
+          "imagen": "/assets/wild free arena.png"
         }
       ],
       "nombre_es": "----",
