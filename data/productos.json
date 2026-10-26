@@ -108,6 +108,11 @@
           "nombre_es": "Azul Navy",
           "color": "#10102f",
           "imagen": "/assets/mucho estres poca vida azul.png"
+        },
+        {
+          "nombre_es": "Verde Militar",
+          "color": "#3a3e2f",
+          "imagen": "/assets/mucho estres pocaa vida.png"
         }
       ],
       "nombre_es": "----",
