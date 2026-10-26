@@ -112,16 +112,18 @@
       "disponible": true
     },
     {
-      "id": "free",
-      "imagen": "/assets/0df874cd-8d86-4fa6-9038-a13a8dc899ec.jpg",
-      "galeria": [
-        "/assets/wild free.jpg"
-      ],
+      "id": "Jurassic",
+      "imagen": "/assets/jurassic shark.jpg",
       "colores": [
         {
-          "nombre_es": "Crema",
-          "color": "#fcf2ce",
-          "imagen": "/assets/wild free crema.png"
+          "nombre_es": "Negro",
+          "color": "",
+          "imagen": "/assets/jurassic shak negro frente regular.png"
+        },
+        {
+          "nombre_es": "Azul Navy",
+          "color": "#10102f",
+          "imagen": "/assets/jurassic shark azul frente regular.png"
         }
       ],
       "nombre_es": "---",
