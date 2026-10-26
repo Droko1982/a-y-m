@@ -124,6 +124,11 @@
           "nombre_es": "Azul Navy",
           "color": "#10102f",
           "imagen": "/assets/jurassic shark azul frente regular.png"
+        },
+        {
+          "nombre_es": "Verde Militar",
+          "color": "#3a3e2f",
+          "imagen": "/assets/jurassic shak verde militar regular.png"
         }
       ],
       "nombre_es": "---",
