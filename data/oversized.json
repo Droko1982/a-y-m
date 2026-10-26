@@ -106,9 +106,9 @@
       ],
       "colores": [
         {
-          "nombre_es": "Vainilla",
-          "color": "#ffe9b8",
-          "imagen": "/assets/wild free vainilla.png"
+          "nombre_es": "Blanco",
+          "color": "#ffffff",
+          "imagen": "/assets/Wild free blanca.png"
         },
         {
           "nombre_es": "Mocca",
