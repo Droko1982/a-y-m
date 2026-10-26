@@ -124,6 +124,11 @@
           "nombre_es": "Arena",
           "color": "#d4bc94",
           "imagen": "/assets/wild free arena.png"
+        },
+        {
+          "nombre_es": "Vailnilla",
+          "color": "#ffe9b8",
+          "imagen": "/assets/wild free vainilla.png"
         }
       ],
       "nombre_es": "----",
