@@ -129,6 +129,11 @@
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
           "imagen": "/assets/jurassic shak verde militar regular.png"
+        },
+        {
+          "nombre_es": "Arena",
+          "color": "#d4bc9a",
+          "imagen": "/assets/jurassic shark arena regukar.png"
         }
       ],
       "nombre_es": "---",
