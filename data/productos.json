@@ -95,14 +95,19 @@
       "imagen": "/assets/Nuki.jpg",
       "colores": [
         {
-          "nombre_es": "Azul Navy",
-          "color": "",
-          "imagen": "/assets/mucho estres poca vida azul.png"
+          "nombre_es": "Mocca",
+          "color": "#7e6053",
+          "imagen": "/assets/mucho estres poca vida Mocaa duo.png"
         },
         {
           "nombre_es": "Arena",
           "color": "#d4bc94",
           "imagen": "/assets/mucho estres poca vida arena.png"
+        },
+        {
+          "nombre_es": "Azul Navy",
+          "color": "#10102f",
+          "imagen": "/assets/mucho estres poca vida azul.png"
         }
       ],
       "nombre_es": "----",
