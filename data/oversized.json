@@ -114,6 +114,11 @@
           "nombre_es": "Mocca",
           "color": "#7e6053",
           "imagen": "/assets/wild free Mocca.png"
+        },
+        {
+          "nombre_es": "Azul Navy",
+          "color": "",
+          "imagen": "/assets/wild free azul.png"
         }
       ],
       "nombre_es": "----",
