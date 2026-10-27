@@ -136,6 +136,19 @@
       "desc_es": "----",
       "desc_larga_es": "",
       "disponible": true
+    },
+    {
+      "id": "Abiss",
+      "imagen": "/assets/abiss portada espalda.png",
+      "galeria": [
+        "/assets/abiss portada.png"
+      ],
+      "colores": [],
+      "nombre_es": "Abiss",
+      "precio": null,
+      "desc_es": "----",
+      "desc_larga_es": "-----",
+      "disponible": true
     }
   ]
 }
