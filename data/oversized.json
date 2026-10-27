@@ -145,9 +145,9 @@
       ],
       "colores": [
         {
-          "nombre_es": "Crema",
-          "color": "#fcf2ce",
-          "imagen": "/assets/abiss crema duo.png"
+          "nombre_es": "Blanco",
+          "color": "#ffffff",
+          "imagen": "/assets/abiss blanca duo.png"
         }
       ],
       "nombre_es": "Abiss",
