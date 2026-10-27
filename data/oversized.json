@@ -143,7 +143,13 @@
       "galeria": [
         "/assets/abiss portada.png"
       ],
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Crema",
+          "color": "#fcf2ce",
+          "imagen": "/assets/abiss crema duo.png"
+        }
+      ],
       "nombre_es": "Abiss",
       "precio": null,
       "desc_es": "----",
