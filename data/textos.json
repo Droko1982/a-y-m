@@ -33,7 +33,7 @@
   },
   "colecciones": {
     "eyebrow_es": "Colecciones",
-    "titulo_es": "Nuestras camisetas",
+    "titulo_es": "Lleva contigo una parte del océano.",
     "portal_titulo_es": "Cada colección es un nuevo mundo.",
     "portal_texto_es": "Creemos que cada mundo tiene una historia que contar. Por eso creamos colecciones inspiradas en lugares, criaturas, aventuras, emociones y todo aquello que nos invita a mirar el mundo de manera diferente.",
     "portal_texto2_es": "Explora cada universo. Descubre su historia. Hazlo parte de la tuya.",
@@ -59,7 +59,7 @@
   },
   "tienda": {
     "eyebrow_es": "Camisetas",
-    "texto_es": "Cada horma tiene sus propios diseños. Elige el espacio, tu talla y, si quieres, el color.",
+    "texto_es": "Cada horma tiene sus propios diseños. Elige tu horma, tu talla y, si quieres, el color.",
     "nota_es": "👕 Imágenes de referencia (mockups) — se reemplazan fácilmente cuando lleguen las fotos reales de las camisetas.",
     "regular_texto_es": "Corte clásico, a tu medida.",
     "oversized_texto_es": "Corte amplio y relajado, con diseños propios.",
@@ -68,7 +68,8 @@
     "mostrar_nota": true,
     "eyebrow_en": "Ocean collection · T-shirts",
     "nota_en": "👕 Reference images (mockups) — easy to swap once you have the real product photos.",
-    "texto_en": "Garments inspired by the creatures that live beneath the surface. Choose your fit and size."
+    "texto_en": "Garments inspired by the creatures that live beneath the surface. Choose your fit and size.",
+    "esenciales_titulo_es": "Los básicos que no fallan."
   },
   "oceano": {
     "portada_eyebrow_es": "Colección · Disponible",
@@ -161,7 +162,8 @@
     "rasgo3_texto_es": "Ningún felino es igual a otro. Cada estampado tiene su propio carácter.",
     "cierre_titulo_es": "Muy pronto, las camisetas de Felina",
     "cierre_texto_es": "Estamos terminando los diseños. Mientras tanto, mira nuestras camisetas o escríbenos y te avisamos cuando salgan.",
-    "cierre_boton_es": "Quiero enterarme"
+    "cierre_boton_es": "Quiero enterarme",
+    "camisetas_titulo_es": "Las camisetas de Felina"
   },
   "proposito": {
     "eyebrow_es": "Mision",

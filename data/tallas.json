@@ -1,0 +1,55 @@
+{
+  "nota": "Medidas de la prenda en centímetros. ¿Dudas con tu talla? Escríbenos.",
+  "regular": [
+    {
+      "talla": "S",
+      "pecho": "53",
+      "largo": "67",
+      "hombro": "41"
+    },
+    {
+      "talla": "M",
+      "pecho": "56",
+      "largo": "70",
+      "hombro": "44"
+    },
+    {
+      "talla": "L",
+      "pecho": "60",
+      "largo": "74",
+      "hombro": "47"
+    },
+    {
+      "talla": "XL",
+      "pecho": "59",
+      "largo": "37",
+      "hombro": "48"
+    }
+  ],
+  "oversized": [
+    {
+      "talla": "S",
+      "pecho": "60",
+      "largo": "72",
+      "hombro": "55"
+    },
+    {
+      "talla": "M",
+      "pecho": "61",
+      "largo": "74",
+      "hombro": "56"
+    },
+    {
+      "talla": "L",
+      "pecho": "63",
+      "largo": "75",
+      "hombro": "58"
+    },
+    {
+      "talla": "XL",
+      "pecho": "67",
+      "largo": "79",
+      "hombro": "62"
+    }
+  ]
+}

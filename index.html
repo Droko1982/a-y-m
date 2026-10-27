@@ -327,36 +327,45 @@
         </div>
     </section>
 
-    <!-- Colección Océano (video de fondo) -->
-    <section class="hero hero--video" data-view="oceano" aria-label="Colección Océano">
-        <div class="hero-video" aria-hidden="true">
-            <iframe id="oceano-video" data-src="https://www.youtube-nocookie.com/embed/RZD9HX_PMys?autoplay=1&mute=1&controls=0&loop=1&playlist=RZD9HX_PMys&playsinline=1&modestbranding=1&rel=0&disablekb=1&fs=0&enablejsapi=1" title="" frameborder="0" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
-        </div>
-        <!-- Póster propio: tapa el botón de play de YouTube (feo, centrado) hasta
-             que el video reproduce. Se desvanece solo al empezar. -->
-        <div class="video-poster" id="video-poster" aria-hidden="true"></div>
-        <!-- Capa para tocar el video y que reproduzca o pause. El control
-             accesible (teclado/lectores) es el botón de la esquina. -->
-        <button class="video-click" id="video-click" type="button" tabindex="-1" aria-hidden="true"></button>
-        <div class="video-controls">
-            <button class="video-toggle" id="sound-toggle" type="button" aria-label="Activar o silenciar el sonido del mar" data-i18n-aria="aria.sound">
-                <span class="vt-icon" aria-hidden="true">🔊</span>
-                <span class="vt-label" data-i18n="video.sound">Activar sonido</span>
-            </button>
-            <button class="video-toggle" id="video-toggle" type="button" aria-label="Pausar o reproducir el video" data-i18n-aria="aria.video">
-                <span class="vt-icon" aria-hidden="true">❚❚</span>
-                <span class="vt-label" data-i18n="video.pause">Pausar</span>
-            </button>
-        </div>
+    <!-- Colección Océano: portada con foto de la tortuga -->
+    <section class="hero hero--photo hero--oceano" data-view="oceano" aria-label="Colección Océano">
         <div class="container hero-inner">
             <div class="hero-copy">
                 <p class="eyebrow" data-i18n="oceano.eyebrow">Colección · Disponible</p>
                 <h1 class="hero-title" data-i18n="oceano.title">Océano</h1>
                 <p class="hero-sub" data-i18n="oceano.lead">El mar que nos inspira. Conoce su historia, la vida que lo habita y por qué todavía estamos a tiempo de cuidarlo.</p>
                 <div class="hero-cta">
+                    <a href="#oc-camisetas" class="btn btn-primary" data-i18n="oceano.ver">Ver camisetas</a>
                     <a href="#tienda" class="btn btn-ghost" data-i18n="oceano.back">← Volver a la tienda</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Camisetas de Océano: lo primero que se ve al entrar a la colección -->
+    <section class="section shop" id="oc-camisetas" data-view="oceano" data-coleccion="oceano">
+        <div class="container">
+            <div class="section-head center">
+                <p class="eyebrow" data-i18n="shop.eyebrow">Camisetas</p>
+                <h2 class="section-title" data-i18n="collections.title">Lleva contigo una parte del océano.</h2>
+                <p class="section-lead" data-i18n="shop.lead">Cada horma tiene sus propios diseños. Elige tu horma, tu talla y, si quieres, el color.</p>
+            </div>
+            <div class="shop-tabs" role="tablist" aria-label="Horma">
+                <button type="button" class="shop-tab is-active" role="tab" data-tab="regular" aria-selected="true" aria-controls="panel-oceano-regular" data-i18n="fit.regular">Regular fit</button>
+                <button type="button" class="shop-tab" role="tab" data-tab="oversized" aria-selected="false" aria-controls="panel-oceano-oversized" tabindex="-1" data-i18n="fit.oversized">Oversized</button>
+            </div>
+            <div class="shop-panel" role="tabpanel" id="panel-oceano-regular" data-panel="regular">
+                <p class="shop-panel-lead" data-i18n="esp.regular.lead">Corte clásico, a tu medida.</p>
+                <div class="shop-grid" id="oceano-regular-grid"></div>
+                <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
+            </div>
+            <div class="shop-panel" role="tabpanel" id="panel-oceano-oversized" data-panel="oversized" hidden>
+                <p class="shop-panel-lead" data-i18n="esp.oversized.lead">Corte amplio y relajado, con diseños propios.</p>
+                <div class="shop-grid" id="oceano-oversized-grid"></div>
+                <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
+            </div>
+            <div class="size-guide" data-tablas="regular,oversized"></div>
+            <p class="shop-note" data-i18n="shop.note">👕 Imágenes de referencia (mockups) — se reemplazan fácilmente cuando lleguen las fotos reales de las camisetas.</p>
         </div>
     </section>
 
@@ -420,56 +429,15 @@
                     </div>
                 </a>
             </div>
-        </div>
-    </section>
-
-    <!-- Camisetas: tres espacios (Regular fit · Oversized · Esenciales).
-         Cada espacio tiene sus propios diseños; la horma la define el espacio. -->
-    <section class="section shop" id="camisetas" data-view="tienda">
-        <div class="container">
-            <div class="section-head center">
-                <p class="eyebrow" data-i18n="shop.eyebrow">Camisetas</p>
-                <h2 class="section-title" data-i18n="collections.title">Nuestras camisetas</h2>
-                <p class="section-lead" data-i18n="shop.lead">Cada horma tiene sus propios diseños. Elige el espacio, tu talla y, si quieres, el color.</p>
-            </div>
-            <div class="shop-tabs" role="tablist" aria-label="Espacios de la tienda">
-                <button type="button" class="shop-tab is-active" role="tab" id="tab-regular" data-tab="regular" aria-selected="true" aria-controls="panel-regular" data-i18n="fit.regular">Regular fit</button>
-                <button type="button" class="shop-tab" role="tab" id="tab-oversized" data-tab="oversized" aria-selected="false" aria-controls="panel-oversized" tabindex="-1" data-i18n="fit.oversized">Oversized</button>
-                <button type="button" class="shop-tab" role="tab" id="tab-esenciales" data-tab="esenciales" aria-selected="false" aria-controls="panel-esenciales" tabindex="-1" data-i18n="nav.essentials">Esenciales</button>
-            </div>
-            <div class="shop-panel" role="tabpanel" id="panel-regular" data-panel="regular" aria-labelledby="tab-regular">
-                <p class="shop-panel-lead" data-i18n="esp.regular.lead">Corte clásico, a tu medida.</p>
-                <div class="shop-grid" id="regular-grid"></div>
-                <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
-            </div>
-            <div class="shop-panel" role="tabpanel" id="panel-oversized" data-panel="oversized" aria-labelledby="tab-oversized" hidden>
-                <p class="shop-panel-lead" data-i18n="esp.oversized.lead">Corte amplio y relajado, con diseños propios.</p>
-                <div class="shop-grid" id="oversized-grid"></div>
-                <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
-            </div>
-            <div class="shop-panel" role="tabpanel" id="panel-esenciales" data-panel="esenciales" aria-labelledby="tab-esenciales" hidden>
-                <p class="shop-panel-lead" data-i18n="esp.esenciales.lead">Básicos en algodón suave, para usar con todo.</p>
-                <div class="shop-grid" id="esenciales-grid"></div>
-                <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
-            </div>
-            <div class="size-guide">
-                <h3 class="size-guide-title" data-i18n="size.title">Guía de tallas</h3>
-                <p class="size-guide-note" data-i18n="size.note">Medidas de referencia de la prenda (Regular fit). El Oversized queda más holgado. ¿Dudas con tu talla? Escríbenos.</p>
-                <div class="size-table-wrap">
-                    <table class="size-table size-cm">
-                        <thead>
-                            <tr><th>Talla</th><th>Pecho (cm)</th><th>Largo (cm)</th><th>Hombros (cm)</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>S</td><td>100</td><td>69</td><td>44</td></tr>
-                            <tr><td>M</td><td>106</td><td>71</td><td>46</td></tr>
-                            <tr><td>L</td><td>112</td><td>73</td><td>48</td></tr>
-                            <tr><td>XL</td><td>118</td><td>75</td><td>50</td></tr>
-                        </tbody>
-                    </table>
+            <a class="esenciales-card" href="#esenciales">
+                <div class="ec-media" id="ec-media" aria-hidden="true"></div>
+                <div class="ec-body">
+                    <span class="tag tag-live" data-i18n="ess.card.tag">Básicos</span>
+                    <h3 data-i18n="ess.card.name">Esenciales</h3>
+                    <p data-i18n="ess.card.desc">Básicos en algodón suave, para usar con todo.</p>
+                    <span class="link-arrow" data-i18n="ess.card.cta">Ver esenciales →</span>
                 </div>
-            </div>
-            <p class="shop-note" data-i18n="shop.note">👕 Imágenes de referencia (mockups) — se reemplazan fácilmente cuando lleguen las fotos reales de las camisetas.</p>
+            </a>
         </div>
     </section>
 
@@ -582,14 +550,6 @@
         </div>
     </section>
 
-    <!-- Océano · cierre: de la historia a las camisetas -->
-    <section class="section shop-cta" data-view="oceano">
-        <div class="container center">
-            <h2 class="section-title" data-i18n="oceano.cta.title">Lleva contigo una parte del océano.</h2>
-            <a href="#regular" class="btn btn-primary" data-i18n="oceano.cta.btn">Ver camisetas</a>
-        </div>
-    </section>
-
     <!-- ================= Colección Felina (página propia) ================= -->
     <section class="hero hero--photo hero--felina" data-view="felina" aria-label="Colección Felina">
         <div class="container hero-inner">
@@ -598,10 +558,37 @@
                 <h1 class="hero-title" data-i18n="fel.title">Felina</h1>
                 <p class="hero-sub" data-i18n="fel.lead">Un universo de miradas, instintos y personalidades.</p>
                 <div class="hero-cta">
-                    <a href="#regular" class="btn btn-primary" data-i18n="fel.btn">Ver camisetas</a>
+                    <a href="#fel-camisetas" class="btn btn-primary" data-i18n="fel.btn">Ver camisetas</a>
                     <a href="#tienda" class="btn btn-ghost" data-i18n="oceano.back">← Volver a la tienda</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Camisetas de Felina -->
+    <section class="section shop" id="fel-camisetas" data-view="felina" data-coleccion="felina">
+        <div class="container">
+            <div class="section-head center">
+                <p class="eyebrow" data-i18n="shop.eyebrow">Camisetas</p>
+                <h2 class="section-title" data-i18n="fel.shop.title">Las camisetas de Felina</h2>
+                <p class="section-lead" data-i18n="shop.lead">Cada horma tiene sus propios diseños. Elige tu horma, tu talla y, si quieres, el color.</p>
+            </div>
+            <div class="shop-tabs" role="tablist" aria-label="Horma">
+                <button type="button" class="shop-tab is-active" role="tab" data-tab="regular" aria-selected="true" aria-controls="panel-felina-regular" data-i18n="fit.regular">Regular fit</button>
+                <button type="button" class="shop-tab" role="tab" data-tab="oversized" aria-selected="false" aria-controls="panel-felina-oversized" tabindex="-1" data-i18n="fit.oversized">Oversized</button>
+            </div>
+            <div class="shop-panel" role="tabpanel" id="panel-felina-regular" data-panel="regular">
+                <p class="shop-panel-lead" data-i18n="esp.regular.lead">Corte clásico, a tu medida.</p>
+                <div class="shop-grid" id="felina-regular-grid"></div>
+                <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
+            </div>
+            <div class="shop-panel" role="tabpanel" id="panel-felina-oversized" data-panel="oversized" hidden>
+                <p class="shop-panel-lead" data-i18n="esp.oversized.lead">Corte amplio y relajado, con diseños propios.</p>
+                <div class="shop-grid" id="felina-oversized-grid"></div>
+                <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
+            </div>
+            <div class="size-guide" data-tablas="regular,oversized"></div>
+            <p class="shop-note" data-i18n="shop.note">👕 Imágenes de referencia (mockups) — se reemplazan fácilmente cuando lleguen las fotos reales de las camisetas.</p>
         </div>
     </section>
 
@@ -644,14 +631,18 @@
         </div>
     </section>
 
-    <section class="section shop-cta" data-view="felina">
-        <div class="container center">
-            <h2 class="section-title" data-i18n="fel.cta.title">Muy pronto, las camisetas de Felina</h2>
-            <p class="section-lead" data-i18n="fel.cta.text">Estamos terminando los diseños. Mientras tanto, mira nuestras camisetas o escríbenos y te avisamos cuando salgan.</p>
-            <div class="shop-cta-btns">
-                <a href="#regular" class="btn btn-primary" data-i18n="fel.btn">Ver camisetas</a>
-                <a href="https://wa.me/573215799683?text=%C2%A1Hola%20A%26M%20Universe!%20%F0%9F%90%86%20Quiero%20enterarme%20cuando%20salgan%20las%20camisetas%20de%20Felina." class="btn btn-ghost" target="_blank" rel="noopener" data-i18n="fel.cta.btn">Quiero enterarme</a>
+    <!-- Esenciales: los básicos, con su propia página -->
+    <section class="section shop" id="esenciales" data-view="esenciales">
+        <div class="container">
+            <div class="section-head center">
+                <p class="eyebrow" data-i18n="ess.eyebrow">Esenciales</p>
+                <h2 class="section-title" data-i18n="ess.title">Los básicos que no fallan.</h2>
+                <p class="section-lead" data-i18n="ess.lead">Básicos en algodón suave, para usar con todo.</p>
             </div>
+            <div class="shop-grid" id="esenciales-grid"></div>
+            <p class="shop-empty" data-i18n="esp.vacio" hidden>Muy pronto, nuevos diseños en este espacio. Escríbenos y te avisamos.</p>
+            <div class="size-guide" data-tablas="regular"></div>
+            <p class="center ess-volver"><a href="#tienda" class="btn btn-ghost" data-i18n="oceano.back">← Volver a la tienda</a></p>
         </div>
     </section>
 
@@ -841,7 +832,7 @@
         <nav class="footer-nav" aria-label="Secciones">
             <span class="footer-nav-title" data-i18n="footer.explore">Explora</span>
             <a href="#tienda" data-nav="tienda" data-i18n="nav.shop">Tienda</a>
-            <a href="#essentials" data-nav="essentials" class="footer-tab" data-i18n="nav.essentials">Esenciales</a>
+            <a href="#esenciales" data-nav="esenciales" class="footer-tab" data-i18n="nav.essentials">Esenciales</a>
             <a href="#proposito" data-nav="proposito" data-i18n="nav.purpose">Propósito</a>
             <a href="#impacto" data-nav="impacto" data-i18n="nav.impact">Impacto</a>
             <a href="#faq" data-nav="faq" data-i18n="nav.faq">FAQ</a>
@@ -926,118 +917,5 @@
 <script src="js/cart.js"></script>
 <script src="js/impacto.js"></script>
 <script src="js/redes.js"></script>
-<script>
-  /* Controles del video de la colección Océano (sonido + pausa).
-     Usa la API oficial de YouTube (más fiable para activar el sonido),
-     con respaldo por postMessage si la API no llega a cargar. */
-  (function () {
-    var frame = document.getElementById("oceano-video");
-    if (!frame) return;
-    /* playing arranca en false: en el móvil el autoplay suele estar bloqueado,
-       así que no damos por hecho que está reproduciendo. El estado real llega
-       por onStateChange, que además decide cuándo se desvanece el póster. */
-    var player = null, ready = false, soundOn = false, playing = false, userPaused = false;
-    var sBtn = document.getElementById("sound-toggle");
-    var vBtn = document.getElementById("video-toggle");
-    var section = frame.closest(".hero--video");
-    var clickLayer = document.getElementById("video-click");
-    function en() { return document.documentElement.getAttribute("lang") === "en"; }
-    /* Fuente de verdad del estado: actualiza la variable, el póster y el botón. */
-    function setPlaying(p) {
-      playing = p;
-      if (section) section.classList.toggle("is-playing", p);
-      setPlayUI();
-    }
-    /* Tocar el video (o el botón de la esquina) reproduce o pausa. */
-    function togglePlay() {
-      activarVideo();
-      var willPlay = !playing;
-      userPaused = !willPlay;   // recordamos si fue la persona quien pausó
-      if (player && ready) { if (willPlay) { player.playVideo(); } else { player.pauseVideo(); } }
-      else { pm(willPlay ? "playVideo" : "pauseVideo"); }
-      /* Reflejo inmediato (póster + botón); onStateChange lo confirma luego. */
-      setPlaying(willPlay);
-    }
-    function setSoundUI() {
-      if (!sBtn) return;
-      sBtn.querySelector(".vt-icon").textContent = soundOn ? "🔇" : "🔊";
-      sBtn.querySelector(".vt-label").textContent = soundOn ? (en() ? "Mute" : "Silenciar") : (en() ? "Sound on" : "Activar sonido");
-      sBtn.setAttribute("aria-pressed", soundOn ? "true" : "false");
-    }
-    function setPlayUI() {
-      if (!vBtn) return;
-      vBtn.querySelector(".vt-icon").textContent = playing ? "❚❚" : "▶";
-      vBtn.querySelector(".vt-label").textContent = playing ? (en() ? "Pause" : "Pausar") : (en() ? "Play" : "Reproducir");
-      vBtn.setAttribute("aria-pressed", playing ? "false" : "true");
-    }
-    /* El vídeo NO se carga hasta que alguien entra a la vista Océano.
-       Antes, el iframe traía el src en el HTML y la sección solo se ocultaba
-       con display:none, así que el reproductor de YouTube (~1 MB) se descargaba
-       y el vídeo se reproducía en bucle mientras la visitante miraba la tienda,
-       gastando sus datos y su batería en algo que nunca veía. */
-    var activado = false;
-    function activarVideo() {
-      if (activado) return;
-      activado = true;
-      if (frame.dataset.src && !frame.getAttribute("src")) frame.setAttribute("src", frame.dataset.src);
-      if (!window.YT || !window.YT.Player) {
-        var tag = document.createElement("script");
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(tag);
-      }
-    }
-
-    /* Al entrar se activa (y se reanuda si la persona no lo había pausado);
-       al salir se pausa para no seguir consumiendo datos de fondo. */
-    document.addEventListener("aym:viewchange", function (e) {
-      if (e.detail === "oceano") {
-        activarVideo();
-        if (player && ready && !userPaused) { try { player.playVideo(); } catch (err) {} }
-      } else if (player && ready) {
-        try { player.pauseVideo(); } catch (err) {}
-      }
-    });
-
-    var prevReady = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = function () {
-      if (typeof prevReady === "function") { try { prevReady(); } catch (e) {} }
-      try {
-        player = new YT.Player("oceano-video", {
-          host: "https://www.youtube-nocookie.com",
-          events: {
-            onReady: function () { ready = true; try { player.mute(); player.playVideo(); } catch (e) {} },
-            /* El estado real del reproductor manda el póster: solo se desvanece
-               cuando el video está reproduciendo de verdad (1). Al pausar o
-               terminar (2 / 0) el póster vuelve y tapa la pantalla de YouTube. */
-            onStateChange: function (ev) {
-              if (ev.data === 1) setPlaying(true);
-              else if (ev.data === 2 || ev.data === 0) setPlaying(false);
-            }
-          }
-        });
-      } catch (e) { player = null; }
-    };
-    /* Respaldo por postMessage (si la API no está disponible) */
-    function pm(fn) {
-      try { frame.contentWindow.postMessage(JSON.stringify({ event: "command", func: fn, args: [] }), "*"); } catch (e) {}
-    }
-    if (sBtn) sBtn.addEventListener("click", function () {
-      soundOn = !soundOn;
-      if (player && ready) {
-        if (soundOn) { player.unMute(); try { player.setVolume(100); } catch (e) {} userPaused = false; player.playVideo(); setPlaying(true); }
-        else { player.mute(); }
-      } else {
-        pm(soundOn ? "unMute" : "mute");
-        if (soundOn) pm("playVideo");
-      }
-      setSoundUI();
-    });
-    if (vBtn) vBtn.addEventListener("click", togglePlay);
-    /* Tocar el propio video reproduce o pausa (sin el botón feo de YouTube). */
-    if (clickLayer) clickLayer.addEventListener("click", togglePlay);
-    /* Mantener las etiquetas correctas al cambiar de idioma */
-    document.addEventListener("aym:langchange", function () { setSoundUI(); setPlayUI(); });
-  })();
-</script>
 </body>
 </html>

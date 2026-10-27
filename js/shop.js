@@ -17,19 +17,32 @@
   var IMG_DEFECTO = "assets/tee-ocean.svg";
   var SEO_ID = "ld-products";
 
-  /* Las dos cuadrículas y su archivo de datos */
-  /* Los tres espacios de la tienda. Cada espacio tiene sus propios diseños y
-     su horma: una camiseta es Regular u Oversized según dónde la suban.
-     (productos.json es el espacio Regular fit desde antes; se conserva el
+  /* Los tres espacios del panel (Productos → Regular fit / Oversized /
+     Esenciales). La horma la define el espacio. Cada camiseta Regular u
+     Oversized pertenece además a una COLECCIÓN (Océano o Felina) y se pinta
+     dentro de la página de esa colección; los Esenciales tienen su página.
+     (productos.json es el espacio Regular fit desde antes: se conserva el
      nombre para no romper nada de lo que ya tenían.) */
-  var GRIDS = [
-    { grid: "regular-grid",    archivo: "data/productos.json",  espacio: "regular",    fit: "regular" },
-    { grid: "oversized-grid",  archivo: "data/oversized.json",  espacio: "oversized",  fit: "oversized" },
-    { grid: "esenciales-grid", archivo: "data/essentials.json", espacio: "esenciales", fit: "regular" }
+  var ARCHIVOS = [
+    { archivo: "data/productos.json",  espacio: "regular",    fit: "regular" },
+    { archivo: "data/oversized.json",  espacio: "oversized",  fit: "oversized" },
+    { archivo: "data/essentials.json", espacio: "esenciales", fit: "regular" }
   ];
+  var COLECCIONES = ["oceano", "felina"];
+  /* Sin colección (las camisetas de antes) = Océano */
+  function coleccionDe(p) {
+    var c = String(p.coleccion || "").toLowerCase().trim();
+    return COLECCIONES.indexOf(c) >= 0 ? c : "oceano";
+  }
+  function gridDe(p) { return p._espacio === "esenciales" ? "esenciales-grid" : p._coleccion + "-" + p._espacio + "-grid"; }
 
   function lang() { return document.documentElement.getAttribute("lang") === "en" ? "en" : "es"; }
-  function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : String(s); return d.innerHTML; }
+  /* Escapa también comillas: los nombres los escriben las dueñas y pueden
+     traer "Don't" o comillas, que van dentro de atributos. */
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
   function pick(p, base) { var en = lang() === "en"; return (en ? (p[base + "_en"] || p[base + "_es"]) : (p[base + "_es"] || p[base + "_en"])) || ""; }
 
   /* El panel guarda las fotos como "/assets/foto.jpg" (Sveltia antepone siempre
@@ -188,35 +201,36 @@
     return numPrecio(cfg.precio_regular) || 69000;
   }
 
-  /* Pinta un espacio y devuelve la lista válida que mostró.
-     `usados` lleva los id ya usados (entre los tres espacios) para que un id
-     repetido no haga que el carrito confunda un producto con otro. */
-  function renderGrid(g, lista, usados) {
-    var grid = document.getElementById(g.grid);
-    if (!grid || !Array.isArray(lista)) return [];
-    var valid = lista.filter(function (p) {
-      if (!p || !p.id || usados[p.id]) return false;
-      usados[p.id] = true;
-      return true;
-    });
-    /* El espacio define la horma de cada camiseta (ya no se elige aparte) */
-    valid.forEach(function (p) { p._espacio = g.espacio; p._fit = g.fit; });
-    grid.innerHTML = valid.map(cardHTML).join("");
-    /* Espacio sin camisetas todavía (p. ej. Oversized antes de subir los
-       primeros diseños): un aviso amable en vez de un hueco vacío. */
-    var panel = grid.closest(".shop-panel");
-    var vacio = panel ? panel.querySelector(".shop-empty") : null;
-    if (vacio) vacio.hidden = valid.length > 0;
-    return valid;
-  }
-
+  /* Pinta todas las cuadrículas: cada camiseta va a la de su colección y su
+     horma (p. ej. "oceano-oversized-grid"); los esenciales, a la suya.
+     `usados` evita que un id repetido haga que el carrito confunda productos. */
   function renderAll() {
-    var usados = {};
-    var todos = [];
-    GRIDS.forEach(function (g) {
-      var lista = datos[g.archivo];
-      if (Array.isArray(lista)) todos = todos.concat(renderGrid(g, lista, usados));
+    var usados = {}, todos = [];
+    ARCHIVOS.forEach(function (a) {
+      var lista = datos[a.archivo];
+      if (!Array.isArray(lista)) return;
+      lista.forEach(function (p) {
+        if (!p || !p.id || usados[p.id]) return;
+        usados[p.id] = true;
+        p._espacio = a.espacio; p._fit = a.fit;
+        p._coleccion = a.espacio === "esenciales" ? "" : coleccionDe(p);
+        todos.push(p);
+      });
     });
+    var algunoCargado = ARCHIVOS.some(function (a) { return Array.isArray(datos[a.archivo]); });
+    if (algunoCargado) {
+      var porGrid = {};
+      todos.forEach(function (p) { var g = gridDe(p); (porGrid[g] = porGrid[g] || []).push(p); });
+      document.querySelectorAll(".shop-grid[id]").forEach(function (grid) {
+        var lista = porGrid[grid.id] || [];
+        grid.innerHTML = lista.map(cardHTML).join("");
+        /* Un espacio sin camisetas todavía: aviso amable en vez de un hueco */
+        var cont = grid.closest(".shop-panel") || grid.parentNode;
+        var vacio = cont ? cont.querySelector(".shop-empty") : null;
+        if (vacio) vacio.hidden = lista.length > 0;
+      });
+    }
+    pintarTarjetaEsenciales();
     /* Si no llegó ningún catálogo, no se toca el carrito (podría vaciarlo) */
     if (!todos.length) return;
 
@@ -273,7 +287,7 @@
                 "availability": p.disponible === false
                   ? "https://schema.org/OutOfStock"
                   : "https://schema.org/InStock",
-                "url": SITIO + "#" + (p._espacio || "regular")
+                "url": SITIO + "#" + (p._espacio === "esenciales" ? "esenciales" : (p._coleccion || "oceano"))
               }
             }
           };
@@ -283,43 +297,94 @@
   }
 
   /* =======================================================
-     Pestañas de la tienda: Regular fit · Oversized · Esenciales
+     Pestañas Regular fit / Oversized, dentro de cada colección
      ======================================================= */
-  var PESTANAS = ["regular", "oversized", "esenciales"];
-  function mostrarTab(tab) {
-    if (PESTANAS.indexOf(tab) < 0) tab = "regular";
-    document.querySelectorAll(".shop-tab[data-tab]").forEach(function (b) {
+  var HORMAS = ["regular", "oversized"];
+  function mostrarTab(seccion, tab) {
+    if (!seccion) return;
+    if (HORMAS.indexOf(tab) < 0) tab = "regular";
+    seccion.querySelectorAll(".shop-tab[data-tab]").forEach(function (b) {
       var on = b.getAttribute("data-tab") === tab;
       b.classList.toggle("is-active", on);
       b.setAttribute("aria-selected", on ? "true" : "false");
       b.tabIndex = on ? 0 : -1;
     });
-    document.querySelectorAll(".shop-panel[data-panel]").forEach(function (pn) {
+    seccion.querySelectorAll(".shop-panel[data-panel]").forEach(function (pn) {
       pn.hidden = pn.getAttribute("data-panel") !== tab;
     });
   }
   document.addEventListener("click", function (e) {
     var b = e.target.closest(".shop-tab[data-tab]");
-    if (!b) return;
-    var tab = b.getAttribute("data-tab");
-    mostrarTab(tab);
-    /* El enlace queda compartible (#oversized…) sin saltar la página */
-    try { history.replaceState(null, "", "#" + tab); } catch (err) {}
+    if (b) mostrarTab(b.closest(".shop"), b.getAttribute("data-tab"));
   });
   /* Teclado: ← → entre pestañas (patrón de pestañas accesible) */
   document.addEventListener("keydown", function (e) {
     var b = e.target.closest && e.target.closest(".shop-tab[data-tab]");
     if (!b || (e.key !== "ArrowLeft" && e.key !== "ArrowRight")) return;
     e.preventDefault();
-    var i = PESTANAS.indexOf(b.getAttribute("data-tab"));
-    var sig = PESTANAS[(i + (e.key === "ArrowRight" ? 1 : -1) + PESTANAS.length) % PESTANAS.length];
-    mostrarTab(sig);
-    var nb = document.querySelector('.shop-tab[data-tab="' + sig + '"]');
+    var seccion = b.closest(".shop");
+    var i = HORMAS.indexOf(b.getAttribute("data-tab"));
+    var sig = HORMAS[(i + (e.key === "ArrowRight" ? 1 : -1) + HORMAS.length) % HORMAS.length];
+    mostrarTab(seccion, sig);
+    var nb = seccion.querySelector('.shop-tab[data-tab="' + sig + '"]');
     if (nb) nb.focus();
-    try { history.replaceState(null, "", "#" + sig); } catch (err) {}
   });
-  /* El enrutador avisa cuando se entra por #regular / #oversized / #essentials */
-  document.addEventListener("aym:tab", function (e) { mostrarTab(e.detail); });
+  /* Enlaces #regular / #oversized (el enrutador avisa: página + pestaña) */
+  document.addEventListener("aym:tab", function (e) {
+    var d = e.detail || {};
+    mostrarTab(document.querySelector('section.shop[data-view="' + d.vista + '"]'), d.tab);
+  });
+
+  /* =======================================================
+     Guía de tallas (editable en el panel: data/tallas.json)
+     ======================================================= */
+  var TALLAS = null;
+  function pintarTallas() {
+    if (!TALLAS) return;
+    document.querySelectorAll(".size-guide[data-tablas]").forEach(function (box) {
+      var tablas = box.getAttribute("data-tablas").split(",").map(function (k) {
+        k = k.trim();
+        var filas = Array.isArray(TALLAS[k]) ? TALLAS[k].filter(function (f) { return f && f.talla; }) : [];
+        if (!filas.length) return "";
+        return '<div class="size-table-wrap"><h4 class="size-table-title">' + (k === "oversized" ? "Oversized" : "Regular fit") + '</h4>' +
+          '<table class="size-table"><thead><tr><th>Talla</th><th>Pecho (cm)</th><th>Largo (cm)</th><th>Hombro (cm)</th></tr></thead><tbody>' +
+          filas.map(function (f) {
+            return '<tr><td>' + esc(f.talla) + '</td><td>' + esc(f.pecho) + '</td><td>' + esc(f.largo) + '</td><td>' + esc(f.hombro) + '</td></tr>';
+          }).join("") + '</tbody></table></div>';
+      }).join("");
+      box.hidden = !tablas;
+      box.innerHTML = tablas
+        ? '<h3 class="size-guide-title">Guía de tallas</h3>' +
+          (TALLAS.nota ? '<p class="size-guide-note">' + esc(TALLAS.nota) + '</p>' : '') +
+          '<div class="size-tables">' + tablas + '</div>'
+        : '';
+    });
+  }
+
+  /* La tarjeta de Esenciales (bajo las colecciones) usa la portada del primer
+     esencial disponible: siempre una foto real, sin tener que subir otra. */
+  function pintarTarjetaEsenciales() {
+    var m = document.getElementById("ec-media");
+    var lista = datos["data/essentials.json"];
+    if (!m || !Array.isArray(lista)) return;
+    var p = lista.filter(function (x) { return x && x.id && x.disponible !== false; })[0] || lista[0];
+    var img = p ? fotos(p)[0] : "";
+    if (img) m.style.backgroundImage = 'url("' + encodeURI(img).replace(/"/g, "%22") + '")';
+  }
+
+  /* Una foto que no carga (subida a medias, nombre mal escrito) no debe verse
+     como un ícono roto: la miniatura se esconde y la foto grande o la de la
+     tarjeta pasan a la de respaldo. */
+  document.addEventListener("error", function (e) {
+    var img = e.target;
+    if (!img || img.tagName !== "IMG") return;
+    var th = img.closest(".pv-thumb");
+    if (th) { th.hidden = true; return; }
+    if (img.closest(".color-dot")) { img.remove(); return; }
+    if ((img.closest(".product-media") || img.closest(".pv-main")) && img.getAttribute("src") !== IMG_DEFECTO) {
+      img.setAttribute("src", IMG_DEFECTO);
+    }
+  }, true);
 
   /* =======================================================
      Ventana de fotos (galería + descripción + agregar)
@@ -350,6 +415,7 @@
     PV.addEventListener("click", function (e) {
       var t = e.target;
       if (t.closest(".pv-close")) return cerrarVentana();
+      if (t.matches && t.matches(".pv-main img")) { alternarZoom(e.clientX, e.clientY); return; }
       var prev = t.closest(".pv-prev"), next = t.closest(".pv-next");
       if (prev) return mover(-1);
       if (next) return mover(1);
@@ -374,13 +440,32 @@
       if (!e.target.closest(".pv-main") || !e.touches || !e.touches[0]) { x0 = null; return; }
       x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
     }, { passive: true });
+    PV.addEventListener("touchmove", function (e) {
+      if (!enZoom() || !e.touches || !e.touches[0]) return;
+      moverZoom(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
     PV.addEventListener("touchend", function (e) {
       if (x0 === null || !e.changedTouches || !e.changedTouches[0]) return;
-      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      var cx = e.changedTouches[0].clientX, cy = e.changedTouches[0].clientY;
+      var dx = cx - x0, dy = cy - y0;
       x0 = null;
+      /* Un toque (sin arrastrar) sobre la foto amplía o reduce. Se resuelve
+         aquí y no con el "click": después de recorrer la foto ampliada con el
+         dedo, el celular a veces no manda el click del toque siguiente y la
+         foto se quedaba ampliada. preventDefault evita el click doble. */
+      if (Math.abs(dx) < 10 && Math.abs(dy) < 10 && e.target.matches && e.target.matches(".pv-main img")) {
+        if (e.cancelable) e.preventDefault();
+        alternarZoom(cx, cy);
+        return;
+      }
+      if (enZoom()) return;   // ampliada: el gesto era para recorrer la foto
       /* Gesto claramente horizontal y de al menos 40px */
       if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) mover(dx < 0 ? 1 : -1);
-    }, { passive: true });
+    }, { passive: false });   // no pasivo: el toque sobre la foto cancela su click
+    /* Con el mouse: la foto ampliada sigue al cursor */
+    PV.addEventListener("mousemove", function (e) {
+      if (enZoom() && e.target.closest(".pv-main")) moverZoom(e.clientX, e.clientY);
+    });
   }
 
   function focusables(cont) {
@@ -427,7 +512,10 @@
             (en ? "Photo " : "Foto ") + (k + 1) + '"><img src="' + esc(src) + '" alt="" loading="lazy"></button>';
         }).join("") + '</div>'
       : "";
-    return '<div class="pv-main">' + nav + '<img src="' + esc(imgs[0]) + '" alt=""></div>' + thumbs;
+    var pista = '<span class="pv-zoom-hint" aria-hidden="true">' +
+      '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>' +
+      '<span>Toca la foto para ampliar</span></span>';
+    return '<div class="pv-main">' + nav + '<img src="' + esc(imgs[0]) + '" alt="">' + pista + '</div>' + thumbs;
   }
   /* Elegir un color en la ventana = saltar a la primera foto de ese color.
      Tocar el color que ya está marcado vuelve a la portada. */
@@ -443,7 +531,34 @@
 
   /* Pinta la foto actual y deja marcado el color al que pertenece: lo que se ve
      es lo que se pide. En la portada o la galería general no hay color. */
+  /* ---------- Zoom de la foto grande ----------
+     La ventana no deja hacer zoom con los dedos (es fija), así que la foto se
+     amplía al tocarla y se recorre moviendo el mouse o el dedo. */
+  var ZOOM = 2.4;
+  function enZoom() { var m = PV && PV.querySelector(".pv-main"); return !!(m && m.classList.contains("is-zoom")); }
+  function moverZoom(x, y) {
+    var m = PV.querySelector(".pv-main"), img = m && m.querySelector("img");
+    if (!img) return;
+    var r = m.getBoundingClientRect();
+    var px = Math.max(0, Math.min(100, (x - r.left) / r.width * 100));
+    var py = Math.max(0, Math.min(100, (y - r.top) / r.height * 100));
+    img.style.transformOrigin = px + "% " + py + "%";
+  }
+  function alternarZoom(x, y) {
+    var m = PV.querySelector(".pv-main");
+    if (!m) return;
+    var on = !m.classList.contains("is-zoom");
+    m.classList.toggle("is-zoom", on);
+    if (on && x != null) moverZoom(x, y);
+  }
+  function quitarZoom() {
+    var m = PV && PV.querySelector(".pv-main"), img = m && m.querySelector("img");
+    if (m) m.classList.remove("is-zoom");
+    if (img) img.style.transformOrigin = "";
+  }
+
   function pintarFoto() {
+    quitarZoom();
     var imgs = pvActual.imgs, i = pvActual.idx;
     var main = PV.querySelector(".pv-main img");
     if (main) main.setAttribute("src", imgs[i]);
@@ -629,8 +744,12 @@
 
   function load() {
     try {
-      Promise.all(GRIDS.map(function (g) { return cargarUno(g.archivo); }))
+      Promise.all(ARCHIVOS.map(function (a) { return cargarUno(a.archivo); }))
         .then(renderAll)
+        .catch(function () {});
+      fetch("data/tallas.json", { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (t) { if (t && typeof t === "object") { TALLAS = t; pintarTallas(); } })
         .catch(function () {});
     } catch (e) {}
   }
@@ -640,7 +759,7 @@
      abierta, refrescar su precio. */
   document.addEventListener("aym:preciosaplicados", function () {
     var todos = [];
-    GRIDS.forEach(function (g) { if (Array.isArray(datos[g.archivo])) todos = todos.concat(datos[g.archivo].filter(function (p) { return p && p.id; })); });
+    ARCHIVOS.forEach(function (a) { if (Array.isArray(datos[a.archivo])) todos = todos.concat(datos[a.archivo].filter(function (p) { return p && p.id && p._espacio; })); });
     if (todos.length) renderSeo(todos);
     if (PV && PV.classList.contains("open") && pvActual) pintarPrecio();
   });

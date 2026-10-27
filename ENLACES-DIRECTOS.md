@@ -22,6 +22,7 @@ la herramienta.
 | 🧺 **Esenciales** | https://droko1982.github.io/a-y-m/admin/#/collections/productos/entries/essentials |
 | 🐕 **Actualizar el contador de los animalitos** | https://droko1982.github.io/a-y-m/admin/#/collections/impacto/entries/contador |
 | 💲 **Cambiar los precios** | https://droko1982.github.io/a-y-m/admin/#/collections/precios/entries/precios |
+| 📏 **Guía de tallas** | https://droko1982.github.io/a-y-m/admin/#/collections/tallas/entries/tallas |
 | ✏️ **Cambiar un texto de la página** | https://droko1982.github.io/a-y-m/admin/#/collections/contenido/entries/textos |
 
 ## Para una sola vez
@@ -60,6 +61,9 @@ la herramienta.
 >
 > 💲 *Cambiar precios*
 > https://droko1982.github.io/a-y-m/admin/#/collections/precios/entries/precios
+>
+> 📏 *Guía de tallas*
+> https://droko1982.github.io/a-y-m/admin/#/collections/tallas/entries/tallas
 >
 > ✏️ *Cambiar textos de la página*
 > https://droko1982.github.io/a-y-m/admin/#/collections/contenido/entries/textos

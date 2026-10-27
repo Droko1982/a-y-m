@@ -14,11 +14,12 @@ cambios se publican solos en el sitio (GitHub Pages) en **1 a 2 minutos**.
 
 | En el panel | Qué cambia en el sitio |
 |---|---|
-| **Precios** | Precio de Regular fit y de Oversized en toda la tienda |
-| **Productos** | Crear, editar, reordenar y marcar *Agotado* las camisetas; subir la foto y escribir nombre y descripción en español e inglés |
+| **Precios** | Precio general de Regular fit, Oversized y Esenciales (cada camiseta puede tener además su precio propio) |
+| **Productos** | Tres espacios: **Regular fit**, **Oversized** y **Esenciales**. Crear, editar, reordenar y marcar *Agotado* las camisetas; elegir su **colección** (Océano o Felina); subir la portada, la galería y los colores, cada uno con su foto. Las fotos se convierten solas a WebP liviano al subirlas |
+| **Guía de tallas** | Las medidas (pecho, largo, hombro) de Regular fit y de Oversized que salen debajo de las camisetas |
 | **Pagos** | El número de Nequi y Daviplata, la llave de Bre-B y los datos de la cuenta para transferencias — es lo que ve la clienta en el carrito |
 | **Impacto** | El número de camisetas vendidas y la dirección del contador automático (el Worker de Cloudflare) |
-| **Textos** | **Todos** los textos del sitio, en español e inglés: portada, colecciones, tienda, la historia de *Océano*, *Propósito*, *Impacto y nuestra causa*, las **preguntas frecuentes** (se pueden agregar, quitar y reordenar) y contacto/envíos |
+| **Textos** | **Todos** los textos del sitio (solo español): portada, colecciones, tienda, la historia de *Océano*, *Felina*, *Propósito*, *Impacto y nuestra causa*, las **preguntas frecuentes** (se pueden agregar, quitar y reordenar) y contacto/envíos |
 | **Datos del negocio** | Los datos que en la página de políticas salen `[entre corchetes]` (razón social, NIT o cédula, tiempo de envío, plazo de cambios) y las **redes sociales**, que aparecen en el pie de página |
 
 También hay dos **interruptores** para quitar los avisos de "fotos de
@@ -138,10 +139,10 @@ Cada dueña que vaya a editar necesita:
      ya instalaron el Worker de Cloudflare (ver
      [`CONTADOR-MENSAJE-CLIENTAS.md`](CONTADOR-MENSAJE-CLIENTAS.md)).
    - **Textos** → abrir el grupo que quieran (*Portada*, *Colecciones*,
-     *Tienda*, *Océano*, *Propósito*, *Impacto y nuestra causa*, *Preguntas
-     frecuentes*, *Contacto y envíos*), cambiar el texto → **Save** →
-     guardar.
-     - Cada texto tiene su casilla en **español** y en **inglés**.
+     *Tienda*, *Océano*, *Felina*, *Propósito*, *Impacto y nuestra causa*,
+     *Preguntas frecuentes*, *Contacto y envíos*), cambiar el texto →
+     **Save** → guardar.
+     - El sitio está solo en **español**: cada texto tiene una casilla.
      - Si una casilla se deja **vacía**, el sitio conserva el texto que ya tenía
        (nunca queda un espacio en blanco).
      - En *Preguntas frecuentes* se pueden **agregar** y **quitar** preguntas
@@ -184,10 +185,11 @@ falla, se queda con lo que ya está escrito en el HTML (respaldo).
 
 | Archivo | Lo consume | Qué controla |
 |---|---|---|
-| `data/config.json` | `js/cart.js` | Precios de las dos hormas |
+| `data/config.json` | `js/cart.js` | Precios generales (Regular fit, Oversized, Esenciales) |
 | `data/pagos.json` | `js/cart.js` | Números de billetera y cuenta bancaria |
 | `data/impacto.json` | `js/impacto.js` | Total de camisetas y URL del Worker |
-| `data/productos.json` | `js/shop.js` | Catálogo de la tienda |
+| `data/productos.json` · `data/oversized.json` · `data/essentials.json` | `js/shop.js` · `js/cart.js` | Camisetas de cada espacio; `coleccion` decide si salen en Océano o en Felina |
+| `data/tallas.json` | `js/shop.js` | Guía de tallas |
 | `data/textos.json` | `js/textos.js` | Todos los textos del sitio (8 grupos) |
 | `data/negocio.json` | `js/politicas.js` · `js/redes.js` | Datos legales y redes sociales |
 

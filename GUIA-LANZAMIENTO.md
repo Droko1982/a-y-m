@@ -16,8 +16,9 @@ y enlaces que abren cada sección de una vez en [`ENLACES-DIRECTOS.md`](ENLACES-
 |---|---|
 | **Precios** | Panel → *Precios* (precio general de Regular fit, Oversized y Esenciales) y *Productos* (si una camiseta tiene precio propio) |
 | **Textos de la página** (inicio, Océano, Felina, Propósito, Impacto, preguntas) | Panel → *Textos* |
-| **Camisetas** (nombre, descripción, Agotado) | Panel → *Productos* → **Regular fit**, **Oversized** o **Esenciales**: la horma la define el espacio donde se sube cada camiseta |
-| **Fotos y colores de camisetas** | Panel → *Productos* → foto de portada, galería y colores (cada color con su foto) |
+| **Camisetas** (nombre, descripción, Agotado) | Panel → *Productos* → **Regular fit**, **Oversized** o **Esenciales**: la horma la define el espacio donde se sube cada camiseta, y en cada una se elige la **Colección** (Océano o Felina), que es donde aparece en la tienda |
+| **Fotos y colores de camisetas** | Panel → *Productos* → foto de portada, galería y colores (cada color con su foto). Al subirlas se convierten solas a WebP liviano (máx. 1600 px) |
+| **Guía de tallas** (medidas en cm) | Panel → *Guía de tallas* (una tabla para Regular fit y otra para Oversized) |
 | **Métodos de pago** (Nequi, Daviplata, Bre-B, cuenta bancaria) | Panel → *Pagos* |
 | **Redes sociales** | Panel → *Datos del negocio* (abajo: Instagram, Facebook, TikTok) |
 | **Datos legales, envíos y cambios** | Panel → *Datos del negocio* (arriba) |
