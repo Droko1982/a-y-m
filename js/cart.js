@@ -66,7 +66,12 @@
     price: function (id, fit) { return price(id, FITS.indexOf(fit) >= 0 ? fit : fitDe(id)); },
     fmt: function (n) { return fmt(n); }
   };
-  function esc(v) { var d = document.createElement("div"); d.textContent = v == null ? "" : String(v); return d.innerHTML; }
+  /* Escapa también comillas: ids y colores los escriben las dueñas ("Don't") y
+     van dentro de atributos data-*. */
+  function esc(v) {
+    return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
   function limpio(v) { return typeof v === "string" && v.trim() !== "" ? v.trim() : ""; }
   /* ¿Hay datos de cuenta suficientes para mostrarlos en el carrito? */
   function hayBanco() { return BANCO.banco !== "" || BANCO.numero !== ""; }
@@ -161,7 +166,11 @@
   function lang() { return document.documentElement.getAttribute("lang") === "en" ? "en" : "es"; }
   function fmt(n) { return "$" + n.toLocaleString("es-CO"); }
   function getName(id) {
-    var b = document.querySelector('.btn-add[data-product="' + id + '"]');
+    var b = null;
+    try {
+      var sel = window.CSS && CSS.escape ? CSS.escape(id) : String(id).replace(/["\\]/g, "\\$&");
+      b = document.querySelector('.btn-add[data-product="' + sel + '"]');
+    } catch (e) { b = null; }
     if (b) { var art = b.closest(".product"); if (art) { var n = art.querySelector(".product-name"); if (n && n.textContent.trim()) return n.textContent.trim(); } }
     /* Las camisetas agotadas no llevan data-product (su botón está deshabilitado),
        así que el nombre se toma del catálogo del panel antes que de la tabla fija. */

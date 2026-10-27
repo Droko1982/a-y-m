@@ -2,24 +2,25 @@
   "productos": [
     {
       "id": "originSS",
+      "coleccion": "oceano",
       "imagen": "/assets/camiseta 1.jpg",
       "colores": [
         {
           "nombre_es": "Negro",
           "color": "#000000",
-          "imagen": "/assets/mockup_ig_post_20261015_185456.png",
+          "imagen": "/assets/mockup-ig-post-20261015-185456.webp",
           "nombre_en": "Black"
         },
         {
           "nombre_es": "Azul Navi",
           "color": "#292d4a",
-          "imagen": "/assets/mockup_ig_post_20261015_185439.png",
+          "imagen": "/assets/mockup-ig-post-20261015-185439.webp",
           "nombre_en": "Navy"
         },
         {
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
-          "imagen": "/assets/mockup_ig_post_20261015_190859.png",
+          "imagen": "/assets/mockup-ig-post-20261015-190859.webp",
           "nombre_en": "Green"
         }
       ],
@@ -36,18 +37,19 @@
     },
     {
       "id": "Marine",
+      "coleccion": "oceano",
       "imagen": "/assets/camiseta 2.jpg",
       "colores": [
         {
           "nombre_es": "blanco hueso",
           "color": "#f3efe6",
-          "imagen": "/assets/mockup_ig_post_20261015_191701.png",
+          "imagen": "/assets/mockup-ig-post-20261015-191701.webp",
           "nombre_en": "Bone wite"
         },
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/mockup_ig_post_20261015_191821.png",
+          "imagen": "/assets/mockup-ig-post-20261015-191821.webp",
           "nombre_en": "Cream"
         }
       ],
@@ -64,18 +66,19 @@
     },
     {
       "id": "Noise",
+      "coleccion": "oceano",
       "imagen": "/assets/camiseta 3.jpg",
       "colores": [
         {
           "nombre_es": "Azul Navi",
           "color": "#292d4a",
-          "imagen": "/assets/mockup_ig_post_20261015_200813.png",
+          "imagen": "/assets/mockup-ig-post-20261015-200813.webp",
           "nombre_en": "Navy"
         },
         {
           "nombre_es": "Negro",
           "color": "",
-          "imagen": "/assets/mockup_ig_post_20261016_131016.png",
+          "imagen": "/assets/mockup-ig-post-20261016-131016.webp",
           "nombre_en": "Black"
         }
       ],
@@ -92,22 +95,23 @@
     },
     {
       "id": "PocaVida",
+      "coleccion": "oceano",
       "imagen": "/assets/Nuki.jpg",
       "colores": [
         {
           "nombre_es": "Mocca",
           "color": "#7e6053",
-          "imagen": "/assets/mucho estres poca vida Mocaa duo.png"
+          "imagen": "/assets/mucho-estres-poca-vida-mocaa-duo.webp"
         },
         {
           "nombre_es": "Arena",
           "color": "#d4bc94",
-          "imagen": "/assets/mucho estres poca vida arena.png"
+          "imagen": "/assets/mucho-estres-poca-vida-arena.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#10102f",
-          "imagen": "/assets/mucho estres poca vida azul.png"
+          "imagen": "/assets/mucho-estres-poca-vida-azul.webp"
         },
         {
           "nombre_es": "Verde Militar",
@@ -123,27 +127,28 @@
     },
     {
       "id": "Jurassic",
+      "coleccion": "oceano",
       "imagen": "/assets/jurassic shark.jpg",
       "colores": [
         {
           "nombre_es": "Negro",
           "color": "",
-          "imagen": "/assets/jurassic shak negro frente regular.png"
+          "imagen": "/assets/jurassic-shak-negro-frente-regular.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#10102f",
-          "imagen": "/assets/jurassic shark azul frente regular.png"
+          "imagen": "/assets/jurassic-shark-azul-frente-regular.webp"
         },
         {
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
-          "imagen": "/assets/jurassic shak verde militar regular.png"
+          "imagen": "/assets/jurassic-shak-verde-militar-regular.webp"
         },
         {
           "nombre_es": "Arena",
           "color": "#d4bc9a",
-          "imagen": "/assets/jurassic shark arena regukar.png"
+          "imagen": "/assets/jurassic-shark-arena-regukar.webp"
         }
       ],
       "nombre_es": "Jurassic Shark",

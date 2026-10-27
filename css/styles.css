@@ -644,6 +644,7 @@ section[id] { scroll-margin-top: 84px; }
 /* ---------- Vistas (una sola página) ---------- */
 html[data-page="tienda"]     main section[data-view]:not([data-view="tienda"]),
 html[data-page="felina"]     main section[data-view]:not([data-view="felina"]),
+html[data-page="esenciales"] main section[data-view]:not([data-view="esenciales"]),
 html[data-page="oceano"]     main section[data-view]:not([data-view="oceano"]),
 html[data-page="proposito"]  main section[data-view]:not([data-view="proposito"]),
 html[data-page="impacto"]    main section[data-view]:not([data-view="impacto"]),
@@ -818,71 +819,6 @@ html[data-page="contacto"]   main section[data-view]:not([data-view="contacto"])
     font-weight: 600;
     color: var(--accent);
 }
-
-/* ---------- Hero con video de fondo ---------- */
-.hero--video { position: relative; min-height: 82vh; display: flex; align-items: center; background: #0B0B0B; }
-.hero--video .hero-inner { position: relative; z-index: 2; grid-template-columns: 1fr; }
-.hero--video .hero-copy { max-width: 640px; }
-.hero-video { position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
-.hero-video iframe {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: max(100vw, 177.78vh); height: max(56.25vw, 100vh); border: 0;
-}
-/* Póster propio sobre el video: oculta el botón de play de YouTube (que en el
-   móvil, cuando bloquea el autoplay, salía grande y feo en el centro). Se
-   desvanece cuando el video de verdad está reproduciendo. */
-.video-poster {
-    position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background:
-        linear-gradient(90deg, rgba(11,11,11,.55) 0%, rgba(11,11,11,.2) 55%, rgba(11,11,11,.1) 100%),
-        #0B0B0B center/cover no-repeat;
-    background-image:
-        linear-gradient(90deg, rgba(11,11,11,.55) 0%, rgba(11,11,11,.2) 55%, rgba(11,11,11,.1) 100%),
-        url("../assets/oceano-tortuga.jpg");
-    background-size: cover; background-position: center;
-    opacity: 1; transition: opacity .6s ease;
-}
-.hero--video.is-playing .video-poster { opacity: 0; }
-/* Capa para tocar el video y reproducir/pausar. Debajo del texto (z-index 2)
-   para no estorbar el título ni el botón "Volver a la tienda". */
-.video-click {
-    position: absolute; inset: 0; z-index: 1;
-    background: transparent; border: 0; padding: 0; margin: 0;
-    cursor: pointer; -webkit-tap-highlight-color: transparent;
-}
-.video-click:focus { outline: none; }
-/* El bloque de texto del hero no debe interceptar el clic sobre el video:
-   deja pasar el toque a la capa de reproducir/pausar, salvo en sus botones. */
-.hero--video .hero-inner { pointer-events: none; }
-.hero--video .hero-inner a,
-.hero--video .hero-inner button { pointer-events: auto; }
-.hero--video .hero-media { display: none; }
-.hero--video .eyebrow { color: #F3E7CC; }
-.hero--video .hero-title { color: #FFFFFF; }
-.hero--video .hero-sub { color: rgba(255,255,255,.92); }
-.hero--video .eyebrow,
-.hero--video .hero-title,
-.hero--video .hero-sub { text-shadow: 0 2px 16px rgba(0,0,0,.6), 0 1px 3px rgba(0,0,0,.5); }
-.hero--video .btn-ghost { color: #fff; border-color: rgba(255,255,255,.6); }
-.hero--video .btn-ghost:hover { color: #fff; border-color: #fff; background: rgba(255,255,255,.14); }
-
-/* Controles claros del video (sonido + pausa) */
-.video-controls {
-    position: absolute; z-index: 3; right: 22px; bottom: 96px;
-    display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
-}
-.video-toggle {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(247,242,231,.92); color: #1B1B1B;
-    border: none; border-radius: var(--radius-sm);
-    padding: 9px 15px; cursor: pointer;
-    font-family: 'Inter', sans-serif; font-weight: 600; font-size: .84rem;
-    box-shadow: 0 8px 20px -10px rgba(0,0,0,.6);
-    transition: background .2s ease, transform .2s ease;
-}
-.video-toggle:hover { background: #fff; transform: translateY(-1px); }
-.video-toggle .vt-icon { font-size: .82rem; }
-@media (max-width: 820px) { .hero--video { min-height: 78vh; } }
 
 /* ---------- Hero con foto de fondo (Tienda) ---------- */
 .hero--photo {
@@ -1418,7 +1354,7 @@ body.pv-open { overflow: hidden; }
 }
 
 /* =========================================================
-   Océano · enlaces de datos (debajo del título) + video limpio
+   Océano · enlaces de datos (debajo del título)
    ========================================================= */
 .ocean-stats-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 2px 0 14px; }
 .ocean-stat-link {
@@ -1434,15 +1370,6 @@ body.pv-open { overflow: hidden; }
 .ocean-stat-link:hover .osl-arrow { transform: translateX(3px); opacity: .85; }
 /* Para que el ancla no quede tapada por el encabezado fijo al saltar */
 .oc-anchor { scroll-margin-top: 92px; }
-
-/* Controles del video: se ocultan mientras el video reproduce (quedan limpios);
-   vuelven al pausar, al pasar el cursor o al enfocar con el teclado. */
-.video-controls { transition: opacity .4s ease; }
-.hero--video.is-playing .video-controls { opacity: 0; pointer-events: none; }
-/* Vuelven al pasar el cursor por el video, o cuando el foco del teclado entra
-   en los propios controles (no al tocar el video, que también toma el foco). */
-.hero--video.is-playing:hover .video-controls,
-.hero--video.is-playing .video-controls:focus-within { opacity: 1; pointer-events: auto; }
 
 /* =========================================================
    Cuadritos de color (tarjeta de producto y ventana de fotos)
@@ -1514,4 +1441,80 @@ body.pv-open { overflow: hidden; }
 .pv-fit-fija {
     display: inline-block; padding: 6px 12px; font-size: .86rem; font-weight: 600;
     border: 1px solid var(--line); border-radius: var(--radius-sm); color: var(--text);
+}
+
+/* =========================================================
+   Camisetas dentro de cada colección + Esenciales con su página
+   ========================================================= */
+section[id] { scroll-margin-top: 84px; }
+
+/* Océano: portada con foto (la tortuga) */
+.hero--oceano {
+    background: #0b1b22 url("../assets/oceano-tortuga.jpg") center 40% / cover no-repeat;
+}
+@media (max-width: 820px) { .hero--oceano { background-position: 55% center; } }
+
+/* Tarjeta de Esenciales, debajo de las colecciones (ancha, horizontal) */
+.esenciales-card {
+    display: grid; grid-template-columns: 220px 1fr; align-items: stretch;
+    max-width: 760px; margin: 20px auto 0; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line);
+    text-decoration: none; color: inherit;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.esenciales-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.ec-media { background: var(--green-soft) center / cover no-repeat; min-height: 150px; }
+.ec-body { padding: 18px 22px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 5px; }
+.ec-body h3 { font-size: 1.2rem; }
+.ec-body p { color: var(--text-soft); font-size: .92rem; }
+@media (max-width: 560px) { .esenciales-card { grid-template-columns: 1fr; } .ec-media { min-height: 170px; } }
+.ess-volver { text-align: center; margin-top: 30px; }
+
+/* Guía de tallas: dos tablas (Regular fit · Oversized) lado a lado */
+.size-tables { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+.size-table-title { font-size: 1rem; margin: 0 0 8px; text-align: center; color: var(--text); }
+.size-guide { max-width: 860px; }
+
+/* =========================================================
+   Ventana de fotos grande, con zoom
+   ========================================================= */
+.pv-modal {
+    width: min(96vw, 1240px); height: min(92vh, 940px); max-height: none;
+    grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr);
+}
+.pv-gallery { min-height: 0; }
+.pv-main { position: relative; flex: 1; min-height: 0; padding: 0; overflow: hidden; display: block; }
+.pv-main img {
+    position: absolute; inset: 16px; width: calc(100% - 32px); height: calc(100% - 32px);
+    max-width: none; max-height: none; object-fit: contain;
+    cursor: zoom-in; transition: transform .25s ease;
+}
+.pv-main.is-zoom img { transform: scale(2.4); cursor: zoom-out; }
+/* Ampliada, el dedo recorre la foto en vez de desplazar la ventana */
+.pv-main.is-zoom { touch-action: none; }
+.pv-nav, .pv-count { z-index: 2; }
+.pv-zoom-hint {
+    position: absolute; left: 12px; bottom: 10px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 6px; pointer-events: none;
+    font-size: .74rem; color: var(--text-soft);
+    background: var(--surface); border: 1px solid var(--line); padding: 3px 10px; border-radius: 20px;
+    transition: opacity .2s;
+}
+.pv-main.is-zoom .pv-zoom-hint { opacity: 0; }
+.pv-thumb { width: 64px; height: 64px; }
+@media (max-width: 720px) {
+    /* En el celular, la ventana ocupa toda la pantalla: la prenda se ve grande */
+    .pv-modal, .pv-modal.open {
+        top: 0; left: 0; transform: none;
+        width: 100vw; height: 100vh; height: 100dvh; max-height: none;
+        border: 0; border-radius: 0;
+        /* Alto fijo para la foto (si no, el texto de abajo la aplasta); el
+           texto queda debajo y la ventana se desplaza */
+        grid-template-columns: 1fr; grid-template-rows: 62vh auto; grid-template-rows: 62dvh auto;
+        overflow-y: auto;
+    }
+    .pv-info { overflow: visible; }
+    .pv-thumb { width: 54px; height: 54px; }
+    /* El contador a la derecha, para no chocar con la pista del zoom */
+    .pv-count { left: auto; right: 12px; transform: none; }
 }

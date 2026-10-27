@@ -26,6 +26,20 @@ display_url: https://droko1982.github.io/a-y-m/
 media_folder: assets
 public_folder: assets
 
+# Las fotos que se suban se convierten solas a WebP y se achican a máximo
+# 1600 px de lado (la foto de un mockup de 4320 x 5400 px pasaba de 5 MB y en
+# el celular no alcanzaba a cargar). Los nombres quedan sin espacios ni tildes.
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 82
+          width: 1600
+          height: 1600
+
 collections:
   # -------- PRECIOS --------
   - name: precios
@@ -63,7 +77,7 @@ collections:
   - name: productos
     label: "Productos"
     icon: checkroom
-    description: "Las camisetas de la tienda, en tres espacios con diseños distintos: Regular fit, Oversized y Esenciales. La horma la define el espacio donde subas cada camiseta."
+    description: "Las camisetas, en tres espacios con diseños distintos: Regular fit, Oversized y Esenciales. La horma la define el espacio donde subas cada camiseta, y la colección (Océano o Felina) se elige en cada una."
     files:
       - name: productos
         label: "Regular fit"
@@ -77,6 +91,7 @@ collections:
             summary: "{{fields.nombre_es}}"
             fields:
               - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: origen2. No repetir con ninguna otra camiseta de ningún espacio." }
+              - { name: coleccion, label: "Colección", widget: select, default: "oceano", options: [{ label: "Océano", value: "oceano" }, { label: "Felina", value: "felina" }], hint: "En qué colección aparece esta camiseta. Al entrar a esa colección se ve en su pestaña (Regular fit u Oversized)." }
               - { name: imagen, label: "Foto de portada", widget: image, choose_url: false, hint: "La foto que se ve primero, en la tarjeta y en la ventana. Siempre se muestra, aunque haya colores." }
               - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Fotos adicionales de esta camiseta. Se ven en la ventana al hacer clic, y se pasan con las flechas o deslizando. Puedes arrastrar varias a la vez." }
               - name: colores
@@ -109,6 +124,7 @@ collections:
             summary: "{{fields.nombre_es}}"
             fields:
               - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ballena-oversized. No repetir con ninguna otra camiseta de ningún espacio." }
+              - { name: coleccion, label: "Colección", widget: select, default: "oceano", options: [{ label: "Océano", value: "oceano" }, { label: "Felina", value: "felina" }], hint: "En qué colección aparece esta camiseta. Al entrar a esa colección se ve en su pestaña (Regular fit u Oversized)." }
               - { name: imagen, label: "Foto de portada", widget: image, choose_url: false, hint: "La foto que se ve primero, en la tarjeta y en la ventana. Siempre se muestra, aunque haya colores." }
               - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Fotos adicionales de esta camiseta. Se ven en la ventana al hacer clic, y se pasan con las flechas o deslizando. Puedes arrastrar varias a la vez." }
               - name: colores
@@ -132,7 +148,7 @@ collections:
       - name: essentials
         label: "Esenciales"
         file: data/essentials.json
-        description: "Los básicos: camisetas para usar con todo. Funcionan igual que las demás."
+        description: "Los básicos: camisetas para usar con todo. Tienen su propia página (Esenciales), con una tarjeta debajo de las colecciones."
         fields:
           - name: productos
             label: "Camisetas"
@@ -160,6 +176,38 @@ collections:
               - { name: desc_es, label: "Descripción corta", widget: text, hint: "La que se ve en la tarjeta." }
               - { name: desc_larga_es, label: "Descripción ampliada", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
               - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
+
+  # -------- GUÍA DE TALLAS --------
+  - name: tallas
+    label: "Guía de tallas"
+    icon: straighten
+    files:
+      - name: tallas
+        label: "Medidas de las camisetas"
+        file: data/tallas.json
+        description: "La tabla de medidas que sale debajo de las camisetas. Una tabla para Regular fit y otra para Oversized (los Esenciales usan la de Regular fit). Medidas en centímetros."
+        fields:
+          - { name: nota, label: "Texto sobre las tablas", widget: string, required: false }
+          - name: regular
+            label: "Regular fit"
+            label_singular: "Talla"
+            widget: list
+            summary: "{{fields.talla}} · pecho {{fields.pecho}} · largo {{fields.largo}} · hombro {{fields.hombro}}"
+            fields:
+              - { name: talla, label: "Talla", widget: string }
+              - { name: pecho, label: "Pecho (cm)", widget: string }
+              - { name: largo, label: "Largo (cm)", widget: string }
+              - { name: hombro, label: "Hombro (cm)", widget: string }
+          - name: oversized
+            label: "Oversized"
+            label_singular: "Talla"
+            widget: list
+            summary: "{{fields.talla}} · pecho {{fields.pecho}} · largo {{fields.largo}} · hombro {{fields.hombro}}"
+            fields:
+              - { name: talla, label: "Talla", widget: string }
+              - { name: pecho, label: "Pecho (cm)", widget: string }
+              - { name: largo, label: "Largo (cm)", widget: string }
+              - { name: hombro, label: "Hombro (cm)", widget: string }
 
   # -------- IMPACTO --------
   - name: impacto
@@ -214,7 +262,7 @@ collections:
             collapsed: true
             fields:
               - { name: eyebrow_es, label: "Línea pequeña de la sección", widget: string, required: false }
-              - { name: titulo_es, label: "Título de la sección Camisetas", widget: string, required: false, hint: "El encabezado grande encima de las pestañas Regular fit · Oversized · Esenciales." }
+              - { name: titulo_es, label: "Título de las camisetas de Océano", widget: string, required: false, hint: "El encabezado grande encima de las camisetas, al entrar a la colección Océano." }
               - { name: portal_titulo_es, label: "Título de la sección Colecciones", widget: string, required: false }
               - { name: portal_texto_es, label: "Portal · primer párrafo", widget: text, required: false }
               - { name: portal_texto2_es, label: "Portal · segundo párrafo", widget: text, required: false }
@@ -237,7 +285,8 @@ collections:
               - { name: nota_es, label: "Aviso de fotos de referencia", widget: text, required: false }
               - { name: regular_texto_es, label: "Texto del espacio Regular fit", widget: string, required: false }
               - { name: oversized_texto_es, label: "Texto del espacio Oversized", widget: string, required: false }
-              - { name: esenciales_texto_es, label: "Texto del espacio Esenciales", widget: string, required: false }
+              - { name: esenciales_titulo_es, label: "Esenciales · título de su página", widget: string, required: false }
+              - { name: esenciales_texto_es, label: "Esenciales · texto (página y tarjeta)", widget: string, required: false }
               - { name: vacio_es, label: "Aviso cuando un espacio aún no tiene camisetas", widget: string, required: false }
               - { name: mostrar_nota, label: "¿Mostrar el aviso de fotos de referencia?", widget: boolean, default: true, required: false, hint: "Apágalo cuando ya estén las fotos reales de las camisetas." }
 
@@ -282,8 +331,6 @@ collections:
               - { name: accion3_texto_es, label: "Acción 3 · texto", widget: text, required: false }
               - { name: accion4_titulo_es, label: "Acción 4 · título", widget: string, required: false }
               - { name: accion4_texto_es, label: "Acción 4 · texto", widget: text, required: false }
-              - { name: cierre_titulo_es, label: "Cierre · título (lleva a las camisetas)", widget: string, required: false }
-              - { name: cierre_boton_es, label: "Cierre · botón", widget: string, required: false }
 
           # ----- Felina (página de la colección) -----
           - name: felina
@@ -295,6 +342,7 @@ collections:
               - { name: titulo_es, label: "Portada · título", widget: string, required: false }
               - { name: texto_es, label: "Portada · texto", widget: text, required: false }
               - { name: boton_es, label: "Botón · ver camisetas", widget: string, required: false }
+              - { name: camisetas_titulo_es, label: "Título de las camisetas de Felina", widget: string, required: false }
               - { name: historia_eyebrow_es, label: "Historia · línea pequeña", widget: string, required: false }
               - { name: historia_titulo_es, label: "Historia · título", widget: string, required: false }
               - { name: historia_p1_es, label: "Historia · párrafo 1", widget: text, required: false }
@@ -307,9 +355,6 @@ collections:
               - { name: rasgo2_texto_es, label: "Rasgo 2 · texto", widget: text, required: false }
               - { name: rasgo3_titulo_es, label: "Rasgo 3 · título", widget: string, required: false }
               - { name: rasgo3_texto_es, label: "Rasgo 3 · texto", widget: text, required: false }
-              - { name: cierre_titulo_es, label: "Cierre · título", widget: string, required: false }
-              - { name: cierre_texto_es, label: "Cierre · texto", widget: text, required: false }
-              - { name: cierre_boton_es, label: "Cierre · botón de WhatsApp", widget: string, required: false }
 
           # ----- Propósito -----
           - name: proposito
