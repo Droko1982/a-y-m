@@ -153,6 +153,11 @@
           "nombre_es": "Vainilla",
           "color": "#ffeab8",
           "imagen": "/assets/Abiss vainilla.png"
+        },
+        {
+          "nombre_es": "Arena",
+          "color": "#d4bc94",
+          "imagen": "/assets/abiss arena duo.png"
         }
       ],
       "nombre_es": "Abiss",
