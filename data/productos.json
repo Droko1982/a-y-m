@@ -23,10 +23,10 @@
           "nombre_en": "Green"
         }
       ],
-      "nombre_es": "Camiseta Origen",
+      "nombre_es": "Origen",
       "precio": null,
-      "desc_es": "Una ballena, un horizonte y la inmensidad del océano convertidos en una sola historia.\n100% algodon 240gr",
-      "desc_larga_es": "La camiseta Camiseta Origen une el misticismo del paisaje terrestre con la inmensidad del mundo marino en una prenda hecha para acompañarte todos los días.\nDetalles del producto:\nDiseño: Ilustración central en el frente que fusiona la silueta de una ballena con montañas y un sol de fondo.\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100% algodon 240gr.",
+      "desc_es": "Donde la tierra y el océano se fusionan en un solo horizonte. Una historia que conecta la solidez de las montañas con la inmensidad del mar, pensada para recordarte que la naturaleza siempre es nuestro punto de partida.",
+      "desc_larga_es": "La camiseta Origen une el misticismo del paisaje terrestre con la inmensidad del mundo marino en una prenda de color verde oliva hecha para acompañarte todos los días. Presenta una ilustración central en el frente que fusiona la silueta de una ballena con montañas y un sol de fondo en tonos dorados. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
       "disponible": true,
       "desc_en": "A whale, a horizon, and the vastness of the ocean transformed into a single story.",
       "desc_larga_en": "",
@@ -53,8 +53,8 @@
       ],
       "nombre_es": "Alma marina",
       "precio": null,
-      "desc_es": "Inspirada en la biodiversidad costera y el espíritu del mar, esta camiseta es un homenaje a nuestras especies y ecosistemas.\n100% algodon 280gr",
-      "desc_larga_es": "La camiseta Alma marina captura la esencia de la vida playera y el entorno costero a través de una cuidada ilustración lineal que reúne tablas de surf, vegetación tropical y fauna marina en una prenda hecha para acompañarte todos los días.\nDetalles del producto:\nDiseño: Ilustración frontal corrida con motivos de palmeras, tablas de surf y elementos marinos sobre un tono crema cálido.\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100% algodon 280gr.",
+      "desc_es": "El reflejo de los días perfectos bajo el sol, entre palmeras, tablas de surf y la brisa del mar. Una historia diseñada para capturar la esencia de la vida playera y llevar el espíritu del verano contigo en cualquier época del año.",
+      "desc_larga_es": "La camiseta Alma Marina captura la esencia de la vida playera y el entorno costero a través de una cuidada ilustración lineal que reúne tablas de surf, vegetación tropical y fauna marina en una prenda hecha para acompañarte todos los días. Presenta un diseño gráfico frontal corrido con motivos de palmeras, tablas de surf y elementos marinos sobre un tono crema cálido. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
       "disponible": true,
       "desc_en": "Inspired by coastal biodiversity and the spirit of the sea, this T-shirt is a tribute to our species and ecosystems.\n100% cotton, 280g.",
       "desc_larga_en": "",
@@ -81,8 +81,8 @@
       ],
       "nombre_es": "Noise (o 52Hz)",
       "precio": null,
-      "desc_es": "Un diseño conceptual con corte Regular fit, hecha de algodón 100%, para quienes conectan con lo natural y buscan vestir con un propósito consciente.",
-      "desc_larga_es": "La camiseta Noise está inspirada en la historia real de la ballena de los 52 hercios, conocida como la ballena más solitaria del mundo al cantar en una frecuencia única que ninguna otra especie puede escuchar. Una prenda que une la melancolía del océano profundo con un mensaje que trasciende, hecha para acompañarte todos los días.\nDetalles del producto:\nDiseño: Ilustración frontal de una ballena jorobada acompañada de la tipografía \"-52Hz\" y la frase \"I called but no one heard...\" sobre un fondo negro profundo.\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100% algodon 280gr.",
+      "desc_es": "Inspirada en la ballena de los 52 hercios, que canta en una frecuencia única en todo el océano esperando conectar con alguien más. Una historia sobre la singularidad, la resiliencia y el deseo profundo de encontrar tu propia manada.",
+      "desc_larga_es": "La camiseta 52Hz rinde un profundo homenaje al misterio y la melancolía del mundo marino a través de una ilustración detallada que destaca el canto único del gigante más solitario del océano en una prenda hecha para acompañarte todos los días. Presenta una gráfica central blanca en el frente con la silueta de una ballena, acompañada por el texto \"-52Hz\" y la frase \"I called but no one heard...\" sobre un tono azul oscuro. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
       "disponible": true,
       "desc_en": "A call in the ocean that goes unheard. The impact of marine noise pollution silences the song of the whales.",
       "desc_larga_en": "",
@@ -115,10 +115,10 @@
           "imagen": "/assets/mucho estres pocaa vida.png"
         }
       ],
-      "nombre_es": "----",
+      "nombre_es": "Poca Vida",
       "precio": null,
-      "desc_es": "-----",
-      "desc_larga_es": "",
+      "desc_es": "Inspirada en el ritmo pausado de las tortugas marinas, que nos enseñan a fluir sin prisa en un mundo que siempre corre. Una historia con un toque de humor realista, creada para recordarte que la vida es muy corta como para tomársela con tanto afán.",
+      "desc_larga_es": "La camiseta Poca Vida une el humor cotidiano con la serenidad del mundo marino a través de un mensaje directo y consciente que nos invita a desacelerar el ritmo en una prenda hecha para acompañarte todos los días. Presenta un diseño gráfico circular central en el frente con la ilustración lineal de una tortuga marina y la frase \"Mucho estrés para tan poca vida\" sobre un tono marrón tierra. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
       "disponible": true
     },
     {
@@ -146,10 +146,10 @@
           "imagen": "/assets/jurassic shark arena regukar.png"
         }
       ],
-      "nombre_es": "---",
+      "nombre_es": "Jurassic Shark",
       "precio": null,
-      "desc_es": "-----",
-      "desc_larga_es": "",
+      "desc_es": "Una divertida parodia que viaja en el tiempo para unir la cultura pop con el depredador más imponente y prehistórico de los océanos. Una historia con mucha personalidad y estilo retro, pensada para quienes buscan destacar con un toque de humor irreverente.",
+      "desc_larga_es": "La camiseta Jurassic Shark fusiona el humor de la cultura pop con la fascinación por el mundo marino a través de un diseño vibrante y lleno de nostalgia en una prenda hecha para acompañarte todos los días. Presenta un logotipo gráfico central en el frente con la silueta de un tiburón y el texto tipográfico \"Jurassic Shark\" al mejor estilo de la icónica película retro, sobre un tono beige o arena. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
       "disponible": true
     }
   ]
