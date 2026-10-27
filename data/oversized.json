@@ -35,7 +35,7 @@
       ],
       "nombre_es": "Marisma",
       "precio": null,
-      "desc_es": "Un diseño divertido con corte oversize, hecha de algodón 100%, para quienes conectan con lo natural y buscan vestir con un propósito consciente.",
+      "desc_es": "Un recorrido visual por las profundidades donde habitan los gigantes más nobles del océano. Diseñada para recordarte la inmensidad del mar y la belleza de sus diferentes especies en cada paso que das.",
       "desc_larga_es": "La camiseta Marisma rinde homenaje a la majestuosidad del océano a través de una cuidada ilustración que celebra la diversidad de las especies de ballenas en un tono cálido y natural, en una prenda hecha para acompañarte todos los días.\nDetalles del producto:\nDiseño: Detalle tipográfico minimalista de \"Whales\" en el pecho e ilustración tipo guía de especies marinas en la espalda.\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100% algodon 240gr.",
       "disponible": true
     },
@@ -59,7 +59,7 @@
       ],
       "nombre_es": "Cereal killer",
       "precio": null,
-      "desc_es": "Un diseño divertido con corte oversize, hecha de algodón 100%, para quienes conectan con lo natural y buscan vestir con un propósito consciente.",
+      "desc_es": "El humor y la frescura del mar se mezclan en el desayuno ideal. Una historia que rompe la rutina, pensada para recordarte que la vida se disfruta más cuando no te la tomas tan en serio.",
       "desc_larga_es": "La camiseta Cereal Killer une el humor con el encanto del mundo marino en una prenda hecha para acompañarte todos los días.\nDetalles del producto:\nDiseño: Detalle minimalista de orca en el pecho e ilustración completa en la espalda.\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100% algodón 280gr.",
       "disponible": true
     },
@@ -131,39 +131,10 @@
           "imagen": "/assets/wild free vainilla.png"
         }
       ],
-      "nombre_es": "----",
+      "nombre_es": "Orca Nature",
       "precio": null,
-      "desc_es": "----",
-      "desc_larga_es": "",
-      "disponible": true
-    },
-    {
-      "id": "Abiss",
-      "imagen": "/assets/abiss portada espalda.png",
-      "galeria": [
-        "/assets/abiss portada.png"
-      ],
-      "colores": [
-        {
-          "nombre_es": "Blanco",
-          "color": "#ffffff",
-          "imagen": "/assets/abiss blanca duo.png"
-        },
-        {
-          "nombre_es": "Vainilla",
-          "color": "#ffeab8",
-          "imagen": "/assets/Abiss vainilla.png"
-        },
-        {
-          "nombre_es": "Arena",
-          "color": "#d4bc94",
-          "imagen": "/assets/abiss arena duo.png"
-        }
-      ],
-      "nombre_es": "Abiss",
-      "precio": null,
-      "desc_es": "----",
-      "desc_larga_es": "-----",
+      "desc_es": "Inspirada en esos días tranquilos frente al mar, donde el tiempo se detiene y la naturaleza dicta el ritmo. Una prenda creada para llevar la calma del océano contigo a donde vayas.",
+      "desc_larga_es": "La camiseta Orca Nature une la fluidez del océano con el encanto del mundo marino en una prenda hecha para acompañarte todos los días. Su tono crema suave resalta un detalle minimalista de la cola de una orca en el pecho y una ilustración circular estilizada con orcas y un sol en la espalda junto a la palabra NATURE. Está confeccionada en 100% algodón de 280gr con un corte oversize de silueta holgada.",
       "disponible": true
     }
   ]
