@@ -148,6 +148,11 @@
           "nombre_es": "Blanco",
           "color": "#ffffff",
           "imagen": "/assets/abiss blanca duo.png"
+        },
+        {
+          "nombre_es": "Vainilla",
+          "color": "#ffeab8",
+          "imagen": "/assets/Abiss vainilla.png"
         }
       ],
       "nombre_es": "Abiss",
