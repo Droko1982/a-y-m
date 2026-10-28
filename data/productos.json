@@ -156,6 +156,23 @@
       "desc_es": "Una divertida parodia que viaja en el tiempo para unir la cultura pop con el depredador más imponente y prehistórico de los océanos. Una historia con mucha personalidad y estilo retro, pensada para quienes buscan destacar con un toque de humor irreverente.",
       "desc_larga_es": "La camiseta Jurassic Shark fusiona el humor de la cultura pop con la fascinación por el mundo marino a través de un diseño vibrante y lleno de nostalgia en una prenda hecha para acompañarte todos los días. Presenta un logotipo gráfico central en el frente con la silueta de un tiburón y el texto tipográfico \"Jurassic Shark\" al mejor estilo de la icónica película retro, sobre un tono beige o arena. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
       "disponible": true
+    },
+    {
+      "id": "Manta",
+      "coleccion": "oceano",
+      "imagen": "/assets/manta.webp",
+      "colores": [
+        {
+          "nombre_es": "Blanco",
+          "color": "#ffffff",
+          "imagen": "/assets/manta-colores.webp"
+        }
+      ],
+      "nombre_es": "Ubicacion Choco Colombia",
+      "precio": null,
+      "desc_es": "-----",
+      "desc_larga_es": "------",
+      "disponible": true
     }
   ]
 }
