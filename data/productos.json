@@ -176,6 +176,11 @@
           "nombre_es": "Arena",
           "color": "#d4bc94",
           "imagen": "/assets/manta-colores-arena.webp"
+        },
+        {
+          "nombre_es": "Azul Navy",
+          "color": "",
+          "imagen": "/assets/manta-colores-azul.webp"
         }
       ],
       "nombre_es": "Ubicacion Choco Colombia",
