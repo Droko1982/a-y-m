@@ -178,7 +178,13 @@
       "galeria": [
         "/assets/pulpo-portada-frente.webp"
       ],
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Crema",
+          "color": "#fcf2ce",
+          "imagen": "/assets/pulpo-crema-azul.webp"
+        }
+      ],
       "nombre_es": "----",
       "precio": null,
       "desc_es": "----",
