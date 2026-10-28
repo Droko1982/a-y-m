@@ -188,6 +188,11 @@
           "nombre_es": "Mocca",
           "color": "#7e6053",
           "imagen": "/assets/pulpo-mocca.webp"
+        },
+        {
+          "nombre_es": "Azul Navy",
+          "color": "#1b1d30",
+          "imagen": "/assets/pulpo-azul.webp"
         }
       ],
       "nombre_es": "----",
