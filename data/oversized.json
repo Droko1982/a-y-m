@@ -193,6 +193,11 @@
           "nombre_es": "Azul Navy",
           "color": "#1b1d30",
           "imagen": "/assets/pulpo-azul.webp"
+        },
+        {
+          "nombre_es": "Negro",
+          "color": "",
+          "imagen": "/assets/pulpo-negro.webp"
         }
       ],
       "nombre_es": "----",
