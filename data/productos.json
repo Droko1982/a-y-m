@@ -208,6 +208,11 @@
           "nombre_es": "Blanco",
           "color": "#fafafa",
           "imagen": "/assets/circulo-marino-lanca.webp"
+        },
+        {
+          "nombre_es": "Azul Navy",
+          "color": "#10102f",
+          "imagen": "/assets/circulo-marino-azul.webp"
         }
       ],
       "nombre_es": "Tambien en el choco",
