@@ -213,6 +213,11 @@
           "nombre_es": "Azul Navy",
           "color": "#10102f",
           "imagen": "/assets/circulo-marino-azul.webp"
+        },
+        {
+          "nombre_es": "Crema",
+          "color": "#fcf2ce",
+          "imagen": "/assets/circulo-marino-crema.webp"
         }
       ],
       "nombre_es": "Tambien en el choco",
