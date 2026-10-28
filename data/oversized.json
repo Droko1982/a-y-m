@@ -170,6 +170,20 @@
       "desc_es": "Un viaje hacia los secretos más profundos y desconocidos del océano, donde la luz se desvanece y la vida se rige por sus propias leyes. Una historia de misticismo y geometría sagrada, pensada para quienes se atreven a explorar lo inexplorado.",
       "desc_larga_es": "La camiseta Abyss rinde un profundo homenaje al misterio y la inmensidad de las profundidades marinas a través de gráficos geométricos de líneas finas y un concepto cartográfico abstracto en una prenda hecha para acompañarte todos los días. Presenta un sutil detalle tipográfico en el pecho con el texto \"ABYSS 13.4\" y una elaborada ilustración vertical lineal en la espalda que fusiona una ballena con círculos geométricos orientados sobre un tono arena o beige. Está confeccionada en 100% algodón de 280gr con un corte oversize de silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural.",
       "disponible": true
+    },
+    {
+      "id": "Adaptacion",
+      "coleccion": "oceano",
+      "imagen": "/assets/pulpo-portada-back.webp",
+      "galeria": [
+        "/assets/pulpo-portada-frente.webp"
+      ],
+      "colores": [],
+      "nombre_es": "----",
+      "precio": null,
+      "desc_es": "----",
+      "desc_larga_es": "----",
+      "disponible": true
     }
   ]
 }
