@@ -203,6 +203,11 @@
           "nombre_es": "Mocaa",
           "color": "#7e6053",
           "imagen": "/assets/circulo-marino-mocca.webp"
+        },
+        {
+          "nombre_es": "Blanco",
+          "color": "#fafafa",
+          "imagen": "/assets/circulo-marino-lanca.webp"
         }
       ],
       "nombre_es": "Tambien en el choco",
