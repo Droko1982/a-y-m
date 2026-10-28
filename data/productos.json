@@ -188,6 +188,23 @@
       "desc_es": "-----",
       "desc_larga_es": "------",
       "disponible": true
+    },
+    {
+      "id": "Circulo",
+      "coleccion": "oceano",
+      "imagen": "/assets/circulo-marino.webp",
+      "colores": [
+        {
+          "nombre_es": "Verde Militar",
+          "color": "#3a3e2f",
+          "imagen": "/assets/circulo-marino-verde-militar.webp"
+        }
+      ],
+      "nombre_es": "Tambien en el choco",
+      "precio": null,
+      "desc_es": "-------",
+      "desc_larga_es": "---",
+      "disponible": true
     }
   ]
 }
