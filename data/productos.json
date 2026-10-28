@@ -183,10 +183,32 @@
           "imagen": "/assets/manta-colores-azul.webp"
         }
       ],
-      "nombre_es": "Manta raya",
+      "nombre_es": "Ubicacion Choco Colombia",
       "precio": null,
-      "desc_es": "Una explosión de colores y formas inspirada en la elegancia con la que las mantarrayas se deslizan por los arrecifes tropicales. Una historia llena de energía y arte abstracto, pensada para quienes buscan destacar y conectarse con la alegría del océano.",
-      "desc_larga_es": "La camiseta Manta Ray fusiona el arte abstracto con el encanto del mundo marino a través de un diseño geométrico de trazos étnicos en una prenda de color blanco hecha para acompañarte todos los días. Presenta una vibrante ilustración central en el frente con motivos abstractos multicolor que emula la silueta en movimiento de una mantarraya y elementos del océano. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
+      "desc_es": "-----",
+      "desc_larga_es": "------",
+      "disponible": true
+    },
+    {
+      "id": "Circulo",
+      "coleccion": "oceano",
+      "imagen": "/assets/circulo-marino.webp",
+      "colores": [
+        {
+          "nombre_es": "Verde Militar",
+          "color": "#3a3e2f",
+          "imagen": "/assets/circulo-marino-verde-militar.webp"
+        },
+        {
+          "nombre_es": "Mocaa",
+          "color": "#7e6053",
+          "imagen": "/assets/circulo-marino-mocca.webp"
+        }
+      ],
+      "nombre_es": "Tambien en el choco",
+      "precio": null,
+      "desc_es": "-------",
+      "desc_larga_es": "---",
       "disponible": true
     }
   ]
