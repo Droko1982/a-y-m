@@ -166,6 +166,11 @@
           "nombre_es": "Blanco",
           "color": "#ffffff",
           "imagen": "/assets/manta-colores.webp"
+        },
+        {
+          "nombre_es": "Vainilla",
+          "color": "#ffe9b8",
+          "imagen": "/assets/manta-colores-vainilla.webp"
         }
       ],
       "nombre_es": "Ubicacion Choco Colombia",
