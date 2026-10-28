@@ -183,6 +183,11 @@
           "nombre_es": "Crema",
           "color": "#fcf2ce",
           "imagen": "/assets/pulpo-crema-azul.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "#7e6053",
+          "imagen": "/assets/pulpo-mocca.webp"
         }
       ],
       "nombre_es": "----",
