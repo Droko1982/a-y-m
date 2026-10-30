@@ -225,6 +225,23 @@
       "desc_es": "-------",
       "desc_larga_es": "---",
       "disponible": true
+    },
+    {
+      "id": "choco",
+      "coleccion": "oceano",
+      "imagen": "/assets/chica-peces-portada.webp",
+      "colores": [
+        {
+          "nombre_es": "Arena",
+          "color": "#d4bc94",
+          "imagen": "/assets/chica-peces-arena.webp"
+        }
+      ],
+      "nombre_es": "-------------",
+      "precio": null,
+      "desc_es": "----------------",
+      "desc_larga_es": "-----",
+      "disponible": true
     }
   ]
 }
