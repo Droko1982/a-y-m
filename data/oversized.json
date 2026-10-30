@@ -218,6 +218,11 @@
           "nombre_es": "Blanco",
           "color": "#ffffff",
           "imagen": "/assets/calamar-blanco-duo.webp"
+        },
+        {
+          "nombre_es": "arena",
+          "color": "#d4bc94",
+          "imagen": "/assets/calamar-arena-duo.webp"
         }
       ],
       "nombre_es": "----",
