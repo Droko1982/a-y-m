@@ -89,6 +89,12 @@ collections:
             label_singular: "Camiseta"
             widget: list
             summary: "{{fields.nombre_es}}"
+            # Las camisetas nuevas se agregan arriba (el botón queda arriba) y las
+            # que ya están se muestran plegadas, con su foto: no hay que bajar
+            # hasta el final de la lista para subir una nueva.
+            add_to_top: true
+            collapsed: true
+            thumbnail: imagen
             fields:
               - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: origen2. No repetir con ninguna otra camiseta de ningún espacio." }
               - { name: coleccion, label: "Colección", widget: select, default: "oceano", options: [{ label: "Océano", value: "oceano" }, { label: "Felina", value: "felina" }], hint: "En qué colección aparece esta camiseta. Al entrar a esa colección se ve en su pestaña (Regular fit u Oversized)." }
@@ -122,6 +128,12 @@ collections:
             label_singular: "Camiseta"
             widget: list
             summary: "{{fields.nombre_es}}"
+            # Las camisetas nuevas se agregan arriba (el botón queda arriba) y las
+            # que ya están se muestran plegadas, con su foto: no hay que bajar
+            # hasta el final de la lista para subir una nueva.
+            add_to_top: true
+            collapsed: true
+            thumbnail: imagen
             fields:
               - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ballena-oversized. No repetir con ninguna otra camiseta de ningún espacio." }
               - { name: coleccion, label: "Colección", widget: select, default: "oceano", options: [{ label: "Océano", value: "oceano" }, { label: "Felina", value: "felina" }], hint: "En qué colección aparece esta camiseta. Al entrar a esa colección se ve en su pestaña (Regular fit u Oversized)." }
@@ -155,6 +167,12 @@ collections:
             label_singular: "Camiseta"
             widget: list
             summary: "{{fields.nombre_es}}"
+            # Las camisetas nuevas se agregan arriba (el botón queda arriba) y las
+            # que ya están se muestran plegadas, con su foto: no hay que bajar
+            # hasta el final de la lista para subir una nueva.
+            add_to_top: true
+            collapsed: true
+            thumbnail: imagen
             fields:
               - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ess-gris. No repetir con ninguna otra camiseta de ningún espacio." }
               - { name: imagen, label: "Foto de portada", widget: image, choose_url: false, hint: "La foto que se ve primero, en la tarjeta y en la ventana. Siempre se muestra, aunque haya colores." }
