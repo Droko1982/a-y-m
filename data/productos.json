@@ -240,6 +240,11 @@
           "nombre_es": "Blanco",
           "color": "#ffffff",
           "imagen": "/assets/chica-peces.webp"
+        },
+        {
+          "nombre_es": "Crema",
+          "color": "#fcf2ce",
+          "imagen": "/assets/chica-peces-crema.webp"
         }
       ],
       "nombre_es": "-------------",
