@@ -235,6 +235,11 @@
           "nombre_es": "Arena",
           "color": "#d4bc94",
           "imagen": "/assets/chica-peces-arena.webp"
+        },
+        {
+          "nombre_es": "Blanco",
+          "color": "#ffffff",
+          "imagen": "/assets/chica-peces.webp"
         }
       ],
       "nombre_es": "-------------",
