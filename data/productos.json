@@ -245,6 +245,11 @@
           "nombre_es": "Crema",
           "color": "#fcf2ce",
           "imagen": "/assets/chica-peces-crema.webp"
+        },
+        {
+          "nombre_es": "Azul Navy",
+          "color": "#10102f",
+          "imagen": "/assets/chica-peces-azul.webp"
         }
       ],
       "nombre_es": "-------------",
