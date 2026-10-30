@@ -223,6 +223,11 @@
           "nombre_es": "arena",
           "color": "#d4bc94",
           "imagen": "/assets/calamar-arena-duo.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "#7e6053",
+          "imagen": "/assets/calamar-mocca-duo.webp"
         }
       ],
       "nombre_es": "----",
