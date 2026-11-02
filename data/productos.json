@@ -8,19 +8,19 @@
         {
           "nombre_es": "Negro",
           "color": "#000000",
-          "imagen": "/assets/mockup-ig-post-20261015-185456.webp",
+          "imagen": "/assets/mockup_ig_post_20261102_144629.webp",
           "nombre_en": "Black"
         },
         {
           "nombre_es": "Azul Navi",
           "color": "#292d4a",
-          "imagen": "/assets/mockup-ig-post-20261015-185439.webp",
+          "imagen": "/assets/mockup_ig_post_20261102_144735.webp",
           "nombre_en": "Navy"
         },
         {
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
-          "imagen": "/assets/mockup-ig-post-20261015-190859.webp",
+          "imagen": "/assets/mockup_ig_post_20261102_144714.webp",
           "nombre_en": "Green"
         }
       ],
