@@ -1,6 +1,38 @@
 {
   "productos": [
     {
+      "id": "------",
+      "coleccion": "felina",
+      "imagen": "/assets/smells-like-drama.webp",
+      "colores": [
+        {
+          "nombre_es": "Arena",
+          "color": "#d4bc94",
+          "imagen": "/assets/smells-drama-arena.webp"
+        },
+        {
+          "nombre_es": "Blanco",
+          "color": "#ffffff",
+          "imagen": "/assets/smells-drama-lanca.webp"
+        },
+        {
+          "nombre_es": "Crema",
+          "color": "#fcf2ce",
+          "imagen": "/assets/smells-drama-crema.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "#7e6053",
+          "imagen": "/assets/smells-drama-mocaa.webp"
+        }
+      ],
+      "nombre_es": "---",
+      "precio": null,
+      "desc_es": "----",
+      "desc_larga_es": "-----",
+      "disponible": true
+    },
+    {
       "id": "originSS",
       "coleccion": "oceano",
       "imagen": "/assets/camiseta 1.jpg",
@@ -8,19 +40,19 @@
         {
           "nombre_es": "Negro",
           "color": "#000000",
-          "imagen": "/assets/mockup_ig_post_20261102_144629.webp",
+          "imagen": "/assets/mockup-ig-post-20261015-185456.webp",
           "nombre_en": "Black"
         },
         {
           "nombre_es": "Azul Navi",
           "color": "#292d4a",
-          "imagen": "/assets/mockup_ig_post_20261102_144735.webp",
+          "imagen": "/assets/mockup-ig-post-20261015-185439.webp",
           "nombre_en": "Navy"
         },
         {
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
-          "imagen": "/assets/mockup_ig_post_20261102_144714.webp",
+          "imagen": "/assets/mockup-ig-post-20261015-190859.webp",
           "nombre_en": "Green"
         }
       ],
@@ -43,13 +75,13 @@
         {
           "nombre_es": "blanco hueso",
           "color": "#f3efe6",
-          "imagen": "/assets/mockup_ig_post_20261102_145434.webp",
+          "imagen": "/assets/mockup-ig-post-20261015-191701.webp",
           "nombre_en": "Bone wite"
         },
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/mockup_ig_post_20261102_145624.webp",
+          "imagen": "/assets/mockup-ig-post-20261015-191821.webp",
           "nombre_en": "Cream"
         }
       ],
@@ -72,13 +104,13 @@
         {
           "nombre_es": "Azul Navi",
           "color": "#292d4a",
-          "imagen": "/assets/mockup_ig_post_20261102_150216.webp",
+          "imagen": "/assets/mockup-ig-post-20261015-200813.webp",
           "nombre_en": "Navy"
         },
         {
           "nombre_es": "Negro",
           "color": "",
-          "imagen": "/assets/mockup_ig_post_20261102_150150.webp",
+          "imagen": "/assets/mockup-ig-post-20261016-131016.webp",
           "nombre_en": "Black"
         }
       ],
@@ -101,22 +133,22 @@
         {
           "nombre_es": "Mocca",
           "color": "#7e6053",
-          "imagen": "/assets/mockup_ig_post_20261103_160059.webp"
+          "imagen": "/assets/mucho-estres-poca-vida-mocaa-duo.webp"
         },
         {
           "nombre_es": "Arena",
           "color": "#d4bc94",
-          "imagen": "/assets/mockup_ig_post_20261103_160131.webp"
+          "imagen": "/assets/mucho-estres-poca-vida-arena.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#10102f",
-          "imagen": "/assets/mockup_ig_post_20261103_160153.webp"
+          "imagen": "/assets/mucho-estres-poca-vida-azul.webp"
         },
         {
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
-          "imagen": "/assets/mockup_ig_post_20261103_160214.webp"
+          "imagen": "/assets/mucho estres pocaa vida.png"
         }
       ],
       "nombre_es": "Poca Vida",
@@ -133,22 +165,22 @@
         {
           "nombre_es": "Negro",
           "color": "",
-          "imagen": "/assets/mockup_ig_post_20261102_150824.webp"
+          "imagen": "/assets/jurassic-shak-negro-frente-regular.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#10102f",
-          "imagen": "/assets/mockup_ig_post_20261102_150850.webp"
+          "imagen": "/assets/jurassic-shark-azul-frente-regular.webp"
         },
         {
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
-          "imagen": "/assets/mockup_ig_post_20261102_150906.webp"
+          "imagen": "/assets/jurassic-shak-verde-militar-regular.webp"
         },
         {
           "nombre_es": "Arena",
           "color": "#d4bc9a",
-          "imagen": "/assets/mockup_ig_post_20261102_151018.webp"
+          "imagen": "/assets/jurassic-shark-arena-regukar.webp"
         }
       ],
       "nombre_es": "Jurassic Shark",
@@ -165,22 +197,22 @@
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/mockup_ig_post_20261026_183550.webp"
+          "imagen": "/assets/manta-colores.webp"
         },
         {
           "nombre_es": "Vainilla",
           "color": "#ffe9b8",
-          "imagen": "/assets/mockup_ig_post_20261102_151933.webp"
+          "imagen": "/assets/manta-colores-vainilla.webp"
         },
         {
           "nombre_es": "Arena",
           "color": "#d4bc94",
-          "imagen": "/assets/mockup_ig_post_20261102_151748.webp"
+          "imagen": "/assets/manta-colores-arena.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "",
-          "imagen": "/assets/mockup_ig_post_20261102_151832.webp"
+          "imagen": "/assets/manta-colores-azul.webp"
         }
       ],
       "nombre_es": "Manta Ray White",
@@ -197,27 +229,27 @@
         {
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
-          "imagen": "/assets/mockup_ig_post_20261102_152534.webp"
+          "imagen": "/assets/circulo-marino-verde-militar.webp"
         },
         {
           "nombre_es": "Mocaa",
           "color": "#7e6053",
-          "imagen": "/assets/mockup_ig_post_20261102_152600.webp"
+          "imagen": "/assets/circulo-marino-mocca.webp"
         },
         {
           "nombre_es": "Blanco",
           "color": "#fafafa",
-          "imagen": "/assets/mockup_ig_post_20261103_154430.webp"
+          "imagen": "/assets/circulo-marino-lanca.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#10102f",
-          "imagen": "/assets/mockup_ig_post_20261102_152622.webp"
+          "imagen": "/assets/circulo-marino-azul.webp"
         },
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/mockup_ig_post_20261103_154504.webp"
+          "imagen": "/assets/circulo-marino-crema.webp"
         }
       ],
       "nombre_es": "Místico",
@@ -257,10 +289,10 @@
           "imagen": "/assets/chica-pez-negro.webp"
         }
       ],
-      "nombre_es": "Místico",
+      "nombre_es": "-------------",
       "precio": null,
-      "desc_es": "Un amuleto visual que conecta los ciclos de la tierra y los misterios marinos bajo una misma simbología ancestral. Una historia inspirada en la sabiduría de la naturaleza, creada para quienes buscan un equilibrio místico en su día a día.",
-      "desc_larga_es": "La camiseta Místico une la geometría simbólica con la fauna del océano a través de una ilustración circular de trazos orgánicos y étnicos en una prenda de tono vainilla hecha para acompañarte todos los días. Presenta una gráfica central frontal en color verde oliva que entrelaza la silueta de un delfín o ballena con espirales, astros y destellos que evocan el cosmos y el mar. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
+      "desc_es": "----------------",
+      "desc_larga_es": "-----",
       "disponible": true
     }
   ]
