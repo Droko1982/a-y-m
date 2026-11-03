@@ -7,29 +7,29 @@
       "colores": [
         {
           "nombre_es": "Arena",
-          "color": "#d4bc94",
-          "imagen": "/assets/smells-drama-arena.webp"
+          "color": "",
+          "imagen": "/assets/mockup_ig_post_20261103_182430.webp"
         },
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/smells-drama-lanca.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_182449.webp"
         },
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/smells-drama-crema.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_182511.webp"
         },
         {
           "nombre_es": "Mocca",
           "color": "#7e6053",
-          "imagen": "/assets/smells-drama-mocaa.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_182530.webp"
         }
       ],
-      "nombre_es": "---",
+      "nombre_es": "Drama Cat",
       "precio": null,
-      "desc_es": "----",
-      "desc_larga_es": "-----",
+      "desc_es": "Para esos días en los que el café es tu único aliado y la paciencia es limitada. Una historia con una alta dosis de humor sarcástico y actitud irreverente, diseñada para quienes prefieren observar el caos del mundo desde lejos y con una taza en la mano.",
+      "desc_larga_es": "La camiseta Drama Cat fusiona la cultura del café con un toque de humor irreverente y felino a través de una ilustración gráfica de gran personalidad en una prenda de tono arena o beige hecha para acompañarte todos los días. Presenta un potente diseño central en el frente que retrata la silueta en tinta negra de un gato negro de mirada desafiante tomando café, acompañada por los textos tipográficos \"Smells Like Drama\" y \"Keep Your Distance\". Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
       "disponible": true
     },
     {
