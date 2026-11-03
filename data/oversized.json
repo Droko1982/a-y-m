@@ -27,6 +27,11 @@
           "nombre_es": "Vainilla",
           "color": "#ffe9b8",
           "imagen": "/assets/miau-vainilla.webp"
+        },
+        {
+          "nombre_es": "Crema",
+          "color": "#fcf2ce",
+          "imagen": "/assets/miau-crema.webp"
         }
       ],
       "nombre_es": "----",
