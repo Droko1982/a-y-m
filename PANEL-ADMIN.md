@@ -174,7 +174,19 @@ No se instala nada de verdad, pero se puede dejar como un ícono:
 ### Si algo sale mal
 - Todos los cambios quedan guardados en GitHub con **historial**: siempre se
   puede **volver atrás** a una versión anterior. Nada se pierde.
-- Si un cambio no aparece, esperar 2 minutos y refrescar con **Ctrl+F5**.
+- Al guardar sale arriba **"✓ Guardado. La tienda se actualiza en 1 a 2
+  minutos"**. Si el cambio no aparece en la tienda, esperar 2 minutos y
+  refrescar con **Ctrl+F5**.
+- **Antes de editar, recargar el panel** si estuvo abierto un buen rato (en
+  el celular o en otra pestaña). Cada espacio de camisetas es un solo
+  archivo: un panel viejo, al guardar, borraría lo que otra guardó después.
+- Si sale **"No se guardó, para no borrar otro cambio"**: alguien (o tú desde
+  otro lugar) guardó ese mismo espacio después de que abriste el panel. Anotar
+  lo que ibas a cambiar → **Recargar el panel** → hacerlo otra vez y guardar.
+- Si abajo sale **"Hay cambios nuevos guardados desde otro lugar"**, recargar
+  antes de seguir editando.
+- Para no pisarse, lo ideal es que **una sola persona** edite un mismo espacio
+  (Regular fit, Oversized o Esenciales) a la vez.
 
 ---
 
@@ -193,6 +205,14 @@ falla, se queda con lo que ya está escrito en el HTML (respaldo).
 | `data/textos.json` | `js/textos.js` | Todos los textos del sitio (8 grupos) |
 | `data/negocio.json` | `js/politicas.js` · `js/redes.js` | Datos legales y redes sociales |
 
+- `admin/guardado-seguro.js` (se carga antes de Sveltia) evita que un panel
+  abierto con datos viejos pise lo que guardó otra persona: antes de cada
+  `createCommitOnBranch` pregunta a GitHub si el archivo cambió después de la
+  versión que cargó el panel y, si cambió, detiene el guardado y explica qué
+  hacer. También avisa cada minuto si llegan cambios de otro lugar, apaga los
+  borradores de respaldo de Sveltia y confirma cada guardado en español.
+  Sveltia 0.203.1 no hace nada de esto por su cuenta; si se cambia la versión,
+  hay que volver a probarlo.
 - `js/textos.js` traduce cada campo del panel a una clave de `I18N` en
   `js/main.js` (tabla `MAP`) y vuelve a aplicar el idioma. Los campos vacíos
   se ignoran, así que nunca se borra un texto por accidente.
