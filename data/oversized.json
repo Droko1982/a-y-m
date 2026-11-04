@@ -1,6 +1,46 @@
 {
   "productos": [
     {
+      "id": "------",
+      "coleccion": "felina",
+      "imagen": "/assets/colombia-es-tierra-de-back.webp",
+      "galeria": [
+        "/assets/colombia-es-tierra-de-frente.webp"
+      ],
+      "colores": [
+        {
+          "nombre_es": "Blanco",
+          "color": "#ffffff",
+          "imagen": "/assets/colombia-es-tierra-blanca.webp"
+        },
+        {
+          "nombre_es": "Crema",
+          "color": "#fcf2ce",
+          "imagen": "/assets/colombia-es-tierra-crema.webp"
+        },
+        {
+          "nombre_es": "Vainilla",
+          "color": "#ffeab8",
+          "imagen": "/assets/colombia-es-tierra-vainilla.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "#7e6053",
+          "imagen": "/assets/colombia-es-tierra-mocaa.webp"
+        },
+        {
+          "nombre_es": "Azul Navy",
+          "color": "#10102f",
+          "imagen": "/assets/colon.webp"
+        }
+      ],
+      "nombre_es": "-----",
+      "precio": null,
+      "desc_es": "----",
+      "desc_larga_es": "------",
+      "disponible": true
+    },
+    {
       "id": "----",
       "coleccion": "felina",
       "imagen": "/assets/jaguar-semitono.webp",
