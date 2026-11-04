@@ -34,7 +34,12 @@
     var c = String(p.coleccion || "").toLowerCase().trim();
     return COLECCIONES.indexOf(c) >= 0 ? c : "oceano";
   }
-  function gridDe(p) { return p._espacio === "esenciales" ? "esenciales-grid" : p._coleccion + "-" + p._espacio + "-grid"; }
+  /* Grillas donde sale cada camiseta. Los esenciales no son de una colección:
+     salen en su página y en la pestaña Esenciales de cada colección. */
+  function gridsDe(p) {
+    if (p._espacio !== "esenciales") return [p._coleccion + "-" + p._espacio + "-grid"];
+    return ["esenciales-grid"].concat(COLECCIONES.map(function (c) { return c + "-esenciales-grid"; }));
+  }
 
   function lang() { return document.documentElement.getAttribute("lang") === "en" ? "en" : "es"; }
   /* Escapa también comillas: los nombres los escriben las dueñas y pueden
@@ -220,7 +225,9 @@
     var algunoCargado = ARCHIVOS.some(function (a) { return Array.isArray(datos[a.archivo]); });
     if (algunoCargado) {
       var porGrid = {};
-      todos.forEach(function (p) { var g = gridDe(p); (porGrid[g] = porGrid[g] || []).push(p); });
+      todos.forEach(function (p) {
+        gridsDe(p).forEach(function (g) { (porGrid[g] = porGrid[g] || []).push(p); });
+      });
       document.querySelectorAll(".shop-grid[id]").forEach(function (grid) {
         var lista = porGrid[grid.id] || [];
         grid.innerHTML = lista.map(cardHTML).join("");
@@ -297,12 +304,12 @@
   }
 
   /* =======================================================
-     Pestañas Regular fit / Oversized, dentro de cada colección
+     Pestañas Esenciales / Regular fit / Oversized, dentro de cada colección
      ======================================================= */
-  var HORMAS = ["regular", "oversized"];
+  var PESTANAS = ["esenciales", "regular", "oversized"];
   function mostrarTab(seccion, tab) {
     if (!seccion) return;
-    if (HORMAS.indexOf(tab) < 0) tab = "regular";
+    if (PESTANAS.indexOf(tab) < 0) tab = "regular";
     seccion.querySelectorAll(".shop-tab[data-tab]").forEach(function (b) {
       var on = b.getAttribute("data-tab") === tab;
       b.classList.toggle("is-active", on);
@@ -323,8 +330,10 @@
     if (!b || (e.key !== "ArrowLeft" && e.key !== "ArrowRight")) return;
     e.preventDefault();
     var seccion = b.closest(".shop");
-    var i = HORMAS.indexOf(b.getAttribute("data-tab"));
-    var sig = HORMAS[(i + (e.key === "ArrowRight" ? 1 : -1) + HORMAS.length) % HORMAS.length];
+    /* En el orden en que se ven (Esenciales va de primera) */
+    var orden = Array.prototype.map.call(seccion.querySelectorAll(".shop-tab[data-tab]"), function (x) { return x.getAttribute("data-tab"); });
+    var i = orden.indexOf(b.getAttribute("data-tab"));
+    var sig = orden[(i + (e.key === "ArrowRight" ? 1 : -1) + orden.length) % orden.length];
     mostrarTab(seccion, sig);
     var nb = seccion.querySelector('.shop-tab[data-tab="' + sig + '"]');
     if (nb) nb.focus();

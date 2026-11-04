@@ -26,6 +26,10 @@
   </style>
 </head>
 <body>
+  <!-- Guardado seguro: va ANTES de Sveltia. Evita que un panel abierto con
+       datos viejos borre lo que guardó otra persona (ver el archivo). -->
+  <script src="guardado-seguro.js"></script>
+
   <!-- Panel de administración (Sveltia CMS) — la configuración está en admin/config.yml -->
   <script src="https://unpkg.com/@sveltia/cms@0.203.1/dist/sveltia-cms.js" type="module"></script>
 
