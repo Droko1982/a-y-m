@@ -32,6 +32,11 @@
           "nombre_es": "Azul Navy",
           "color": "#10102f",
           "imagen": "/assets/colon.webp"
+        },
+        {
+          "nombre_es": "Negro",
+          "color": "",
+          "imagen": "/assets/colombia-es-tierra-negrapng.webp"
         }
       ],
       "nombre_es": "-----",
