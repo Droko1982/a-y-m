@@ -131,27 +131,27 @@
         {
           "nombre_es": "Blanco hueso",
           "color": "#f3efe6",
-          "imagen": "/assets/ballenas-tipos-hueso-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_161916.webp"
         },
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/ballenas-tipos-blanca-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_161937.webp"
         },
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/ballenas-tipos-crema-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_162013.webp"
         },
         {
           "nombre_es": "Azul Navi",
           "color": "#131339",
-          "imagen": "/assets/ballenas-tipos-duo-azul.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_162035.webp"
         },
         {
           "nombre_es": "Mocaa",
           "color": "#7e6053",
-          "imagen": "/assets/ballenas-tipos-mocca-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_162051.webp"
         }
       ],
       "nombre_es": "Marisma",
@@ -171,12 +171,12 @@
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/cereal-killer-duo-lanca.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_162632.webp"
         },
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/cereal-killer-duo-crema.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_162654.webp"
         }
       ],
       "nombre_es": "Cereal killer",
@@ -196,22 +196,22 @@
         {
           "nombre_es": "Negro",
           "color": "",
-          "imagen": "/assets/dont-be-a-sucker-mocca-negro-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_163447.webp"
         },
         {
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
-          "imagen": "/assets/dont-be-a-sucker-verde-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_163510.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#131339",
-          "imagen": "/assets/dont-be-a-sucker-azul-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_163535.webp"
         },
         {
           "nombre_es": "Vainilla",
           "color": "#ffe9b8",
-          "imagen": "/assets/dont-be-a-sucker-vainilla-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_165134.webp"
         }
       ],
       "nombre_es": "Don't be a...",
@@ -225,34 +225,33 @@
       "coleccion": "oceano",
       "imagen": "/assets/0df874cd-8d86-4fa6-9038-a13a8dc899ec.jpg",
       "galeria": [
-        "/assets/wild free.jpg",
-        "/assets/ballena-52-hrz-negro-blanco.webp"
+        "/assets/wild free.jpg"
       ],
       "colores": [
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/wild-free-blanca.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_164236.webp"
         },
         {
           "nombre_es": "Mocca",
           "color": "#7e6053",
-          "imagen": "/assets/wild-free-mocca.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_164328.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#131339",
-          "imagen": "/assets/wild-free-azul.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_164346.webp"
         },
         {
           "nombre_es": "Arena",
           "color": "#d4bc94",
-          "imagen": "/assets/wild-free-arena.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_164408.webp"
         },
         {
           "nombre_es": "Vailnilla",
           "color": "#ffe9b8",
-          "imagen": "/assets/wild-free-vainilla.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_164427.webp"
         }
       ],
       "nombre_es": "Orca Nature",
@@ -272,17 +271,17 @@
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/abiss-blanca-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_171841.webp"
         },
         {
           "nombre_es": "Vainilla",
           "color": "#ffeab8",
-          "imagen": "/assets/abiss-vainilla.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_171928.webp"
         },
         {
           "nombre_es": "Arena",
           "color": "#d4bc94",
-          "imagen": "/assets/abiss-arena-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_171951.webp"
         }
       ],
       "nombre_es": "Abiss",
@@ -302,22 +301,22 @@
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/pulpo-crema-azul.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_172616.webp"
         },
         {
           "nombre_es": "Mocca",
           "color": "#7e6053",
-          "imagen": "/assets/pulpo-mocca.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_173143.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#1b1d30",
-          "imagen": "/assets/pulpo-azul.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_173226.webp"
         },
         {
           "nombre_es": "Negro",
           "color": "",
-          "imagen": "/assets/pulpo-negro.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_173201.webp"
         }
       ],
       "nombre_es": "Kraken",
@@ -337,17 +336,17 @@
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/calamar-blanco-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_173904.webp"
         },
         {
           "nombre_es": "arena",
           "color": "#d4bc94",
-          "imagen": "/assets/calamar-arena-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_173943.webp"
         },
         {
           "nombre_es": "Mocca",
           "color": "#7e6053",
-          "imagen": "/assets/calamar-mocca-duo.webp"
+          "imagen": "/assets/mockup_ig_post_20261103_174001.webp"
         }
       ],
       "nombre_es": "Boundless",
