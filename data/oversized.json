@@ -1,6 +1,81 @@
 {
   "productos": [
     {
+      "id": "----",
+      "coleccion": "felina",
+      "imagen": "/assets/jaguar-semitono.webp",
+      "galeria": [
+        "/assets/jaguar-semitono-frente.webp"
+      ],
+      "colores": [
+        {
+          "nombre_es": "Negro",
+          "color": "",
+          "imagen": "/assets/jaguar-semitono-negro.webp"
+        },
+        {
+          "nombre_es": "Azul Navy",
+          "color": "#10102f",
+          "imagen": "/assets/jaguar-semitono-azul.webp"
+        },
+        {
+          "nombre_es": "Verde Militar",
+          "color": "#3a3e2f",
+          "imagen": "/assets/jaguar-semitonos-verde.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "#7e6053",
+          "imagen": "/assets/jaguar-senitono-mocca.webp"
+        }
+      ],
+      "nombre_es": "-----",
+      "precio": null,
+      "desc_es": "------",
+      "desc_larga_es": "-----",
+      "disponible": true
+    },
+    {
+      "id": "----",
+      "coleccion": "felina",
+      "imagen": "/assets/miau-espalda.webp",
+      "galeria": [
+        "/assets/vete-a-la-miau.webp"
+      ],
+      "colores": [
+        {
+          "nombre_es": "blanco",
+          "color": "#ffffff",
+          "imagen": "/assets/miau.webp"
+        },
+        {
+          "nombre_es": "Arena",
+          "color": "#d4bc94",
+          "imagen": "/assets/miau-arena.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "#7e6053",
+          "imagen": "/assets/miau-mocaa.webp"
+        },
+        {
+          "nombre_es": "Vainilla",
+          "color": "#ffe9b8",
+          "imagen": "/assets/miau-vainilla.webp"
+        },
+        {
+          "nombre_es": "Crema",
+          "color": "#fcf2ce",
+          "imagen": "/assets/miau-crema.webp"
+        }
+      ],
+      "nombre_es": "----",
+      "precio": null,
+      "desc_es": "------",
+      "desc_larga_es": "-----",
+      "disponible": true
+    },
+    {
       "id": "Marisma",
       "coleccion": "oceano",
       "imagen": "/assets/83b89af6-2be3-4b18-ae98-64db7dc73799.jpg",
@@ -11,27 +86,27 @@
         {
           "nombre_es": "Blanco hueso",
           "color": "#f3efe6",
-          "imagen": "/assets/mockup_ig_post_20261103_161916.webp"
+          "imagen": "/assets/ballenas-tipos-hueso-duo.webp"
         },
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/mockup_ig_post_20261103_161937.webp"
+          "imagen": "/assets/ballenas-tipos-blanca-duo.webp"
         },
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/mockup_ig_post_20261103_162013.webp"
+          "imagen": "/assets/ballenas-tipos-crema-duo.webp"
         },
         {
           "nombre_es": "Azul Navi",
           "color": "#131339",
-          "imagen": "/assets/mockup_ig_post_20261103_162035.webp"
+          "imagen": "/assets/ballenas-tipos-duo-azul.webp"
         },
         {
           "nombre_es": "Mocaa",
           "color": "#7e6053",
-          "imagen": "/assets/mockup_ig_post_20261103_162051.webp"
+          "imagen": "/assets/ballenas-tipos-mocca-duo.webp"
         }
       ],
       "nombre_es": "Marisma",
@@ -51,12 +126,12 @@
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/mockup_ig_post_20261103_162632.webp"
+          "imagen": "/assets/cereal-killer-duo-lanca.webp"
         },
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/mockup_ig_post_20261103_162654.webp"
+          "imagen": "/assets/cereal-killer-duo-crema.webp"
         }
       ],
       "nombre_es": "Cereal killer",
@@ -76,22 +151,22 @@
         {
           "nombre_es": "Negro",
           "color": "",
-          "imagen": "/assets/mockup_ig_post_20261103_163447.webp"
+          "imagen": "/assets/dont-be-a-sucker-mocca-negro-duo.webp"
         },
         {
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
-          "imagen": "/assets/mockup_ig_post_20261103_163510.webp"
+          "imagen": "/assets/dont-be-a-sucker-verde-duo.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#131339",
-          "imagen": "/assets/mockup_ig_post_20261103_163535.webp"
+          "imagen": "/assets/dont-be-a-sucker-azul-duo.webp"
         },
         {
           "nombre_es": "Vainilla",
           "color": "#ffe9b8",
-          "imagen": "/assets/mockup_ig_post_20261103_165134.webp"
+          "imagen": "/assets/dont-be-a-sucker-vainilla-duo.webp"
         }
       ],
       "nombre_es": "Don't be a...",
@@ -105,33 +180,34 @@
       "coleccion": "oceano",
       "imagen": "/assets/0df874cd-8d86-4fa6-9038-a13a8dc899ec.jpg",
       "galeria": [
-        "/assets/wild free.jpg"
+        "/assets/wild free.jpg",
+        "/assets/ballena-52-hrz-negro-blanco.webp"
       ],
       "colores": [
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/mockup_ig_post_20261103_164236.webp"
+          "imagen": "/assets/wild-free-blanca.webp"
         },
         {
           "nombre_es": "Mocca",
           "color": "#7e6053",
-          "imagen": "/assets/mockup_ig_post_20261103_164328.webp"
+          "imagen": "/assets/wild-free-mocca.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#131339",
-          "imagen": "/assets/mockup_ig_post_20261103_164346.webp"
+          "imagen": "/assets/wild-free-azul.webp"
         },
         {
           "nombre_es": "Arena",
           "color": "#d4bc94",
-          "imagen": "/assets/mockup_ig_post_20261103_164408.webp"
+          "imagen": "/assets/wild-free-arena.webp"
         },
         {
           "nombre_es": "Vailnilla",
           "color": "#ffe9b8",
-          "imagen": "/assets/mockup_ig_post_20261103_164427.webp"
+          "imagen": "/assets/wild-free-vainilla.webp"
         }
       ],
       "nombre_es": "Orca Nature",
@@ -151,17 +227,17 @@
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/mockup_ig_post_20261103_171841.webp"
+          "imagen": "/assets/abiss-blanca-duo.webp"
         },
         {
           "nombre_es": "Vainilla",
           "color": "#ffeab8",
-          "imagen": "/assets/mockup_ig_post_20261103_171928.webp"
+          "imagen": "/assets/abiss-vainilla.webp"
         },
         {
           "nombre_es": "Arena",
           "color": "#d4bc94",
-          "imagen": "/assets/mockup_ig_post_20261103_171951.webp"
+          "imagen": "/assets/abiss-arena-duo.webp"
         }
       ],
       "nombre_es": "Abiss",
@@ -181,22 +257,22 @@
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/mockup_ig_post_20261103_172616.webp"
+          "imagen": "/assets/pulpo-crema-azul.webp"
         },
         {
           "nombre_es": "Mocca",
           "color": "#7e6053",
-          "imagen": "/assets/mockup_ig_post_20261103_173143.webp"
+          "imagen": "/assets/pulpo-mocca.webp"
         },
         {
           "nombre_es": "Azul Navy",
           "color": "#1b1d30",
-          "imagen": "/assets/mockup_ig_post_20261103_173226.webp"
+          "imagen": "/assets/pulpo-azul.webp"
         },
         {
           "nombre_es": "Negro",
           "color": "",
-          "imagen": "/assets/mockup_ig_post_20261103_173201.webp"
+          "imagen": "/assets/pulpo-negro.webp"
         }
       ],
       "nombre_es": "Kraken",
@@ -216,17 +292,17 @@
         {
           "nombre_es": "Blanco",
           "color": "#ffffff",
-          "imagen": "/assets/mockup_ig_post_20261103_173904.webp"
+          "imagen": "/assets/calamar-blanco-duo.webp"
         },
         {
           "nombre_es": "arena",
           "color": "#d4bc94",
-          "imagen": "/assets/mockup_ig_post_20261103_173943.webp"
+          "imagen": "/assets/calamar-arena-duo.webp"
         },
         {
           "nombre_es": "Mocca",
           "color": "#7e6053",
-          "imagen": "/assets/mockup_ig_post_20261103_174001.webp"
+          "imagen": "/assets/calamar-mocca-duo.webp"
         }
       ],
       "nombre_es": "Boundless",
