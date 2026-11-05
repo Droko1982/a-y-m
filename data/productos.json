@@ -109,14 +109,19 @@
         {
           "nombre_es": "Azul Navi",
           "color": "#292d4a",
-          "imagen": "/assets/mockup_ig_post_20261102_150216.webp",
+          "imagen": "/assets/ballena-52-herz-azul.webp",
           "nombre_en": "Navy"
         },
         {
           "nombre_es": "Negro",
           "color": "",
-          "imagen": "/assets/mockup_ig_post_20261102_150150.webp",
+          "imagen": "/assets/ballena-52-herz-negro.webp",
           "nombre_en": "Black"
+        },
+        {
+          "nombre_es": "blanco",
+          "color": "#ffffff",
+          "imagen": "/assets/ballena-52-hrz-negro-blanco-1.webp"
         }
       ],
       "nombre_es": "Noise (o 52Hz)",
