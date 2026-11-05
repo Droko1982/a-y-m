@@ -73,16 +73,21 @@
       "imagen": "/assets/camiseta 2.jpg",
       "colores": [
         {
-          "nombre_es": "blanco hueso",
-          "color": "#f3efe6",
-          "imagen": "/assets/mockup_ig_post_20261102_145434.webp",
+          "nombre_es": "Blanco",
+          "color": "#ffffff",
+          "imagen": "/assets/marisma-bla.webp",
           "nombre_en": "Bone wite"
         },
         {
           "nombre_es": "Crema",
           "color": "#fcf2ce",
-          "imagen": "/assets/mockup_ig_post_20261102_145624.webp",
+          "imagen": "/assets/marisma-crema.webp",
           "nombre_en": "Cream"
+        },
+        {
+          "nombre_es": "Azul navy",
+          "color": "#10102f",
+          "imagen": "/assets/marisma-azul.webp"
         }
       ],
       "nombre_es": "Alma marina",
