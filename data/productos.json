@@ -1,6 +1,17 @@
 {
   "productos": [
     {
+      "id": "ying",
+      "coleccion": "oceano",
+      "imagen": "/assets/yinyang.webp",
+      "colores": [],
+      "nombre_es": "-----",
+      "precio": null,
+      "desc_es": "-----",
+      "desc_larga_es": "-----",
+      "disponible": true
+    },
+    {
       "id": "wild",
       "coleccion": "felina",
       "imagen": "/assets/love-her.webp",
