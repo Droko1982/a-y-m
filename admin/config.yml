@@ -96,7 +96,7 @@ collections:
             collapsed: true
             thumbnail: imagen
             fields:
-              - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: origen2. No repetir con ninguna otra camiseta de ningún espacio." }
+              - { name: id, label: "Código interno (automático)", widget: uuid, hint: "Se pone solo al crear la camiseta. No hay que escribir nada aquí." }
               - { name: coleccion, label: "Colección", widget: select, default: "oceano", options: [{ label: "Océano", value: "oceano" }, { label: "Felina", value: "felina" }], hint: "En qué colección aparece esta camiseta. Al entrar a esa colección se ve en su pestaña (Regular fit u Oversized)." }
               - { name: imagen, label: "Foto de portada", widget: image, choose_url: false, hint: "La foto que se ve primero, en la tarjeta y en la ventana. Siempre se muestra, aunque haya colores." }
               - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Fotos adicionales de esta camiseta. Se ven en la ventana al hacer clic, y se pasan con las flechas o deslizando. Puedes arrastrar varias a la vez." }
@@ -135,7 +135,7 @@ collections:
             collapsed: true
             thumbnail: imagen
             fields:
-              - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ballena-oversized. No repetir con ninguna otra camiseta de ningún espacio." }
+              - { name: id, label: "Código interno (automático)", widget: uuid, hint: "Se pone solo al crear la camiseta. No hay que escribir nada aquí." }
               - { name: coleccion, label: "Colección", widget: select, default: "oceano", options: [{ label: "Océano", value: "oceano" }, { label: "Felina", value: "felina" }], hint: "En qué colección aparece esta camiseta. Al entrar a esa colección se ve en su pestaña (Regular fit u Oversized)." }
               - { name: imagen, label: "Foto de portada", widget: image, choose_url: false, hint: "La foto que se ve primero, en la tarjeta y en la ventana. Siempre se muestra, aunque haya colores." }
               - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Fotos adicionales de esta camiseta. Se ven en la ventana al hacer clic, y se pasan con las flechas o deslizando. Puedes arrastrar varias a la vez." }
@@ -174,7 +174,7 @@ collections:
             collapsed: true
             thumbnail: imagen
             fields:
-              - { name: id, label: "ID (único, sin espacios)", widget: string, hint: "Ej: ess-gris. No repetir con ninguna otra camiseta de ningún espacio." }
+              - { name: id, label: "Código interno (automático)", widget: uuid, hint: "Se pone solo al crear la camiseta. No hay que escribir nada aquí." }
               - { name: imagen, label: "Foto de portada", widget: image, choose_url: false, hint: "La foto que se ve primero, en la tarjeta y en la ventana. Siempre se muestra, aunque haya colores." }
               - { name: galeria, label: "Más fotos (galería)", widget: image, required: false, multiple: true, choose_url: false, hint: "Fotos adicionales de este básico. Se ven en la ventana al hacer clic, y se pasan con las flechas o deslizando. Puedes arrastrar varias a la vez." }
               - name: colores
@@ -328,11 +328,11 @@ collections:
               - { name: esperanza_titulo_es, label: "Esperanza · título", widget: string, required: false }
               - { name: esperanza_texto_es, label: "Esperanza · texto", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
               - { name: dato1_numero_es, label: "Cifra 1 · número grande", widget: string, required: false }
-              - { name: dato1_texto_es, label: "Cifra 1 · explicación", widget: text, required: false }
+              - { name: dato1_enlace_es, label: "Cifra 1 · texto corto (al lado del número)", widget: string, required: false, hint: "Es el enlace que lleva a esa parte de la historia. Ej: coral blanqueado." }
               - { name: dato2_numero_es, label: "Cifra 2 · número grande", widget: string, required: false }
-              - { name: dato2_texto_es, label: "Cifra 2 · explicación", widget: text, required: false }
+              - { name: dato2_enlace_es, label: "Cifra 2 · texto corto (al lado del número)", widget: string, required: false, hint: "Es el enlace que lleva a esa parte de la historia. Ej: coral blanqueado." }
               - { name: dato3_numero_es, label: "Cifra 3 · número grande", widget: string, required: false }
-              - { name: dato3_texto_es, label: "Cifra 3 · explicación", widget: text, required: false }
+              - { name: dato3_enlace_es, label: "Cifra 3 · texto corto (al lado del número)", widget: string, required: false, hint: "Es el enlace que lleva a esa parte de la historia. Ej: coral blanqueado." }
               - { name: curiosidad_eyebrow_es, label: "Dato curioso · línea pequeña", widget: string, required: false }
               - { name: curiosidad_titulo_es, label: "Dato curioso · título", widget: string, required: false }
               - { name: curiosidad_p1_es, label: "Dato curioso · párrafo 1", widget: text, required: false }
@@ -383,13 +383,13 @@ collections:
               - { name: eyebrow_es, label: "Línea pequeña de la sección", widget: string, required: false }
               - { name: titulo_es, label: "Título de la sección", widget: string, required: false }
               - { name: texto_es, label: "Texto de la sección", widget: text, required: false }
-              - { name: tarjeta1_titulo_es, label: "Tarjeta 1 · título", widget: string, required: false }
+              - { name: tarjeta1_titulo_es, label: "Tarjeta 1 · título", widget: string, required: false, hint: "Para no mostrar esta tarjeta, escribe -- (dos guiones)." }
               - { name: tarjeta1_texto_es, label: "Tarjeta 1 · texto", widget: text, required: false }
-              - { name: tarjeta2_titulo_es, label: "Tarjeta 2 · título", widget: string, required: false }
+              - { name: tarjeta2_titulo_es, label: "Tarjeta 2 · título", widget: string, required: false, hint: "Para no mostrar esta tarjeta, escribe -- (dos guiones)." }
               - { name: tarjeta2_texto_es, label: "Tarjeta 2 · texto", widget: text, required: false }
-              - { name: tarjeta3_titulo_es, label: "Tarjeta 3 · título", widget: string, required: false }
+              - { name: tarjeta3_titulo_es, label: "Tarjeta 3 · título", widget: string, required: false, hint: "Para no mostrar esta tarjeta, escribe -- (dos guiones)." }
               - { name: tarjeta3_texto_es, label: "Tarjeta 3 · texto", widget: text, required: false }
-              - { name: tarjeta4_titulo_es, label: "Tarjeta 4 · título", widget: string, required: false }
+              - { name: tarjeta4_titulo_es, label: "Tarjeta 4 · título", widget: string, required: false, hint: "Para no mostrar esta tarjeta, escribe -- (dos guiones)." }
               - { name: tarjeta4_texto_es, label: "Tarjeta 4 · texto", widget: text, required: false }
 
           # ----- Impacto y nuestra causa (textos) -----

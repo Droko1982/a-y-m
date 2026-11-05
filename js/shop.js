@@ -41,6 +41,22 @@
     return ["esenciales-grid"].concat(COLECCIONES.map(function (c) { return c + "-esenciales-grid"; }));
   }
 
+  /* Un ID único por camiseta. Las dueñas no saben qué poner en el ID y escriben
+     guiones ("----"); si dos camisetas traían el mismo, la segunda se perdía.
+     Ahora la primera conserva su ID (así no cambia para los carritos que ya lo
+     tienen) y la repetida, o la que no trae, recibe uno propio. */
+  function slug(t) {
+    return String(t == null ? "" : t).normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  }
+  function idUnico(p, espacio, usados) {
+    var id = String(p.id == null ? "" : p.id).trim();
+    if (id && !usados[id]) return id;
+    var base = [id, espacio, slug(p.nombre_es) || "camiseta"].filter(Boolean).join("~"), c = base;
+    for (var n = 2; usados[c]; n++) c = base + "~" + n;
+    return c;
+  }
+
   function lang() { return document.documentElement.getAttribute("lang") === "en" ? "en" : "es"; }
   /* Escapa también comillas: los nombres los escriben las dueñas y pueden
      traer "Don't" o comillas, que van dentro de atributos. */
@@ -215,7 +231,8 @@
       var lista = datos[a.archivo];
       if (!Array.isArray(lista)) return;
       lista.forEach(function (p) {
-        if (!p || !p.id || usados[p.id]) return;
+        if (!p || typeof p !== "object") return;
+        p.id = idUnico(p, a.espacio, usados);
         usados[p.id] = true;
         p._espacio = a.espacio; p._fit = a.fit;
         p._coleccion = a.espacio === "esenciales" ? "" : coleccionDe(p);

@@ -1481,6 +1481,8 @@ section[id] { scroll-margin-top: 84px; }
 .ec-body p { color: var(--text-soft); font-size: .92rem; }
 @media (max-width: 560px) { .esenciales-card { grid-template-columns: 1fr; } .ec-media { min-height: 170px; } }
 .ess-volver { text-align: center; margin-top: 30px; }
+/* Tarjeta de Propósito que las dueñas ocultan con "--" en el título */
+.card-purpose[hidden] { display: none; }
 
 /* Guía de tallas: dos tablas (Regular fit · Oversized) lado a lado */
 .size-tables { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }

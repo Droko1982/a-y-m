@@ -93,11 +93,11 @@
     ["oceano.esperanza_titulo", "ocn.s2.title"],
     ["oceano.esperanza_texto", "ocn.s2.p1"],
     ["oceano.dato1_numero", "ocn.stat1.num"],
-    ["oceano.dato1_texto", "ocn.stat1"],
+    ["oceano.dato1_enlace", "ocn.link1"],
     ["oceano.dato2_numero", "ocn.stat2.num"],
-    ["oceano.dato2_texto", "ocn.stat2"],
+    ["oceano.dato2_enlace", "ocn.link2"],
     ["oceano.dato3_numero", "ocn.stat3.num"],
-    ["oceano.dato3_texto", "ocn.stat3"],
+    ["oceano.dato3_enlace", "ocn.link3"],
     ["oceano.curiosidad_eyebrow", "ocn.cur.eyebrow"],
     ["oceano.curiosidad_titulo", "ocn.cur.title"],
     ["oceano.curiosidad_p1", "ocn.cur.p1"],
@@ -179,10 +179,14 @@
   var PERMITIDAS = /&lt;(\/?)(strong|em|b|i|br)\s*\/?&gt;/gi;
 
   function seguro(v) {
-    if (v.indexOf("<") === -1) return v;               // texto normal: intacto
+    var varias = /\r?\n/.test(v);                    // texto de varias líneas
+    if (v.indexOf("<") === -1 && !varias) return v;    // texto normal: intacto
     var s = esc(v).replace(PERMITIDAS, function (m, cierre, etiqueta) {
       return "<" + cierre + etiqueta.toLowerCase() + ">";
     });
+    /* Los saltos de línea que escriben en el panel se respetan (p. ej. una
+       lista de valores, uno por línea); antes quedaba todo en un renglón. */
+    if (varias) s = s.replace(/\r?\n/g, "<br>");
     /* Si no quedó ninguna etiqueta válida, se envuelve para que el sitio lo
        trate como HTML y muestre literalmente lo que la dueña escribió. */
     return s.indexOf("<") === -1 ? "<span>" + s + "</span>" : s;
@@ -219,6 +223,17 @@
       if (loc != null) dict["contact.loc"] = PIN_SVG + esc(loc);
     });
     api.apply();
+    ocultarTarjetasVacias();
+  }
+
+  /* Para no mostrar una tarjeta de Propósito, en el panel se escribe "--" en
+     su título (así lo hicieron con la tarjeta 4). Una tarjeta sin título de
+     verdad se oculta en vez de salir con "--". */
+  function ocultarTarjetasVacias() {
+    document.querySelectorAll(".card-purpose").forEach(function (card) {
+      var t = card.querySelector("h3");
+      card.hidden = !t || /^[\s\-–—.·_]*$/.test(t.textContent);
+    });
   }
 
   /* ---------- Avisos temporales ---------- */
