@@ -39,20 +39,20 @@
       "colores": [
         {
           "nombre_es": "Negro",
-          "color": "#000000",
-          "imagen": "/assets/mockup_ig_post_20261102_144629.webp",
+          "color": "#3a3e2f",
+          "imagen": "/assets/ballena-nundo-verde.webp",
           "nombre_en": "Black"
         },
         {
           "nombre_es": "Azul Navi",
           "color": "#292d4a",
-          "imagen": "/assets/mockup_ig_post_20261102_150216.webp",
+          "imagen": "/assets/ballena-mundo-azul.webp",
           "nombre_en": "Navy"
         },
         {
-          "nombre_es": "Verde Militar",
-          "color": "#3a3e2f",
-          "imagen": "/assets/mockup_ig_post_20261102_144714.webp",
+          "nombre_es": "Negro",
+          "color": "",
+          "imagen": "/assets/ballena-nundo-negra.webp",
           "nombre_en": "Green"
         }
       ],
