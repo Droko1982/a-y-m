@@ -4,7 +4,13 @@
       "id": "ying",
       "coleccion": "oceano",
       "imagen": "/assets/yinyang.webp",
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Blanco",
+          "color": "",
+          "imagen": "/assets/mockup_ig_post_20261105_175322.webp"
+        }
+      ],
       "nombre_es": "Yin Yang Felino",
       "precio": null,
       "desc_es": "El equilibrio perfecto y la frescura de la naturaleza se mezclan en el diseño ideal para tu día a día. Una historia que rompe la rutina, pensada para recordarte que la vida se disfruta más cuando encuentras tu propio centro y te tomas las cosas con calma.",
