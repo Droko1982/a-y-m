@@ -15,19 +15,24 @@
    camisetas que se habían cambiado a las 15:46 y a las 16:04.
 
    Qué hace este script:
-   1. Antes de cada guardado pregunta a GitHub si alguien cambió ese archivo
-      después de que se abrió el panel. Si sí, NO guarda y explica en
-      español qué hacer: recargar y volver a hacer el cambio.
+   1. Antes de cada guardado compara el archivo que hay en GitHub con la
+      versión de la que partió este panel. Si alguien más lo cambió, COMBINA
+      los dos cambios (camiseta por camiseta y campo por campo) y guarda el
+      resultado: no se pierde lo de nadie y nadie tiene que repetir nada. Si
+      las dos tocaron el mismo dato, queda el de este guardado. Solo si la
+      combinación falla se detiene el guardado y se explica qué hacer.
+      (Hasta el 10-11-2026 se detenía siempre; las dueñas lo vivían como "no
+      se guarda", porque suelen editar las dos a la vez.)
    2. Con el panel abierto, revisa cada minuto si llegaron cambios de otro
-      lugar y muestra un aviso para recargar antes de seguir editando.
+      lugar y avisa, para recargar y verlos.
    3. Apaga los "borradores de respaldo" de Sveltia: al restaurarlos traían
       de vuelta una copia vieja de TODAS las camisetas del espacio.
    4. Confirma en español cada guardado y avisa que la tienda tarda 1 a 2
       minutos en mostrarlo (el aviso de Sveltia está en inglés).
 
-   No cambia lo que Sveltia guarda: solo deja pasar o detiene el guardado.
-   Usa la misma sesión de GitHub del panel y solo habla con GitHub. Si
-   GitHub no contesta la revisión, deja guardar (es mejor que bloquear).
+   Solo cambia lo que Sveltia guarda cuando hay que combinar. Usa la misma
+   sesión de GitHub del panel y solo habla con GitHub. Si GitHub no contesta
+   la revisión, deja guardar como antes (es mejor que bloquear el panel).
 
    Hecho y probado para Sveltia 0.203.1 (admin/index.html). Si se cambia de
    versión, hay que volver a probarlo.
@@ -67,7 +72,8 @@
     vars: null,       // dueño, repositorio y rama, tal como los manda Sveltia
     auth: null,       // la sesión del panel, para preguntarle a GitHub
     base: null,       // versión que el panel cargó al abrirse
-    propios: {}       // versiones guardadas desde esta misma pestaña
+    propios: {},      // versiones guardadas desde esta misma pestaña
+    baseTexto: {}     // por archivo: lo que el panel tiene en memoria tras su último guardado
   };
   window.AYM_GUARDADO = estado;   // para revisarlo desde la consola si hace falta
 
@@ -169,31 +175,154 @@
     });
   }
 
-  /* ---------- 1. Revisar antes de guardar ---------- */
+  /* ---------- 1. Al guardar: combinar en vez de pisar ----------
+     Para cada archivo de datos que se guarda se compara la versión que hay
+     ahora en GitHub con la versión de la que partió este panel. Si son
+     iguales, nadie más lo tocó y se guarda tal cual. Si no, se combinan las
+     dos y se guarda la combinación. */
+  function deBase64(b64) {
+    var bin = atob(b64), bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder("utf-8").decode(bytes);
+  }
+  function aBase64(texto) {
+    var bytes = new TextEncoder().encode(texto), bin = "";
+    for (var i = 0; i < bytes.length; i += 32768) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 32768));
+    return btoa(bin);
+  }
+  function igual(x, y) { return JSON.stringify(x) === JSON.stringify(y); }
+  function esObjeto(v) { return !!v && typeof v === "object" && !Array.isArray(v); }
+
+  /* Listas cuyos elementos tienen id (las camisetas): se combinan elemento
+     por elemento. Un id repetido ("----") se distingue por su orden. */
+  function conIds(lista) {
+    return Array.isArray(lista) && lista.every(function (x) { return esObjeto(x) && x.id != null && String(x.id) !== ""; });
+  }
+  function indexar(lista) {
+    var m = {}, orden = [], veces = {};
+    lista.forEach(function (x) {
+      var id = String(x.id), k = id + "#" + (veces[id] = (veces[id] || 0) + 1);
+      m[k] = x; orden.push(k);
+    });
+    return { m: m, orden: orden };
+  }
+  function fusionarLista(b, r, l) {
+    var B = indexar(b), R = indexar(r), L = indexar(l), out = [], claves = [];
+    L.orden.forEach(function (k) {
+      if (!(k in B.m)) { out.push(L.m[k]); claves.push(k); return; }   // agregada aquí
+      if (!(k in R.m)) {                                                // la borraron allá:
+        if (igual(L.m[k], B.m[k])) return;                              //   aquí no se tocó, se borra
+        out.push(L.m[k]); claves.push(k); return;                       //   aquí se editó, se conserva
+      }
+      out.push(fusionar(B.m[k], R.m[k], L.m[k])); claves.push(k);
+    });
+    /* Lo que agregaron allá (o editaron allá y se borró aquí) entra en el
+       mismo lugar donde lo pusieron */
+    R.orden.forEach(function (k, i) {
+      if (k in L.m) return;
+      if (k in B.m && igual(R.m[k], B.m[k])) return;                    // borrada aquí, allá sin cambios
+      var j = i - 1;
+      while (j >= 0 && claves.indexOf(R.orden[j]) < 0) j--;
+      var pos = j < 0 ? 0 : claves.indexOf(R.orden[j]) + 1;
+      out.splice(pos, 0, R.m[k]); claves.splice(pos, 0, k);
+    });
+    return out;
+  }
+  /* Combinación de tres versiones: b = de la que partió este panel,
+     r = la que hay ahora en GitHub, l = la que este panel quiere guardar */
+  function fusionar(b, r, l) {
+    if (igual(l, b)) return r;                    // aquí no cambió: queda lo de allá
+    if (igual(r, b) || igual(r, l)) return l;     // allá no cambió: queda lo de aquí
+    if (esObjeto(b) && esObjeto(r) && esObjeto(l)) {
+      var out = {};
+      Object.keys(l).concat(Object.keys(r).filter(function (k) { return !(k in l); })).forEach(function (k) {
+        if (!(k in l) && (k in b) && igual(r[k], b[k])) return;   // se quitó aquí
+        if (!(k in r) && (k in b) && igual(l[k], b[k])) return;   // se quitó allá
+        var v = fusionar(b[k], r[k], l[k]);
+        if (v !== undefined) out[k] = v;
+      });
+      return out;
+    }
+    if (conIds(b) && conIds(r) && conIds(l)) return fusionarLista(b, r, l);
+    return l;                                     // las dos cambiaron el mismo dato: queda lo de aquí
+  }
+
+  /* El archivo en la versión que cargó el panel y como está ahora en GitHub */
+  function versiones(rutas) {
+    var v = estado.vars || {}, rama = v.branch || "main";
+    var partes = rutas.map(function (r, i) {
+      return "b" + i + ": object(expression: " + JSON.stringify(estado.base + ":" + r) + ") { ... on Blob { text isTruncated } } " +
+             "r" + i + ": object(expression: " + JSON.stringify(rama + ":" + r) + ") { ... on Blob { text isTruncated } }";
+    }).join(" ");
+    var query = "query($owner: String!, $repo: String!, $branch: String!) {" +
+      " repository(owner: $owner, name: $repo) {" +
+      " ref(qualifiedName: $branch) { target { oid ... on Commit { committedDate } } } " + partes + " } }";
+    return consultar(query, { owner: v.owner, repo: v.repo, branch: rama }).then(function (d) {
+      var repo = d.repository || {};
+      var texto = function (o) { if (!o) return null; if (o.isTruncated) throw new Error("archivo muy grande"); return o.text; };
+      return {
+        cabeza: repo.ref && repo.ref.target && repo.ref.target.oid,
+        fecha: repo.ref && repo.ref.target && repo.ref.target.committedDate,
+        base: rutas.map(function (r, i) { return texto(repo["b" + i]); }),
+        remoto: rutas.map(function (r, i) { return texto(repo["r" + i]); })
+      };
+    });
+  }
+
   function guardar(input, init, cuerpo) {
-    var cambios = (cuerpo && cuerpo.variables && cuerpo.variables.input && cuerpo.variables.input.fileChanges) || {};
-    var rutas = (cambios.additions || []).concat(cambios.deletions || [])
-      .map(function (f) { return f && f.path; })
-      .filter(function (r) { return r && /^data\/.+\.json$/.test(r); });
+    var entrada = (cuerpo && cuerpo.variables && cuerpo.variables.input) || {};
+    var adds = ((entrada.fileChanges || {}).additions || [])
+      .filter(function (f) { return f && /^data\/.+\.json$/.test(f.path) && typeof f.contents === "string"; });
+    if (!estado.base || !estado.url || !adds.length) return enviar(input, init, false, {});
 
-    var revision = (estado.base && estado.url && rutas.length)
-      ? choques(rutas, 20).catch(function () { return []; })   // sin respuesta: deja guardar
-      : Promise.resolve([]);
-
-    return revision.then(function (lista) {
-      if (lista.length) {
+    return versiones(adds.map(function (f) { return f.path; })).then(function (v) {
+      var combinadas = [], partida = {};
+      try {
+        adds.forEach(function (f, i) {
+          var local = deBase64(f.contents);
+          var base = Object.prototype.hasOwnProperty.call(estado.baseTexto, f.path) ? estado.baseTexto[f.path] : v.base[i];
+          var remoto = v.remoto[i];
+          partida[f.path] = local;
+          if (remoto === base || remoto === local) return;               // nadie más lo tocó
+          if (remoto == null || base == null) throw new Error("sin versión para combinar");
+          var mezcla = fusionar(JSON.parse(base), JSON.parse(remoto), JSON.parse(local));
+          f.contents = aBase64(JSON.stringify(mezcla, null, 2) + "\n");
+          combinadas.push({ ruta: f.path, cuando: v.fecha });
+        });
+      } catch (e) {
+        /* No se pudo combinar: se detiene para no borrar lo de nadie */
+        var lista = adds.map(function (f) { return { ruta: f.path, cuando: v.fecha }; });
         avisoDeChoque(lista);
         return new Response(JSON.stringify({ message: mensajeCorto(lista) }), {
           status: 409, headers: { "Content-Type": "application/json" }
         });
       }
-      return fetchOriginal(input, init).then(function (r) {
-        r.clone().json().then(function (j) {
-          var c = j && j.data && j.data.createCommitOnBranch && j.data.createCommitOnBranch.commit;
-          if (c && c.oid) { estado.propios[c.oid] = true; avisoGuardado(); }
-        }).catch(function () {});
-        return r;
-      });
+      if (!combinadas.length) return enviar(input, init, false, partida);
+      /* Se guarda sobre la versión que se acaba de leer: si alguien guarda
+         justo en este instante, GitHub lo rechaza en vez de pisarlo. */
+      if (v.cabeza) entrada.expectedHeadOid = v.cabeza;
+      var init2 = {};
+      Object.keys(init).forEach(function (k) { init2[k] = init[k]; });
+      init2.body = JSON.stringify(cuerpo);
+      return enviar(input, init2, true, partida);
+    }, function () {
+      return enviar(input, init, false, {});   // GitHub no respondió: se guarda como antes
+    });
+  }
+
+  function enviar(input, init, combinado, partida) {
+    return fetchOriginal(input, init).then(function (r) {
+      r.clone().json().then(function (j) {
+        var c = j && j.data && j.data.createCommitOnBranch && j.data.createCommitOnBranch.commit;
+        if (c && c.oid) {
+          estado.propios[c.oid] = true;
+          /* Lo que este panel tiene ahora en memoria: el punto de partida
+             para combinar en el próximo guardado */
+          Object.keys(partida).forEach(function (p) { estado.baseTexto[p] = partida[p]; });
+          avisoGuardado(combinado);
+        }
+      }).catch(function () {});
+      return r;
     });
   }
 
@@ -262,8 +391,8 @@
     var caja = el("div", { id: "aym-guardado-caja", role: "alertdialog", "aria-modal": "true", "aria-labelledby": "aym-guardado-titulo" });
     caja.appendChild(el("h2", { id: "aym-guardado-titulo" }, "⚠️ No se guardó, para no borrar otro cambio"));
     lista.forEach(function (c) {
-      caja.appendChild(el("p", {}, "«" + nombreDe(c.ruta) + "» se guardó desde otro lugar (otra persona, otra pestaña o el celular) el " +
-        hora(c.cuando) + ", después de que abriste el panel. Si se guardaba esto, ese cambio se habría borrado."));
+      caja.appendChild(el("p", {}, "«" + nombreDe(c.ruta) + "» se guardó desde otro lugar (otra persona, otra pestaña o el celular)" +
+        (c.cuando ? " el " + hora(c.cuando) : "") + ", después de que abriste el panel, y no se pudo combinar con tu cambio. Si se guardaba esto, ese cambio se habría borrado."));
     });
     caja.appendChild(el("p", {}, "Qué hacer:"));
     var ol = el("ol");
@@ -288,7 +417,7 @@
     if (document.getElementById("aym-guardado-barra") || Date.parse(cuando) <= cerradaHasta) return;
     var barra = el("div", { id: "aym-guardado-barra", role: "status" });
     barra.appendChild(el("span", {}, "🔄 Hay cambios nuevos guardados desde otro lugar (" + hora(cuando) +
-      "). Recarga el panel antes de editar, para trabajar sobre lo último."));
+      "). Puedes seguir: al guardar se suman a los tuyos. Recarga el panel para verlos aquí."));
     var b = el("button", { type: "button", "class": "aym-boton" }, "Recargar ahora");
     var no = el("button", { type: "button", "class": "aym-boton aym-boton-2" }, "Ahora no");
     b.addEventListener("click", recargar);
@@ -298,14 +427,15 @@
   }
 
   var relojOk = null;
-  function avisoGuardado() {
+  function avisoGuardado(combinado) {
     ponerEstilo();
     var ya = document.getElementById("aym-guardado-ok");
     if (ya) ya.remove();
-    var t = el("div", { id: "aym-guardado-ok", role: "status" },
-      "✓ Guardado. La tienda se actualiza en 1 a 2 minutos.");
+    var t = el("div", { id: "aym-guardado-ok", role: "status" }, combinado
+      ? "✓ Guardado y sumado a lo que guardaron desde otro lugar. La tienda se actualiza en 1 a 2 minutos. Recarga el panel para ver todo."
+      : "✓ Guardado. La tienda se actualiza en 1 a 2 minutos.");
     document.body.appendChild(t);
     clearTimeout(relojOk);
-    relojOk = setTimeout(function () { t.remove(); }, 7000);
+    relojOk = setTimeout(function () { t.remove(); }, combinado ? 12000 : 7000);
   }
 })();
