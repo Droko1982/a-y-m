@@ -177,16 +177,17 @@ No se instala nada de verdad, pero se puede dejar como un ícono:
 - Al guardar sale arriba **"✓ Guardado. La tienda se actualiza en 1 a 2
   minutos"**. Si el cambio no aparece en la tienda, esperar 2 minutos y
   refrescar con **Ctrl+F5**.
-- **Antes de editar, recargar el panel** si estuvo abierto un buen rato (en
-  el celular o en otra pestaña). Cada espacio de camisetas es un solo
-  archivo: un panel viejo, al guardar, borraría lo que otra guardó después.
-- Si sale **"No se guardó, para no borrar otro cambio"**: alguien (o tú desde
-  otro lugar) guardó ese mismo espacio después de que abriste el panel. Anotar
-  lo que ibas a cambiar → **Recargar el panel** → hacerlo otra vez y guardar.
-- Si abajo sale **"Hay cambios nuevos guardados desde otro lugar"**, recargar
-  antes de seguir editando.
-- Para no pisarse, lo ideal es que **una sola persona** edite un mismo espacio
-  (Regular fit, Oversized o Esenciales) a la vez.
+- **Pueden editar las dos a la vez.** Si una guarda mientras la otra tiene el
+  panel abierto, el panel **combina** los cambios al guardar: cada camiseta
+  nueva, nombre, foto o precio que cambió cada una se conserva. Sale el aviso
+  **"Guardado y sumado a lo que guardaron desde otro lugar"**; recargando el
+  panel se ve todo junto. Si las dos cambiaron el mismo dato de la misma
+  camiseta, queda el del último guardado.
+- Si abajo sale **"Hay cambios nuevos guardados desde otro lugar"**, se puede
+  seguir trabajando; recargar el panel sirve para verlos.
+- Solo si la combinación no es posible sale **"No se guardó, para no borrar
+  otro cambio"**: anotar lo que ibas a cambiar → **Recargar el panel** →
+  hacerlo otra vez y guardar.
 
 ---
 
@@ -207,9 +208,11 @@ falla, se queda con lo que ya está escrito en el HTML (respaldo).
 
 - `admin/guardado-seguro.js` (se carga antes de Sveltia) evita que un panel
   abierto con datos viejos pise lo que guardó otra persona: antes de cada
-  `createCommitOnBranch` pregunta a GitHub si el archivo cambió después de la
-  versión que cargó el panel y, si cambió, detiene el guardado y explica qué
-  hacer. También avisa cada minuto si llegan cambios de otro lugar, apaga los
+  `createCommitOnBranch` compara el archivo en GitHub con la versión de la que
+  partió el panel y, si cambió, hace una combinación de tres versiones
+  (camisetas por `id`, campos por clave; en conflicto gana el último guardado)
+  y guarda eso con `expectedHeadOid` de la versión leída. Si no puede
+  combinar, detiene el guardado y explica qué hacer. También avisa cada minuto si llegan cambios de otro lugar, apaga los
   borradores de respaldo de Sveltia y confirma cada guardado en español.
   Sveltia 0.203.1 no hace nada de esto por su cuenta; si se cambia la versión,
   hay que volver a probarlo.
