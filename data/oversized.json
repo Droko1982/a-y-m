@@ -1,6 +1,20 @@
 {
   "productos": [
     {
+      "id": "b6aa8af2-f1a9-4ed6-9ffa-aafc93cb7c5a",
+      "coleccion": "felina",
+      "imagen": "/assets/tigre-colores-mariposa-espalda.webp",
+      "galeria": [
+        "/assets/tigre-colores-mariposa.webp"
+      ],
+      "colores": [],
+      "nombre_es": "------",
+      "precio": null,
+      "desc_es": "------",
+      "desc_larga_es": "------",
+      "disponible": true
+    },
+    {
       "id": "81de4f81-8a3b-453d-808b-ca4cbcc97cf2",
       "coleccion": "felina",
       "imagen": "/assets/leona-de-colores.webp",
