@@ -7,7 +7,13 @@
       "galeria": [
         "/assets/tigre-colores-mariposa.webp"
       ],
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Crema",
+          "color": "",
+          "imagen": "/assets/mockup_ig_post_20261109_160229.webp"
+        }
+      ],
       "nombre_es": "Espíritu Vivo",
       "precio": null,
       "desc_es": "Una celebración a la existencia, la curiosidad y la vitalidad que habita en lo más profundo de nuestra fauna. Este diseño captura un instante de conexión pura con el entorno, creado para quienes llevan el pulso de la naturaleza y el instinto urbano grabados en cada paso.",
