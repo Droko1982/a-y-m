@@ -1,6 +1,17 @@
 {
   "productos": [
     {
+      "id": "5476321f-bc83-49f2-aa7a-acbdbbe3e3cd",
+      "coleccion": "felina",
+      "imagen": "/assets/gato-melena-arena.webp",
+      "colores": [],
+      "nombre_es": "-----",
+      "precio": null,
+      "desc_es": "----",
+      "desc_larga_es": "------",
+      "disponible": true
+    },
+    {
       "id": "ying",
       "coleccion": "oceano",
       "imagen": "/assets/yinyang.webp",
