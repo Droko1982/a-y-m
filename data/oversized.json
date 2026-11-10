@@ -21,7 +21,13 @@
       "galeria": [
         "/assets/leona-de-colores-frente.webp"
       ],
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Blanco",
+          "color": "",
+          "imagen": "/assets/mockup_ig_post_20261110_144925.webp"
+        }
+      ],
       "nombre_es": "Instinto Salvaje",
       "precio": null,
       "desc_es": "La libertad y la elegancia indomable de la naturaleza se fusionan en un diseño minimalista que rinde homenaje al espíritu femenino. Una prenda pensada para quienes caminan con firmeza, rompen las reglas de la rutina y llevan la autenticidad como su bandera más salvaje.",
