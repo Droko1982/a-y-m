@@ -235,11 +235,6 @@
       "imagen": "/assets/Nuki.jpg",
       "colores": [
         {
-          "nombre_es": "Mocca",
-          "color": "#7e6053",
-          "imagen": "/assets/mockup_ig_post_20261102_152600.webp"
-        },
-        {
           "nombre_es": "Arena",
           "color": "#d4bc94",
           "imagen": "/assets/mockup_ig_post_20261103_160131.webp"
@@ -253,6 +248,11 @@
           "nombre_es": "Verde Militar",
           "color": "#3a3e2f",
           "imagen": "/assets/mockup_ig_post_20261103_160214.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "",
+          "imagen": "/assets/mockup_ig_post_20261103_160059.webp"
         }
       ],
       "nombre_es": "Poca Vida",
