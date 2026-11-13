@@ -19,8 +19,8 @@ locale: es
 logo_url: ../assets/logo-light.png
 
 # Dónde se ven los cambios publicados
-site_url: https://droko1982.github.io/a-y-m/
-display_url: https://droko1982.github.io/a-y-m/
+site_url: https://aymuniverse.com/
+display_url: https://aymuniverse.com/
 
 # Carpeta donde se guardan las fotos que se suban (para la Fase 2)
 media_folder: assets
