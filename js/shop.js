@@ -16,6 +16,10 @@
   var DEFAULT_SIZE = "M";
   var IMG_DEFECTO = "assets/tee-ocean.svg";
   var SEO_ID = "ld-products";
+  /* id → página propia de cada camiseta (/camisetas/<nombre>/). Lo escribe
+     herramientas/seo/generar.js al publicar; si no existe, no se enlaza nada. */
+  var URLS = {};
+  var enlaceDirectoHecho = false;
 
   /* Los tres espacios del panel (Productos → Regular fit / Oversized /
      Esenciales). La horma la define el espacio. Cada camiseta Regular u
@@ -197,7 +201,7 @@
         lupa +
       '</button>' +
       tag +
-      '<h3 class="product-name">' + esc(nombre) + '</h3>' +
+      '<h3 class="product-name">' + (URLS[p.id] ? '<a href="' + esc(URLS[p.id]) + '">' + esc(nombre) + '</a>' : esc(nombre)) + '</h3>' +
       '<p class="product-desc">' + esc(desc) + '</p>' +
       swatches +
       '<div class="product-sizes" role="group" aria-label="Talla / Size">' +
@@ -281,6 +285,7 @@
     window.AYM_PRODUCTS = map;
     renderSeo(todos);
     document.dispatchEvent(new CustomEvent("aym:productsrendered"));
+    abrirEnlaceDirecto();
   }
 
   /* Datos estructurados de los productos (se regeneran con el catálogo y los
@@ -288,6 +293,9 @@
   function renderSeo(valid) {
     var tag = document.getElementById(SEO_ID);
     if (!tag || !valid.length) return;
+    /* Al publicar ya se escribió la lista completa con la página de cada
+       camiseta: no se reemplaza por esta, que tiene menos datos. */
+    if (tag.getAttribute("data-generado")) return;
     try {
       tag.textContent = JSON.stringify({
         "@context": "https://schema.org",
@@ -680,6 +688,7 @@
             '<div class="pv-sizes" role="group" aria-label="' + (en ? "Size" : "Talla") + '">' + sizeBtns + '</div></div>' +
         '</div>' +
         '<div class="pv-buy"><span class="pv-price"></span>' + botonAdd + '</div>' +
+        (URLS[id] ? '<a class="pv-ficha" href="' + esc(URLS[id]) + '">' + (en ? "Full details and size guide →" : "Ver ficha completa y guía de tallas →") + '</a>' : '') +
       '</div>';
 
     pintarFoto();
@@ -768,9 +777,28 @@
       .catch(function () {});
   }
 
+  /* Enlace directo a una camiseta: /?camiseta=<id>#felina (lo usan los botones
+     "Elegir talla y comprar" de las páginas propias). Abre su ventana una vez. */
+  function abrirEnlaceDirecto() {
+    if (enlaceDirectoHecho) return;
+    enlaceDirectoHecho = true;
+    try {
+      var id = new URLSearchParams(location.search).get("camiseta");
+      if (!id) return;
+      if (history.replaceState) history.replaceState(null, "", location.pathname + location.hash);
+      if (CATALOGO[id]) setTimeout(function () { abrirVentana(id); }, 80);
+    } catch (e) {}
+  }
+  function cargarUrls() {
+    return fetch("data/urls.json", { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (u) { if (u && typeof u === "object") URLS = u; })
+      .catch(function () {});
+  }
+
   function load() {
     try {
-      Promise.all(ARCHIVOS.map(function (a) { return cargarUno(a.archivo); }))
+      Promise.all(ARCHIVOS.map(function (a) { return cargarUno(a.archivo); }).concat([cargarUrls()]))
         .then(renderAll)
         .catch(function () {});
       fetch("data/tallas.json", { cache: "no-store" })

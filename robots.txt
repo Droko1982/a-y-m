@@ -1,4 +1,38 @@
+# A&M Universe · aymuniverse.com
+# Bienvenidos todos los buscadores y asistentes de IA: queremos que
+# encuentren la tienda. Solo el panel de administración queda fuera.
+
 User-agent: *
 Allow: /
+Disallow: /admin/
+
+# Buscadores
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: Applebot
+User-agent: YandexBot
+Allow: /
+Disallow: /admin/
+
+# Asistentes de IA (ChatGPT, Gemini, Claude, Perplexity, Copilot, Apple, Meta…)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: Google-Extended
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: CCBot
+User-agent: Amazonbot
+User-agent: DuckAssistBot
+User-agent: MistralAI-User
+Allow: /
+Disallow: /admin/
 
 Sitemap: https://aymuniverse.com/sitemap.xml
