@@ -1,0 +1,79 @@
+# A&M Universe · publicar la tienda
+# Cada vez que llega algo a main (también los guardados del panel):
+#   1. arma el sitio con las páginas para buscadores (herramientas/seo/generar.js)
+#   2. lo publica en GitHub Pages (aymuniverse.com)
+#   3. avisa a Bing y compañía (IndexNow) de las páginas que cambiaron
+# No hace commits: el repositorio solo lo tocan las personas y el panel.
+name: Publicar la tienda
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0   # fechas reales de cada cambio para el sitemap
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Estado de la publicación anterior
+        run: |
+          DOMINIO="$(tr -d ' \r\n' < CNAME 2>/dev/null || true)"
+          curl -sfL --max-time 20 "https://${DOMINIO:-aymuniverse.com}/seo/estado.json" -o "$RUNNER_TEMP/estado-previo.json" \
+            || echo '{}' > "$RUNNER_TEMP/estado-previo.json"
+
+      - name: Generar páginas para buscadores
+        id: generar
+        continue-on-error: true
+        run: node herramientas/seo/generar.js --salida=_site --previo="$RUNNER_TEMP/estado-previo.json" --indexnow="$RUNNER_TEMP/indexnow.json"
+
+      # Si el generador fallara, la tienda se publica igual, tal cual está en el repositorio.
+      - name: Respaldo (solo si falló el paso anterior)
+        if: steps.generar.outcome == 'failure'
+        run: |
+          echo "::warning::El generador falló; se publica el sitio sin las páginas extra."
+          rm -rf _site "$RUNNER_TEMP/indexnow.json"
+          mkdir _site
+          rsync -a --exclude='.git' --exclude='.github' --exclude='herramientas' --exclude='cloudflare' \
+            --exclude='_site' --exclude='/*.md' --exclude='wrangler.toml' --exclude='captura-fallback.png' ./ _site/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Avisar a buscadores (IndexNow)
+        continue-on-error: true
+        run: |
+          F="$RUNNER_TEMP/indexnow.json"
+          if [ -s "$F" ]; then
+            curl -sS --max-time 30 -o /dev/null -w "IndexNow respondió %{http_code}\n" \
+              -X POST "https://api.indexnow.org/indexnow" \
+              -H "Content-Type: application/json; charset=utf-8" --data-binary @"$F"
+          else
+            echo "Nada nuevo que avisar."
+          fi

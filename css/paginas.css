@@ -1,0 +1,152 @@
+/* =========================================================
+   A&M Universe · páginas propias (camisetas, colecciones,
+   preguntas, tallas…) que genera herramientas/seo/generar.js.
+   Usa los mismos tokens y componentes de styles.css.
+   ========================================================= */
+
+.pg-saltar {
+    position: absolute; left: 12px; top: -60px; z-index: 100;
+    background: var(--accent); color: var(--accent-ink);
+    padding: 10px 16px; font-weight: 600; transition: top .2s;
+}
+.pg-saltar:focus { top: 12px; }
+
+/* ---------- Cabecera ---------- */
+.pg-header {
+    position: sticky; top: 0; z-index: 40;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--line);
+}
+.pg-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 8px; }
+.pg-logo { display: inline-flex; align-items: center; min-width: 0; }
+.pg-logo .brand-logo { height: 52px; width: auto; }
+.pg-acciones { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.pg-ir-tienda { padding: 11px 20px; font-size: .92rem; }
+.pg-nav { border-top: 1px solid var(--line); }
+.pg-nav .container {
+    display: flex; gap: 6px 22px; overflow-x: auto; scrollbar-width: none;
+    padding-top: 9px; padding-bottom: 9px;
+}
+.pg-nav .container::-webkit-scrollbar { display: none; }
+.pg-nav a {
+    white-space: nowrap; font-size: .9rem; font-weight: 500; color: var(--text-soft);
+    padding: 2px 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s;
+}
+.pg-nav a:hover { color: var(--accent); }
+.pg-nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
+@media (max-width: 560px) {
+    .pg-logo .brand-logo { height: 40px; }
+    .pg-ir-tienda { padding: 10px 14px; font-size: .86rem; }
+}
+
+/* ---------- Migas ---------- */
+.pg-migas ol { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 0; padding: 18px 0 0; font-size: .84rem; color: var(--text-soft); }
+.pg-migas li + li::before { content: "›"; margin: 0 9px; opacity: .6; }
+.pg-migas a { color: var(--text-soft); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.pg-migas a:hover { color: var(--accent); }
+.pg-migas [aria-current] { color: var(--text); }
+
+/* ---------- Encabezado de página ---------- */
+.pg-hero { padding: clamp(28px, 6vw, 64px) 0 clamp(20px, 4vw, 40px); }
+.pg-hero .eyebrow { margin-bottom: 14px; }
+.pg-titulo { font-size: clamp(1.9rem, 5vw, 3.1rem); line-height: 1.12; letter-spacing: -.01em; margin-bottom: 14px; max-width: 22ch; }
+.pg-hero .pg-titulo { max-width: 26ch; }
+.pg-lead { font-size: clamp(1.02rem, 2vw, 1.14rem); color: var(--text-soft); max-width: 68ch; }
+.pg-lead-sec { margin-top: 10px; font-size: .95rem; color: var(--text-soft); }
+.pg-lead a, .pg-prosa a, .pg-info a:not(.btn) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.pg-indice { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.pg-indice a {
+    display: inline-block; padding: 7px 14px; border: 1px solid var(--line);
+    font-size: .86rem; color: var(--text); background: var(--surface);
+}
+.pg-indice a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- Secciones ---------- */
+.pg-seccion { padding: clamp(36px, 6vw, 72px) 0; }
+.pg-alt { background: var(--bg-alt); }
+.pg-h2 { font-size: clamp(1.4rem, 3.2vw, 1.9rem); margin: 0 0 22px; }
+.pg-h2 + .pg-grid { margin-bottom: 44px; }
+.pg-grid:last-child { margin-bottom: 0; }
+.pg-mas { margin-top: 30px; }
+
+/* Tarjetas que enlazan a cada camiseta */
+.pg-card .product-media { display: grid; text-decoration: none; }
+.pg-card .product-media img { width: 100%; height: 100%; object-fit: cover; }
+.pg-card .product-name a { color: inherit; }
+.pg-card .product-name a:hover { color: var(--accent); }
+.pg-card-horma { font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin: -2px 0 8px; }
+.pg-card .btn-add { text-decoration: none; }
+@media (max-width: 980px) { .pg-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px) { .pg-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+@media (max-width: 400px) {
+    .pg-grid .product { padding: 10px 10px 14px; }
+    .pg-grid .product-desc { display: none; }
+    .pg-grid .product-buy { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- Página de camiseta ---------- */
+.pg-producto { padding: 22px 0 clamp(36px, 6vw, 72px); }
+.pg-prod-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 60px); align-items: start; }
+@media (max-width: 860px) { .pg-prod-grid { grid-template-columns: minmax(0, 1fr); } }
+.pg-galeria { position: sticky; top: 130px; min-width: 0; }
+@media (max-width: 860px) { .pg-galeria { position: static; } }
+.pg-foto-principal { margin: 0; background: var(--green-soft); border: 1px solid var(--line); aspect-ratio: 1 / 1; display: grid; place-items: center; overflow: hidden; }
+.pg-foto-principal img { width: 100%; height: 100%; object-fit: contain; }
+.pg-miniaturas { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px; }
+.pg-mini {
+    flex: 0 0 auto; width: 68px; height: 68px; padding: 0; cursor: pointer;
+    background: var(--surface); border: 1px solid var(--line); overflow: hidden;
+}
+.pg-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pg-mini[aria-pressed="true"] { border: 2px solid var(--accent); }
+.pg-mini:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.pg-info { min-width: 0; }
+.pg-info .eyebrow { margin-bottom: 12px; }
+.pg-subtitulo { color: var(--text-soft); font-size: .95rem; margin-bottom: 16px; }
+.pg-precio { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+.pg-precio > span:first-child { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; }
+.pg-precio .tag { margin: 0; }
+.pg-info .pg-lead { margin-bottom: 22px; }
+.pg-datos { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 24px; }
+.pg-datos > div { background: var(--surface); padding: 12px 14px; }
+.pg-datos dt { font-size: .72rem; text-transform: uppercase; letter-spacing: .14em; color: var(--text-soft); margin-bottom: 2px; }
+.pg-datos dd { font-size: .95rem; font-weight: 500; }
+.pg-cta { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+.pg-cta .btn { justify-content: center; text-align: center; width: 100%; }
+.pg-cta .btn svg { flex-shrink: 0; }
+.pg-confianza { list-style: none; display: grid; gap: 8px; font-size: .92rem; color: var(--text-soft); border-top: 1px solid var(--line); padding-top: 18px; }
+
+/* ---------- Texto largo ---------- */
+.pg-prosa { max-width: 780px; }
+.pg-prosa h2 { font-size: clamp(1.35rem, 3vw, 1.75rem); margin: 36px 0 12px; line-height: 1.2; }
+.pg-prosa h2:first-child, .pg-prosa .eyebrow + h2 { margin-top: 0; }
+.pg-prosa h3 { font-size: 1.15rem; margin: 24px 0 8px; }
+.pg-prosa p { margin-bottom: 14px; }
+.pg-prosa .eyebrow { margin-bottom: 10px; }
+.pg-lista { padding-left: 1.2em; margin-bottom: 16px; display: grid; gap: 8px; }
+.pg-nota { font-size: .9rem; color: var(--text-soft); }
+.pg-cita {
+    margin: 22px 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--accent);
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 1.2rem; line-height: 1.5;
+}
+.pg-datos-num { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 22px 0; }
+@media (max-width: 640px) { .pg-datos-num { grid-template-columns: 1fr; } }
+.pg-dato { background: var(--surface); border: 1px solid var(--line); padding: 16px; }
+.pg-dato strong { display: block; font-family: 'Fraunces', serif; font-size: 1.7rem; color: var(--accent); }
+.pg-dato span { font-size: .9rem; color: var(--text-soft); }
+.pg-faq { border-bottom: 1px solid var(--line); padding: 18px 0; }
+.pg-faq h2 { font-size: 1.15rem; margin: 0 0 6px; }
+.pg-faq p { margin: 0; color: var(--text-soft); }
+.pg-prosa .size-table-wrap { margin: 10px 0 20px; }
+.pg-prosa .size-table-title { font-size: 1rem; margin: 0 0 8px; }
+.size-table tbody th { font-weight: 600; border: 1px solid var(--line); padding: 10px 14px; }
+
+/* ---------- Pie ---------- */
+.pg .footer-inner { flex-wrap: wrap; }
+.pg-redes { font-size: .88rem; }
+.pg-redes a { color: var(--text-soft); text-decoration: underline; text-underline-offset: 3px; }
+

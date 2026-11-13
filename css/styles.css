@@ -1532,3 +1532,8 @@ section[id] { scroll-margin-top: 84px; }
     /* El contador a la derecha, para no chocar con la pista del zoom */
     .pv-count { left: auto; right: 12px; transform: none; }
 }
+
+/* Enlace a la página propia de la camiseta (dentro de la ventana de fotos) */
+.pv-ficha { display: inline-block; margin-top: 14px; font-size: .88rem; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.pv-ficha:hover { color: var(--text); }
+.product-name a:hover { color: var(--accent); }
