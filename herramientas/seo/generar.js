@@ -662,8 +662,10 @@ seguro("Colección Felina", () => {
   const lista = CATALOGO.filter((p) => p.coleccion === "felina");
   const reg = lista.filter((p) => p.fit === "regular"), ovs = lista.filter((p) => p.fit === "oversized");
   const r = COLECCIONES.felina.ruta;
-  const rasgos = [1, 2, 3].map((n) => T("felina", "rasgo" + n + "_titulo_es")
-    ? `<li><strong>${esc(T("felina", "rasgo" + n + "_titulo_es"))}.</strong> ${rico(T("felina", "rasgo" + n + "_texto_es"))}</li>` : "").join("");
+  const datosF = [1, 2, 3].map((n) => T("felina", "dato" + n + "_numero_es") && T("felina", "dato" + n + "_enlace_es")
+    ? `<div class="pg-dato"><strong>${esc(T("felina", "dato" + n + "_numero_es"))}</strong><span>${rico(T("felina", "dato" + n + "_enlace_es"))}</span></div>` : "").join("");
+  const tituloF = (campoEyebrow, campoTitulo) => T("felina", campoTitulo)
+    ? (T("felina", campoEyebrow) ? `<p class="eyebrow">${esc(T("felina", campoEyebrow))}</p>` : "") + `<h2>${rico(T("felina", campoTitulo))}</h2>` : "";
   const cuerpo = `
 <section class="pg-hero">
   <div class="container">
@@ -678,10 +680,17 @@ seguro("Colección Felina", () => {
   ${bloqueCamisetas(ovs, "Camisetas Felina · Oversized", "oversized")}
 </div></section>
 <section class="section pg-seccion pg-alt"><div class="container pg-prosa">
-  ${T("felina", "historia_titulo_es") ? `<p class="eyebrow">${esc(T("felina", "historia_eyebrow_es"))}</p><h2>${rico(T("felina", "historia_titulo_es"))}</h2>` : ""}
-  ${parrafos("felina", ["historia_p1_es", "historia_p2_es"])}
-  ${T("felina", "inspira_titulo_es") ? `<h2>${rico(T("felina", "inspira_titulo_es"))}</h2>` : ""}
-  ${rasgos ? `<ul class="pg-lista">${rasgos}</ul>` : ""}
+  ${tituloF("historia_eyebrow_es", "historia_titulo_es")}
+  ${parrafos("felina", ["historia_p1_es", "historia_p2_es", "historia_p3_es", "historia_p4_es"])}
+  ${datosF ? `<div class="pg-datos-num">${datosF}</div>` : ""}
+  ${tituloF("esperanza_eyebrow_es", "esperanza_titulo_es")}
+  ${parrafos("felina", ["esperanza_texto_es"])}
+  ${tituloF("hogar_eyebrow_es", "hogar_titulo_es")}
+  ${parrafos("felina", ["hogar_p1_es", "hogar_p2_es"])}
+  ${tituloF("curiosidad_eyebrow_es", "curiosidad_titulo_es")}
+  ${parrafos("felina", ["curiosidad_p1_es", "curiosidad_p2_es"])}
+  ${parrafos("felina", ["cierre_texto_es"])}
+  ${T("felina", "cierre_frase_es") ? `<blockquote class="pg-cita">${rico(T("felina", "cierre_frase_es"))}</blockquote>` : ""}
   <p class="pg-mas"><a class="btn btn-primary" href="/#felina">Comprar en la tienda</a></p>
 </div></section>`;
   agregar(r, pagina({

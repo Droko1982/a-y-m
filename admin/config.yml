@@ -304,7 +304,7 @@ collections:
               - { name: regular_texto_es, label: "Texto del espacio Regular fit", widget: string, required: false }
               - { name: oversized_texto_es, label: "Texto del espacio Oversized", widget: string, required: false }
               - { name: esenciales_titulo_es, label: "Esenciales · título de su página", widget: string, required: false }
-              - { name: esenciales_texto_es, label: "Esenciales · texto (página y tarjeta)", widget: string, required: false }
+              - { name: esenciales_texto_es, label: "Esenciales · texto de su página", widget: string, required: false }
               - { name: vacio_es, label: "Aviso cuando un espacio aún no tiene camisetas", widget: string, required: false }
               - { name: mostrar_nota, label: "¿Mostrar el aviso de fotos de referencia?", widget: boolean, default: true, required: false, hint: "Apágalo cuando ya estén las fotos reales de las camisetas." }
 
@@ -363,16 +363,29 @@ collections:
               - { name: camisetas_titulo_es, label: "Título de las camisetas de Felina", widget: string, required: false }
               - { name: historia_eyebrow_es, label: "Historia · línea pequeña", widget: string, required: false }
               - { name: historia_titulo_es, label: "Historia · título", widget: string, required: false }
-              - { name: historia_p1_es, label: "Historia · párrafo 1", widget: text, required: false }
-              - { name: historia_p2_es, label: "Historia · párrafo 2", widget: text, required: false }
-              - { name: inspira_eyebrow_es, label: "Lo que inspira · línea pequeña", widget: string, required: false }
-              - { name: inspira_titulo_es, label: "Lo que inspira · título", widget: string, required: false }
-              - { name: rasgo1_titulo_es, label: "Rasgo 1 · título", widget: string, required: false }
-              - { name: rasgo1_texto_es, label: "Rasgo 1 · texto", widget: text, required: false }
-              - { name: rasgo2_titulo_es, label: "Rasgo 2 · título", widget: string, required: false }
-              - { name: rasgo2_texto_es, label: "Rasgo 2 · texto", widget: text, required: false }
-              - { name: rasgo3_titulo_es, label: "Rasgo 3 · título", widget: string, required: false }
-              - { name: rasgo3_texto_es, label: "Rasgo 3 · texto", widget: text, required: false }
+              - { name: historia_p1_es, label: "Historia · párrafo 1", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: historia_p2_es, label: "Historia · párrafo 2", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: historia_p3_es, label: "Historia · párrafo 3", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: historia_p4_es, label: "Historia · párrafo 4", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: dato1_numero_es, label: "Cifra 1 · número grande", widget: string, required: false }
+              - { name: dato1_enlace_es, label: "Cifra 1 · texto corto (al lado del número)", widget: string, required: false, hint: "Es el enlace que lleva a esa parte de la historia. Ej: linces ibéricos." }
+              - { name: dato2_numero_es, label: "Cifra 2 · número grande", widget: string, required: false }
+              - { name: dato2_enlace_es, label: "Cifra 2 · texto corto (al lado del número)", widget: string, required: false, hint: "Es el enlace que lleva a esa parte de la historia. Ej: linces ibéricos." }
+              - { name: dato3_numero_es, label: "Cifra 3 · número grande", widget: string, required: false }
+              - { name: dato3_enlace_es, label: "Cifra 3 · texto corto (al lado del número)", widget: string, required: false, hint: "Es el enlace que lleva a esa parte de la historia. Ej: linces ibéricos." }
+              - { name: esperanza_eyebrow_es, label: "Esperanza · línea pequeña", widget: string, required: false }
+              - { name: esperanza_titulo_es, label: "Esperanza · título", widget: string, required: false }
+              - { name: esperanza_texto_es, label: "Esperanza · texto", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: hogar_eyebrow_es, label: "En nuestros hogares · línea pequeña", widget: string, required: false }
+              - { name: hogar_titulo_es, label: "En nuestros hogares · título", widget: string, required: false }
+              - { name: hogar_p1_es, label: "En nuestros hogares · párrafo 1", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: hogar_p2_es, label: "En nuestros hogares · párrafo 2", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: curiosidad_eyebrow_es, label: "Dato curioso · línea pequeña", widget: string, required: false }
+              - { name: curiosidad_titulo_es, label: "Dato curioso · título", widget: string, required: false }
+              - { name: curiosidad_p1_es, label: "Dato curioso · párrafo 1", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: curiosidad_p2_es, label: "Dato curioso · párrafo 2", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: cierre_texto_es, label: "Cierre · texto", widget: text, required: false, hint: "Puedes usar <strong>negrita</strong> y <em>cursiva</em> si quieres resaltar algo." }
+              - { name: cierre_frase_es, label: "Cierre · frase destacada", widget: text, required: false }
 
           # ----- Propósito -----
           - name: proposito

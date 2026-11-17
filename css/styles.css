@@ -1466,20 +1466,6 @@ section[id] { scroll-margin-top: 84px; }
 }
 @media (max-width: 820px) { .hero--oceano { background-position: 55% center; } }
 
-/* Tarjeta de Esenciales, debajo de las colecciones (ancha, horizontal) */
-.esenciales-card {
-    display: grid; grid-template-columns: 220px 1fr; align-items: stretch;
-    max-width: 760px; margin: 20px auto 0; overflow: hidden;
-    background: var(--surface); border: 1px solid var(--line);
-    text-decoration: none; color: inherit;
-    transition: transform .3s ease, box-shadow .3s ease;
-}
-.esenciales-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.ec-media { background: var(--green-soft) center / cover no-repeat; min-height: 150px; }
-.ec-body { padding: 18px 22px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 5px; }
-.ec-body h3 { font-size: 1.2rem; }
-.ec-body p { color: var(--text-soft); font-size: .92rem; }
-@media (max-width: 560px) { .esenciales-card { grid-template-columns: 1fr; } .ec-media { min-height: 170px; } }
 .ess-volver { text-align: center; margin-top: 30px; }
 /* Tarjeta de Propósito que las dueñas ocultan con "--" en el título */
 .card-purpose[hidden] { display: none; }

@@ -258,7 +258,6 @@
         if (vacio) vacio.hidden = lista.length > 0;
       });
     }
-    pintarTarjetaEsenciales();
     /* Si no llegó ningún catálogo, no se toca el carrito (podría vaciarlo) */
     if (!todos.length) return;
 
@@ -393,17 +392,6 @@
           '<div class="size-tables">' + tablas + '</div>'
         : '';
     });
-  }
-
-  /* La tarjeta de Esenciales (bajo las colecciones) usa la portada del primer
-     esencial disponible: siempre una foto real, sin tener que subir otra. */
-  function pintarTarjetaEsenciales() {
-    var m = document.getElementById("ec-media");
-    var lista = datos["data/essentials.json"];
-    if (!m || !Array.isArray(lista)) return;
-    var p = lista.filter(function (x) { return x && x.id && x.disponible !== false; })[0] || lista[0];
-    var img = p ? fotos(p)[0] : "";
-    if (img) m.style.backgroundImage = 'url("' + encodeURI(img).replace(/"/g, "%22") + '")';
   }
 
   /* Una foto que no carga (subida a medias, nombre mal escrito) no debe verse
