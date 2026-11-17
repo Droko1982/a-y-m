@@ -1,6 +1,17 @@
 {
   "productos": [
     {
+      "id": "d5dd2815-db8e-4690-86db-3865525a9635",
+      "coleccion": "felina",
+      "imagen": "/assets/potada-cot-cats.webp",
+      "colores": [],
+      "nombre_es": "------",
+      "precio": null,
+      "desc_es": "------",
+      "desc_larga_es": "-----",
+      "disponible": true
+    },
+    {
       "id": "b6aa8af2-f1a9-4ed6-9ffa-aafc93cb7c5a",
       "coleccion": "felina",
       "imagen": "/assets/tigre-colores-mariposa-espalda.webp",
