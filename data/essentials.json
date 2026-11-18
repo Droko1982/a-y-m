@@ -72,6 +72,11 @@
           "nombre_es": "Blanco",
           "color": "",
           "imagen": "/assets/ballena-camiseta-blanca-talla-s.webp"
+        },
+        {
+          "nombre_es": "Negro",
+          "color": "",
+          "imagen": "/assets/ballena-camiseta-negra-talla-m.webp"
         }
       ],
       "nombre_es": "Salto de Ballena",
