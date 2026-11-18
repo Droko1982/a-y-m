@@ -1,17 +1,11 @@
 /* =========================================================
-   A&M Universe · carrito de compras (horma + tallas + pago)
+   A&M Universe · carrito de compras (horma + tallas + color)
    Estado en localStorage · checkout por WhatsApp · ES/EN
    ========================================================= */
 (function () {
   "use strict";
 
   var WA_NUMBER = "573215799683";
-  /* Número o llave de cada billetera. Editables desde el panel
-     (data/pagos.json); por ahora las tres usan el número de WhatsApp. */
-  var PAY_KEY = { nequi: "321 579 9683", daviplata: "321 579 9683", breb: "321 579 9683" };
-  /* Cuenta bancaria para transferencia. Mientras esté vacía, el carrito
-     sigue diciendo que los datos se coordinan por WhatsApp. */
-  var BANCO = { banco: "", tipo: "", numero: "", titular: "" };
 
   /* Precio general de cada espacio (sección Precios del panel). Se usa para
      las camisetas que no tienen precio propio. Esenciales en 0 = usa el de
@@ -29,10 +23,6 @@
   var FALLBACK = { ocean: "Camiseta Océano", animal: "Camiseta Coral", stars: "Camiseta Ballena", origen: "Camiseta Tortuga" };
   var SIZES = ["S", "M", "L", "XL"];
   var IMG_DEFECTO = "assets/tee-ocean.svg";
-  // Métodos activos (tarjeta de crédito y PSE: por ahora no)
-  var PAYMENTS = ["nequi", "daviplata", "breb", "transfer", "cod"];
-  // Métodos basados en número/llave (usan el mismo número de WhatsApp por ahora)
-  var PHONE_PAY = { nequi: "Nequi", daviplata: "Daviplata", breb: "Bre-B" };
 
   /* Precio de UNA camiseta. Si trae su propio precio (campo "Precio" en el
      panel) se usa ese; si no, el precio general de su espacio: Esenciales,
@@ -73,8 +63,6 @@
       .replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
   function limpio(v) { return typeof v === "string" && v.trim() !== "" ? v.trim() : ""; }
-  /* ¿Hay datos de cuenta suficientes para mostrarlos en el carrito? */
-  function hayBanco() { return BANCO.banco !== "" || BANCO.numero !== ""; }
 
   /* ---------- Configuración editable desde el panel (data/config.json) ----------
      Permite a las dueñas cambiar los precios desde el panel de administración.
@@ -109,19 +97,6 @@
     };
     try { document.dispatchEvent(new CustomEvent("aym:preciosaplicados")); } catch (e2) {}
   }
-  /* Datos de pago editables desde el panel (data/pagos.json).
-     Cada campo vacío conserva el valor que ya estaba. */
-  function applyPagos(p) {
-    if (!p || typeof p !== "object") return;
-    ["nequi", "daviplata", "breb"].forEach(function (k) {
-      var v = limpio(p[k]);
-      if (v) PAY_KEY[k] = v;
-    });
-    BANCO.banco = limpio(p.banco);
-    BANCO.tipo = limpio(p.tipo_cuenta);
-    BANCO.numero = limpio(p.numero_cuenta);
-    BANCO.titular = limpio(p.titular);
-  }
 
   function pedirJson(url) {
     try {
@@ -133,16 +108,17 @@
 
   function loadConfig(done) {
     try {
-      Promise.all([pedirJson("data/config.json"), pedirJson("data/pagos.json")])
-        .then(function (r) { applyConfig(r[0]); applyPagos(r[1]); done(); })
+      pedirJson("data/config.json")
+        .then(function (c) { applyConfig(c); done(); })
         .catch(function () { done(); });
     } catch (e) { done(); }
   }
 
   /* ---------- Estado ---------- */
 
-  var currentPay = "nequi";
-  try { var sp = localStorage.getItem("aym-pay"); if (PAYMENTS.indexOf(sp) >= 0) currentPay = sp; } catch (e) {}
+  /* El carrito ya no pide el método de pago: se acuerda con la clienta por
+     WhatsApp. Se borra la preferencia que guardaba la versión anterior. */
+  try { localStorage.removeItem("aym-pay"); } catch (e) {}
 
   var cart = [];
   try { cart = JSON.parse(localStorage.getItem("aym-cart")) || []; } catch (e) { cart = []; }
@@ -281,47 +257,6 @@
     });
   }
 
-  /* ---------- Pago ---------- */
-  function applyPay() {
-    document.querySelectorAll("#cart-pay .pay-pill").forEach(function (b) {
-      var on = b.getAttribute("data-pay") === currentPay;
-      b.classList.toggle("is-active", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-    var info = document.getElementById("cart-pay-info");
-    if (info) {
-      var en = lang() === "en";
-      if (PHONE_PAY[currentPay]) {
-        var brand = PHONE_PAY[currentPay];
-        var to = currentPay === "breb" ? (en ? "to the key" : "a la llave") : (en ? "to" : "al");
-        info.innerHTML = en
-          ? "Pay with " + brand + " " + to + " <strong>" + esc(PAY_KEY[currentPay]) + "</strong> and send us the receipt on WhatsApp."
-          : "Paga con " + brand + " " + to + " <strong>" + esc(PAY_KEY[currentPay]) + "</strong> y envíanos el comprobante por WhatsApp.";
-      } else if (currentPay === "transfer") {
-        if (hayBanco()) {
-          var partes = [];
-          if (BANCO.banco) partes.push("<strong>" + esc(BANCO.banco) + "</strong>");
-          if (BANCO.tipo) partes.push(esc(BANCO.tipo));
-          if (BANCO.numero) partes.push("<strong>" + esc(BANCO.numero) + "</strong>");
-          var titular = BANCO.titular
-            ? (en ? " in the name of <strong>" : " a nombre de <strong>") + esc(BANCO.titular) + "</strong>"
-            : "";
-          info.innerHTML = (en ? "Transfer to " : "Transfiere a ") + partes.join(" · ") + titular +
-            (en ? ", and send us the receipt on WhatsApp." : ", y envíanos el comprobante por WhatsApp.");
-        } else {
-          info.textContent = en
-            ? "We'll share the bank account details on WhatsApp when we confirm your order."
-            : "Te compartimos los datos de la cuenta para la transferencia por WhatsApp al confirmar tu pedido.";
-        }
-      } else {
-        info.textContent = en
-          ? "Pay in cash when your order arrives (availability by city)."
-          : "Paga en efectivo cuando recibas tu pedido (según tu ciudad).";
-      }
-    }
-    try { localStorage.setItem("aym-pay", currentPay); } catch (e) {}
-  }
-
   function checkoutHref() {
     if (!cart.length) return "https://wa.me/" + WA_NUMBER;
     var en = lang() === "en", tl = en ? "Size" : "Talla";
@@ -329,30 +264,19 @@
       var colName = getColorName(i.id, i.color);
       return "• " + i.qty + "× " + getName(i.id) + " (" + etiquetaDe(i) + " · " + tl + " " + i.size + (colName ? " · " + colName : "") + ") — " + fmt(i.qty * price(i.id, i.fit));
     });
-    var payVal;
-    if (PHONE_PAY[currentPay]) payVal = PHONE_PAY[currentPay] + " (" + PAY_KEY[currentPay] + ")";
-    else if (currentPay === "transfer") {
-      payVal = en ? "Bank transfer" : "Transferencia bancaria";
-      if (hayBanco()) {
-        payVal += " (" + [BANCO.banco, BANCO.tipo, BANCO.numero].filter(Boolean).join(" ") + ")";
-      }
-    }
-    else payVal = en ? "Cash on delivery" : "Contra entrega";
     var n = count(), msg;
     if (en) {
       msg = "Hi A&M Universe! 🐱 I'd like to place this order:\n\n" +
         lines.join("\n") + "\n\n" +
         n + (n === 1 ? " item" : " items") + " · Products total: " + fmt(total()) + "\n" +
-        "Shipping: to be arranged by city\n" +
-        "Payment: " + payVal + "\n\n" +
+        "Shipping: to be arranged by city\n\n" +
         "📦 Shipping details\n" +
         "Full name: \nPhone: \nCity & state: \nAddress: ";
     } else {
       msg = "¡Hola A&M Universe! 🐱 Quiero hacer este pedido:\n\n" +
         lines.join("\n") + "\n\n" +
         n + (n === 1 ? " prenda" : " prendas") + " · Total productos: " + fmt(total()) + "\n" +
-        "Envío: a coordinar según tu ciudad\n" +
-        "Pago: " + payVal + "\n\n" +
+        "Envío: a coordinar según tu ciudad\n\n" +
         "📦 Datos de envío\n" +
         "Nombre y apellido: \nTeléfono: \nCiudad y departamento: \nDirección: ";
     }
@@ -518,7 +442,6 @@
     var t = document.getElementById("cart-total"); if (t) t.textContent = fmt(total());
     var co = document.getElementById("cart-checkout"); if (co) co.setAttribute("href", checkoutHref());
     pintarAviso(false);
-    applyPay();
     restauraFoco(foco);
   }
 
@@ -594,15 +517,6 @@
       var sw = art ? art.querySelector(".color-swatch.is-active") : null;
       var pid = b.getAttribute("data-product");
       add(pid, fitDe(pid), active ? active.getAttribute("data-size") : "M", sw ? sw.getAttribute("data-color") : "");
-    });
-
-    // selector de pago
-    var payGrp = document.getElementById("cart-pay");
-    if (payGrp) payGrp.addEventListener("click", function (e) {
-      var btn = e.target.closest(".pay-pill"); if (!btn) return;
-      var pay = btn.getAttribute("data-pay"); if (PAYMENTS.indexOf(pay) < 0) return;
-      currentPay = pay; applyPay();
-      var co = document.getElementById("cart-checkout"); if (co) co.setAttribute("href", checkoutHref());
     });
 
     var cb = document.getElementById("cart-btn"); if (cb) cb.addEventListener("click", open);

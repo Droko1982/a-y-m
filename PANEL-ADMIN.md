@@ -17,7 +17,7 @@ cambios se publican solos en el sitio (GitHub Pages) en **1 a 2 minutos**.
 | **Precios** | Precio general de Regular fit, Oversized y Esenciales (cada camiseta puede tener además su precio propio) |
 | **Productos** | Tres espacios: **Regular fit**, **Oversized** y **Esenciales**. Crear, editar, reordenar y marcar *Agotado* las camisetas; elegir su **colección** (Océano o Felina); subir la portada, la galería y los colores, cada uno con su foto. Las fotos se convierten solas a WebP liviano al subirlas |
 | **Guía de tallas** | Las medidas (pecho, largo, hombro) de Regular fit y de Oversized que salen debajo de las camisetas |
-| **Pagos** | El número de Nequi y Daviplata, la llave de Bre-B y los datos de la cuenta para transferencias — es lo que ve la clienta en el carrito |
+| **Pagos** | Qué formas de pago se mencionan en la página (Cómo comprar, fichas de camisetas, Google). El carrito ya no pide método de pago: se acuerda por WhatsApp |
 | **Impacto** | El número de camisetas vendidas y la dirección del contador automático (el Worker de Cloudflare) |
 | **Textos** | **Todos** los textos del sitio (solo español): portada, colecciones, tienda, la historia de *Océano*, *Felina*, *Propósito*, *Impacto y nuestra causa*, las **preguntas frecuentes** (se pueden agregar, quitar y reordenar) y contacto/envíos |
 | **Datos del negocio** | Los datos que en la página de políticas salen `[entre corchetes]` (razón social, NIT o cédula, tiempo de envío, plazo de cambios) y las **redes sociales**, que aparecen en el pie de página |

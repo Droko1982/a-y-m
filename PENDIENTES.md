@@ -50,7 +50,7 @@ inglés, modo claro/oscuro, SEO y páginas legales base.
 
 ## 🟢 Ya está listo por nuestra parte ✔️
 - Hormas **Regular ($69.000) / Oversized ($79.000)** con selector y precio en vivo.
-- **5 métodos de pago** en el carrito (Nequi, Daviplata, Bre-B, transferencia, contra entrega) con iconos.
+- ~~5 métodos de pago en el carrito~~: quitados el 2026-11-18 a pedido de las dueñas; el pago se acuerda por WhatsApp.
 - Pedido por WhatsApp con **resumen detallado** (ítems, total, envío, pago, datos de envío).
 - **Contador de impacto** con perrito animado que come según lo recaudado ($1.000/camiseta, ajustable).
 - Correo de marca `aym.universedesing@gmail.com` en contacto, datos estructurados y políticas.

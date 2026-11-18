@@ -61,11 +61,11 @@ collections:
     icon: account_balance_wallet
     files:
       - name: pagos
-        label: "Datos de pago del carrito"
+        label: "Formas de pago"
         file: data/pagos.json
-        description: "El número o la llave que ve la clienta al elegir cada método de pago. Los datos de la cuenta bancaria son opcionales: mientras estén vacíos, el carrito dice que se coordinan por WhatsApp."
+        description: "El carrito ya no pide el método de pago: el pedido les llega por WhatsApp y ahí acuerdan con la clienta cómo paga. Estos datos solo deciden qué formas de pago se mencionan en la página Cómo comprar, en la ficha de cada camiseta y en la información para Google: si dejan vacío Nequi, Daviplata o Bre-B, ese método deja de mencionarse. Los datos de la cuenta bancaria no se muestran en ninguna parte."
         fields:
-          - { name: nequi, label: "Nequi · número", widget: string, required: false, hint: "Ej: 321 579 9683. Es el número que ve la clienta al elegir Nequi en el carrito." }
+          - { name: nequi, label: "Nequi · número", widget: string, required: false, hint: "Ej: 321 579 9683. Si lo dejan vacío, Nequi deja de mencionarse como forma de pago." }
           - { name: daviplata, label: "Daviplata · número", widget: string, required: false, hint: "Si es el mismo de Nequi, escríbelo igual." }
           - { name: breb, label: "Bre-B · llave", widget: string, required: false, hint: "La llave exacta: celular, @usuario, correo o cédula." }
           - { name: banco, label: "Transferencia · banco", widget: string, required: false, hint: "Ej: Bancolombia. Déjalo vacío si prefieres pasar los datos por WhatsApp." }
