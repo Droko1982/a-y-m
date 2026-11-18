@@ -19,10 +19,16 @@
     {
       "id": "587e1914-63ee-4f55-96d4-5b393568c2f5",
       "imagen": "/assets/catsa.webp",
-      "colores": [],
-      "nombre_es": "---",
+      "colores": [
+        {
+          "nombre_es": "Azul",
+          "color": "",
+          "imagen": "/assets/catsa-camiseta-color-azul-navi-talla-m.webp"
+        }
+      ],
+      "nombre_es": "Gato Espacial",
       "precio": null,
-      "desc_es": "----",
+      "desc_es": "La camiseta Gato Espacial combina un toque divertido con estética urbana para acompañarte todos los días. Detalles del producto: Diseño minimalista de emblema espacial con silueta de gato en el pecho sobre fondo negro. Corte clásico unisex, ligero y cómodo. Confeccionada en 100% algodón de 160 gr. El valor de $35.000 es por unidad.",
       "desc_larga_es": "---",
       "disponible": true
     },
