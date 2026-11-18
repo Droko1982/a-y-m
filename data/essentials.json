@@ -1,6 +1,16 @@
 {
   "productos": [
     {
+      "id": "17dcfdf4-eabb-4784-9707-77880f735375",
+      "imagen": "/assets/tibron-cerve.webp",
+      "colores": [],
+      "nombre_es": "----",
+      "precio": null,
+      "desc_es": "----",
+      "desc_larga_es": "---",
+      "disponible": true
+    },
+    {
       "id": "cf512b05-9658-4ab2-9583-78d2cade4303",
       "imagen": "/assets/catcus-verde.webp",
       "colores": [],
