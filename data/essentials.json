@@ -67,10 +67,16 @@
     {
       "id": "1e382232-8b17-49e6-9bb6-ac5bb765402a",
       "imagen": "/assets/ballena-esencial-blanca.webp",
-      "colores": [],
-      "nombre_es": "----",
+      "colores": [
+        {
+          "nombre_es": "Negro",
+          "color": "",
+          "imagen": "/assets/ballena-camiseta-negra-talla-m.webp"
+        }
+      ],
+      "nombre_es": "Salto de Ballena",
       "precio": null,
-      "desc_es": "----",
+      "desc_es": "La camiseta Salto de Ballena combina serenidad natural y estética urbana para acompañarte todos los días. Detalles del producto: Diseño minimalista de ballena emergiendo del mar bajo el sol en el pecho sobre fondo blanco. Corte clásico unisex, ligero y cómodo. Confeccionada en 100% algodón de 160 gr. El valor de $35.000 es por unidad.",
       "desc_larga_es": "----",
       "disponible": true
     }
