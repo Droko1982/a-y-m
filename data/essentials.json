@@ -35,10 +35,16 @@
     {
       "id": "17dcfdf4-eabb-4784-9707-77880f735375",
       "imagen": "/assets/tibron-cerve.webp",
-      "colores": [],
-      "nombre_es": "----",
+      "colores": [
+        {
+          "nombre_es": "Crema",
+          "color": "",
+          "imagen": "/assets/cerveza-camiseta-marfil-talla-xl.webp"
+        }
+      ],
+      "nombre_es": "Tiburón Cervecero",
       "precio": null,
-      "desc_es": "----",
+      "desc_es": "La camiseta Tiburón Cervecero combina un estilo relajado y divertido con estética urbana para acompañarte todos los días. Detalles del producto: Diseño minimalista de tiburón sosteniendo una jarra de cerveza en el pecho sobre fondo beige. Corte clásico unisex, ligero y cómodo. Confeccionada en 100% algodón de 160 gr. El valor de $35.000 es por unidad.",
       "desc_larga_es": "---",
       "disponible": true
     },
