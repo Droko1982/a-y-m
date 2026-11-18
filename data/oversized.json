@@ -4,7 +4,13 @@
       "id": "d5dd2815-db8e-4690-86db-3865525a9635",
       "coleccion": "felina",
       "imagen": "/assets/potada-cot-cats.webp",
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Blanco",
+          "color": "",
+          "imagen": "/assets/mockup_ig_post_20261105_154621.webp"
+        }
+      ],
       "nombre_es": "CATastrophe",
       "precio": null,
       "desc_es": "El humor sutil y la espontaneidad de los felinos se mezclan en el diseño ideal para llevar tu personalidad con estilo. Una historia que rompe la rutina, pensada para sacarte una sonrisa y darle un toque relajado y auténtico a tu día.",
