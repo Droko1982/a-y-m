@@ -673,16 +673,21 @@
          camisetas que las dueñas hayan borrado, renombrado o marcado Agotado:
          son las únicas que ya no se pueden pedir. Todo lo demás se conserva. */
       var antes = JSON.stringify(cart);
+      /* Si algún archivo del catálogo no llegó (conexión), lo que no se ve no
+         se borra: solo se quitan las agotadas y, con el catálogo completo,
+         las que de verdad ya no existen. */
+      var completo = window.AYM_CATALOGO_COMPLETO !== false;
       cart = cart.filter(function (i) {
         var p = PRODUCTS[i.id];
-        return p && p.disponible !== false;
+        if (!p) return !completo;
+        return p.disponible !== false;
       });
       /* Las hormas ya no se eligen: cada camiseta tiene la de su espacio. Un
          carrito guardado de antes (con Oversized elegido para una camiseta que
          ahora es Regular) se corrige, y si dos líneas quedan iguales se juntan. */
       var juntas = {}, limpio2 = [];
       cart.forEach(function (i) {
-        i.fit = fitDe(i.id);
+        if (PRODUCTS[i.id]) i.fit = fitDe(i.id);
         var k = [i.id, i.fit, i.size, i.color || ""].join("|");
         if (juntas[k]) juntas[k].qty += i.qty;
         else { juntas[k] = i; limpio2.push(i); }

@@ -20,6 +20,12 @@
      herramientas/seo/generar.js al publicar; si no existe, no se enlaza nada. */
   var URLS = {};
   var enlaceDirectoHecho = false;
+  /* El catálogo se pinta UNA vez que llegaron (o fallaron) todos los archivos.
+     Antes, js/textos.js volvía a aplicar el idioma apenas llegaban los textos
+     y eso repintaba con el catálogo a medias: el carrito creía que las
+     camisetas de un archivo aún no cargado ya no existían y las borraba, y
+     la ventana de fotos se cerraba sola. */
+  var cargaLista = false, idiomaPintado = null;
 
   /* Los tres espacios del panel (Productos → Regular fit / Oversized /
      Esenciales). La horma la define el espacio. Cada camiseta Regular u
@@ -230,6 +236,7 @@
      horma (p. ej. "oceano-oversized-grid"); los esenciales, a la suya.
      `usados` evita que un id repetido haga que el carrito confunda productos. */
   function renderAll() {
+    idiomaPintado = lang();
     var usados = {}, todos = [];
     ARCHIVOS.forEach(function (a) {
       var lista = datos[a.archivo];
@@ -281,6 +288,9 @@
         colores: cols.map(function (c) { return { nombre_es: c.nombre_es, nombre_en: c.nombre_en, img: c.imgs[0], hex: c.hex }; })
       };
     });
+    /* ¿Llegaron los tres archivos? Si alguno falló, el carrito no debe
+       borrar las camisetas que no ve: solo faltan por la conexión. */
+    window.AYM_CATALOGO_COMPLETO = ARCHIVOS.every(function (a) { return Array.isArray(datos[a.archivo]); });
     window.AYM_PRODUCTS = map;
     renderSeo(todos);
     document.dispatchEvent(new CustomEvent("aym:productsrendered"));
@@ -787,7 +797,7 @@
   function load() {
     try {
       Promise.all(ARCHIVOS.map(function (a) { return cargarUno(a.archivo); }).concat([cargarUrls()]))
-        .then(renderAll)
+        .then(function () { cargaLista = true; renderAll(); })
         .catch(function () {});
       fetch("data/tallas.json", { cache: "no-store" })
         .then(function (r) { return r.ok ? r.json() : null; })
@@ -811,6 +821,10 @@
   /* Al cambiar de idioma se repintan las dos cuadrículas; si la ventana está
      abierta, se cierra (su contenido quedaría en el idioma anterior). */
   document.addEventListener("aym:langchange", function () {
+    /* Solo si de verdad cambió el idioma y el catálogo ya está completo.
+       (Los textos del panel también avisan con este evento, sin cambiar
+       de idioma: eso no debe cerrar la ventana ni repintar.) */
+    if (!cargaLista || lang() === idiomaPintado) return;
     if (PV && PV.classList.contains("open")) cerrarVentana();
     renderAll();
   });
