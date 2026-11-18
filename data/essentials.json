@@ -1,6 +1,16 @@
 {
   "productos": [
     {
+      "id": "587e1914-63ee-4f55-96d4-5b393568c2f5",
+      "imagen": "/assets/catsa.webp",
+      "colores": [],
+      "nombre_es": "---",
+      "precio": null,
+      "desc_es": "----",
+      "desc_larga_es": "---",
+      "disponible": true
+    },
+    {
       "id": "17dcfdf4-eabb-4784-9707-77880f735375",
       "imagen": "/assets/tibron-cerve.webp",
       "colores": [],
