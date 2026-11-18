@@ -51,10 +51,16 @@
     {
       "id": "cf512b05-9658-4ab2-9583-78d2cade4303",
       "imagen": "/assets/catcus-verde.webp",
-      "colores": [],
-      "nombre_es": "----",
+      "colores": [
+        {
+          "nombre_es": "Verde militar",
+          "color": "",
+          "imagen": "/assets/cactus-camiseta-verde-militar-talla-xl.webp"
+        }
+      ],
+      "nombre_es": "Catcus",
       "precio": null,
-      "desc_es": "-----",
+      "desc_es": "La camiseta Catcus combina humor y estética urbana para acompañarte todos los días. Detalles del producto: Diseño minimalista de gato cactus en maceta con texto \"CATCUS\" en el pecho sobre fondo verde oliva. Corte clásico unisex, ligero y cómodo. Confeccionada en 100% algodón de 160 gr. El valor de $35.000 es por unidad.",
       "desc_larga_es": "",
       "disponible": true
     },
