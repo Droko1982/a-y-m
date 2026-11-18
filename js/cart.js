@@ -214,13 +214,54 @@
     return p && p.img ? p.img : IMG_DEFECTO;
   }
 
+  /* ---------- Color en el carrito ----------
+     Si una camiseta tiene colores, el carrito muestra cuál se eligió y deja
+     cambiarlo. Nada cambia hasta pulsar "Confirmar color", y el pedido no se
+     puede enviar mientras falte el color de alguna camiseta: así no llega a
+     WhatsApp un pedido sin color (antes pasaba si no se tocaba ningún color). */
+  function coloresDe(id) {
+    var p = PRODUCTS[id];
+    return p && Array.isArray(p.colores) ? p.colores.filter(function (c) { return c && c.nombre_es; }) : [];
+  }
+  function colorValido(i) {
+    var cols = coloresDe(i.id);
+    if (!cols.length) return true;
+    for (var k = 0; k < cols.length; k++) if (cols[k].nombre_es === i.color) return true;
+    return false;
+  }
+  function faltaColor(i) { return coloresDe(i.id).length > 0 && !colorValido(i); }
+  function lineaDe(i) { return [i.id, i.fit, i.size, i.color || ""].join("|"); }
+  /* Lo que la persona está editando: { "id|fit|talla|color": { abierto, pendiente, ok } } */
+  var edicion = {};
+  function hayPendientes() {
+    return Object.keys(edicion).some(function (k) { return edicion[k] && edicion[k].pendiente; });
+  }
+  function puntoColor(id, key) {
+    var cols = coloresDe(id);
+    for (var k = 0; k < cols.length; k++) {
+      if (cols[k].nombre_es !== key) continue;
+      if (cols[k].hex) return '<span class="ci-dot" style="background:' + esc(cols[k].hex) + '"></span>';
+      if (cols[k].img) return '<span class="ci-dot"><img src="' + esc(cols[k].img) + '" alt=""></span>';
+    }
+    return '<span class="ci-dot"></span>';
+  }
+  function cambiarColor(id, fit, size, viejo, nuevo) {
+    var it = find(id, fit, size, viejo); if (!it) return null;
+    var otro = find(id, fit, size, nuevo);
+    if (otro && otro !== it) { otro.qty += it.qty; cart = cart.filter(function (x) { return x !== it; }); return otro; }
+    it.color = nuevo;
+    return it;
+  }
+
   function add(id, fit, size, color) {
     if (!PRODUCTS[id]) return;
     if (FITS.indexOf(fit) < 0) fit = "regular";
     if (SIZES.indexOf(size) < 0) size = "M";
     color = color || "";
-    var it = find(id, fit, size, color); if (it) it.qty++; else cart.push({ id: id, fit: fit, size: size, color: color, qty: 1 });
+    var it = find(id, fit, size, color); if (it) it.qty++; else { it = { id: id, fit: fit, size: size, color: color, qty: 1 }; cart.push(it); }
     save(); render(); open();
+    /* Si falta el color, el selector queda a la vista para elegirlo ya */
+    if (faltaColor(it)) mostrarEditor(lineaDe(it));
   }
   function setQty(id, fit, size, color, q) {
     var it = find(id, fit, size, color); if (!it) return;
@@ -318,13 +359,129 @@
     return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg);
   }
 
+  /* Recordar qué botón tenía el foco: render() rehace la lista y, sin esto,
+     quien usa teclado o lector de pantalla pierde su lugar en cada clic. */
+  function capturaFoco() {
+    var a = document.activeElement;
+    if (!a || !a.closest || !a.closest("#cart-items")) return null;
+    return { act: a.getAttribute("data-act"), line: a.getAttribute("data-line"), key: a.getAttribute("data-key") };
+  }
+  function restauraFoco(f) {
+    if (!f || !f.act) return;
+    var lista = document.querySelectorAll("#cart-items [data-act]");
+    var deLinea = [];
+    for (var k = 0; k < lista.length; k++) {
+      var b = lista[k];
+      if (b.getAttribute("data-line") !== f.line) continue;
+      deLinea.push(b);
+      if (b.getAttribute("data-act") === f.act && (f.key == null || b.getAttribute("data-key") === f.key)) { b.focus(); return; }
+    }
+    /* El botón ya no está (p. ej. se abrió o cerró el selector): el más cercano
+       de la misma línea: el color marcado, "Cambiar" o el botón de cantidad. */
+    var orden = ['color-elegir[aria-pressed="true"]', "color-elegir", "color-abrir", "inc"];
+    for (var o = 0; o < orden.length; o++) {
+      var partes = orden[o].split("["), act = partes[0], pressed = partes[1] ? "true" : null;
+      for (var j = 0; j < deLinea.length; j++) {
+        if (deLinea[j].getAttribute("data-act") === act && (!pressed || deLinea[j].getAttribute("aria-pressed") === "true")) { deLinea[j].focus(); return; }
+      }
+    }
+  }
+  function enfocar(act, line) {
+    var lista = document.querySelectorAll('#cart-items [data-act="' + act + '"]');
+    for (var k = 0; k < lista.length; k++) if (lista[k].getAttribute("data-line") === line) { lista[k].focus(); return; }
+  }
+  /* En el celular la lista del carrito es una franja con scroll: el selector
+     de color (y su botón Confirmar) se lleva a la vista para que no quede
+     escondido debajo del total. */
+  function mostrarEditor(line) {
+    var eds = document.querySelectorAll("#cart-items .ci-color-edit");
+    for (var k = 0; k < eds.length; k++) {
+      if (eds[k].getAttribute("data-line") !== line) continue;
+      var fin = eds[k].querySelector(".ci-color-btns") || eds[k];
+      try { fin.scrollIntoView({ block: "nearest" }); } catch (e) { fin.scrollIntoView(false); }
+      return;
+    }
+  }
+
+  /* El color de una línea del carrito: resumen, o el selector para cambiarlo */
+  function colorHTML(i, dc) {
+    var cols = coloresDe(i.id);
+    if (!cols.length) return { fila: "", editor: "" };
+    var en = lang() === "en", linea = lineaDe(i), ed = edicion[linea] || {};
+    var falta = faltaColor(i), abierto = falta || ed.abierto;
+    var pend = ed.pendiente || "";
+    var dl = ' data-line="' + esc(linea) + '"';
+    var fila = "";
+    if (!falta) {
+      fila = '<div class="ci-color">' + puntoColor(i.id, i.color) +
+        '<span>' + (en ? "Color" : "Color") + ': <strong>' + esc(getColorName(i.id, i.color)) + '</strong></span>' +
+        (ed.ok ? '<span class="ci-ok" role="status">✓ ' + (en ? "Confirmed" : "Confirmado") + '</span>' : '') +
+        (abierto ? '' : '<button type="button" class="ci-link" data-act="color-abrir"' + dc + dl + '>' + (en ? "Change" : "Cambiar") + '</button>') +
+      '</div>';
+    }
+    if (!abierto) return { fila: fila, editor: "" };
+    var opciones = cols.map(function (c) {
+      var nm = en ? (c.nombre_en || c.nombre_es) : (c.nombre_es || c.nombre_en);
+      var marcado = pend ? c.nombre_es === pend : (!falta && c.nombre_es === i.color);
+      return '<button type="button" class="ci-color-opt" data-act="color-elegir"' + dc + dl + ' data-key="' + esc(c.nombre_es) +
+        '" aria-pressed="' + (marcado ? "true" : "false") + '">' + puntoColor(i.id, c.nombre_es) + '<span>' + esc(nm) + '</span></button>';
+    }).join("");
+    var cambio = pend && pend !== i.color;
+    var nombre = getName(i.id);
+    var editor = '<div class="ci-color-edit' + (falta && !cambio ? " is-falta" : "") + '"' + dl + ' role="group" aria-label="' +
+        esc((en ? "Color of " : "Color de ") + nombre) + '">' +
+      '<p class="ci-color-msg">' + (falta
+        ? (en ? "Choose the color of this t-shirt:" : "Elige el color de esta camiseta:")
+        : (en ? "Choose another color:" : "Elige otro color:")) + '</p>' +
+      '<div class="ci-color-opts">' + opciones + '</div>' +
+      (cambio
+        ? '<p class="ci-color-pend">' + (falta ? (en ? "You chose " : "Elegiste ") : (en ? "Change to " : "Cambiar a ")) +
+            '<strong>' + esc(getColorName(i.id, pend)) + '</strong>' + (en ? ". Confirm?" : ". ¿Lo confirmas?") + '</p>' +
+          '<div class="ci-color-btns">' +
+            '<button type="button" class="ci-confirm" data-act="color-confirmar"' + dc + dl + '>' + (en ? "Confirm color" : "Confirmar color") + '</button>' +
+            '<button type="button" class="ci-cancel" data-act="color-cancelar"' + dc + dl + '>' + (en ? "Cancel" : "Cancelar") + '</button>' +
+          '</div>'
+        : (falta ? '' : '<div class="ci-color-btns"><button type="button" class="ci-cancel" data-act="color-cancelar"' + dc + dl + '>' + (en ? "Keep " : "Dejar ") + esc(getColorName(i.id, i.color)) + '</button></div>')) +
+    '</div>';
+    return { fila: fila, editor: editor };
+  }
+
+  /* Aviso sobre el botón de WhatsApp mientras falte confirmar algún color */
+  function pintarAviso(enfatizar) {
+    var av = document.getElementById("cart-aviso"), co = document.getElementById("cart-checkout");
+    var en = lang() === "en";
+    var faltan = cart.filter(faltaColor).length;
+    var pend = hayPendientes();
+    var msg = "";
+    if (faltan) msg = en
+      ? (faltan === 1 ? "Choose the color of 1 t-shirt to place your order." : "Choose the color of " + faltan + " t-shirts to place your order.")
+      : (faltan === 1 ? "Falta elegir el color de 1 camiseta para enviar tu pedido." : "Falta elegir el color de " + faltan + " camisetas para enviar tu pedido.");
+    else if (pend) msg = en ? "Confirm or cancel the color change before placing your order." : "Confirma o cancela el cambio de color antes de enviar tu pedido.";
+    if (av) {
+      av.textContent = msg;
+      av.hidden = !msg;
+      av.classList.remove("is-alerta");
+      if (msg && enfatizar) { void av.offsetWidth; av.classList.add("is-alerta"); }
+    }
+    if (co) {
+      co.classList.toggle("is-bloqueado", !!msg);
+      if (msg) co.setAttribute("aria-disabled", "true"); else co.removeAttribute("aria-disabled");
+    }
+    return !msg;
+  }
+
   function render() {
     var badge = document.getElementById("cart-count");
     if (badge) { var c = count(); badge.textContent = c; badge.hidden = c === 0; }
     var itemsEl = document.getElementById("cart-items");
     if (!itemsEl) return;
+    var foco = capturaFoco();
     var emptyEl = document.getElementById("cart-empty"), footEl = document.getElementById("cart-foot");
     var en = lang() === "en", rm = en ? "Remove" : "Quitar", tl = en ? "Size" : "Talla";
+    /* Olvidar ediciones de líneas que ya no existen */
+    var vivas = {};
+    cart.forEach(function (i) { vivas[lineaDe(i)] = true; });
+    Object.keys(edicion).forEach(function (k) { if (!vivas[k]) delete edicion[k]; });
     if (!cart.length) {
       itemsEl.innerHTML = "";
       if (emptyEl) emptyEl.hidden = false;
@@ -335,26 +492,34 @@
       itemsEl.innerHTML = cart.map(function (i) {
         /* p puede no existir si el catálogo aún no llegó o si falló: se pinta
            igual con una imagen de respaldo en vez de romper todo el carrito. */
-        var p = PRODUCTS[i.id] || {}, unit = price(i.id, i.fit);
-        var colName = getColorName(i.id, i.color);
+        var unit = price(i.id, i.fit);
         var dc = ' data-id="' + esc(i.id) + '" data-fit="' + esc(i.fit) + '" data-size="' + esc(i.size) + '" data-color="' + esc(i.color || "") + '"';
-        return '<div class="cart-item">' +
-          '<img src="' + esc(getColorImg(i.id, i.color)) + '" alt="" width="62" height="68">' +
-          '<div class="ci-info"><span class="ci-name">' + getName(i.id) + '</span>' +
-          '<span class="ci-price">' + etiquetaDe(i) + ' · ' + tl + ' ' + i.size + (colName ? ' · ' + esc(colName) : '') + ' · ' + fmt(unit) + '</span>' +
+        var dl = ' data-line="' + esc(lineaDe(i)) + '"';
+        var col = colorHTML(i, dc);
+        var ed = edicion[lineaDe(i)] || {};
+        /* La miniatura muestra el color que se está por confirmar */
+        var foto = getColorImg(i.id, ed.pendiente || (colorValido(i) ? i.color : ""));
+        return '<div class="cart-item' + (faltaColor(i) ? " is-falta" : "") + '">' +
+          '<img src="' + esc(foto) + '" alt="" width="62" height="68">' +
+          '<div class="ci-info"><span class="ci-name">' + esc(getName(i.id)) + '</span>' +
+          '<span class="ci-price">' + etiquetaDe(i) + ' · ' + tl + ' ' + esc(i.size) + ' · ' + fmt(unit) + '</span>' +
+          col.fila +
           '<div class="ci-qty">' +
-            '<button type="button" data-act="dec"' + dc + ' aria-label="menos">−</button>' +
+            '<button type="button" data-act="dec"' + dc + dl + ' aria-label="' + (en ? "one less" : "una menos") + '">−</button>' +
             '<span class="ci-num">' + i.qty + '</span>' +
-            '<button type="button" data-act="inc"' + dc + ' aria-label="mas">+</button>' +
-            '<button type="button" class="ci-remove" data-act="rm"' + dc + '>' + rm + '</button>' +
+            '<button type="button" data-act="inc"' + dc + dl + ' aria-label="' + (en ? "one more" : "una más") + '">+</button>' +
+            '<button type="button" class="ci-remove" data-act="rm"' + dc + dl + '>' + rm + '</button>' +
           '</div></div>' +
           '<span class="ci-line">' + fmt(i.qty * unit) + '</span>' +
+          col.editor +
         '</div>';
       }).join("");
     }
     var t = document.getElementById("cart-total"); if (t) t.textContent = fmt(total());
     var co = document.getElementById("cart-checkout"); if (co) co.setAttribute("href", checkoutHref());
+    pintarAviso(false);
     applyPay();
+    restauraFoco(foco);
   }
 
   /* Foco al que volver cuando se cierre el carrito */
@@ -448,9 +613,48 @@
     if (items) items.addEventListener("click", function (e) {
       var btn = e.target.closest("button[data-act]"); if (!btn) return;
       var id = btn.getAttribute("data-id"), fit = btn.getAttribute("data-fit"), size = btn.getAttribute("data-size"), color = btn.getAttribute("data-color") || "", act = btn.getAttribute("data-act"), it = find(id, fit, size, color);
+      var linea = btn.getAttribute("data-line") || [id, fit, size, color].join("|");
       if (act === "inc") setQty(id, fit, size, color, (it ? it.qty : 0) + 1);
       else if (act === "dec") setQty(id, fit, size, color, (it ? it.qty : 0) - 1);
       else if (act === "rm") remove(id, fit, size, color);
+      else if (act === "color-abrir") { edicion[linea] = { abierto: true }; render(); mostrarEditor(linea); }
+      else if (act === "color-elegir") {
+        var k = btn.getAttribute("data-key") || "";
+        var ed = edicion[linea] || (edicion[linea] = {});
+        ed.abierto = true; ed.ok = false;
+        /* Tocar el color que ya tiene = no hay nada que confirmar */
+        ed.pendiente = it && colorValido(it) && it.color === k ? "" : k;
+        render();
+        mostrarEditor(linea);
+      }
+      else if (act === "color-cancelar") { delete edicion[linea]; render(); }
+      else if (act === "color-confirmar") {
+        var nuevo = (edicion[linea] || {}).pendiente;
+        delete edicion[linea];
+        if (nuevo) {
+          var queda = cambiarColor(id, fit, size, color, nuevo);
+          save();
+          if (queda) {
+            var ln = lineaDe(queda);
+            edicion[ln] = { ok: true };
+            setTimeout(function () { if (edicion[ln] && edicion[ln].ok && !edicion[ln].abierto) { delete edicion[ln]; render(); } }, 2600);
+            render();
+            enfocar("color-abrir", ln);
+            return;
+          }
+        }
+        render();
+      }
+    });
+    /* No se envía a WhatsApp un pedido con colores sin elegir o sin confirmar */
+    var checkout = document.getElementById("cart-checkout");
+    if (checkout) checkout.addEventListener("click", function (e) {
+      if (pintarAviso(true)) return;
+      e.preventDefault();
+      var primero = document.querySelector("#cart-items .ci-color-edit");
+      if (primero && primero.scrollIntoView) primero.scrollIntoView({ block: "center", behavior: "smooth" });
+      var b = primero && primero.querySelector(".ci-confirm, .ci-color-opt");
+      if (b) b.focus({ preventScroll: true });
     });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
     render();

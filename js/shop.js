@@ -278,7 +278,7 @@
         espacio: p._espacio,
         fit: p._fit,
         precio: p.precio,
-        colores: cols.map(function (c) { return { nombre_es: c.nombre_es, nombre_en: c.nombre_en, img: c.imgs[0] }; })
+        colores: cols.map(function (c) { return { nombre_es: c.nombre_es, nombre_en: c.nombre_en, img: c.imgs[0], hex: c.hex }; })
       };
     });
     window.AYM_PRODUCTS = map;

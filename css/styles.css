@@ -1523,3 +1523,56 @@ section[id] { scroll-margin-top: 84px; }
 .pv-ficha { display: inline-block; margin-top: 14px; font-size: .88rem; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .pv-ficha:hover { color: var(--text); }
 .product-name a:hover { color: var(--accent); }
+
+/* ---------- Color de cada camiseta en el carrito ----------
+   Resumen del color elegido, selector para cambiarlo con confirmación y
+   aviso cuando falta elegirlo (el pedido no sale sin color). */
+.ci-color { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; font-size: .8rem; color: var(--text-soft); margin-top: 3px; }
+.ci-color strong { color: var(--text); font-weight: 600; }
+.ci-dot {
+    width: 18px; height: 18px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+    border: 1px solid var(--line); background: var(--green-soft); display: inline-block;
+}
+.cart-item .ci-dot img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0; }
+.ci-link {
+    border: none; background: none; padding: 2px 0; cursor: pointer;
+    font: 600 .78rem 'Inter', sans-serif; color: var(--accent);
+    text-decoration: underline; text-underline-offset: 3px;
+}
+.ci-link:hover { color: var(--text); }
+.ci-ok { color: var(--green); font-weight: 600; font-size: .78rem; }
+.ci-color-edit {
+    grid-column: 1 / -1; margin-top: -4px;
+    background: var(--bg-alt); border: 1px solid var(--line); padding: 12px;
+}
+.ci-color-edit.is-falta { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.ci-color-msg { font-size: .84rem; font-weight: 600; color: var(--text); margin-bottom: 9px; }
+.ci-color-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.ci-color-opt {
+    display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px 5px 5px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--surface); color: var(--text);
+    font: 500 .8rem 'Inter', sans-serif; border-radius: var(--radius-sm);
+    transition: border-color .15s, box-shadow .15s;
+}
+.ci-color-opt:hover { border-color: var(--accent); }
+.ci-color-opt[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); font-weight: 600; }
+.ci-color-opt:focus-visible, .ci-link:focus-visible, .ci-confirm:focus-visible, .ci-cancel:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ci-color-pend { font-size: .84rem; color: var(--text); margin: 11px 0 0; }
+.ci-color-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.ci-confirm, .ci-cancel {
+    padding: 9px 14px; cursor: pointer; font: 600 .82rem 'Inter', sans-serif;
+    border-radius: var(--radius-sm); border: 1px solid var(--accent);
+}
+.ci-confirm { background: var(--accent); color: var(--accent-ink); }
+.ci-confirm:hover { filter: brightness(1.08); }
+.ci-cancel { background: none; color: var(--text); border-color: var(--line); }
+.ci-cancel:hover { border-color: var(--accent); color: var(--accent); }
+.cart-aviso {
+    font-size: .82rem; line-height: 1.45; color: var(--text); margin: 0 0 12px;
+    padding: 9px 12px; border-left: 3px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.cart-aviso.is-alerta { animation: aym-sacude .38s ease; }
+@keyframes aym-sacude { 0%, 100% { transform: none; } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+@media (prefers-reduced-motion: reduce) { .cart-aviso.is-alerta { animation: none; } }
+.cart-checkout.is-bloqueado { opacity: .55; }
