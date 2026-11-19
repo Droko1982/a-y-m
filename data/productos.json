@@ -9,7 +9,8 @@
       "precio": null,
       "desc_es": "La serenidad de la noche y el descanso de un espíritu indomable se fusionan en una ilustración llena de calma y carácter. Una pieza que rompe la rutina, creada para quienes saben disfrutar la tranquilidad sin perder su fuerza interior.",
       "desc_larga_es": "La camiseta Calma Salvaje une la calidez de la ilustración natural con la esencia urbana en una prenda hecha para acompañarte todos los días. Detalles del producto: Diseño: Ilustración central en el pecho de un tigre descansando sobre una rama frente a la luna llena sobre fondo negro. Corte Regular Fit: Silueta estándar, cómoda y versátil que te da total libertad de movimiento con una caída impecable. 100 por ciento algodón 260gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "5476321f-bc83-49f2-aa7a-acbdbbe3e3cd",
@@ -46,7 +47,8 @@
       "precio": null,
       "desc_es": "La ternura doméstica y la fuerza indomable se fusionan en una ilustración llena de carácter y misticismo. Una pieza que rompe la rutina, creada para quienes llevan un corazón noble por fuera pero guardan el espíritu valiente de un gran felino en su interior.",
       "desc_larga_es": "La camiseta Alma de León une la sutileza del arte lineal con la fuerza del instinto salvaje en una prenda hecha para acompañarte todos los días. Detalles del producto: Diseño: Ilustración central en el pecho de un gato sentado portando un tocado tribal con la máscara de un cráneo de león. Corte Regular Fit: Silueta estándar, cómoda y versátil que te da total libertad de movimiento con una caída impecable. 100 por ciento algodón 260gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "ying",
@@ -68,7 +70,8 @@
       "precio": null,
       "desc_es": "El equilibrio perfecto y la frescura de la naturaleza se mezclan en el diseño ideal para tu día a día. Una historia que rompe la rutina, pensada para recordarte que la vida se disfruta más cuando encuentras tu propio centro y te tomas las cosas con calma.",
       "desc_larga_es": "La camiseta Yin Yang Felino une el concepto de la dualidad con el encanto del mundo animal en una prenda hecha para acompañarte todos los días. Detalles del producto: Diseño: Ilustración central en el pecho de dos gatos formando el símbolo del yin y el yang. Corte Regular Fit: Silueta estándar, cómoda y versátil que te da total libertad de movimiento con una caída impecable. 100 por ciento algodon 260gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "wild",
@@ -103,7 +106,8 @@
       "precio": null,
       "desc_es": "El orgullo por nuestras raíces y la fuerza del felino más grande de América se mezclan en el diseño ideal para llevar tu identidad con estilo. Una historia que rompe la rutina, pensada para recordarte la imponencia y el espíritu indomable de nuestra biodiversidad.",
       "desc_larga_es": "La camiseta Tierra de Jaguares une la riqueza cultural y natural con la estética urbana en una prenda hecha para acompañarte todos los días. Detalles del producto: Diseño: Detalle minimalista de texto COLOMBIA ES TIERRA DE JAGUARES en el pecho e ilustración detallada de jaguar en la espalda. Corte Regular Fit: Silueta estándar, cómoda y versátil que te da total libertad de movimiento con una caída impecable. 100 por ciento algodon 260gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "------",
@@ -135,7 +139,8 @@
       "precio": null,
       "desc_es": "Para esos días en los que el café es tu único aliado y la paciencia es limitada. Una historia con una alta dosis de humor sarcástico y actitud irreverente, diseñada para quienes prefieren observar el caos del mundo desde lejos y con una taza en la mano.",
       "desc_larga_es": "La camiseta Drama Cat fusiona la cultura del café con un toque de humor irreverente y felino a través de una ilustración gráfica de gran personalidad en una prenda de tono arena o beige hecha para acompañarte todos los días. Presenta un potente diseño central en el frente que retrata la silueta en tinta negra de un gato negro de mirada desafiante tomando café, acompañada por los textos tipográficos \"Smells Like Drama\" y \"Keep Your Distance\". Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "originSS",
@@ -166,6 +171,7 @@
       "desc_es": "Donde la tierra y el océano se fusionan en un solo horizonte. Una historia que conecta la solidez de las montañas con la inmensidad del mar, pensada para recordarte que la naturaleza siempre es nuestro punto de partida.",
       "desc_larga_es": "La camiseta Origen une el misticismo del paisaje terrestre con la inmensidad del mundo marino en una prenda de color verde oliva hecha para acompañarte todos los días. Presenta una ilustración central en el frente que fusiona la silueta de una ballena con montañas y un sol de fondo en tonos dorados. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
       "disponible": true,
+      "tallas_agotadas": [],
       "desc_en": "A whale, a horizon, and the vastness of the ocean transformed into a single story.",
       "desc_larga_en": "",
       "nombre_en": "Origin",
@@ -200,6 +206,7 @@
       "desc_es": "El reflejo de los días perfectos bajo el sol, entre palmeras, tablas de surf y la brisa del mar. Una historia diseñada para capturar la esencia de la vida playera y llevar el espíritu del verano contigo en cualquier época del año.",
       "desc_larga_es": "La camiseta Alma Marina captura la esencia de la vida playera y el entorno costero a través de una cuidada ilustración lineal que reúne tablas de surf, vegetación tropical y fauna marina en una prenda hecha para acompañarte todos los días. Presenta un diseño gráfico frontal corrido con motivos de palmeras, tablas de surf y elementos marinos sobre un tono crema cálido. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
       "disponible": true,
+      "tallas_agotadas": [],
       "desc_en": "Inspired by coastal biodiversity and the spirit of the sea, this T-shirt is a tribute to our species and ecosystems.\n100% cotton, 280g.",
       "desc_larga_en": "",
       "nombre_en": "Marine Soul",
@@ -234,6 +241,7 @@
       "desc_es": "Inspirada en la ballena de los 52 hercios, que canta en una frecuencia única en todo el océano esperando conectar con alguien más. Una historia sobre la singularidad, la resiliencia y el deseo profundo de encontrar tu propia manada.",
       "desc_larga_es": "La camiseta 52Hz rinde un profundo homenaje al misterio y la melancolía del mundo marino a través de una ilustración detallada que destaca el canto único del gigante más solitario del océano en una prenda hecha para acompañarte todos los días. Presenta una gráfica central blanca en el frente con la silueta de una ballena, acompañada por el texto \"-52Hz\" y la frase \"I called but no one heard...\" sobre un tono azul oscuro. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
       "disponible": true,
+      "tallas_agotadas": [],
       "desc_en": "A call in the ocean that goes unheard. The impact of marine noise pollution silences the song of the whales.",
       "desc_larga_en": "",
       "nombre_en": "Beneath the noise",
@@ -243,7 +251,7 @@
     {
       "id": "PocaVida",
       "coleccion": "oceano",
-      "imagen": "/assets/Nuki.jpg",
+      "imagen": "/assets/poca-vida.webp",
       "colores": [
         {
           "nombre_es": "Arena",
@@ -270,7 +278,8 @@
       "precio": 55900,
       "desc_es": "Inspirada en el ritmo pausado de las tortugas marinas, que nos enseñan a fluir sin prisa en un mundo que siempre corre. Una historia con un toque de humor realista, creada para recordarte que la vida es muy corta como para tomársela con tanto afán.",
       "desc_larga_es": "La camiseta Poca Vida une el humor cotidiano con la serenidad del mundo marino a través de un mensaje directo y consciente que nos invita a desacelerar el ritmo en una prenda hecha para acompañarte todos los días. Presenta un diseño gráfico circular central en el frente con la ilustración lineal de una tortuga marina y la frase \"Mucho estrés para tan poca vida\" sobre un tono marrón tierra. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "Jurassic",
@@ -302,7 +311,8 @@
       "precio": null,
       "desc_es": "Una divertida parodia que viaja en el tiempo para unir la cultura pop con el depredador más imponente y prehistórico de los océanos. Una historia con mucha personalidad y estilo retro, pensada para quienes buscan destacar con un toque de humor irreverente.",
       "desc_larga_es": "La camiseta Jurassic Shark fusiona el humor de la cultura pop con la fascinación por el mundo marino a través de un diseño vibrante y lleno de nostalgia en una prenda hecha para acompañarte todos los días. Presenta un logotipo gráfico central en el frente con la silueta de un tiburón y el texto tipográfico \"Jurassic Shark\" al mejor estilo de la icónica película retro, sobre un tono beige o arena. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "Manta",
@@ -334,7 +344,8 @@
       "precio": null,
       "desc_es": "Una explosión de colores y formas inspirada en la elegancia con la que las mantarrayas se deslizan por los arrecifes tropicales. Una historia llena de energía y arte abstracto, pensada para quienes buscan destacar y conectar con la alegría del océano.",
       "desc_larga_es": "La camiseta Manta Ray White fusiona el arte abstracto con el encanto del mundo marino a través de un diseño geométrico de trazos étnicos en una prenda blanca hecha para acompañarte todos los días. Presenta una vibrante ilustración central en el frente con motivos abstractos multicolor que emulan la silueta en movimiento de una mantarraya y elementos del océano. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "Circulo",
@@ -371,7 +382,8 @@
       "precio": 55900,
       "desc_es": "Un amuleto visual que conecta los ciclos de la tierra y los misterios marinos bajo una misma simbología ancestral. Una historia inspirada en la sabiduría de la naturaleza, creada para quienes buscan un equilibrio místico en su día a día.",
       "desc_larga_es": "La camiseta Místico une la geometría simbólica con la fauna del océano a través de una ilustración circular de trazos orgánicos y étnicos en una prenda de tono vainilla hecha para acompañarte todos los días. Presenta una gráfica central frontal en color verde oliva que entrelaza la silueta de un delfín o ballena con espirales, astros y destellos que evocan el cosmos y el mar. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "choco",
@@ -408,7 +420,8 @@
       "precio": null,
       "desc_es": "Un viaje surrealista hacia la calma mental, donde los pensamientos fluyen libres como un banco de peces en el océano. Una historia visual creada para quienes encuentran su paz interior y su mayor inspiración al conectar con el agua.",
       "desc_larga_es": "La camiseta Mente Marina fusiona el surrealismo artístico con la serenidad del mundo costero a través de una ilustración detallada y colorida en una prenda de tono arena o beige hecha para acompañarte todos los días. Presenta una gráfica artística central en el frente que retrata de manera poética a una persona meditando mientras un banco de peces multicolores fluye sobre su mente. Está confeccionada en 100% algodón de 260gr con un corte regular fit de silueta clásica y cómoda que te da total versatilidad con una caída estructurada y natural.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     }
   ]
 }
