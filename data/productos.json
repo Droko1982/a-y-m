@@ -19,6 +19,11 @@
           "nombre_es": "Crema",
           "color": "",
           "imagen": "/assets/tigre-5.webp"
+        },
+        {
+          "nombre_es": "Verde militar",
+          "color": "",
+          "imagen": "/assets/tigre-3.webp"
         }
       ],
       "nombre_es": "Calma Salvaje",
