@@ -4,12 +4,19 @@
       "id": "d5dd2815-db8e-4690-86db-3865525a9635",
       "coleccion": "felina",
       "imagen": "/assets/potada-cot-cats.webp",
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Mocca",
+          "color": "",
+          "imagen": "/assets/duo-gatos.webp"
+        }
+      ],
       "nombre_es": "CATastrophe",
       "precio": null,
       "desc_es": "El humor sutil y la espontaneidad de los felinos se mezclan en el diseño ideal para llevar tu personalidad con estilo. Una historia que rompe la rutina, pensada para sacarte una sonrisa y darle un toque relajado y auténtico a tu día.",
       "desc_larga_es": "La camiseta CATastrophe une el humor y la espontaneidad con la estética urbana en una prenda hecha para acompañarte todos los días. Detalles del producto: Diseño: Detalle minimalista de texto CATastrophe en el pecho e ilustración de dos gatos sorprendidos en la parte baja de la espalda sobre fondo café. Corte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100 por ciento algodón 280gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "b6aa8af2-f1a9-4ed6-9ffa-aafc93cb7c5a",
@@ -39,7 +46,8 @@
       "precio": null,
       "desc_es": "Una celebración a la existencia, la curiosidad y la vitalidad que habita en lo más profundo de nuestra fauna. Este diseño captura un instante de conexión pura con el entorno, creado para quienes llevan el pulso de la naturaleza y el instinto urbano grabados en cada paso.",
       "desc_larga_es": "La camiseta Espíritu Vivo une la frescura de la naturaleza y la energía de la calle en una prenda con un mensaje directo y una estética urbana impecable. Detalles del producto: Diseño: Detalle minimalista de texto \"I AM ALIVE\" en tipografía manuscrita en el pecho e ilustración detallada de un felino azul jugando de espaldas con una mariposa en la espalda. Corte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural, confeccionada en 100 por ciento algodón de 280gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "81de4f81-8a3b-453d-808b-ca4cbcc97cf2",
@@ -69,7 +77,8 @@
       "precio": null,
       "desc_es": "La libertad y la elegancia indomable de la naturaleza se fusionan en un diseño minimalista que rinde homenaje al espíritu femenino. Una prenda pensada para quienes caminan con firmeza, rompen las reglas de la rutina y llevan la autenticidad como su bandera más salvaje.",
       "desc_larga_es": "La camiseta Instinto Salvaje une la riqueza conceptual y natural con la estética urbana en una prenda hecha para acompañarte todos los días. Detalles del producto: Diseño: Detalle minimalista de texto \"love her but leave her wild\" en el pecho e ilustración detallada de una felina en tonos pasteles degradados en la espalda. Corte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural, confeccionada en 100 por ciento algodón de 280gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "------",
@@ -114,7 +123,8 @@
       "precio": null,
       "desc_es": "El orgullo por nuestras raíces y la fuerza del felino más grande de América se mezclan en el diseño ideal para llevar tu identidad con estilo. Una historia que rompe la rutina, pensada para recordarte la imponencia y el espíritu indomable de nuestra biodiversidad.",
       "desc_larga_es": "La camiseta Tierra de Jaguares une la riqueza cultural y natural con la estética urbana en una prenda hecha para acompañarte todos los días. Detalles del producto: Diseño: Detalle minimalista de texto COLOMBIA ES TIERRA DE JAGUARES en el pecho e ilustración detallada de jaguar en la espalda. Corte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100 por ciento algodon 280gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "----",
@@ -149,7 +159,8 @@
       "precio": null,
       "desc_es": "La audacia y la frescura de la selva se mezclan en una declaración de pura actitud. Una historia que rompe la rutina, pensada para recordarte que la vida se disfruta más cuando sigues tus propios instintos y marcas tu propio territorio.",
       "desc_larga_es": "La camiseta Wild Cat une el misticismo de la fauna con el estilo urbano en una prenda hecha para acompañarte todos los días. Detalles del producto: Diseño: Detalle minimalista de texto I AM ALIVE en el pecho e ilustración completa de felino salvaje en la espalda. Corte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100 por ciento algodon 280gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "----",
@@ -189,7 +200,8 @@
       "precio": null,
       "desc_es": "El humor y la irreverencia felina se mezclan en el diseño ideal para días libres. Una historia que rompe la rutina, pensada para recordarte que la vida se disfruta más cuando mandas todo a volar con actitud y una buena dosis de sarcasmo.",
       "desc_larga_es": "La camiseta Vete a la miaw une el humor con el encanto del mundo urbano en una prenda hecha para acompañarte todos los días. Detalles del producto: Diseño: Detalle minimalista de texto miaw en el pecho e ilustración completa de gato con bocadillo en la espalda. Corte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100 por ciento algodon 280gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "Marisma",
@@ -229,7 +241,8 @@
       "precio": null,
       "desc_es": "Un recorrido visual por las profundidades donde habitan los gigantes más nobles del océano. Diseñada para recordarte la inmensidad del mar y la belleza de sus diferentes especies en cada paso que das.",
       "desc_larga_es": "La camiseta Marisma rinde homenaje a la majestuosidad del océano a través de una cuidada ilustración que celebra la diversidad de las especies de ballenas en un tono cálido y natural, en una prenda hecha para acompañarte todos los días.\nDetalles del producto:\nDiseño: Detalle tipográfico minimalista de \"Whales\" en el pecho e ilustración tipo guía de especies marinas en la espalda.\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100% algodon 280gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "Cereal killer",
@@ -254,7 +267,8 @@
       "precio": null,
       "desc_es": "El humor y la frescura del mar se mezclan en el desayuno ideal. Una historia que rompe la rutina, pensada para recordarte que la vida se disfruta más cuando no te la tomas tan en serio.",
       "desc_larga_es": "La camiseta Cereal Killer une el humor con el encanto del mundo marino en una prenda hecha para acompañarte todos los días.\nDetalles del producto:\nDiseño: Detalle minimalista de orca en el pecho e ilustración completa en la espalda.\nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural. 100% algodón 280gr.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "Don't",
@@ -289,7 +303,8 @@
       "precio": null,
       "desc_es": "Un gráfico divertido y directo con espíritu de conservación marina y ajuste oversize. Confeccionada en algodón de alto gramaje para quienes llevan el cuidado del planeta en su estilo diario.",
       "desc_larga_es": "Diseño: Detalle tipográfico minimalista \"DON'T BE A...\" en el pecho e ilustración completa de tortuga marina con mensaje en la espalda (\"DON'T BE A SUCKER - SAY NO TO PLASTIC STRAWS\").  \n \nCorte Oversize: Silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural.   \n\nMaterial: 100% algodón de 280g.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "Free",
@@ -329,7 +344,8 @@
       "precio": null,
       "desc_es": "Inspirada en el equilibrio perfecto del ecosistema marino, donde las orcas fluyen bajo la guía y energía del sol. Una historia visual de tonos cálidos y orgánicos creada para quienes llevan la fuerza y la pureza del océano en su día a día.",
       "desc_larga_es": "La camiseta Orca Nature Vanilla une la fluidez del océano con el encanto del mundo marino a través de gráficos limpios y contrastantes en una prenda de tono vainilla hecha para acompañarte todos los días. Presenta un detalle minimalista de la cola de una orca en el pecho y una ilustración vertical estilizada en la espalda con dos orcas rodeando un sol junto a la palabra \"NATURE\". Está confeccionada en 100% algodón de 280gr con un corte oversize de silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "Abiss",
@@ -359,7 +375,8 @@
       "precio": null,
       "desc_es": "Un viaje hacia los secretos más profundos y desconocidos del océano, donde la luz se desvanece y la vida se rige por sus propias leyes. Una historia de misticismo y geometría sagrada, pensada para quienes se atreven a explorar lo inexplorado.",
       "desc_larga_es": "La camiseta Abyss rinde un profundo homenaje al misterio y la inmensidad de las profundidades marinas a través de gráficos geométricos de líneas finas y un concepto cartográfico abstracto en una prenda hecha para acompañarte todos los días. Presenta un sutil detalle tipográfico en el pecho con el texto \"ABYSS 13.4\" y una elaborada ilustración vertical lineal en la espalda que fusiona una ballena con círculos geométricos orientados sobre un tono arena o beige. Está confeccionada en 100% algodón de 280gr con un corte oversize de silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "Adaptacion",
@@ -394,7 +411,8 @@
       "precio": null,
       "desc_es": "Inspirada en el misterio, la inteligencia y la adaptabilidad de una de las criaturas más fascinantes de las profundidades marinas. Una historia de misterio y fuerza, creada para quienes fluyen con elegancia en cualquier entorno.",
       "desc_larga_es": "La camiseta Kraken rinde homenaje al misticismo y la imponencia del mundo marino a través de una ilustración detallada que destaca la figura de un pulpo en una prenda de color negro hecha para acompañarte todos los días. Presenta un sutil detalle tipográfico minimalista en el pecho y una elaborada ilustración central en la espalda con la silueta fluida de un pulpo en tonos dorados o arena. Está confeccionada en 100% algodón de 280gr con un corte oversize de silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     },
     {
       "id": "--- choco",
@@ -424,7 +442,8 @@
       "precio": null,
       "desc_es": "Inspirada en los mitos más antiguos de alta mar, donde el calamar gigante desafía los límites de lo conocido en las profundidades. Una historia de resistencia infinita y misterio, creada para quienes viven sin barreras y con un espíritu verdaderamente libre.",
       "desc_larga_es": "La camiseta Boundless rinde homenaje a la fuerza indomable y el misticismo del mundo marino a través de una poderosa ilustración lineal en tinta negra sobre una prenda blanca hecha para acompañarte todos los días. Presenta un sutil detalle tipográfico en el pecho con la palabra \"BOUNDLESS\" y una elaborada ilustración central en la espalda que captura la imponente silueta detallada de un calamar gigante. Está confeccionada en 100% algodón de 280gr con un corte oversize de silueta holgada y fresca que te da total libertad de movimiento con una caída muy natural.",
-      "disponible": true
+      "disponible": true,
+      "tallas_agotadas": []
     }
   ]
 }
