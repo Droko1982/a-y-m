@@ -206,11 +206,33 @@
     return false;
   }
   function faltaColor(i) { return coloresDe(i.id).length > 0 && !colorValido(i); }
+  /* ---------- Tallas agotadas ----------
+     El panel marca por camiseta las tallas que no hay. Una línea del carrito
+     con una talla que se agotó después de agregarla no se borra: se marca y
+     se ofrece cambiarla (con confirmación) o quitarla, y el pedido no sale
+     mientras tanto. */
+  function agotadasDe(id) {
+    var p = PRODUCTS[id];
+    return p && Array.isArray(p.agotadas) ? p.agotadas : [];
+  }
+  function tallaAgotada(i) { return agotadasDe(i.id).indexOf(i.size) >= 0; }
+  function tallasLibres(id) {
+    var a = agotadasDe(id);
+    return SIZES.filter(function (s) { return a.indexOf(s) < 0; });
+  }
+  function cambiarTalla(id, fit, vieja, color, nueva) {
+    var it = find(id, fit, vieja, color); if (!it) return null;
+    var otro = find(id, fit, nueva, color);
+    if (otro && otro !== it) { otro.qty += it.qty; cart = cart.filter(function (x) { return x !== it; }); return otro; }
+    it.size = nueva;
+    return it;
+  }
+  function bloqueada(i) { return faltaColor(i) || tallaAgotada(i); }
   function lineaDe(i) { return [i.id, i.fit, i.size, i.color || ""].join("|"); }
   /* Lo que la persona está editando: { "id|fit|talla|color": { abierto, pendiente, ok } } */
   var edicion = {};
   function hayPendientes() {
-    return Object.keys(edicion).some(function (k) { return edicion[k] && edicion[k].pendiente; });
+    return Object.keys(edicion).some(function (k) { return edicion[k] && (edicion[k].pendiente || edicion[k].talla); });
   }
   function puntoColor(id, key) {
     var cols = coloresDe(id);
@@ -233,6 +255,8 @@
     if (!PRODUCTS[id]) return;
     if (FITS.indexOf(fit) < 0) fit = "regular";
     if (SIZES.indexOf(size) < 0) size = "M";
+    /* Una talla agotada no entra al carrito (la tienda ni la deja elegir) */
+    if (tallaAgotada({ id: id, size: size })) return;
     color = color || "";
     var it = find(id, fit, size, color); if (it) it.qty++; else { it = { id: id, fit: fit, size: size, color: color, qty: 1 }; cart.push(it); }
     save(); render(); open();
@@ -322,6 +346,7 @@
     for (var k = 0; k < eds.length; k++) {
       if (eds[k].getAttribute("data-line") !== line) continue;
       var fin = eds[k].querySelector(".ci-color-btns") || eds[k];
+      if (!eds[k].querySelector(".ci-color-btns") && eds[k + 1] && eds[k + 1].getAttribute("data-line") === line) continue;
       try { fin.scrollIntoView({ block: "nearest" }); } catch (e) { fin.scrollIntoView(false); }
       return;
     }
@@ -370,16 +395,45 @@
     return { fila: fila, editor: editor };
   }
 
+  /* La talla de una línea que se agotó: aviso y tallas que sí hay */
+  function tallaHTML(i, dc) {
+    if (!tallaAgotada(i)) return "";
+    var en = lang() === "en", linea = lineaDe(i), ed = edicion[linea] || {}, pend = ed.talla || "";
+    var dl = ' data-line="' + esc(linea) + '"';
+    var libres = tallasLibres(i.id);
+    var opciones = libres.map(function (s) {
+      return '<button type="button" class="ci-color-opt ci-talla-opt" data-act="talla-elegir"' + dc + dl + ' data-key="' + esc(s) +
+        '" aria-pressed="' + (s === pend ? "true" : "false") + '"><span>' + esc(s) + '</span></button>';
+    }).join("");
+    return '<div class="ci-color-edit ci-talla-edit' + (pend ? "" : " is-falta") + '"' + dl + ' role="group" aria-label="' +
+        esc((en ? "Size of " : "Talla de ") + getName(i.id)) + '">' +
+      '<p class="ci-color-msg">' + (en ? "Size " + esc(i.size) + " is sold out. " : "La talla " + esc(i.size) + " se agotó. ") +
+        (libres.length ? (en ? "Choose another size:" : "Elige otra talla:") : (en ? "Remove it to continue." : "Quítala para poder enviar tu pedido.")) + '</p>' +
+      (libres.length ? '<div class="ci-color-opts">' + opciones + '</div>' : '') +
+      (pend
+        ? '<p class="ci-color-pend">' + (en ? "Change to size " : "Cambiar a talla ") + '<strong>' + esc(pend) + '</strong>' + (en ? ". Confirm?" : ". ¿Lo confirmas?") + '</p>' +
+          '<div class="ci-color-btns">' +
+            '<button type="button" class="ci-confirm" data-act="talla-confirmar"' + dc + dl + '>' + (en ? "Confirm size" : "Confirmar talla") + '</button>' +
+            '<button type="button" class="ci-cancel" data-act="talla-cancelar"' + dc + dl + '>' + (en ? "Cancel" : "Cancelar") + '</button>' +
+          '</div>'
+        : '') +
+    '</div>';
+  }
+
   /* Aviso sobre el botón de WhatsApp mientras falte confirmar algún color */
   function pintarAviso(enfatizar) {
     var av = document.getElementById("cart-aviso"), co = document.getElementById("cart-checkout");
     var en = lang() === "en";
     var faltan = cart.filter(faltaColor).length;
+    var sinTalla = cart.filter(tallaAgotada).length;
     var pend = hayPendientes();
     var msg = "";
     if (faltan) msg = en
       ? (faltan === 1 ? "Choose the color of 1 t-shirt to place your order." : "Choose the color of " + faltan + " t-shirts to place your order.")
       : (faltan === 1 ? "Falta elegir el color de 1 camiseta para enviar tu pedido." : "Falta elegir el color de " + faltan + " camisetas para enviar tu pedido.");
+    else if (sinTalla) msg = en
+      ? (sinTalla === 1 ? "A size you chose is sold out: change it or remove that t-shirt to place your order." : sinTalla + " sizes you chose are sold out: change them or remove those t-shirts to place your order.")
+      : (sinTalla === 1 ? "Una talla que elegiste se agotó: cámbiala o quita esa camiseta para enviar tu pedido." : sinTalla + " tallas que elegiste se agotaron: cámbialas o quita esas camisetas para enviar tu pedido.");
     else if (pend) msg = en ? "Confirm or cancel the color change before placing your order." : "Confirma o cancela el cambio de color antes de enviar tu pedido.";
     if (av) {
       av.textContent = msg;
@@ -423,10 +477,11 @@
         var ed = edicion[lineaDe(i)] || {};
         /* La miniatura muestra el color que se está por confirmar */
         var foto = getColorImg(i.id, ed.pendiente || (colorValido(i) ? i.color : ""));
-        return '<div class="cart-item' + (faltaColor(i) ? " is-falta" : "") + '">' +
+        var agot = tallaAgotada(i);
+        return '<div class="cart-item' + (bloqueada(i) ? " is-falta" : "") + '">' +
           '<img src="' + esc(foto) + '" alt="" width="62" height="68">' +
           '<div class="ci-info"><span class="ci-name">' + esc(getName(i.id)) + '</span>' +
-          '<span class="ci-price">' + etiquetaDe(i) + ' · ' + tl + ' ' + esc(i.size) + ' · ' + fmt(unit) + '</span>' +
+          '<span class="ci-price">' + etiquetaDe(i) + ' · ' + tl + ' ' + esc(i.size) + (agot ? ' <strong class="ci-agotada">(' + (en ? "sold out" : "agotada") + ')</strong>' : '') + ' · ' + fmt(unit) + '</span>' +
           col.fila +
           '<div class="ci-qty">' +
             '<button type="button" data-act="dec"' + dc + dl + ' aria-label="' + (en ? "one less" : "una menos") + '">−</button>' +
@@ -436,6 +491,7 @@
           '</div></div>' +
           '<span class="ci-line">' + fmt(i.qty * unit) + '</span>' +
           col.editor +
+          tallaHTML(i, dc) +
         '</div>';
       }).join("");
     }
@@ -504,6 +560,7 @@
     // selector de talla (delegado: funciona también con productos dinámicos)
     document.addEventListener("click", function (e) {
       var pill = e.target.closest(".product-sizes .size-pill"); if (!pill) return;
+      if (pill.disabled || pill.classList.contains("is-agotada")) return;
       var grp = pill.closest(".product-sizes"); if (!grp) return;
       grp.querySelectorAll(".size-pill").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
       pill.classList.add("is-active"); pill.setAttribute("aria-pressed", "true");
@@ -513,7 +570,8 @@
     document.addEventListener("click", function (e) {
       var b = e.target.closest(".btn-add[data-product]"); if (!b) return;
       var art = b.closest(".product");
-      var active = art ? art.querySelector(".size-pill.is-active") : null;
+      var active = art ? art.querySelector(".size-pill.is-active:not(.is-agotada)") : null;
+      if (!active) return;
       var sw = art ? art.querySelector(".color-swatch.is-active") : null;
       var pid = b.getAttribute("data-product");
       add(pid, fitDe(pid), active ? active.getAttribute("data-size") : "M", sw ? sw.getAttribute("data-color") : "");
@@ -542,6 +600,19 @@
         mostrarEditor(linea);
       }
       else if (act === "color-cancelar") { delete edicion[linea]; render(); }
+      else if (act === "talla-elegir") {
+        var ed2 = edicion[linea] || (edicion[linea] = {});
+        ed2.talla = btn.getAttribute("data-key") || "";
+        render();
+        mostrarEditor(linea);
+      }
+      else if (act === "talla-cancelar") { if (edicion[linea]) delete edicion[linea].talla; render(); }
+      else if (act === "talla-confirmar") {
+        var nueva = (edicion[linea] || {}).talla;
+        delete edicion[linea];
+        if (nueva && tallasLibres(id).indexOf(nueva) >= 0) { cambiarTalla(id, fit, size, color, nueva); save(); }
+        render();
+      }
       else if (act === "color-confirmar") {
         var nuevo = (edicion[linea] || {}).pendiente;
         delete edicion[linea];

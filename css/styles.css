@@ -1148,6 +1148,14 @@ body.cart-open { overflow: hidden; }
 }
 .size-pill:hover { border-color: var(--accent); color: var(--accent); }
 .size-pill.is-active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+/* Talla agotada (panel → "Tallas agotadas"): tachada y sin poder elegirse */
+.size-pill.is-agotada, .size-pill.is-agotada:hover {
+    cursor: not-allowed; color: var(--text-soft); border-color: var(--line); border-style: dashed;
+    background: var(--bg); text-decoration: line-through; opacity: .55;
+}
+.ci-agotada { color: #c0392b; font-weight: 600; }
+:root[data-theme="dark"] .ci-agotada { color: #ff9b8f; }
+.ci-talla-opt { min-width: 44px; justify-content: center; }
 
 /* ---------- FAQ ---------- */
 .faq { background: var(--bg); }

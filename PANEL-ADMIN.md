@@ -15,7 +15,7 @@ cambios se publican solos en el sitio (GitHub Pages) en **1 a 2 minutos**.
 | En el panel | Qué cambia en el sitio |
 |---|---|
 | **Precios** | Precio general de Regular fit, Oversized y Esenciales (cada camiseta puede tener además su precio propio) |
-| **Productos** | Tres espacios: **Regular fit**, **Oversized** y **Esenciales**. Crear, editar, reordenar y marcar *Agotado* las camisetas; elegir su **colección** (Océano o Felina); subir la portada, la galería y los colores, cada uno con su foto. Las fotos se convierten solas a WebP liviano al subirlas |
+| **Productos** | Tres espacios: **Regular fit**, **Oversized** y **Esenciales**. Crear, editar, reordenar y marcar *Agotado* las camisetas; marcar las **tallas agotadas** de cada una (salen tachadas en la tienda y no se pueden elegir); elegir su **colección** (Océano o Felina); subir la portada, la galería y los colores, cada uno con su foto. Las fotos se convierten solas a WebP liviano al subirlas |
 | **Guía de tallas** | Las medidas (pecho, largo, hombro) de Regular fit y de Oversized que salen debajo de las camisetas |
 | **Pagos** | Qué formas de pago se mencionan en la página (Cómo comprar, fichas de camisetas, Google). El carrito ya no pide método de pago: se acuerda por WhatsApp |
 | **Impacto** | El número de camisetas vendidas y la dirección del contador automático (el Worker de Cloudflare) |

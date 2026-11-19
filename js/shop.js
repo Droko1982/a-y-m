@@ -14,6 +14,33 @@
 
   var SIZES = ["S", "M", "L", "XL"]; // tallas ofrecidas
   var DEFAULT_SIZE = "M";
+  /* Tallas agotadas de una camiseta (campo "Tallas agotadas" del panel).
+     Vacío o ausente = todas disponibles: así ninguna camiseta vieja, ni un
+     guardado del panel que deje la lista vacía, se queda sin tallas. */
+  function agotadasDe(p) {
+    var a = p && p.tallas_agotadas;
+    if (!Array.isArray(a)) return [];
+    return a.map(function (t) { return String(t == null ? "" : t).trim().toUpperCase(); })
+            .filter(function (t, k, l) { return SIZES.indexOf(t) >= 0 && l.indexOf(t) === k; });
+  }
+  /* La talla que sale marcada: M si hay; si no, la primera que quede. */
+  function tallaInicial(agot) {
+    if (agot.indexOf(DEFAULT_SIZE) < 0) return DEFAULT_SIZE;
+    for (var i = 0; i < SIZES.length; i++) if (agot.indexOf(SIZES[i]) < 0) return SIZES[i];
+    return "";
+  }
+  /* Botones de talla: las agotadas salen tachadas y no se pueden elegir. */
+  function pillsTalla(agot, clase, en) {
+    var ini = tallaInicial(agot);
+    return SIZES.map(function (sz) {
+      var fuera = agot.indexOf(sz) >= 0, on = !fuera && sz === ini;
+      return '<button type="button" class="' + clase + (on ? " is-active" : "") + (fuera ? " is-agotada" : "") + '" data-size="' + esc(sz) + '"' +
+        (fuera
+          ? ' disabled title="' + (en ? "Sold out" : "Agotada") + '" aria-label="' + esc(sz) + (en ? ", sold out" : ", agotada") + '"'
+          : ' aria-pressed="' + (on ? "true" : "false") + '"') +
+        '>' + esc(sz) + '</button>';
+    }).join("");
+  }
   var IMG_DEFECTO = "assets/tee-ocean.svg";
   var SEO_ID = "ld-products";
   /* id → página propia de cada camiseta (/camisetas/<nombre>/). Lo escribe
@@ -186,11 +213,7 @@
     var tag = soldout
       ? '<span class="tag">' + (en ? "Sold out" : "Agotado") + '</span>'
       : '<span class="tag tag-live">' + (en ? "Available" : "Disponible") + '</span>';
-    var sizes = SIZES.map(function (sz) {
-      var on = sz === DEFAULT_SIZE;
-      return '<button type="button" class="size-pill' + (on ? " is-active" : "") + '" data-size="' + esc(sz) +
-             '" aria-pressed="' + (on ? "true" : "false") + '">' + esc(sz) + '</button>';
-    }).join("");
+    var sizes = pillsTalla(p._agotadas || [], "size-pill", en);
     var buy = soldout
       ? '<button class="btn btn-add" type="button" disabled>' + (en ? "Sold out" : "Agotado") + '</button>'
       : '<button class="btn btn-add" data-product="' + esc(p.id) + '" type="button"><span>' + (en ? "Add" : "Agregar") + '</span></button>';
@@ -247,6 +270,9 @@
         usados[p.id] = true;
         p._espacio = a.espacio; p._fit = a.fit;
         p._coleccion = a.espacio === "esenciales" ? "" : coleccionDe(p);
+        p._agotadas = agotadasDe(p);
+        /* Si se agotaron todas las tallas, la camiseta sale como Agotada */
+        if (p._agotadas.length >= SIZES.length) p.disponible = false;
         todos.push(p);
       });
     });
@@ -285,6 +311,7 @@
         espacio: p._espacio,
         fit: p._fit,
         precio: p.precio,
+        agotadas: (p._agotadas || []).slice(),
         colores: cols.map(function (c) { return { nombre_es: c.nombre_es, nombre_en: c.nombre_en, img: c.imgs[0], hex: c.hex }; })
       };
     });
@@ -457,6 +484,7 @@
       if (col) { elegirColor(parseInt(col.getAttribute("data-i"), 10) || 0); return; }
       var sz = t.closest(".pv-size");
       if (sz) {
+        if (sz.disabled || sz.classList.contains("is-agotada")) return;
         PV.querySelectorAll(".pv-size").forEach(function (x) { x.classList.remove("is-active"); x.setAttribute("aria-pressed", "false"); });
         sz.classList.add("is-active"); sz.setAttribute("aria-pressed", "true");
         return;
@@ -659,11 +687,7 @@
       ? '<span class="tag">' + (en ? "Sold out" : "Agotado") + '</span>'
       : '<span class="tag tag-live">' + (en ? "Available" : "Disponible") + '</span>';
 
-    var sizeBtns = SIZES.map(function (sz) {
-      var on = sz === DEFAULT_SIZE;
-      return '<button type="button" class="pv-size size-pill' + (on ? " is-active" : "") + '" data-size="' + esc(sz) +
-        '" aria-pressed="' + (on ? "true" : "false") + '">' + esc(sz) + '</button>';
-    }).join("");
+    var sizeBtns = pillsTalla(p._agotadas || [], "pv-size size-pill", en);
 
     var botonAdd = soldout
       ? '<button type="button" class="btn btn-add pv-add" disabled>' + (en ? "Sold out" : "Agotado") + '</button>'
@@ -722,7 +746,8 @@
     if (!pvActual) return;
     var szEl = PV.querySelector(".pv-size.is-active");
     var id = pvActual.id;
-    var size = szEl ? szEl.getAttribute("data-size") : DEFAULT_SIZE;
+    var size = szEl ? szEl.getAttribute("data-size") : tallaInicial((CATALOGO[id] && CATALOGO[id]._agotadas) || []);
+    if (!size) return;
     var fit = pvActual.fit || "regular";
     var color = pvActual.color || "";
     cerrarVentana();

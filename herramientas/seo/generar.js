@@ -217,7 +217,8 @@ const CATALOGO = seguro("Catálogo", () => {
           nombre,
           desc: plano(p.desc_es || p.desc_en),
           descLarga: plano(p.desc_larga_es || p.desc_larga_en),
-          disponible: p.disponible !== false,
+          agotadas: tallasAgotadasDe(p),
+          disponible: p.disponible !== false && tallasAgotadasDe(p).length < 4,
           precio: precioDe(p, a.espacio, a.fit),
           fotos, colores
         });
@@ -227,6 +228,17 @@ const CATALOGO = seguro("Catálogo", () => {
   return todos;
 }, []);
 
+/* Tallas que el panel marcó como agotadas (igual que js/shop.js) */
+function tallasAgotadasDe(p) {
+  const validas = ["S", "M", "L", "XL"];
+  if (!Array.isArray(p.tallas_agotadas)) return [];
+  return [...new Set(p.tallas_agotadas.map((t) => String(t == null ? "" : t).trim().toUpperCase()).filter((t) => validas.includes(t)))];
+}
+function tallasLibres(p) { return TALLAS_TXT.filter((t) => !p.agotadas.includes(t)); }
+function tallasTxt(p, sep) {
+  const libres = tallasLibres(p);
+  return libres.join(sep) + (p.agotadas.length && libres.length ? " (agotada" + (p.agotadas.length > 1 ? "s" : "") + ": " + p.agotadas.join(", ") + ")" : "");
+}
 function horma(p) { return p.espacio === "esenciales" ? "Esencial" : (p.fit === "oversized" ? "Oversized" : "Regular fit"); }
 function etiquetaProducto(p) {
   if (p.espacio === "esenciales") return "Camiseta básica " + p.nombre;
@@ -523,7 +535,7 @@ for (const p of CATALOGO) {
       brand: { "@type": "Brand", name: MARCA },
       category: "Ropa > Camisetas" + (col ? " > Colección " + col.nombre : " > Esenciales"),
       audience: { "@type": "PeopleAudience", suggestedGender: "unisex" },
-      size: TALLAS_TXT.join(", "),
+      size: (tallasLibres(p).length ? tallasLibres(p) : TALLAS_TXT).join(", "),
       offers: {
         "@type": "Offer",
         url: urlPag,
@@ -561,7 +573,7 @@ for (const p of CATALOGO) {
       ${p.desc ? `<p class="pg-lead">${esc(p.desc)}</p>` : ""}
       <dl class="pg-datos">
         <div><dt>Horma</dt><dd>${esc(horma(p))}</dd></div>
-        <div><dt>Tallas</dt><dd>${esc(TALLAS_TXT.join(" · "))}</dd></div>
+        <div><dt>Tallas</dt><dd>${esc(tallasTxt(p, " · "))}</dd></div>
         ${coloresTxt.length ? `<div><dt>Colores</dt><dd>${esc(coloresTxt.join(" · "))}</dd></div>` : ""}
         <div><dt>Envío</dt><dd>A toda Colombia</dd></div>
       </dl>
@@ -1006,7 +1018,7 @@ function feedMerchant() {
 <g:link>${xmlEsc(SITIO + p.url)}</g:link>
 <g:image_link>${xmlEsc(abs(fotos[0]))}</g:image_link>
 ${fotos.slice(1, 11).map((f) => "<g:additional_image_link>" + xmlEsc(abs(f)) + "</g:additional_image_link>").join("\n")}
-<g:availability>${p.disponible ? "in_stock" : "out_of_stock"}</g:availability>
+<g:availability>${p.disponible && !p.agotadas.includes(talla) ? "in_stock" : "out_of_stock"}</g:availability>
 <g:price>${p.precio} COP</g:price>
 <g:brand>${xmlEsc(MARCA)}</g:brand>
 <g:condition>new</g:condition>
@@ -1071,7 +1083,7 @@ function llms(completo) {
       lineas.push("- URL: " + SITIO + p.url);
       lineas.push("- " + donde + " · " + horma(p) + " · " + pesos(p.precio) + " COP · " + (p.disponible ? "disponible" : "agotada"));
       if (p.colores.length) lineas.push("- Colores: " + p.colores.map((c) => c.nombre).join(", "));
-      lineas.push("- Tallas: " + TALLAS_TXT.join(", "));
+      lineas.push("- Tallas: " + tallasTxt(p, ", "));
       lineas.push("");
       lineas.push(p.descLarga || p.desc);
     } else {

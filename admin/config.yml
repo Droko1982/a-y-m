@@ -117,6 +117,7 @@ collections:
               - { name: desc_es, label: "Descripción corta", widget: text, hint: "La que se ve en la tarjeta." }
               - { name: desc_larga_es, label: "Descripción ampliada", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
               - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
+              - { name: tallas_agotadas, label: "Tallas agotadas (marca solo las que NO hay)", widget: select, multiple: true, required: false, options: ["S", "M", "L", "XL"], hint: "Las tallas que no marques se pueden comprar. En la tienda las agotadas salen tachadas y no se pueden elegir. Si marcas las cuatro, la camiseta sale como Agotada." }
 
       - name: oversized
         label: "Oversized"
@@ -156,6 +157,7 @@ collections:
               - { name: desc_es, label: "Descripción corta", widget: text, hint: "La que se ve en la tarjeta." }
               - { name: desc_larga_es, label: "Descripción ampliada", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
               - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
+              - { name: tallas_agotadas, label: "Tallas agotadas (marca solo las que NO hay)", widget: select, multiple: true, required: false, options: ["S", "M", "L", "XL"], hint: "Las tallas que no marques se pueden comprar. En la tienda las agotadas salen tachadas y no se pueden elegir. Si marcas las cuatro, la camiseta sale como Agotada." }
 
       - name: essentials
         label: "Esenciales"
@@ -194,6 +196,7 @@ collections:
               - { name: desc_es, label: "Descripción corta", widget: text, hint: "La que se ve en la tarjeta." }
               - { name: desc_larga_es, label: "Descripción ampliada", widget: text, required: false, hint: "La que se ve en la ventana de fotos. Si la dejas vacía, se usa la corta." }
               - { name: disponible, label: "¿Disponible? (apagar = Agotado)", widget: boolean, default: true }
+              - { name: tallas_agotadas, label: "Tallas agotadas (marca solo las que NO hay)", widget: select, multiple: true, required: false, options: ["S", "M", "L", "XL"], hint: "Las tallas que no marques se pueden comprar. En la tienda las agotadas salen tachadas y no se pueden elegir. Si marcas las cuatro, la camiseta sale como Agotada." }
 
   # -------- GUÍA DE TALLAS --------
   - name: tallas
