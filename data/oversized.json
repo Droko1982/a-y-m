@@ -9,6 +9,11 @@
           "nombre_es": "Mocca",
           "color": "",
           "imagen": "/assets/duo-gatos.webp"
+        },
+        {
+          "nombre_es": "Blanco",
+          "color": "",
+          "imagen": "/assets/duo-gatos-4.webp"
         }
       ],
       "nombre_es": "CATastrophe",
