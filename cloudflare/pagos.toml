@@ -1,0 +1,17 @@
+# Servidor de pagos con Wompi de A&M Universe (ver PAGOS-WOMPI.md).
+# Se publica con:   npx wrangler deploy -c cloudflare/pagos.toml
+# Las llaves de Wompi y la clave de las dueñas NO van aquí: se guardan como
+# secretos con  npx wrangler secret put NOMBRE -c cloudflare/pagos.toml
+name = "aym-pagos"
+main = "pagos.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+SITIO = "https://aymuniverse.com"
+
+# Almacén de pedidos. Créalo una vez con:
+#   npx wrangler kv namespace create PEDIDOS
+# y pega aquí el "id" que te devuelve.
+[[kv_namespaces]]
+binding = "PEDIDOS"
+id = "PEGAR_AQUI_EL_ID_DEL_KV"

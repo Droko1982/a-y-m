@@ -5,6 +5,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /pedido/
 
 # Buscadores
 User-agent: Googlebot
@@ -15,6 +16,7 @@ User-agent: Applebot
 User-agent: YandexBot
 Allow: /
 Disallow: /admin/
+Disallow: /pedido/
 
 # Asistentes de IA (ChatGPT, Gemini, Claude, Perplexity, Copilot, Apple, Meta…)
 User-agent: OAI-SearchBot
@@ -34,5 +36,6 @@ User-agent: DuckAssistBot
 User-agent: MistralAI-User
 Allow: /
 Disallow: /admin/
+Disallow: /pedido/
 
 Sitemap: https://aymuniverse.com/sitemap.xml

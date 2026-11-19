@@ -6,6 +6,10 @@
   "use strict";
 
   var WA_NUMBER = "573215799683";
+  /* Pago en línea con Wompi (panel → Pagos). Apagado hasta que las dueñas
+     tengan su cuenta y el servidor de pagos (cloudflare/pagos.js) esté listo:
+     mientras tanto el carrito queda igual, solo con WhatsApp. */
+  var WOMPI = { activo: false, api: "" };
 
   /* Precio general de cada espacio (sección Precios del panel). Se usa para
      las camisetas que no tienen precio propio. Esenciales en 0 = usa el de
@@ -106,10 +110,16 @@
     } catch (e) { return Promise.resolve(null); }
   }
 
+  function applyPagos(p) {
+    var api = p && typeof p.wompi_api === "string" ? p.wompi_api.trim().replace(/\/+$/, "") : "";
+    WOMPI.activo = !!(p && p.wompi_activo === true && /^https?:\/\/[^\s]+$/.test(api));
+    WOMPI.api = WOMPI.activo ? api : "";
+  }
+
   function loadConfig(done) {
     try {
-      pedirJson("data/config.json")
-        .then(function (c) { applyConfig(c); done(); })
+      Promise.all([pedirJson("data/config.json"), pedirJson("data/pagos.json")])
+        .then(function (r) { applyConfig(r[0]); applyPagos(r[1]); done(); })
         .catch(function () { done(); });
     } catch (e) { done(); }
   }
@@ -445,6 +455,11 @@
       co.classList.toggle("is-bloqueado", !!msg);
       if (msg) co.setAttribute("aria-disabled", "true"); else co.removeAttribute("aria-disabled");
     }
+    var pg = document.getElementById("cart-pagar");
+    if (pg) {
+      pg.classList.toggle("is-bloqueado", !!msg);
+      if (msg) pg.setAttribute("aria-disabled", "true"); else pg.removeAttribute("aria-disabled");
+    }
     return !msg;
   }
 
@@ -498,8 +513,73 @@
     var t = document.getElementById("cart-total"); if (t) t.textContent = fmt(total());
     var co = document.getElementById("cart-checkout"); if (co) co.setAttribute("href", checkoutHref());
     pintarAviso(false);
+    pintarPago();
     restauraFoco(foco);
   }
+
+  /* ---------- Pago en línea (Wompi) ----------
+     El navegador solo manda qué camisetas, tallas, colores y cuántas. El
+     servidor recalcula el total con el catálogo publicado, guarda el pedido
+     y devuelve el checkout de Wompi firmado. El envío se paga al recibir. */
+  var pagando = false;
+  function pintarPago() {
+    var foot = document.getElementById("cart-foot");
+    if (foot) foot.classList.toggle("con-wompi", WOMPI.activo);
+    var pg = document.getElementById("cart-pagar");
+    if (pg) {
+      pg.disabled = pagando;
+      var txt = pg.querySelector(".cart-pagar-txt");
+      if (txt) txt.textContent = pagando ? "Preparando tu pago…" : "Pagar " + fmt(total()) + " en línea";
+    }
+  }
+  function mensajePago(texto) {
+    var m = document.getElementById("cart-pago-msg");
+    if (!m) return;
+    m.textContent = texto || "";
+    m.hidden = !texto;
+  }
+  function llevarAlEditor() {
+    var primero = document.querySelector("#cart-items .ci-color-edit");
+    if (primero && primero.scrollIntoView) primero.scrollIntoView({ block: "center", behavior: "smooth" });
+    var b = primero && primero.querySelector(".ci-confirm, .ci-color-opt");
+    if (b) b.focus({ preventScroll: true });
+  }
+  function pagarEnLinea() {
+    if (pagando || !WOMPI.activo || !cart.length) return;
+    mensajePago("");
+    if (!pintarAviso(true)) { llevarAlEditor(); return; }
+    var esperado = total();
+    var items = cart.map(function (i) { return { id: i.id, fit: i.fit, size: i.size, color: i.color || "", qty: i.qty }; });
+    pagando = true; pintarPago();
+    var listo = function (texto) { pagando = false; pintarPago(); mensajePago(texto); };
+    fetch(WOMPI.api + "/pagar", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: items }) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { status: r.status, j: j || {} }; }); })
+      .then(function (res) {
+        var j = res.j;
+        if (res.status === 200 && j.checkout && j.ref) {
+          /* El precio de alguna camiseta cambió desde que se cargó la página:
+             mejor avisar que mandar a pagar un total distinto al que se ve. */
+          if (j.total !== esperado) {
+            listo("El precio de alguna camiseta cambió mientras comprabas. Recarga la página para ver el total actualizado (" + fmt(j.total) + ").");
+            return;
+          }
+          try { localStorage.setItem("aym-pedido", JSON.stringify({ ref: j.ref, total: j.total, creado: Date.now() })); } catch (e) {}
+          location.href = j.checkout;
+          return;
+        }
+        if (res.status === 409) {
+          listo("Algo cambió en la tienda (una talla, un color o una camiseta se agotó). Recarga la página para ver lo último y vuelve a intentarlo.");
+          return;
+        }
+        listo("No pudimos abrir el pago en línea en este momento. Inténtalo de nuevo en un rato o pide por WhatsApp con el botón de abajo.");
+      })
+      .catch(function () {
+        listo("No pudimos conectar con el pago en línea. Revisa tu conexión e inténtalo de nuevo, o pide por WhatsApp con el botón de abajo.");
+      });
+  }
+  /* Al volver con el botón Atrás desde Wompi, la página puede venir de la
+     memoria del navegador con el botón en "Preparando…": se reinicia. */
+  window.addEventListener("pageshow", function () { if (pagando) { pagando = false; pintarPago(); } });
 
   /* Foco al que volver cuando se cierre el carrito */
   var focoPrevio = null;
@@ -636,11 +716,10 @@
     if (checkout) checkout.addEventListener("click", function (e) {
       if (pintarAviso(true)) return;
       e.preventDefault();
-      var primero = document.querySelector("#cart-items .ci-color-edit");
-      if (primero && primero.scrollIntoView) primero.scrollIntoView({ block: "center", behavior: "smooth" });
-      var b = primero && primero.querySelector(".ci-confirm, .ci-color-opt");
-      if (b) b.focus({ preventScroll: true });
+      llevarAlEditor();
     });
+    var pagar = document.getElementById("cart-pagar");
+    if (pagar) pagar.addEventListener("click", pagarEnLinea);
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
     render();
     // Cargar precios editables desde el panel y refrescar

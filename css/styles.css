@@ -1111,6 +1111,28 @@ html:not([lang="en"]) .size-in { display: none; }
 .cart-continue:hover { border-color: var(--accent); color: var(--accent); }
 .cart-note { text-align: center; font-size: .78rem; color: var(--text-soft); margin-top: 12px; }
 
+/* ---------- Pago en línea con Wompi (se ve solo si está activado en el panel) ---------- */
+.cart-foot .solo-wompi { display: none; }
+.cart-foot.con-wompi .solo-wompi { display: block; }
+.cart-foot.con-wompi .cart-pagar { display: flex; width: 100%; gap: 10px; }
+.cart-pagar.is-bloqueado, .cart-pagar:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+.cart-envio { font-size: .84rem; color: var(--text-soft); margin: -6px 0 14px; }
+.cart-metodos { text-align: center; font-size: .76rem; color: var(--text-soft); margin: 8px 0 12px; }
+.cart-pago-msg {
+    font-size: .84rem; line-height: 1.45; margin: 0 0 12px; padding: 10px 12px;
+    border-left: 3px solid #c0392b; background: rgba(192, 57, 43, .08); color: var(--text);
+}
+.cart-checkout .co-alt { display: none; }
+.cart-foot.con-wompi .cart-checkout .co-solo { display: none; }
+.cart-foot.con-wompi .cart-checkout .co-alt { display: inline; }
+/* Con pago en línea, WhatsApp pasa a ser la segunda opción */
+.cart-foot.con-wompi .cart-checkout {
+    background: transparent; color: var(--text); border: 1px solid var(--line); box-shadow: none;
+    padding: 13px 20px; font-size: .95rem;
+}
+.cart-foot.con-wompi .cart-checkout:hover { border-color: var(--olive); color: var(--olive-strong); background: transparent; }
+.cart-foot.con-wompi .cart-note { display: none; }
+
 body.cart-open { overflow: hidden; }
 
 /* ---------- Responsive v2 ---------- */

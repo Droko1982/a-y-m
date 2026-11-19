@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu pedido · A&M Universe</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Estado de tu pago en línea en A&M Universe.">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+    <style>
+        :root {
+            --bg: #F6F2EA; --surface: #FCFAF4; --ink: #2E251C; --soft: #75664F;
+            --accent: #8A6432; --accent-ink: #FFFFFF; --line: rgba(46,37,28,.14); --olive: #6B7742;
+            --ok: #2f7d4f; --mal: #b23b2e;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root { --bg: #0D0D0D; --surface: #191919; --ink: #ECE3D1; --soft: #A99C86;
+                    --accent: #CBA968; --accent-ink: #0D0D0D; --line: rgba(236,227,209,.16); --olive: #55613A;
+                    --ok: #6fcf97; --mal: #ff9b8f; }
+        }
+        * { margin: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh; display: grid; place-items: center; text-align: center;
+            padding: 32px 16px;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg); color: var(--ink); line-height: 1.6;
+        }
+        .wrap { max-width: 560px; width: 100%; }
+        .serif { font-family: Georgia, "Times New Roman", serif; }
+        .logo { height: 48px; width: auto; display: block; margin: 0 auto 26px; }
+        .logo-dark { display: none; }
+        @media (prefers-color-scheme: dark) { .logo-light { display: none; } .logo-dark { display: block; } }
+        .icono { font-size: 2.6rem; line-height: 1; margin-bottom: 10px; }
+        h1 { font-size: clamp(1.6rem, 6vw, 2.3rem); line-height: 1.2; margin-bottom: 10px; }
+        h1:focus { outline: none; }
+        .ok h1 { color: var(--ok); }
+        .mal h1 { color: var(--mal); }
+        .lead { color: var(--soft); max-width: 470px; margin: 0 auto; }
+        .ref { font-family: ui-monospace, Consolas, monospace; font-size: .9rem; color: var(--ink); background: var(--surface);
+            border: 1px dashed var(--line); display: inline-block; padding: 4px 10px; margin: 14px 0 4px; word-break: break-all; }
+        .resumen { text-align: left; background: var(--surface); border: 1px solid var(--line); padding: 14px 16px; margin: 18px 0 6px; }
+        .resumen li { list-style: none; display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: .93rem; }
+        .resumen li:last-child { border-bottom: 0; }
+        .resumen li span:last-child { white-space: nowrap; }
+        .resumen .total { font-weight: 700; padding-top: 10px; }
+        .nota { font-size: .88rem; color: var(--soft); margin-top: 10px; }
+        .acciones { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 22px 0 8px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; padding: 13px 22px; border: 1px solid transparent; cursor: pointer; font-size: .98rem; font-family: inherit; }
+        .btn-acento { background: var(--accent); color: var(--accent-ink); }
+        .btn-wa { background: var(--olive); color: #F5F0E4; }
+        .btn-borde { background: transparent; color: var(--ink); border-color: var(--line); }
+        .btn:hover { filter: brightness(1.06); }
+        .girando { width: 34px; height: 34px; border: 3px solid var(--line); border-top-color: var(--accent); border-radius: 50%;
+            margin: 6px auto 16px; animation: gira .9s linear infinite; }
+        @keyframes gira { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) { .girando { animation: none; } }
+    </style>
+</head>
+<body>
+    <main class="wrap" id="pedido" aria-live="polite">
+        <a href="/" aria-label="A&amp;M Universe, ir a la tienda">
+            <img class="logo logo-light" src="/assets/logo-light.png" alt="A&amp;M Universe" width="640" height="189">
+            <img class="logo logo-dark" src="/assets/logo-dark.png" alt="A&amp;M Universe" width="640" height="189">
+        </a>
+        <div id="pedido-cuerpo">
+            <div class="girando" aria-hidden="true"></div>
+            <h1 class="serif">Revisando tu pago…</h1>
+            <p class="lead">Un momento, estamos confirmando con Wompi.</p>
+        </div>
+        <noscript><p class="lead">Activa JavaScript para ver el estado de tu pago, o escríbenos por WhatsApp al 321 579 9683.</p></noscript>
+    </main>
+    <script src="/js/pedido.js" defer></script>
+</body>
+</html>

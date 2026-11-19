@@ -63,7 +63,7 @@ collections:
       - name: pagos
         label: "Formas de pago"
         file: data/pagos.json
-        description: "El carrito ya no pide el método de pago: el pedido les llega por WhatsApp y ahí acuerdan con la clienta cómo paga. Estos datos solo deciden qué formas de pago se mencionan en la página Cómo comprar, en la ficha de cada camiseta y en la información para Google: si dejan vacío Nequi, Daviplata o Bre-B, ese método deja de mencionarse. Los datos de la cuenta bancaria no se muestran en ninguna parte."
+        description: "Pago en línea con Wompi: cuando el servidor de pagos esté instalado (guía PAGOS-WOMPI.md), enciendan «Pago en línea con Wompi» y el carrito muestra «Pagar en línea» (tarjeta, PSE, Nequi o Bancolombia) y, debajo, «Prefiero pedir por WhatsApp». Los pedidos pagados se ven en la página de pedidos del servidor. Los números de Nequi, Daviplata y Bre-B ya no se muestran en el carrito: solo deciden qué formas de pago se mencionan en Cómo comprar, en la ficha de cada camiseta y en la información para Google. Los datos de la cuenta bancaria no se muestran en ninguna parte."
         fields:
           - { name: nequi, label: "Nequi · número", widget: string, required: false, hint: "Ej: 321 579 9683. Si lo dejan vacío, Nequi deja de mencionarse como forma de pago." }
           - { name: daviplata, label: "Daviplata · número", widget: string, required: false, hint: "Si es el mismo de Nequi, escríbelo igual." }
@@ -72,6 +72,8 @@ collections:
           - { name: tipo_cuenta, label: "Transferencia · tipo de cuenta", widget: string, required: false, hint: "Ej: Ahorros o Corriente." }
           - { name: numero_cuenta, label: "Transferencia · número de cuenta", widget: string, required: false, hint: "Ej: 912-345678-90. Déjalo vacío si prefieres pasar los datos por WhatsApp." }
           - { name: titular, label: "Transferencia · a nombre de", widget: string, required: false, hint: "El nombre tal como aparece en la cuenta del banco. Ej: Cristina Marín" }
+          - { name: wompi_activo, label: "Pago en línea con Wompi", widget: boolean, default: false, required: false, hint: "Enciéndanlo solo cuando el servidor de pagos esté instalado y probado. Apagado, el carrito funciona como siempre, solo con WhatsApp." }
+          - { name: wompi_api, label: "Dirección del servidor de pagos", widget: string, required: false, hint: "La pone quien instala el servidor (termina en .workers.dev). No la cambien." }
 
   # -------- PRODUCTOS --------
   - name: productos

@@ -187,6 +187,33 @@ function fotosLista(imagen, galeria) {
   return [...new Set(lista.filter((f) => f && existe(f)))];
 }
 
+/* Catálogo para el servidor de pagos (cloudflare/pagos.js): TODAS las camisetas
+   que vende la tienda, con los mismos ids que js/shop.js, su precio, sus tallas
+   agotadas y sus colores. El servidor recalcula el total con este archivo:
+   nunca confía en el precio que llega del navegador. */
+function catalogoTienda() {
+  const usados = {}, productos = {};
+  for (const a of ARCHIVOS) {
+    const data = leerJSON(a.archivo);
+    const lista = data && Array.isArray(data.productos) ? data.productos : (Array.isArray(data) ? data : []);
+    for (const p of lista) {
+      if (!p || typeof p !== "object") continue;
+      const id = idUnico(p, a.espacio, usados);
+      usados[id] = true;
+      const agotadas = tallasAgotadasDe(p);
+      const colores = (Array.isArray(p.colores) ? p.colores : [])
+        .filter((c) => c && String(c.nombre_es || c.nombre_en || "").trim() && (ruta(c.imagen) || (Array.isArray(c.galeria) && c.galeria.some((g) => ruta(g)))))
+        .map((c) => String(c.nombre_es || c.nombre_en).trim());
+      productos[id] = {
+        n: String(p.nombre_es || p.nombre_en || "").trim() || "Camiseta",
+        e: a.espacio, f: a.fit, p: precioDe(p, a.espacio, a.fit),
+        d: p.disponible !== false && agotadas.length < 4, a: agotadas, c: colores
+      };
+    }
+  }
+  return { generado: new Date().toISOString(), productos };
+}
+
 const CATALOGO = seguro("Catálogo", () => {
   const usados = {}, todos = [], slugs = {};
   for (const a of ARCHIVOS) {
@@ -451,6 +478,7 @@ const METODOS_PAGO = (() => {
   if (limpio(PAGOS.nequi)) m.push("Nequi");
   if (limpio(PAGOS.daviplata)) m.push("Daviplata");
   if (limpio(PAGOS.breb)) m.push("Bre-B");
+  if (PAGOS.wompi_activo === true && limpio(PAGOS.wompi_api)) m.unshift("pago en línea con Wompi (tarjeta, PSE, Nequi o Botón Bancolombia)");
   m.push("transferencia bancaria", "contra entrega (según la ciudad)");
   return m;
 })();
@@ -1146,6 +1174,7 @@ function principal() {
     for (const p of CATALOGO) mapa[p.id] = p.url;
     escribir("data/urls.json", JSON.stringify(mapa, null, 1));
   });
+  seguro("Catálogo para pagos", () => escribir("data/tienda.json", JSON.stringify(catalogoTienda())));
   seguro("Feed de Google Merchant", () => escribir("feed/google-merchant.xml", feedMerchant()));
   seguro("llms.txt", () => { escribir("llms.txt", llms(false)); escribir("llms-full.txt", llms(true)); });
 

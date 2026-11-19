@@ -5,5 +5,7 @@
   "banco": "",
   "tipo_cuenta": "",
   "numero_cuenta": "",
-  "titular": ""
+  "titular": "",
+  "wompi_activo": false,
+  "wompi_api": ""
 }
