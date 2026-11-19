@@ -14,6 +14,11 @@
           "nombre_es": "Blanco",
           "color": "",
           "imagen": "/assets/duo-gatos-4.webp"
+        },
+        {
+          "nombre_es": "Crema",
+          "color": "",
+          "imagen": "/assets/duo-gatos-2.webp"
         }
       ],
       "nombre_es": "CATastrophe",
