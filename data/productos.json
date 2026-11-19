@@ -24,6 +24,11 @@
           "nombre_es": "Verde militar",
           "color": "",
           "imagen": "/assets/tigre-3.webp"
+        },
+        {
+          "nombre_es": "Azul Navi",
+          "color": "",
+          "imagen": "/assets/tigre-2.webp"
         }
       ],
       "nombre_es": "Calma Salvaje",
