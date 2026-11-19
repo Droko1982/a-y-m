@@ -19,6 +19,11 @@
           "nombre_es": "Crema",
           "color": "",
           "imagen": "/assets/duo-gatos-2.webp"
+        },
+        {
+          "nombre_es": "Vainilla",
+          "color": "",
+          "imagen": "/assets/duo-gatos-3.webp"
         }
       ],
       "nombre_es": "CATastrophe",
