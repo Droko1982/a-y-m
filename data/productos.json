@@ -284,7 +284,7 @@
     {
       "id": "Jurassic",
       "coleccion": "oceano",
-      "imagen": "/assets/jurassic shark.jpg",
+      "imagen": "/assets/jurassic-shark-new.webp",
       "colores": [
         {
           "nombre_es": "Negro",
@@ -317,7 +317,7 @@
     {
       "id": "Manta",
       "coleccion": "oceano",
-      "imagen": "/assets/manta-1.webp",
+      "imagen": "/assets/mantas-new.webp",
       "colores": [
         {
           "nombre_es": "Blanco",
@@ -350,7 +350,7 @@
     {
       "id": "Circulo",
       "coleccion": "oceano",
-      "imagen": "/assets/circulo-marino.webp",
+      "imagen": "/assets/circulo-doble-new.webp",
       "colores": [
         {
           "nombre_es": "Verde Militar",
