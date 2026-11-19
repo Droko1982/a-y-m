@@ -14,6 +14,11 @@
           "nombre_es": "Blanco",
           "color": "",
           "imagen": "/assets/tigre-4.webp"
+        },
+        {
+          "nombre_es": "Crema",
+          "color": "",
+          "imagen": "/assets/tigre-5.webp"
         }
       ],
       "nombre_es": "Calma Salvaje",
