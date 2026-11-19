@@ -26,7 +26,7 @@ jobs:
     timeout-minutes: 10
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url || steps.deploy2.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -63,10 +63,24 @@ jobs:
         with:
           path: _site
 
+      # A veces la API de GitHub falla un momento ("Fetching artifact metadata
+      # failed"): pasó el 2026-11-18 con un guardado del panel. Se reintenta solo
+      # una vez, un minuto después; si vuelve a fallar, la ejecución queda en rojo.
       - id: deploy
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Esperar antes de reintentar (solo si GitHub falló)
+        if: steps.deploy.outcome == 'failure'
+        run: sleep 60
+
+      - id: deploy2
+        name: Publicar (segundo intento)
+        if: steps.deploy.outcome == 'failure'
         uses: actions/deploy-pages@v4
 
       - name: Avisar a buscadores (IndexNow)
+        if: steps.deploy.outcome == 'success' || steps.deploy2.outcome == 'success'
         continue-on-error: true
         run: |
           F="$RUNNER_TEMP/indexnow.json"
