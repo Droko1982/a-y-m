@@ -145,7 +145,7 @@
     {
       "id": "originSS",
       "coleccion": "oceano",
-      "imagen": "/assets/camiseta 1.jpg",
+      "imagen": "/assets/ballena-mundo-duo.webp",
       "colores": [
         {
           "nombre_es": "Negro",
@@ -216,7 +216,7 @@
     {
       "id": "Noise",
       "coleccion": "oceano",
-      "imagen": "/assets/camiseta 3.jpg",
+      "imagen": "/assets/ballena-52.webp",
       "colores": [
         {
           "nombre_es": "Azul Navi",
