@@ -3,7 +3,13 @@
     {
       "id": "32d8663f-d879-443e-8e3b-5e31be8d9cd8",
       "imagen": "/assets/tibroncin.webp",
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Arena",
+          "color": "",
+          "imagen": "/assets/tiburon-camiseta-color-arena-talla-s.webp"
+        }
+      ],
       "nombre_es": "Tiburón en Modo Chill",
       "precio": null,
       "desc_es": "La camiseta Tiburón en Modo Chill combina humor y estética urbana para acompañarte todos los días. Detalles del producto: Diseño minimalista en el pecho de un tiburón azul usando tapabocas sobre fondo verde salvia. Corte clásico unisex, ligero y cómodo. Confeccionada en 100% algodón de 160 gr. El valor de $35.000 es por unidad.",
