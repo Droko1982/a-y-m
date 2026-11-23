@@ -326,10 +326,7 @@
     {
       "id": "Free",
       "coleccion": "oceano",
-      "imagen": "/assets/0df874cd-8d86-4fa6-9038-a13a8dc899ec.jpg",
-      "galeria": [
-        "/assets/wild free.jpg"
-      ],
+      "imagen": "/assets/wild-free-new.webp",
       "colores": [
         {
           "nombre_es": "Blanco",
@@ -367,10 +364,7 @@
     {
       "id": "Abiss",
       "coleccion": "oceano",
-      "imagen": "/assets/abiss-portada-espalda.webp",
-      "galeria": [
-        "/assets/abiss-portada.webp"
-      ],
+      "imagen": "/assets/abiss-nueva.webp",
       "colores": [
         {
           "nombre_es": "Blanco",
