@@ -392,7 +392,7 @@
     {
       "id": "Adaptacion",
       "coleccion": "oceano",
-      "imagen": "/assets/pulpo-portada-back.webp",
+      "imagen": "/assets/pulpo-new.webp",
       "galeria": [
         "/assets/pulpo-portada-frente.webp"
       ],
@@ -428,10 +428,7 @@
     {
       "id": "--- choco",
       "coleccion": "oceano",
-      "imagen": "/assets/calamar-espalda.webp",
-      "galeria": [
-        "/assets/calamar.webp"
-      ],
+      "imagen": "/assets/calamar-new.webp",
       "colores": [
         {
           "nombre_es": "Blanco",
