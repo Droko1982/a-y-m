@@ -1,6 +1,18 @@
 {
   "productos": [
     {
+      "id": "986fa324-e5f8-4a41-a41a-954df98b9d48",
+      "coleccion": "felina",
+      "imagen": "/assets/puma.webp",
+      "colores": [],
+      "nombre_es": "---",
+      "precio": null,
+      "desc_es": "----",
+      "desc_larga_es": "----",
+      "disponible": true,
+      "tallas_agotadas": []
+    },
+    {
       "id": "1d6bf8df-97f0-496d-990f-6be02babc0fd",
       "coleccion": "felina",
       "imagen": "/assets/tigre-wild-heart.webp",
