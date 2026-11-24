@@ -1,6 +1,18 @@
 {
   "productos": [
     {
+      "id": "f4eba3c2-c598-4748-b281-e290887da44e",
+      "coleccion": "felina",
+      "imagen": "/assets/puma.webp",
+      "colores": [],
+      "nombre_es": "-----",
+      "precio": null,
+      "desc_es": "-----",
+      "desc_larga_es": "----",
+      "disponible": true,
+      "tallas_agotadas": []
+    },
+    {
       "id": "d5dd2815-db8e-4690-86db-3865525a9635",
       "coleccion": "felina",
       "imagen": "/assets/potada-cot-cats.webp",
