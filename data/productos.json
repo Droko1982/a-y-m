@@ -1,6 +1,18 @@
 {
   "productos": [
     {
+      "id": "d66f55e2-0520-4dcb-981f-ed3957e62edd",
+      "coleccion": "felina",
+      "imagen": "/assets/cat-bulshit.webp",
+      "colores": [],
+      "nombre_es": "---",
+      "precio": null,
+      "desc_es": "----",
+      "desc_larga_es": "---",
+      "disponible": true,
+      "tallas_agotadas": []
+    },
+    {
       "id": "986fa324-e5f8-4a41-a41a-954df98b9d48",
       "coleccion": "felina",
       "imagen": "/assets/puma.webp",
