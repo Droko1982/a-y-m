@@ -1,6 +1,17 @@
 {
   "productos": [
     {
+      "id": "8c51f413-db31-4c7d-a9a9-0ff11ab6cc01",
+      "imagen": "/assets/li-don-waanto-cuervo.webp",
+      "colores": [],
+      "nombre_es": "---",
+      "precio": null,
+      "desc_es": "-----",
+      "desc_larga_es": "--",
+      "disponible": true,
+      "tallas_agotadas": []
+    },
+    {
       "id": "32d8663f-d879-443e-8e3b-5e31be8d9cd8",
       "imagen": "/assets/tibroncin.webp",
       "colores": [
