@@ -3,7 +3,13 @@
     {
       "id": "8c51f413-db31-4c7d-a9a9-0ff11ab6cc01",
       "imagen": "/assets/li-don-waanto-cuervo.webp",
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Blanca",
+          "color": "",
+          "imagen": "/assets/cuervo-banca.webp"
+        }
+      ],
       "nombre_es": "Vuelo Libre",
       "precio": null,
       "desc_es": "La camiseta Vuelo Libre combina el misterio de la naturaleza y la estética urbana a través de una ilustración minimalista que destaca la silueta de un ave en picada en una prenda de color blanco hecha para acompañarte todos los días. Presenta un detalle gráfico central en el pecho con trazos limpios que le dan un toque auténtico y ligero a tu estilo.\n\nConfeccionada en 100% algodón de 160gr.\n\nCorte clásico unisex, silueta ligera y cómoda para total libertad de movimiento con una caída natural.\n\nEl valor de $35.000 es por unidad.",
