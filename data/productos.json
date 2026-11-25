@@ -59,6 +59,11 @@
           "nombre_es": "Mocca",
           "color": "",
           "imagen": "/assets/puma-mocaa.webp"
+        },
+        {
+          "nombre_es": "Arena",
+          "color": "",
+          "imagen": "/assets/puma-arena.webp"
         }
       ],
       "nombre_es": "Esencia Indomable",
