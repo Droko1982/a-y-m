@@ -8,6 +8,11 @@
           "nombre_es": "Blanca",
           "color": "",
           "imagen": "/assets/cuervo-banca.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "",
+          "imagen": "/assets/cuervo-mocca.webp"
         }
       ],
       "nombre_es": "Vuelo Libre",
