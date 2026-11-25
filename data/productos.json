@@ -1,6 +1,18 @@
 {
   "productos": [
     {
+      "id": "4ad95b14-095f-4a1d-8e50-c0821e7ea51c",
+      "coleccion": "oceano",
+      "imagen": "/assets/nop-gatos.webp",
+      "colores": [],
+      "nombre_es": "....",
+      "precio": null,
+      "desc_es": "...",
+      "desc_larga_es": "...",
+      "disponible": true,
+      "tallas_agotadas": []
+    },
+    {
       "id": "d66f55e2-0520-4dcb-981f-ed3957e62edd",
       "coleccion": "felina",
       "imagen": "/assets/cat-bulshit.webp",
