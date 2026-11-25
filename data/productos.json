@@ -69,6 +69,11 @@
           "nombre_es": "Vainilla",
           "color": "",
           "imagen": "/assets/puma-vainilla.webp"
+        },
+        {
+          "nombre_es": "Arena",
+          "color": "",
+          "imagen": "/assets/puma-arena.webp"
         }
       ],
       "nombre_es": "Esencia Indomable",
