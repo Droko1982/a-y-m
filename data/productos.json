@@ -14,6 +14,11 @@
           "nombre_es": "Negro",
           "color": "",
           "imagen": "/assets/gato-tomando-cafe-negra.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "",
+          "imagen": "/assets/gato-tomando-cafe-mocca.webp"
         }
       ],
       "nombre_es": "Coffee First",
