@@ -42,6 +42,11 @@
           "nombre_es": "Blanca",
           "color": "",
           "imagen": "/assets/puma-blanca.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "",
+          "imagen": "/assets/puma-mocaa.webp"
         }
       ],
       "nombre_es": "Esencia Indomable",
