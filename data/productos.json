@@ -4,7 +4,13 @@
       "id": "d66f55e2-0520-4dcb-981f-ed3957e62edd",
       "coleccion": "felina",
       "imagen": "/assets/cat-bulshit.webp",
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Azul Navi",
+          "color": "",
+          "imagen": "/assets/gato-tomando-cafe-azul-navi.webp"
+        }
+      ],
       "nombre_es": "Coffee First",
       "precio": null,
       "desc_es": "El ritual sagrado de la mañana y el carácter irreverente de un espíritu felino se fusionan en un diseño lleno de actitud y humor. Una pieza que rompe la rutina, creada para quienes necesitan su dosis de cafeína antes de enfrentarse al mundo.",
