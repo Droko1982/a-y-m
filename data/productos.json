@@ -37,7 +37,13 @@
       "id": "986fa324-e5f8-4a41-a41a-954df98b9d48",
       "coleccion": "felina",
       "imagen": "/assets/puma.webp",
-      "colores": [],
+      "colores": [
+        {
+          "nombre_es": "Blanca",
+          "color": "",
+          "imagen": "/assets/puma-blanca.webp"
+        }
+      ],
       "nombre_es": "Esencia Indomable",
       "precio": null,
       "desc_es": "La elegancia natural y la fuerza de un espíritu libre se fusionan en una ilustración llena de carácter y misterio. Una pieza que rompe la rutina, creada para quienes aman con intensidad sin perder nunca su esencia salvaje.",
