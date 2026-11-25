@@ -9,6 +9,11 @@
           "nombre_es": "Azul Navi",
           "color": "",
           "imagen": "/assets/gato-tomando-cafe-azul-navi.webp"
+        },
+        {
+          "nombre_es": "Negro",
+          "color": "",
+          "imagen": "/assets/gato-tomando-cafe-negra.webp"
         }
       ],
       "nombre_es": "Coffee First",
