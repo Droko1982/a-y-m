@@ -64,6 +64,11 @@
           "nombre_es": "Crema",
           "color": "",
           "imagen": "/assets/puma-crema.webp"
+        },
+        {
+          "nombre_es": "Vainilla",
+          "color": "",
+          "imagen": "/assets/puma-vainilla.webp"
         }
       ],
       "nombre_es": "Esencia Indomable",
