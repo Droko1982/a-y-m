@@ -19,6 +19,11 @@
           "nombre_es": "Mocca",
           "color": "",
           "imagen": "/assets/gato-tomando-cafe-mocca.webp"
+        },
+        {
+          "nombre_es": "Verde Militar",
+          "color": "",
+          "imagen": "/assets/gato-tomando-cafe-verde-militar.webp"
         }
       ],
       "nombre_es": "Coffee First",
