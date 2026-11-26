@@ -19,6 +19,11 @@
           "nombre_es": "Crema",
           "color": "",
           "imagen": "/assets/fila-de-gatos-crema.webp"
+        },
+        {
+          "nombre_es": "Vainilla",
+          "color": "",
+          "imagen": "/assets/fila-de-gatos-vainilla.webp"
         }
       ],
       "nombre_es": "Nope, Not Today, Humans",
