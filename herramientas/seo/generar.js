@@ -416,7 +416,7 @@ ${o.cuerpo}
     <div class="container">
       <span>© ${new Date().getFullYear()} ${MARCA} · <a href="/politicas.html">Políticas y términos</a></span>
       <span>Hecho en el Quindío, Colombia</span>
-      <span class="footer-dev">Desarrollo web: <a href="/politicas.html#desarrollo">Dr. Mauricio Rodríguez Herrera</a></span>
+      <span class="footer-dev">Desarrollo web: <a href="/politicas.html#desarrollo">Dr. Mauricio Rodríguez Herrera</a> · <a href="https://fastlabstudio.com/" target="_blank" rel="noopener">FastLab</a></span>
     </div>
   </div>
 </footer>
