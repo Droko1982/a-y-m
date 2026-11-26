@@ -14,6 +14,11 @@
           "nombre_es": "Arena",
           "color": "",
           "imagen": "/assets/fila-de-gatos-arena.webp"
+        },
+        {
+          "nombre_es": "Crema",
+          "color": "",
+          "imagen": "/assets/fila-de-gatos-crema.webp"
         }
       ],
       "nombre_es": "Nope, Not Today, Humans",
