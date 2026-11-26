@@ -24,6 +24,11 @@
           "nombre_es": "Vainilla",
           "color": "",
           "imagen": "/assets/fila-de-gatos-vainilla.webp"
+        },
+        {
+          "nombre_es": "Mocca",
+          "color": "",
+          "imagen": "/assets/fila-de-gatos-mocca.webp"
         }
       ],
       "nombre_es": "Nope, Not Today, Humans",
